@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 
 namespace OpenGraphTilemaker
 {
@@ -27,8 +28,8 @@ namespace OpenGraphTilemaker
 
             switch (totalDaysElapsed)
             {
-                case int _ when totalSecondsElapsed < 0 : return "n/a";
-                
+                case int _ when totalSecondsElapsed < 0: return "n/a";
+
                 case Today when totalSecondsElapsed < MinuteInSeconds: return "just now";
 
                 case Today when totalSecondsElapsed < HourInSeconds:
@@ -56,11 +57,31 @@ namespace OpenGraphTilemaker
 
         private static double FloorBy(this int dividend, int divisor) => Math.Floor((double) dividend / divisor);
 
+        private static int ToInt32(this object arg) => Convert.ToInt32(arg);
+
+        private static int ToAbs(this int arg) => Math.Abs(arg);
+
         // ReSharper disable once MemberCanBePrivate.Global
         public class PluralFormatProvider : IFormatProvider, ICustomFormatter
         {
-            public string Format(string format, object arg, IFormatProvider formatProvider) =>
-                $"{Convert.ToInt32(arg)} {format.Split(';')[Convert.ToInt32(arg) == 1 ? 0 : 1]}";
+            private const int Singular = 0;
+            private const int Plural = 1;
+            protected internal const string Space = " ";
+
+            public string Format(string format, object arg, IFormatProvider formatProvider)
+            {
+                if (format == null) format = string.Empty;
+                if (arg == null) throw new ArgumentNullException(nameof(arg));
+
+                var strings = format.Split(';');
+                var hasStrings = strings.Length >= 2;
+                var space = strings[0] != string.Empty ? Space : string.Empty;
+
+                var number = arg.ToInt32();
+                var index = number.ToAbs() == 1 ? Singular : Plural;
+                
+                return hasStrings ? $"{number} {strings[index]}" : $"{number}{space}{strings[0]}";
+            }
 
             public object GetFormat(Type formatType) => this;
         }
