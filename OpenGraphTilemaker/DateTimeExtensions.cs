@@ -7,12 +7,12 @@ namespace OpenGraphTilemaker
     {
         private const int Today = 0;
         private const int Yesterday = 1;
-        private const int Week = 7;
-        private const int Month = 31;
+        private const int WeekInDays = 7;
+        private const int MonthInDays = 31;
 
-        private const int OneMinute = 60;
-        private const int OneHour = 3600;
-        private const int OneDay = 86400;
+        private const int MinuteInSeconds = 60;
+        private const int HourInSeconds = 3600;
+        private const int DayInSeconds = 86400;
 
         public static string ToFriendlyDate(this DateTime? date)
         {
@@ -29,23 +29,23 @@ namespace OpenGraphTilemaker
             {
                 case int _ when totalSecondsElapsed < 0 : return "n/a";
                 
-                case Today when totalSecondsElapsed < OneMinute: return "just now";
+                case Today when totalSecondsElapsed < MinuteInSeconds: return "just now";
 
-                case Today when totalSecondsElapsed < OneHour:
+                case Today when totalSecondsElapsed < HourInSeconds:
                     return string.Format(new PluralFormatProvider(), "{0:minute;minutes} ago",
-                        totalSecondsElapsed.FloorBy(OneMinute));
+                        totalSecondsElapsed.FloorBy(MinuteInSeconds));
 
-                case Today when totalSecondsElapsed < OneDay:
+                case Today when totalSecondsElapsed < DayInSeconds:
                     return string.Format(new PluralFormatProvider(), "{0:hour;hours} ago",
-                        totalSecondsElapsed.FloorBy(OneHour));
+                        totalSecondsElapsed.FloorBy(HourInSeconds));
 
                 case Yesterday: return "yesterday";
 
-                case int days when days < Week: return $"{totalDaysElapsed} days ago";
+                case int days when days < WeekInDays: return $"{totalDaysElapsed} days ago";
 
-                case int days when days < Month:
+                case int days when days < MonthInDays:
                     return string.Format(new PluralFormatProvider(), "{0:week;weeks} ago",
-                        totalDaysElapsed.CeilingBy(Week));
+                        totalDaysElapsed.CeilingBy(WeekInDays));
 
                 default:
                     return date.ToString(CultureInfo.InvariantCulture);
@@ -56,7 +56,8 @@ namespace OpenGraphTilemaker
 
         private static double FloorBy(this int dividend, int divisor) => Math.Floor((double) dividend / divisor);
 
-        private class PluralFormatProvider : IFormatProvider, ICustomFormatter
+        // ReSharper disable once MemberCanBePrivate.Global
+        public class PluralFormatProvider : IFormatProvider, ICustomFormatter
         {
             public string Format(string format, object arg, IFormatProvider formatProvider) =>
                 $"{Convert.ToInt32(arg)} {format.Split(';')[Convert.ToInt32(arg) == 1 ? 0 : 1]}";
