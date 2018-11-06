@@ -1,0 +1,42 @@
+﻿@page "/"
+@using OpenGraphTilemaker
+
+<h1>Hello, world!</h1>
+
+<p>Welcome to your new app.</p>
+
+<br/>
+
+
+<div>
+    @DateTime.UtcNow.ToFriendlyDate(),
+    @DateTime.UtcNow.AddMinutes(-1).ToFriendlyDate(),
+    @DateTime.UtcNow.AddMinutes(-2).ToFriendlyDate(),
+    @DateTime.UtcNow.AddMinutes(-60).ToFriendlyDate(),
+    @DateTime.UtcNow.AddMinutes(-120).ToFriendlyDate(),
+    @DateTime.UtcNow.AddDays(-1).ToFriendlyDate(),
+    @DateTime.UtcNow.AddDays(-7).ToFriendlyDate(),
+    @DateTime.UtcNow.AddDays(-30).ToFriendlyDate(),
+</div>
+
+<div class="container">
+    <div class="row no-gutters">
+        <div class="col">
+            <Tile Url="https://electrek.co/2018/10/29/tesla-parts-catalog-model-3-model-s-model-x-roadster-public/"></Tile>
+            <Tile Url="https://techcrunch.com/2018/10/28/forget-watson-the-red-hat-acquisition-may-be-the-thing-that-saves-ibm/"></Tile>
+        </div>
+        <div class="col">
+            <Tile Url="https://www.cnbc.com/2018/10/28/ibm-to-acquire-red-hat-in-deal-valued-at-34-billion.html"></Tile>
+            <Tile Url="https://electrek.co/2018/10/29/tesla-parts-catalog-model-3-model-s-model-x-roadster-public/"></Tile>
+            <Tile Url="https://techcrunch.com/2018/10/28/forget-watson-the-red-hat-acquisition-may-be-the-thing-that-saves-ibm/"></Tile>
+        </div>
+        <div class="col">
+            <Tile Url="https://techcrunch.com/2018/10/28/forget-watson-the-red-hat-acquisition-may-be-the-thing-that-saves-ibm/"></Tile>
+            <Tile Url="https://www.cnbc.com/2018/10/28/ibm-to-acquire-red-hat-in-deal-valued-at-34-billion.html"></Tile>
+            <Tile Url="https://electrek.co/2018/10/29/tesla-parts-catalog-model-3-model-s-model-x-roadster-public/"></Tile>
+        </div>
+    </div>
+</div>
+
+
+<SurveyPrompt Title="How is Blazor working for you?"/>

@@ -1,0 +1,7 @@
+{
+  "name": "opengraphtilemaker",
+  "version": "1.0.0",
+  "devDependencies": {
+    "foundation-sites": "^6.5.0"
+  }
+}

@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGraphTilemaker", "OpenGraphTilemaker\OpenGraphTilemaker.csproj", "{DF8A2203-23E8-47F0-A2BA-E60125AEC357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemakerTests", "OpenGraphTilemakerTests\OpenGraphTilemakerTests.csproj", "{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGraphTilemakerWeb.Server", "OpenGraphTilemakerWeb.Server\OpenGraphTilemakerWeb.Server.csproj", "{72EC2D59-ADAD-46D5-AC36-AD50219705C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGraphTilemakerWeb.App", "OpenGraphTilemakerWeb.App\OpenGraphTilemakerWeb.App.csproj", "{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker", "OpenGraphTilemaker\OpenGraphTilemaker.csproj", "{E15A9072-2158-49E0-B4E2-3A3FAE92156C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DF8A2203-23E8-47F0-A2BA-E60125AEC357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF8A2203-23E8-47F0-A2BA-E60125AEC357}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF8A2203-23E8-47F0-A2BA-E60125AEC357}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF8A2203-23E8-47F0-A2BA-E60125AEC357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72EC2D59-ADAD-46D5-AC36-AD50219705C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EC2D59-ADAD-46D5-AC36-AD50219705C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EC2D59-ADAD-46D5-AC36-AD50219705C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EC2D59-ADAD-46D5-AC36-AD50219705C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E15A9072-2158-49E0-B4E2-3A3FAE92156C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E15A9072-2158-49E0-B4E2-3A3FAE92156C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E15A9072-2158-49E0-B4E2-3A3FAE92156C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E15A9072-2158-49E0-B4E2-3A3FAE92156C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
