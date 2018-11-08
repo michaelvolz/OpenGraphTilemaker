@@ -19,8 +19,9 @@ namespace OpenGraphTilemakerTests
         public async Task ErroneousUrl_CreatesErrorEntry()
         {
             var tileMaker = new TileMaker();
+            var httpClient = new HttpClient();
 
-            await tileMaker.ScrapeHtml(new Uri("http://brokenurl"), false);
+            await tileMaker.ScrapeAsync(httpClient,new Uri("http://brokenurl"), false);
 
             tileMaker.HtmlMetaTags.Should().BeNull();
             tileMaker.Error.Should().NotBeNull();
@@ -31,6 +32,7 @@ namespace OpenGraphTilemakerTests
         {
             var tileMaker = new TileMaker();
             var httpClient = new HttpClient();
+            
             var result = await tileMaker.LoadWebEnhanced(httpClient, new Uri("http://aspnetmonsters.com"));
 
             result.Should().NotBeNull();
@@ -75,8 +77,9 @@ namespace OpenGraphTilemakerTests
         public async Task ScrapeHtml()
         {
             var tileMaker = new TileMaker();
+            var httpClient = new HttpClient();
 
-            await tileMaker.ScrapeHtml(new Uri("https://9to5mac.com/2018/10/19/microsoft-spend-ios-app/"), false);
+            await tileMaker.ScrapeAsync(httpClient, new Uri("https://9to5mac.com/2018/10/19/microsoft-spend-ios-app/"), false);
 
             tileMaker.HtmlMetaTags.Should().NotBeNull();
         }

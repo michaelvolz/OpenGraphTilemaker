@@ -49,7 +49,7 @@ namespace OpenGraphTilemaker
                         totalDaysElapsed.CeilingBy(WeekInDays));
 
                 default:
-                    return date.ToString(CultureInfo.InvariantCulture);
+                    return date.ToLongDateString();
             }
         }
 

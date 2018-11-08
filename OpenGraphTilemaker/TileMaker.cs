@@ -12,7 +12,8 @@ namespace OpenGraphTilemaker
 {
     public class TileMaker
     {
-        protected internal const string CacheFolder = @"C:\WINDOWS\Temp\";
+        private const string CacheFolder = @"C:\WINDOWS\Temp\";
+
         public IList<HtmlNode> HtmlMetaTags;
         public OpenGraphMetadata OpenGraphMetadata;
 
@@ -20,9 +21,6 @@ namespace OpenGraphTilemaker
 
         public async Task ScrapeAsync(HttpClient httpClient, Uri uri, bool useCache = true) =>
             await ScrapeAsync(async () => await LoadWebEnhanced(httpClient, uri, useCache));
-
-        public async Task ScrapeHtml(Uri uri, bool useCache = true) =>
-            await ScrapeAsync(() => LoadWebAsync(uri, useCache));
 
         public async Task ScrapeHtml(string filePath) => await ScrapeAsync(() => LoadFileAsync(filePath));
 
@@ -45,23 +43,6 @@ namespace OpenGraphTilemaker
 
             var doc = new HtmlDocument();
             doc.Load(filePath);
-
-            return doc;
-        }
-
-        private async Task<HtmlDocument> LoadWebAsync(Uri uri, bool useCache)
-        {
-            var web = new HtmlWeb
-            {
-                CaptureRedirect = true,
-                UseCookies = true,
-                CachePath = CacheFolder,
-                UsingCache = useCache,
-                UsingCacheIfExists = true,
-                UserAgent =
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
-            };
-            var doc = await web.LoadFromWebAsync(uri.OriginalString);
 
             return doc;
         }
@@ -93,16 +74,11 @@ namespace OpenGraphTilemaker
             return doc;
         }
 
-        private static void WriteToCache(Uri uri, string html)
-        {
-            File.WriteAllText(CacheFolder + uri.ToValidFileName(), html);
-        }
+        private static void WriteToCache(Uri uri, string html) => File.WriteAllText(Filename(uri), html);
 
-        private string TryLodFromCache(Uri uri)
-        {
-            var file = CacheFolder + uri.ToValidFileName();
-            return File.Exists(file) ? File.ReadAllText(file) : null;
-        }
+        private string TryLodFromCache(Uri uri) => File.Exists(Filename(uri)) ? File.ReadAllText(Filename(uri)) : null;
+
+        private static string Filename(Uri uri) => CacheFolder + uri.ToValidFileName();
 
         private void ExtractMetaData(HtmlDocument doc)
         {
@@ -175,12 +151,19 @@ namespace OpenGraphTilemaker
         }
     }
 
+    // ReSharper disable MemberCanBePrivate.Global
     public static class TileMakerExtensions
     {
-        public static string ToValidFileName(this Uri uri)
+        public static string TruncateAtWord(this string value, int length, string truncateAtChar = " ")
         {
-            return uri.OriginalString.ToValidFileName();
+            if (value == null || value.Length <= length)
+                return value;
+
+            var nextSpaceIndex = value.LastIndexOf(truncateAtChar, length, StringComparison.Ordinal);
+            return $"{value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length).Trim()} ...";
         }
+
+        public static string ToValidFileName(this Uri uri) => uri.OriginalString.ToValidFileName();
 
         public static string ToValidFileName(this string name)
         {
@@ -191,25 +174,12 @@ namespace OpenGraphTilemaker
             return Regex.Replace(name, invalidRegex, "_");
         }
 
-        public static int? AsInt(this string value)
-        {
-            if (int.TryParse(value, out var result))
-                return result;
+        public static int? AsInt(this string value) => int.TryParse(value, out var result) ? (int?) result : null;
 
-            return null;
-        }
+        public static DateTime? AsDateTime(this string value) =>
+            DateTime.TryParse(value, out var result) ? (DateTime?) result : null;
 
-        public static DateTime? AsDateTime(this string value)
-        {
-            if (DateTime.TryParse(value, out var result))
-                return result;
-
-            return null;
-        }
-
-        public static string DeEntitize(this string value)
-        {
-            return HtmlEntity.DeEntitize(value);
-        }
+        public static string DeEntitize(this string value) => HtmlEntity.DeEntitize(value);
     }
+    // ReSharper restore MemberCanBePrivate.Global
 }

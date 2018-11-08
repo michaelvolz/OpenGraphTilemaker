@@ -53,7 +53,7 @@ namespace OpenGraphTilemakerTests
             var date = DateTime.UtcNow.AddMonths(-3);
             var result = date.ToFriendlyDate();
 
-            result.Should().Be(date.ToString(CultureInfo.InvariantCulture));
+            result.Should().Be(date.ToLongDateString());
         }
 
         [Theory]

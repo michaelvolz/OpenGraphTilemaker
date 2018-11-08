@@ -9,11 +9,17 @@ namespace OpenGraphTilemaker
     //https://getpocket.com/users/Flynn0r/feed/all
     public class Pocket
     {
+        private static List<PocketEntry> _cachedEntries;
+
         public async Task<List<PocketEntry>> GetEntriesAsync(Uri uri)
         {
-            var service = new NewsFeedService<PocketEntry>(uri);
-            var newsFeed = await service.GetNewsFeedAsync(item => item.ToPocketEntry(), p => p.PubDate);
-            return newsFeed;
+            if (_cachedEntries == null)
+            {
+                var service = new NewsFeedService<PocketEntry>(uri);
+                _cachedEntries = await service.GetNewsFeedAsync(item => item.ToPocketEntry(), p => p.PubDate);
+            }
+
+            return _cachedEntries;
         }
     }
 

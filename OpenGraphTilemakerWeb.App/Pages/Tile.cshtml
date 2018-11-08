@@ -2,13 +2,19 @@
 @inherits TileModel;
 
 @if (OpenGraphMetadata?.Image != null && OpenGraphMetadata?.Url != null) {
-    <div class="card" style="width: 18rem; margin-bottom: 1em;">
-        <img class="card-img-top" src="@OpenGraphMetadata.Image" alt="Card image cap">
+    <div class="card" style="margin-bottom: 1em; width: 18rem;">
+        <img class="card-img-top" src="@OpenGraphMetadata.Image" alt="">
         <div class="card-body">
             <h5 class="card-title">@OpenGraphMetadata.Title</h5>
+            <div><small><i>
+                @OpenGraphMetadata.ArticlePublishedTime.ToFriendlyDate()
+            </i></small></div>
             <p class="card-text">@OpenGraphMetadata.Description</p>
-            <a href="@OpenGraphMetadata.Url" class="btn btn-primary" target="_new" style="color: white; word-break: break-all; word-wrap: break-word;">@(OpenGraphMetadata.SiteName ?? "Link")</a>
-            &nbsp;<small>@OpenGraphMetadata.ArticlePublishedTime.ToFriendlyDate()</small>
+            <div><a href="@OpenGraphMetadata.Url" class="btn btn-primary" target="_new">
+                <span style="color: white;">
+                    @(OpenGraphMetadata.SiteName.TruncateAtWord(25) ?? "Link")
+                </span>
+            </a></div>
         </div>
     </div>
 }
