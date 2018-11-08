@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using HtmlAgilityPack;
 
 namespace OpenGraphTilemaker
@@ -9,23 +12,21 @@ namespace OpenGraphTilemaker
     {
         public IList<HtmlNode> HtmlMetaTags;
         public OpenGraphMetadata OpenGraphMetadata;
+
         public Exception Error { get; private set; }
 
-        public void ScrapeHtml(Uri uri)
+        public async Task ScrapeHtmlAsync(HttpClient httpClient, Uri uri, bool useCache = true) =>
+            await ScrapeHtmlGenericAsync(async () => await LoadWebEnhanced(httpClient, uri, useCache));
+
+        public void ScrapeHtml(Uri uri, bool useCache = true) => ScrapeHtmlGeneric(() => LoadWeb(uri, useCache));
+
+        public void ScrapeHtml(string filePath) => ScrapeHtmlGeneric(() => LoadFile(filePath));
+
+        private async Task ScrapeHtmlGenericAsync(Func<Task<HtmlDocument>> loadDocument)
         {
             try
             {
-                var web = new HtmlWeb
-                {
-                    CaptureRedirect = true,
-                    UseCookies = true,
-                    CachePath = @"C:\WINDOWS\Temp\",
-                    UsingCache = true,
-                    UsingCacheIfExists = true,
-                    UserAgent =
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
-                };
-                var doc = web.Load(uri);
+                var doc = await loadDocument();
                 ExtractMetaData(doc);
             }
             catch (Exception e)
@@ -34,18 +35,84 @@ namespace OpenGraphTilemaker
             }
         }
 
-        public void ScrapeHtml(string filePath)
+        private void ScrapeHtmlGeneric(Func<HtmlDocument> loadDocument)
         {
             try
             {
-                var doc = new HtmlDocument();
-                doc.Load(filePath);
+                var doc = loadDocument();
                 ExtractMetaData(doc);
             }
             catch (Exception e)
             {
                 Error = e;
             }
+        }
+
+        private HtmlDocument LoadFile(string filePath)
+        {
+            var doc = new HtmlDocument();
+            doc.Load(filePath);
+            return doc;
+        }
+
+        private HtmlDocument LoadWeb(Uri uri, bool useCache)
+        {
+            var web = new HtmlWeb
+            {
+                CaptureRedirect = true,
+                UseCookies = true,
+                CachePath = @"C:\WINDOWS\Temp\",
+                UsingCache = useCache,
+                UsingCacheIfExists = true,
+                UserAgent =
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
+            };
+            var doc = web.Load(uri);
+            return doc;
+        }
+
+        public async Task<HtmlDocument> LoadWebEnhanced(HttpClient httpClient, Uri uri, bool useCache = false)
+        {
+            {
+                {
+                    var data = await httpClient.GetAsync(uri);
+
+                    var isSuccess = data.IsSuccessStatusCode;
+                    var httpStatusCode = data.StatusCode;
+
+                    if (httpStatusCode == HttpStatusCode.Moved || httpStatusCode == HttpStatusCode.MovedPermanently)
+                    {
+                        data = await httpClient.GetAsync(data.Headers.Location);
+                    }
+
+                    var doc = new HtmlDocument();
+                    var html = await data.Content.ReadAsStringAsync();
+                    doc.LoadHtml(html);
+                    return doc;
+                }
+            }
+
+//            using (HttpClientHandler handler = new HttpClientHandler())
+//            {
+//                handler.AllowAutoRedirect = true;
+//                using (HttpClient httpClient = new HttpClient(handler))
+//                {
+//                    var data = await httpClient.GetAsync(uri);
+//
+//                    var isSuccess = data.IsSuccessStatusCode;
+//                    var httpStatusCode = data.StatusCode;
+//
+//                    if (httpStatusCode == HttpStatusCode.Moved || httpStatusCode == HttpStatusCode.MovedPermanently)
+//                    {
+//                        data = await httpClient.GetAsync(data.Headers.Location);
+//                    }
+//
+//                    var doc = new HtmlDocument();
+//                    var html = await data.Content.ReadAsStringAsync();
+//                    doc.LoadHtml(html);
+//                    return doc;
+//                }
+//            }
         }
 
         private void ExtractMetaData(HtmlDocument doc)

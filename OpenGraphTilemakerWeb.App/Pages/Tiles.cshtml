@@ -1,16 +1,36 @@
-﻿@page "/"
-@using OpenGraphTilemaker
+﻿@inherits TilesModel;
 
-<h1>Hello, world!</h1>
+@* @for (var index = 0; index < Urls.Count; index+=3) { *@
+@*     var item = Urls[index]; *@
+@*         <Tile Url="@item.Link"></Tile> *@
+@* } *@
 
-<p>Welcome to your new app.</p>
+<div class="container">
+    <div class="row no-gutters">
+        <div class="col">
+            @for (var index = 0; index < Urls.Count-3; index+=3) {
+                var item = Urls[index];
+                <Tile Url="@item.Link"></Tile>
+            }
+        </div>
+        <div class="col">
+            @for (var index = 1; index < Urls.Count; index+=3) {
+                var item = Urls[index];
+                <Tile Url="@item.Link"></Tile>
+            }
+        </div>
+        <div class="col">
+            @for (var index = 2; index < Urls.Count; index+=3) {
+                var item = Urls[index];
+                <Tile Url="@item.Link"></Tile>
+            }
+        </div>
+    </div>
+</div>
 
-<br/>
 
-
-@* <Friendlydatestest></Friendlydatestest> *@
-
-<Tiles ></Tiles>
+@* <div>@Urls.Skip(1).First().Link</div> *@
+@* <Tile Url="@Urls.Skip(1).First().Link"></Tile> *@
 
 @* <div class="container"> *@
 @*     <div class="row no-gutters"> *@
@@ -30,6 +50,3 @@
 @*         </div> *@
 @*     </div> *@
 @* </div> *@
-
-
-@* <SurveyPrompt Title="How is Blazor working for you?"/> *@

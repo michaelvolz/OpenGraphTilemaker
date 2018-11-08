@@ -8,6 +8,8 @@ namespace OpenGraphTilemakerWeb.App
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
+
             // Since Blazor is running on the server, we can use an application service
             // to read the forecast data.
             services.AddSingleton<WeatherForecastService>();

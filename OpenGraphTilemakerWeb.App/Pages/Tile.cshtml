@@ -1,13 +1,13 @@
 ﻿@using OpenGraphTilemaker
 @inherits TileModel;
 
-@if (OpenGraphMetadata != null) {
-    <div class="card" style="width: 18rem;">
+@if (OpenGraphMetadata != null && OpenGraphMetadata.Image != null) {
+    <div class="card" style="width: 18rem; margin-bottom: 1em;">
         <img class="card-img-top" src="@OpenGraphMetadata.Image" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">@OpenGraphMetadata.Title</h5>
             <p class="card-text">@OpenGraphMetadata.Description</p>
-            <a href="@OpenGraphMetadata.Url" class="btn btn-primary">@OpenGraphMetadata.SiteName</a>
+            <a href="@OpenGraphMetadata.Url" class="btn btn-primary" style="color: white;">@(OpenGraphMetadata.SiteName ?? "Link")</a>
             <small>@OpenGraphMetadata.ArticlePublishedTime.ToFriendlyDate()</small>
         </div>
     </div>

@@ -14,6 +14,8 @@ namespace OpenGraphTilemakerWeb.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
+            
             // Adds the Server-Side Blazor services, and those registered by the app project's startup.
             services.AddServerSideBlazor<App.Startup>();
 
