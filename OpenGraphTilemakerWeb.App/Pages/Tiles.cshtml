@@ -8,19 +8,19 @@
 <div class="container">
     <div class="row no-gutters">
         <div class="col">
-            @for (var index = 0; index < Urls.Count-3; index+=3) {
+            @for (var index = 0; index < Urls.Count; index += 3) {
                 var item = Urls[index];
                 <Tile Url="@item.Link"></Tile>
             }
         </div>
         <div class="col">
-            @for (var index = 1; index < Urls.Count; index+=3) {
+            @for (var index = 1; index < Urls.Count; index += 3) {
                 var item = Urls[index];
                 <Tile Url="@item.Link"></Tile>
             }
         </div>
         <div class="col">
-            @for (var index = 2; index < Urls.Count; index+=3) {
+            @for (var index = 2; index < Urls.Count; index += 3) {
                 var item = Urls[index];
                 <Tile Url="@item.Link"></Tile>
             }
@@ -31,22 +31,3 @@
 
 @* <div>@Urls.Skip(1).First().Link</div> *@
 @* <Tile Url="@Urls.Skip(1).First().Link"></Tile> *@
-
-@* <div class="container"> *@
-@*     <div class="row no-gutters"> *@
-@*         <div class="col"> *@
-@*             <Tile Url="https://electrek.co/2018/10/29/tesla-parts-catalog-model-3-model-s-model-x-roadster-public/"></Tile> *@
-@*             <Tile Url="https://techcrunch.com/2018/10/28/forget-watson-the-red-hat-acquisition-may-be-the-thing-that-saves-ibm/"></Tile> *@
-@*         </div> *@
-@*         <div class="col"> *@
-@*             <Tile Url="https://www.cnbc.com/2018/10/28/ibm-to-acquire-red-hat-in-deal-valued-at-34-billion.html"></Tile> *@
-@*             <Tile Url="https://electrek.co/2018/10/29/tesla-parts-catalog-model-3-model-s-model-x-roadster-public/"></Tile> *@
-@*             <Tile Url="https://techcrunch.com/2018/10/28/forget-watson-the-red-hat-acquisition-may-be-the-thing-that-saves-ibm/"></Tile> *@
-@*         </div> *@
-@*         <div class="col"> *@
-@*             <Tile Url="https://techcrunch.com/2018/10/28/forget-watson-the-red-hat-acquisition-may-be-the-thing-that-saves-ibm/"></Tile> *@
-@*             <Tile Url="https://www.cnbc.com/2018/10/28/ibm-to-acquire-red-hat-in-deal-valued-at-34-billion.html"></Tile> *@
-@*             <Tile Url="https://electrek.co/2018/10/29/tesla-parts-catalog-model-3-model-s-model-x-roadster-public/"></Tile> *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@

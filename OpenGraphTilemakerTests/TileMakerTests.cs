@@ -16,11 +16,11 @@ namespace OpenGraphTilemakerTests
         }
 
         [Fact]
-        public void ErroneousUrl_CreatesErrorEntry()
+        public async Task ErroneousUrl_CreatesErrorEntry()
         {
             var tileMaker = new TileMaker();
 
-            tileMaker.ScrapeHtml(new Uri("http://brokenurl"), false);
+            await tileMaker.ScrapeHtml(new Uri("http://brokenurl"), false);
 
             tileMaker.HtmlMetaTags.Should().BeNull();
             tileMaker.Error.Should().NotBeNull();
@@ -38,11 +38,11 @@ namespace OpenGraphTilemakerTests
         }
 
         [Fact]
-        public void ParseData_AllValuesCorrect()
+        public async Task ParseData_AllValuesCorrect()
         {
             var tileMaker = new TileMaker();
 
-            tileMaker.ScrapeHtml("./TestData/TestHtml1.html");
+            await tileMaker.ScrapeHtml("./TestData/TestHtml1.html");
 
             tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
             foreach (var node in tileMaker.HtmlMetaTags)
@@ -72,11 +72,11 @@ namespace OpenGraphTilemakerTests
         }
 
         [Fact]
-        public void ScrapeHtml()
+        public async Task ScrapeHtml()
         {
             var tileMaker = new TileMaker();
 
-            tileMaker.ScrapeHtml(new Uri("https://9to5mac.com/2018/10/19/microsoft-spend-ios-app/"), false);
+            await tileMaker.ScrapeHtml(new Uri("https://9to5mac.com/2018/10/19/microsoft-spend-ios-app/"), false);
 
             tileMaker.HtmlMetaTags.Should().NotBeNull();
         }
@@ -87,7 +87,7 @@ namespace OpenGraphTilemakerTests
             var tileMaker = new TileMaker();
             var httpClient = new HttpClient();
 
-            await tileMaker.ScrapeHtmlAsync(httpClient,
+            await tileMaker.ScrapeAsync(httpClient,
                 new Uri("https://recode.net/2018/11/2/18053424/elon-musk-tesla-spacex-boring-company-self-driving-cars-saudi-twitter-kara-swisher-decode-podcast"), false);
 
             tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();

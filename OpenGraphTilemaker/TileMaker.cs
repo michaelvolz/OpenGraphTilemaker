@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
@@ -10,19 +12,21 @@ namespace OpenGraphTilemaker
 {
     public class TileMaker
     {
+        protected internal const string CacheFolder = @"C:\WINDOWS\Temp\";
         public IList<HtmlNode> HtmlMetaTags;
         public OpenGraphMetadata OpenGraphMetadata;
 
         public Exception Error { get; private set; }
 
-        public async Task ScrapeHtmlAsync(HttpClient httpClient, Uri uri, bool useCache = true) =>
-            await ScrapeHtmlGenericAsync(async () => await LoadWebEnhanced(httpClient, uri, useCache));
+        public async Task ScrapeAsync(HttpClient httpClient, Uri uri, bool useCache = true) =>
+            await ScrapeAsync(async () => await LoadWebEnhanced(httpClient, uri, useCache));
 
-        public void ScrapeHtml(Uri uri, bool useCache = true) => ScrapeHtmlGeneric(() => LoadWeb(uri, useCache));
+        public async Task ScrapeHtml(Uri uri, bool useCache = true) =>
+            await ScrapeAsync(() => LoadWebAsync(uri, useCache));
 
-        public void ScrapeHtml(string filePath) => ScrapeHtmlGeneric(() => LoadFile(filePath));
+        public async Task ScrapeHtml(string filePath) => await ScrapeAsync(() => LoadFileAsync(filePath));
 
-        private async Task ScrapeHtmlGenericAsync(Func<Task<HtmlDocument>> loadDocument)
+        private async Task ScrapeAsync(Func<Task<HtmlDocument>> loadDocument)
         {
             try
             {
@@ -35,84 +39,69 @@ namespace OpenGraphTilemaker
             }
         }
 
-        private void ScrapeHtmlGeneric(Func<HtmlDocument> loadDocument)
+        private async Task<HtmlDocument> LoadFileAsync(string filePath)
         {
-            try
-            {
-                var doc = loadDocument();
-                ExtractMetaData(doc);
-            }
-            catch (Exception e)
-            {
-                Error = e;
-            }
-        }
+            await Task.FromResult(0);
 
-        private HtmlDocument LoadFile(string filePath)
-        {
             var doc = new HtmlDocument();
             doc.Load(filePath);
+
             return doc;
         }
 
-        private HtmlDocument LoadWeb(Uri uri, bool useCache)
+        private async Task<HtmlDocument> LoadWebAsync(Uri uri, bool useCache)
         {
             var web = new HtmlWeb
             {
                 CaptureRedirect = true,
                 UseCookies = true,
-                CachePath = @"C:\WINDOWS\Temp\",
+                CachePath = CacheFolder,
                 UsingCache = useCache,
                 UsingCacheIfExists = true,
                 UserAgent =
                     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"
             };
-            var doc = web.Load(uri);
+            var doc = await web.LoadFromWebAsync(uri.OriginalString);
+
             return doc;
         }
 
         public async Task<HtmlDocument> LoadWebEnhanced(HttpClient httpClient, Uri uri, bool useCache = false)
         {
+            string html = null;
+            if (useCache)
+                html = TryLodFromCache(uri);
+
+            if (html == null)
             {
+                var data = await httpClient.GetAsync(uri);
+                var httpStatusCode = data.StatusCode;
+                if (httpStatusCode == HttpStatusCode.Moved || httpStatusCode == HttpStatusCode.MovedPermanently)
                 {
-                    var data = await httpClient.GetAsync(uri);
-
-                    var isSuccess = data.IsSuccessStatusCode;
-                    var httpStatusCode = data.StatusCode;
-
-                    if (httpStatusCode == HttpStatusCode.Moved || httpStatusCode == HttpStatusCode.MovedPermanently)
-                    {
-                        data = await httpClient.GetAsync(data.Headers.Location);
-                    }
-
-                    var doc = new HtmlDocument();
-                    var html = await data.Content.ReadAsStringAsync();
-                    doc.LoadHtml(html);
-                    return doc;
+                    data = await httpClient.GetAsync(data.Headers.Location);
                 }
+
+                html = await data.Content.ReadAsStringAsync();
+
+                if (data.IsSuccessStatusCode && useCache && !string.IsNullOrWhiteSpace(html))
+                    WriteToCache(uri, html);
             }
 
-//            using (HttpClientHandler handler = new HttpClientHandler())
-//            {
-//                handler.AllowAutoRedirect = true;
-//                using (HttpClient httpClient = new HttpClient(handler))
-//                {
-//                    var data = await httpClient.GetAsync(uri);
-//
-//                    var isSuccess = data.IsSuccessStatusCode;
-//                    var httpStatusCode = data.StatusCode;
-//
-//                    if (httpStatusCode == HttpStatusCode.Moved || httpStatusCode == HttpStatusCode.MovedPermanently)
-//                    {
-//                        data = await httpClient.GetAsync(data.Headers.Location);
-//                    }
-//
-//                    var doc = new HtmlDocument();
-//                    var html = await data.Content.ReadAsStringAsync();
-//                    doc.LoadHtml(html);
-//                    return doc;
-//                }
-//            }
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            return doc;
+        }
+
+        private static void WriteToCache(Uri uri, string html)
+        {
+            File.WriteAllText(CacheFolder + uri.ToValidFileName(), html);
+        }
+
+        private string TryLodFromCache(Uri uri)
+        {
+            var file = CacheFolder + uri.ToValidFileName();
+            return File.Exists(file) ? File.ReadAllText(file) : null;
         }
 
         private void ExtractMetaData(HtmlDocument doc)
@@ -188,6 +177,20 @@ namespace OpenGraphTilemaker
 
     public static class TileMakerExtensions
     {
+        public static string ToValidFileName(this Uri uri)
+        {
+            return uri.OriginalString.ToValidFileName();
+        }
+
+        public static string ToValidFileName(this string name)
+        {
+            var invalidChars = new string(Path.GetInvalidFileNameChars());
+            var escapedInvalidChars = Regex.Escape(invalidChars);
+            var invalidRegex = string.Format(@"([{0}]*\.+$)|([{0}]+)", escapedInvalidChars);
+
+            return Regex.Replace(name, invalidRegex, "_");
+        }
+
         public static int? AsInt(this string value)
         {
             if (int.TryParse(value, out var result))

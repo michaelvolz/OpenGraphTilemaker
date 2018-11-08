@@ -20,7 +20,7 @@ namespace OpenGraphTilemakerWeb.App.Pages
         {
             var tileMaker = new TileMaker();
             var httpClient = HttpClientFactory.CreateClient();
-            await tileMaker.ScrapeHtmlAsync(httpClient, new Uri(Url));
+            await tileMaker.ScrapeAsync(httpClient, new Uri(Url));
 
             OpenGraphMetadata = tileMaker.OpenGraphMetadata;
         }
