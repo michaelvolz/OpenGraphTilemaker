@@ -22,6 +22,15 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:50709/"
+    },
+    "Watch": {
+      "executablePath": "C:\\Program Files\\dotnet\\dotnet.exe",
+      "commandLineArgs": "watch --project \"C:\\Users\\flynn\\Projects\\OpenGraphTilemaker\\OpenGraphTilemakerWeb.Server\\OpenGraphTilemakerWeb.Server.csproj\" run",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:50709/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }

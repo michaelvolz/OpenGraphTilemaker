@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Blazor.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -5,6 +6,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Net.Mime;
+using System.Threading;
+using OpenGraphTilemaker;
 
 namespace OpenGraphTilemakerWeb.Server
 {
@@ -14,7 +17,10 @@ namespace OpenGraphTilemakerWeb.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient();
+            services.AddMemoryCache();
+            services.AddHttpClient<ITileMakerClient, TileMakerClient>()
+                // BUGFIX for 2.2 preview 3
+                .SetHandlerLifetime(Timeout.InfiniteTimeSpan);  
             
             // Adds the Server-Side Blazor services, and those registered by the app project's startup.
             services.AddServerSideBlazor<App.Startup>();

@@ -8,17 +8,11 @@ using Microsoft.SyndicationFeed.Rss;
 
 namespace OpenGraphTilemaker
 {
-    public class NewsFeedService<TEntry>
+    public class FeedService<TEntry>
     {
-        public enum SortOrder
-        {
-            Ascending = 0,
-            Descending = 1
-        }
-
         private readonly Uri _feedUri;
 
-        public NewsFeedService(Uri feedUri)
+        public FeedService(Uri feedUri)
         {
             _feedUri = feedUri;
         }
@@ -35,7 +29,7 @@ namespace OpenGraphTilemaker
                 while (await feedReader.Read())
                 {
                     if (feedReader.ElementType != SyndicationElementType.Item) continue;
-                    
+
                     var item = await feedReader.ReadItem();
                     rssNewsItems.Add(convert(item));
                 }

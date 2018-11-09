@@ -1,23 +1,25 @@
 ﻿@inherits TilesModel;
 
+@{ var columns = 3; }
+
 <div class="container">
     <div class="row no-gutters">
         <div class="col">
-            @for (var index = 0; index < Urls.Count; index += 3) {
-                var item = Urls[index];
-                <Tile Url="@item.Link"></Tile>
+            @for (var index = 0; index < MyTiles.Count; index += columns) {
+                var item = MyTiles[index];
+                <Tile OpenGraphMetadata="@item"></Tile>
             }
         </div>
         <div class="col">
-            @for (var index = 1; index < Urls.Count; index += 3) {
-                var item = Urls[index];
-                <Tile Url="@item.Link"></Tile>
+            @for (var index = 1; index < MyTiles.Count; index += columns) {
+                var item = MyTiles[index];
+                <Tile OpenGraphMetadata="@item"></Tile>
             }
         </div>
         <div class="col">
-            @for (var index = 2; index < Urls.Count; index += 3) {
-                var item = Urls[index];
-                <Tile Url="@item.Link"></Tile>
+            @for (var index = 2; index < MyTiles.Count; index += columns) {
+                var item = MyTiles[index];
+                <Tile OpenGraphMetadata="@item"></Tile>
             }
         </div>
     </div>

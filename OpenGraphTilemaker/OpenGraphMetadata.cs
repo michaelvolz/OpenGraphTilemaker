@@ -20,5 +20,7 @@ namespace OpenGraphTilemaker
         public bool IsValid => !string.IsNullOrWhiteSpace(Title) &&
                                !string.IsNullOrWhiteSpace(Description) &&
                                !string.IsNullOrWhiteSpace(Image);
+
+        public string Source { get; set; }
     }
 }

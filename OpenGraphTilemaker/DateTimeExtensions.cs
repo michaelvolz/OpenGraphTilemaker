@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
 
 namespace OpenGraphTilemaker
 {
@@ -61,12 +59,11 @@ namespace OpenGraphTilemaker
 
         private static int ToAbs(this int arg) => Math.Abs(arg);
 
-        // ReSharper disable once MemberCanBePrivate.Global
         public class PluralFormatProvider : IFormatProvider, ICustomFormatter
         {
             private const int Singular = 0;
             private const int Plural = 1;
-            protected internal const string Space = " ";
+            private const string Space = " ";
 
             public string Format(string format, object arg, IFormatProvider formatProvider)
             {
@@ -79,7 +76,7 @@ namespace OpenGraphTilemaker
 
                 var number = arg.ToInt32();
                 var index = number.ToAbs() == 1 ? Singular : Plural;
-                
+
                 return hasStrings ? $"{number} {strings[index]}" : $"{number}{space}{strings[0]}";
             }
 

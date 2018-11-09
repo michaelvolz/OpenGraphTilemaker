@@ -10,7 +10,30 @@ using HtmlAgilityPack;
 
 namespace OpenGraphTilemaker
 {
-    public class TileMaker
+    public interface ITileMakerClient
+    {
+        Task<OpenGraphMetadata> OpenGraphMetadataAsync(Uri uri);
+    }
+
+    public class TileMakerClient : ITileMakerClient
+    {
+        private readonly HttpClient _httpClient;
+
+        public TileMakerClient(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
+        public async Task<OpenGraphMetadata> OpenGraphMetadataAsync(Uri uri)
+        {
+            var tileMaker = new OpenGraphTileMaker();
+            await tileMaker.ScrapeAsync(_httpClient, uri);
+
+            return tileMaker.OpenGraphMetadata;
+        }
+    }
+
+    public class OpenGraphTileMaker
     {
         private const string CacheFolder = @"C:\WINDOWS\Temp\";
 
@@ -20,16 +43,16 @@ namespace OpenGraphTilemaker
         public Exception Error { get; private set; }
 
         public async Task ScrapeAsync(HttpClient httpClient, Uri uri, bool useCache = true) =>
-            await ScrapeAsync(async () => await LoadWebEnhanced(httpClient, uri, useCache));
+            await ScrapeAsync(async () => await LoadWebEnhanced(httpClient, uri, useCache), uri.OriginalString);
 
-        public async Task ScrapeHtml(string filePath) => await ScrapeAsync(() => LoadFileAsync(filePath));
+        public async Task ScrapeHtml(string filePath) => await ScrapeAsync(() => LoadFileAsync(filePath), filePath);
 
-        private async Task ScrapeAsync(Func<Task<HtmlDocument>> loadDocument)
+        private async Task ScrapeAsync(Func<Task<HtmlDocument>> loadDocument, string source)
         {
             try
             {
                 var doc = await loadDocument();
-                ExtractMetaData(doc);
+                ExtractMetaData(doc, source);
             }
             catch (Exception e)
             {
@@ -80,20 +103,18 @@ namespace OpenGraphTilemaker
 
         private static string Filename(Uri uri) => CacheFolder + uri.ToValidFileName();
 
-        private void ExtractMetaData(HtmlDocument doc)
+        private void ExtractMetaData(HtmlDocument doc, string source)
         {
             HtmlMetaTags = ExtractMetaTags(doc);
-            OpenGraphMetadata = MapMetaData(HtmlMetaTags);
+            OpenGraphMetadata = MapMetaData(HtmlMetaTags, source);
         }
 
-        private OpenGraphMetadata MapMetaData(IList<HtmlNode> htmlMetaTags)
+        private OpenGraphMetadata MapMetaData(IList<HtmlNode> htmlMetaTags, string source)
         {
-            if (htmlMetaTags == null)
-            {
-                return null;
-            }
+            var metadata = new OpenGraphMetadata {Source = source};
 
-            var metadata = new OpenGraphMetadata();
+            if (htmlMetaTags == null)
+                return metadata;
 
             foreach (var tag in htmlMetaTags)
             {
@@ -101,7 +122,7 @@ namespace OpenGraphTilemaker
                 if (content == null)
                     continue;
 
-                var property = tag.GetAttributeValue("property", null);
+                var property = tag.GetAttributeValue("property", null) ?? tag.GetAttributeValue("name", null);
                 switch (property)
                 {
                     case "og:type":
@@ -151,7 +172,6 @@ namespace OpenGraphTilemaker
         }
     }
 
-    // ReSharper disable MemberCanBePrivate.Global
     public static class TileMakerExtensions
     {
         public static string TruncateAtWord(this string value, int length, string truncateAtChar = " ")
@@ -181,5 +201,4 @@ namespace OpenGraphTilemaker
 
         public static string DeEntitize(this string value) => HtmlEntity.DeEntitize(value);
     }
-    // ReSharper restore MemberCanBePrivate.Global
 }

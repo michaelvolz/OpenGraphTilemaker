@@ -1,5 +1,12 @@
 ﻿@page "/"
-@using OpenGraphTilemaker
+@inherits IndexModel;
 
-<Tiles ></Tiles>
+<div>
+    <a href="#" class="btn btn-primary" onclick="@OnSortPropertyButtonClick">Sort Property</a>
+    <a href="#" class="btn btn-primary" onclick="@OnSortOrderButtonClick">Sort Order</a>
+    @AppState.SortProperty, @AppState.SortOrder, @AppState.TileCount
+</div>
 
+<p></p>
+
+<Tiles MyTiles="@AppState.Tiles"></Tiles>

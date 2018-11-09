@@ -9,16 +9,16 @@ using Xunit.Abstractions;
 
 namespace OpenGraphTilemakerTests
 {
-    public class TileMakerTests : BaseTest
+    public class OpenGraphTileMakerTests : BaseTest
     {
-        public TileMakerTests(ITestOutputHelper testConsole) : base(testConsole)
+        public OpenGraphTileMakerTests(ITestOutputHelper testConsole) : base(testConsole)
         {
         }
 
         [Fact]
         public async Task ErroneousUrl_CreatesErrorEntry()
         {
-            var tileMaker = new TileMaker();
+            var tileMaker = new OpenGraphTileMaker();
             var httpClient = new HttpClient();
 
             await tileMaker.ScrapeAsync(httpClient,new Uri("http://brokenurl"), false);
@@ -30,10 +30,10 @@ namespace OpenGraphTilemakerTests
         [Fact]
         public async Task LoadWebEnhanced()
         {
-            var tileMaker = new TileMaker();
+            var tileMaker = new OpenGraphTileMaker();
             var httpClient = new HttpClient();
             
-            var result = await tileMaker.LoadWebEnhanced(httpClient, new Uri("http://aspnetmonsters.com"));
+            var result = await tileMaker.LoadWebEnhanced(httpClient, new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx"));
 
             result.Should().NotBeNull();
             TestConsole.WriteLine(result.DocumentNode.InnerHtml);
@@ -42,7 +42,7 @@ namespace OpenGraphTilemakerTests
         [Fact]
         public async Task ParseData_AllValuesCorrect()
         {
-            var tileMaker = new TileMaker();
+            var tileMaker = new OpenGraphTileMaker();
 
             await tileMaker.ScrapeHtml("./TestData/TestHtml1.html");
 
@@ -76,10 +76,10 @@ namespace OpenGraphTilemakerTests
         [Fact]
         public async Task ScrapeHtml()
         {
-            var tileMaker = new TileMaker();
+            var tileMaker = new OpenGraphTileMaker();
             var httpClient = new HttpClient();
 
-            await tileMaker.ScrapeAsync(httpClient, new Uri("https://9to5mac.com/2018/10/19/microsoft-spend-ios-app/"), false);
+            await tileMaker.ScrapeAsync(httpClient, new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx"), false);
 
             tileMaker.HtmlMetaTags.Should().NotBeNull();
         }
@@ -87,7 +87,7 @@ namespace OpenGraphTilemakerTests
         [Fact]
         public async Task ScrapeHtmlAsync()
         {
-            var tileMaker = new TileMaker();
+            var tileMaker = new OpenGraphTileMaker();
             var httpClient = new HttpClient();
 
             await tileMaker.ScrapeAsync(httpClient,
