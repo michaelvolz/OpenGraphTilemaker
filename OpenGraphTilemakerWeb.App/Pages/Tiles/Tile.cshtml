@@ -1,0 +1,27 @@
+﻿@using OpenGraphTilemaker
+@inherits TileModel;
+
+@* @if (OpenGraphMetadata?.Image != null && OpenGraphMetadata?.Url != null && OpenGraphMetadata.Image.StartsWith("http")) { *@
+@if (OpenGraphMetadata?.Image != null) {
+    <div class="card" style="margin-bottom: 1em; width: 18rem;">
+        <img class="card-img-top" src="@OpenGraphMetadata.Image" alt="" title="@OpenGraphMetadata.Source">
+        <div class="card-body">
+            <h5 class="card-title">@OpenGraphMetadata.Title</h5>
+            <div>
+                <small>
+                    <i>@OpenGraphMetadata.SourcePublishTime.ToFriendlyDate()</i>
+                </small>
+            </div>
+            <p class="card-text">@OpenGraphMetadata.Description</p>
+            <div>
+                <a href="@OpenGraphMetadata.Url" class="btn btn-primary" target="_new">
+                    <span style="color: white;">
+                        @(OpenGraphMetadata.SiteName.TruncateAtWord(25) ?? "Link")
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+} else {
+    <div class="alert-danger" style="margin-bottom: 1em; width: 18rem;">@OpenGraphMetadata?.Source</div>
+}

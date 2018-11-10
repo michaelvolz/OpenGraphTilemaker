@@ -1,3 +1,4 @@
+using BlazorState;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using OpenGraphTilemakerWeb.App.Pages;
@@ -9,6 +10,8 @@ namespace OpenGraphTilemakerWeb.App
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddBlazorState();
+            
             // Since Blazor is running on the server, we can use an application service
             // to read the forecast data.
             services.AddSingleton<WeatherForecastService>();

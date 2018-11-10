@@ -1,0 +1,34 @@
+﻿@inherits TilesModel;
+
+@{ var columns = 3; }
+
+<div>
+     <a href="#" class="btn btn-primary" onclick="@OnSortPropertyButtonClick">Sort Property</a>
+     <a href="#" class="btn btn-primary" onclick="@OnSortOrderButtonClick">Sort Order</a>
+     @TilesState.SortProperty, @TilesState.SortOrder, @TilesState.Tiles.Count
+</div>
+
+<p></p>
+
+<div class="container">
+     <div class="row no-gutters">
+         <div class="col">
+             @for (var index = 0; index < TilesState.Tiles.Count; index += columns) {
+                 var item = TilesState.Tiles[index];
+                 <Tile OpenGraphMetadata="@item"></Tile>
+             }
+         </div>
+         <div class="col">
+             @for (var index = 1; index < TilesState.Tiles.Count; index += columns) {
+                 var item = TilesState.Tiles[index];
+                 <Tile OpenGraphMetadata="@item"></Tile>
+             }
+         </div>
+         <div class="col">
+             @for (var index = 2; index < TilesState.Tiles.Count; index += columns) {
+                 var item = TilesState.Tiles[index];
+                 <Tile OpenGraphMetadata="@item"></Tile>
+             }
+         </div>
+     </div>
+</div>

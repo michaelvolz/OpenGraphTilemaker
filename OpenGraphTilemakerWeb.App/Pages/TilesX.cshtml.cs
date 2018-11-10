@@ -7,7 +7,7 @@ using OpenGraphTilemaker;
 
 namespace OpenGraphTilemakerWeb.App.Pages
 {
-    public class TilesModel : BlazorComponent
+    public class TilesXModel : BlazorComponent
     {
         [Inject] protected AppState AppState { get; set; }
 
