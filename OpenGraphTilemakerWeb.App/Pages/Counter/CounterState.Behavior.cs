@@ -1,4 +1,5 @@
 ﻿using BlazorState;
+using Common;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -9,12 +10,13 @@ namespace OpenGraphTilemakerWeb.App.Pages.Counter
         /// <summary>
         ///     Required Parameterless constructor for automatic creation of the State.
         /// </summary>
+        [IoC]
         public CounterState()
         {
         }
 
         /// <summary>
-        ///     Creates new instance based off an exiting one.
+        ///     Creates new instance based off an existing one.
         /// </summary>
         /// <remarks>Constructor used for Clone</remarks>
         /// <param name="state">The item we want to clone</param>

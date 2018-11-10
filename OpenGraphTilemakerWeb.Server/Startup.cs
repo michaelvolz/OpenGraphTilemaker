@@ -19,7 +19,7 @@ namespace OpenGraphTilemakerWeb.Server
         {
             services.AddMemoryCache();
             services.AddHttpClient<ITileMakerClient, TileMakerClient>()
-                // BUGFIX for 2.2 preview 3
+                // BUG-FIX for 2.2 preview 3
                 .SetHandlerLifetime(Timeout.InfiniteTimeSpan);  
             
             // Adds the Server-Side Blazor services, and those registered by the app project's startup.

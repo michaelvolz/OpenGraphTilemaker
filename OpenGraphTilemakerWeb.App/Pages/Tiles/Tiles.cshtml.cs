@@ -1,28 +1,19 @@
-﻿using System;
-using BlazorState;
-using MediatR;
-using Microsoft.AspNetCore.Blazor.Components;
+﻿using System.Linq;
 using OpenGraphTilemaker;
+using OpenGraphTilemakerWeb.App.ClientApp;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 
 namespace OpenGraphTilemakerWeb.App.Pages.Tiles
 {
-    public class TilesModel : BlazorComponent
+    public class TilesModel : BlazorComponentStateful
     {
-        public TilesState TilesState => Store.GetState<TilesState>();
-
-        [Inject] public IMediator Mediator { get; set; }
-        [Inject] public IStore Store { get; set; }
+        protected TilesState TilesState => Store.GetState<TilesState>();
 
         protected override void OnInit()
         {
-            var request = new InitializeTilesRequest();
-            var send = Mediator.Send(request);
-
-            if (send.IsFaulted)
-                throw new InvalidOperationException(send.Exception?.Message);
+            if (!TilesState.Tiles.Any()) Request(new InitializeTilesRequest());
         }
 
         protected void OnSortPropertyButtonClick()
@@ -30,28 +21,13 @@ namespace OpenGraphTilemakerWeb.App.Pages.Tiles
             var sortProperty = TilesState.SortProperty != nameof(OpenGraphMetadata.Title)
                 ? nameof(OpenGraphMetadata.Title)
                 : nameof(OpenGraphMetadata.SourcePublishTime);
-
-
-            var request = new SortTilesRequest {SortProperty = sortProperty};
-            var send = Mediator.Send(request);
-
-            if (send.IsFaulted)
-                throw new InvalidOperationException(send.Exception?.Message);
-
-            StateHasChanged();
+            Request(new SortTilesRequest {SortProperty = sortProperty});
         }
 
         protected void OnSortOrderButtonClick()
         {
             var sortOrder = TilesState.SortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-
-            var request = new SortTilesRequest {SortOrder = sortOrder};
-            var send = Mediator.Send(request);
-
-            if (send.IsFaulted)
-                throw new InvalidOperationException(send.Exception?.Message);
-
-            StateHasChanged();
+            Request(new SortTilesRequest {SortOrder = sortOrder});
         }
     }
 }

@@ -1,7 +1,6 @@
 using BlazorState;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using OpenGraphTilemakerWeb.App.Pages;
 using OpenGraphTilemakerWeb.App.Services;
 
 namespace OpenGraphTilemakerWeb.App
@@ -11,16 +10,15 @@ namespace OpenGraphTilemakerWeb.App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddBlazorState();
-            
+
             // Since Blazor is running on the server, we can use an application service
             // to read the forecast data.
             services.AddSingleton<WeatherForecastService>();
-            services.AddScoped<AppState>();
         }
 
-        public void Configure(IBlazorApplicationBuilder app)
-        {
-            app.AddComponent<App>("app");
-        }
+        // ReSharper disable All
+        public void Configure(IBlazorApplicationBuilder app) => app.AddComponent<App>("app");
+        // ReSharper restore All
+
     }
 }

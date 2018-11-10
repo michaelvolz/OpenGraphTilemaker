@@ -18,10 +18,9 @@ namespace OpenGraphTilemakerWeb.App.Pages.Counter
 
             public CounterState CounterState => Store.GetState<CounterState>();
 
-            public override Task<CounterState> Handle(IncrementCounterRequest incrementCounterRequest,
-                CancellationToken cancellationToken)
+            public override Task<CounterState> Handle(IncrementCounterRequest req, CancellationToken token)
             {
-                CounterState.Count += incrementCounterRequest.Amount;
+                CounterState.Count += req.Amount;
                 return Task.FromResult(CounterState);
             }
         }

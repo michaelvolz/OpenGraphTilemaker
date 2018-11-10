@@ -3,11 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using BlazorState;
 using Common;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Caching.Memory;
 using OpenGraphTilemaker;
-
-// ReSharper disable MemberCanBePrivate.Global
 
 namespace OpenGraphTilemakerWeb.App.Pages.Tiles
 {
@@ -16,34 +13,36 @@ namespace OpenGraphTilemakerWeb.App.Pages.Tiles
         [IoC]
         public class InitializeTilesHandler : RequestHandler<InitializeTilesRequest, TilesState>
         {
-            private readonly Uri _pocketUri = new Uri("https://getpocket.com/users/Flynn0r/feed/");
+            // TODO: put into ApplicationOptions!
             private readonly TimeSpan _cachingTimeSpan = TimeSpan.FromSeconds(15);
-            
+
             private readonly IMemoryCache _memoryCache;
+
+            // TODO: put into ApplicationOptions!
+            private readonly Uri _pocketUri = new Uri("https://getpocket.com/users/Flynn0r/feed/");
+
             private readonly ITileMakerClient _tileMakerClient;
 
-            public InitializeTilesHandler([NotNull] IMemoryCache memoryCache,
-                [NotNull] ITileMakerClient tileMakerClient, IStore store) : base(store)
+            public InitializeTilesHandler(IMemoryCache cache, ITileMakerClient client, IStore store) : base(store)
             {
-                if (store == null) throw new ArgumentNullException(nameof(store));
-                _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
-                _tileMakerClient = tileMakerClient ?? throw new ArgumentNullException(nameof(tileMakerClient));
+                _memoryCache = cache;
+                _tileMakerClient = client;
             }
 
-            public TilesState TilesState => Store.GetState<TilesState>();
+            private TilesState TilesState => Store.GetState<TilesState>();
 
-            public override async Task<TilesState> Handle(InitializeTilesRequest request,
-                CancellationToken token)
+            public override async Task<TilesState> Handle(InitializeTilesRequest req, CancellationToken token)
             {
                 var pocket = new GetPocket(_memoryCache);
-                var urls = await pocket.GetEntriesAsync(_pocketUri, _cachingTimeSpan);
+                var entries = await pocket.GetEntriesAsync(_pocketUri, _cachingTimeSpan);
 
                 TilesState.Tiles.Clear();
-                foreach (var pocketEntry in urls)
+                foreach (var entry in entries)
                 {
-                    var openGraphMetadata = await _tileMakerClient.OpenGraphMetadataAsync(new Uri(pocketEntry.Link));
-                    openGraphMetadata.SourcePublishTime = pocketEntry.PubDate;
+                    var openGraphMetadata = await _tileMakerClient.OpenGraphMetadataAsync(new Uri(entry.Link));
+                    if (openGraphMetadata == null) continue;
 
+                    openGraphMetadata.SourcePublishTime = entry.PubDate;
                     TilesState.Tiles.Add(openGraphMetadata);
                 }
 

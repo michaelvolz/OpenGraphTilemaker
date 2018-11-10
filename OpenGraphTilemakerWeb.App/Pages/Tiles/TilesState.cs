@@ -10,7 +10,6 @@ namespace OpenGraphTilemakerWeb.App.Pages.Tiles
     {
         public string SortProperty { get; private set; }
         public SortOrder SortOrder { get; private set; }
-        
         public List<OpenGraphMetadata> Tiles { get; private set; }
     }
 }

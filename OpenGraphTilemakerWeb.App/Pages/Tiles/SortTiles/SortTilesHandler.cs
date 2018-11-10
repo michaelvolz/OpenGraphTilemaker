@@ -5,8 +5,6 @@ using BlazorState;
 using Common;
 using OpenGraphTilemaker;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace OpenGraphTilemakerWeb.App.Pages.Tiles
 {
     public partial class TilesState
@@ -18,22 +16,22 @@ namespace OpenGraphTilemakerWeb.App.Pages.Tiles
             {
             }
 
-            public TilesState TilesState => Store.GetState<TilesState>();
+            private TilesState TilesState => Store.GetState<TilesState>();
 
-            public override Task<TilesState> Handle(SortTilesRequest request, CancellationToken token)
+            public override Task<TilesState> Handle(SortTilesRequest req, CancellationToken token)
             {
-                if (request.SortProperty != null)
-                    TilesState.SortProperty = request.SortProperty;
+                if (req.SortProperty != null)
+                    TilesState.SortProperty = req.SortProperty;
 
-                if (request.SortOrder != SortOrder.Undefined)
-                    TilesState.SortOrder = request.SortOrder;
+                if (req.SortOrder != SortOrder.Undefined)
+                    TilesState.SortOrder = req.SortOrder;
 
                 switch (TilesState.SortProperty)
                 {
                     case nameof(OpenGraphMetadata.Title):
                         TilesState.Tiles = TilesState.SortOrder == SortOrder.Ascending
                             ? TilesState.Tiles.OrderBy(f => f.Title).ToList()
-                            : TilesState.Tiles.OrderByDescending(f => f.Title == null).ThenByDescending(f => f.Title).ToList();
+                            : TilesState.Tiles.OrderByDescending(f => f.Title).ToList();
                         break;
 
                     case nameof(OpenGraphMetadata.SourcePublishTime):

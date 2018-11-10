@@ -3,8 +3,6 @@ using BlazorState;
 using Common;
 using OpenGraphTilemaker;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace OpenGraphTilemakerWeb.App.Pages.Tiles
 {
     public partial class TilesState : State<TilesState>
