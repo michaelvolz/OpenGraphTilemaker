@@ -1,44 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.Extensions.Caching.Memory;
 using OpenGraphTilemaker;
+
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
 
 namespace OpenGraphTilemakerWeb.App.Pages
 {
     public class TilesModel : BlazorComponent
     {
-        [Inject] private AppState AppState { get; set; }
-        [Inject] private IMemoryCache MemoryCache { get; set; }
-        [Inject] private ITileMakerClient TileMakerClient { get; set; }
+        [Inject] protected AppState AppState { get; set; }
 
-        [Parameter] protected List<OpenGraphMetadata> MyTiles { get; set; }
+        [Parameter] protected List<OpenGraphMetadata> Data { get; set; }
 
-        protected override async Task OnInitAsync()
+        protected void OnSortPropertyButtonClick()
         {
-            AppState.OnSort += StateHasChanged;
+            var sortProperty = AppState.SortProperty != nameof(OpenGraphMetadata.Title)
+                ? nameof(OpenGraphMetadata.Title)
+                : nameof(OpenGraphMetadata.SourcePublishTime);
+            AppState.SortTiles(sortProperty);
+        }
 
-            if (AppState.Urls.Any())
-                AppState.Urls = new List<GetPocketEntry>();
-
-            if (AppState.Tiles.Any())
-                AppState.Tiles = new List<OpenGraphMetadata>();
-
-            var pocket = new GetPocket(MemoryCache);
-
-            AppState.Urls = await pocket.GetEntriesAsync(new Uri("https://getpocket.com/users/Flynn0r/feed/"),
-                TimeSpan.FromSeconds(15));
-
-            foreach (var pocketEntry in AppState.Urls)
-            {
-                var openGraphMetadata = await TileMakerClient.OpenGraphMetadataAsync(new Uri(pocketEntry.Link));
-
-                AppState.Tiles.Add(openGraphMetadata);
-            }
-
-            AppState.Sort();
+        protected void OnSortOrderButtonClick()
+        {
+            var sortOrder = AppState.SortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+            AppState.SortTiles(null, sortOrder);
         }
     }
 }

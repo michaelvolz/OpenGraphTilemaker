@@ -1,4 +1,4 @@
-﻿namespace OpenGraphTilemaker
+﻿namespace Common
 {
     public static class CacheKeys
     {

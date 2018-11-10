@@ -22,5 +22,6 @@ namespace OpenGraphTilemaker
                                !string.IsNullOrWhiteSpace(Image);
 
         public string Source { get; set; }
+        public DateTime SourcePublishTime { get; set; }
     }
 }

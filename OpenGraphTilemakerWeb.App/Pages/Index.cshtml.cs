@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Blazor.Components;
-using OpenGraphTilemaker;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Blazor.Components;
 
 namespace OpenGraphTilemakerWeb.App.Pages
 {
@@ -7,22 +7,11 @@ namespace OpenGraphTilemakerWeb.App.Pages
     {
         [Inject] protected AppState AppState { get; set; }
 
-        protected override void OnInit()
+        protected override async Task OnInitAsync()
         {
-            AppState.OnSort += StateHasChanged;
-        }
+            AppState.OnTilesChanged += StateHasChanged;
 
-        protected void OnSortPropertyButtonClick()
-        {
-            AppState.SortProperty = AppState.SortProperty != "Title" ? "Title" : "PubDate";
-            AppState.Sort();
+            await AppState.Initialize();
         }
-        
-        protected void OnSortOrderButtonClick()
-        {
-            AppState.SortOrder = AppState.SortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-            AppState.Sort();
-        }
-
     }
 }
