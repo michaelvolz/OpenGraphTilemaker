@@ -3,20 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemakerTests", "OpenGraphTilemakerTests\OpenGraphTilemakerTests.csproj", "{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Tests", "OpenGraphTilemaker.Tests\OpenGraphTilemaker.Tests.csproj", "{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemakerWeb.Server", "OpenGraphTilemakerWeb.Server\OpenGraphTilemakerWeb.Server.csproj", "{72EC2D59-ADAD-46D5-AC36-AD50219705C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Server", "OpenGraphTilemaker.Web.Server\OpenGraphTilemaker.Web.Server.csproj", "{72EC2D59-ADAD-46D5-AC36-AD50219705C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemakerWeb.App", "OpenGraphTilemakerWeb.App\OpenGraphTilemakerWeb.App.csproj", "{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Client", "OpenGraphTilemaker.Web.Client\OpenGraphTilemaker.Web.Client.csproj", "{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker", "OpenGraphTilemaker\OpenGraphTilemaker.csproj", "{E15A9072-2158-49E0-B4E2-3A3FAE92156C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{18ED9B69-FEF9-4F5C-8B61-5682500ADC7E}"
 	ProjectSection(SolutionItems) = preProject
-		OpenGraphTilemakerWeb.Server\Properties\launchSettings.json = OpenGraphTilemakerWeb.Server\Properties\launchSettings.json
+		OpenGraphTilemaker.Web.Server\Properties\launchSettings.json = OpenGraphTilemaker.Web.Server\Properties\launchSettings.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Tests", "Common.Tests\Common.Tests.csproj", "{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGraphTilemaker.Web.Client.Tests", "OpenGraphTilemaker.Web.Client.Tests\OpenGraphTilemaker.Web.Client.Tests.csproj", "{AF347F6C-7408-4415-9D2F-17E393E9550C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,9 +50,22 @@ Global
 		{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
+		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
+		{AF347F6C-7408-4415-9D2F-17E393E9550C} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA84091E-F7E3-4556-8ECF-527827305335}

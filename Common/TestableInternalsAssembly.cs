@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("OpenGraphTilemaker.Tests")]
+[assembly: InternalsVisibleTo("Common.Tests")]
 
 namespace OpenGraphTilemaker {}
