@@ -1,6 +1,6 @@
 using System;
+using Common;
 using FluentAssertions;
-using OpenGraphTilemaker;
 using Xunit;
 using Xunit.Abstractions;
 

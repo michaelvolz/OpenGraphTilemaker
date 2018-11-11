@@ -7,21 +7,17 @@ namespace Common
     public static class GetName
     {
         // GetName.Of<Classname>()
-        public static string Of<T>() where T : class
-        {
+        public static string Of<T>() where T : class {
             return typeof(T).Name;
         }
 
         // GetName.Of<T>( x => x.Propertyname)
-        public static string Of<T>(Expression<Func<T, object>> expression)
-        {
+        public static string Of<T>(Expression<Func<T, object>> expression) {
             return FindMemberOrNull(expression).Name;
         }
 
-        private static MemberInfo FindMemberOrNull(Expression expression)
-        {
-            switch (expression.NodeType)
-            {
+        private static MemberInfo FindMemberOrNull(Expression expression) {
+            switch (expression.NodeType) {
                 case ExpressionType.Convert:
                     return FindMemberOrNull(((UnaryExpression) expression).Operand);
                 case ExpressionType.Lambda:
@@ -44,8 +40,7 @@ namespace Common
         /// <typeparam name="T"></typeparam>
         /// <param name="e">The e.</param>
         /// <returns></returns>
-        public static string Of<T>(Expression<Func<T>> e)
-        {
+        public static string Of<T>(Expression<Func<T>> e) {
             // If the method gets a lambda expression that is not a member access,
             // for example, () => x + y, an exception is thrown.
             if (e.Body is MemberExpression member)

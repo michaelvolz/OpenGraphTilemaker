@@ -1,8 +1,9 @@
 using System;
+using System.Threading;
 using BlazorState;
+using Common;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using OpenGraphTilemaker;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 using OpenGraphTilemakerWeb.App.ClientApp.Services;
@@ -14,6 +15,11 @@ namespace OpenGraphTilemakerWeb.App
         public void ConfigureServices(IServiceCollection services) {
             services.AddBlazorState();
 
+            services.AddMemoryCache();
+            services.AddHttpClient<ITileMakerClient, TileMakerClient>()
+                // BUG-FIX for 2.2 preview 3
+                .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
+
             services.AddSingleton<WeatherForecastService>();
             services.AddTransient<IGetPocket, GetPocket>();
             services.AddTransient<OpenGraphTileMaker>();
@@ -23,14 +29,9 @@ namespace OpenGraphTilemakerWeb.App
                 options.CachingTimeSpan = TimeSpan.FromSeconds(15);
             });
 
-            services.Configure<OpenGraphTileMakerOptions>(options => {
-                options.CacheFolder = @"C:\WINDOWS\Temp\";
-            });
-            
+            services.Configure<OpenGraphTileMakerOptions>(options => { options.CacheFolder = @"C:\WINDOWS\Temp\"; });
         }
 
-        // ReSharper disable All
         public void Configure(IBlazorApplicationBuilder app) => app.AddComponent<App>("app");
-        // ReSharper restore All
     }
 }

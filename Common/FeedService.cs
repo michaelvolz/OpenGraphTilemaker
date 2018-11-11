@@ -6,7 +6,7 @@ using System.Xml;
 using Microsoft.SyndicationFeed;
 using Microsoft.SyndicationFeed.Rss;
 
-namespace OpenGraphTilemaker
+namespace Common
 {
     public class FeedService<TEntry>
     {

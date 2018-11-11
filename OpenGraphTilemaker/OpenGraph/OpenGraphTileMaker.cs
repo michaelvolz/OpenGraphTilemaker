@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 
 namespace OpenGraphTilemaker.OpenGraph
 {
+    // TODO: Split into 1) Load, 2) Extract and 3) Map
     public class OpenGraphTileMaker
     {
         private readonly OpenGraphTileMakerOptions _options;
@@ -35,6 +36,12 @@ namespace OpenGraphTilemaker.OpenGraph
             await ScrapeAsync(async () => await LoadFileAsync(filePath), filePath);
         }
 
+        private void WriteToCache(Uri uri, string html) => File.WriteAllText(Filename(uri), html);
+
+        private string TryLodFromCache(Uri uri) => File.Exists(Filename(uri)) ? File.ReadAllText(Filename(uri)) : null;
+
+        private string Filename(Uri uri) => _options.CacheFolder + uri.ToValidFileName();
+
         private async Task ScrapeAsync(Func<Task<HtmlDocument>> loadDocument, string source) {
             try {
                 var doc = await loadDocument();
@@ -45,14 +52,12 @@ namespace OpenGraphTilemaker.OpenGraph
             }
         }
 
-        private Task<HtmlDocument> LoadFileAsync(string filePath) {
-            var doc = new HtmlDocument();
-            doc.Load(filePath);
-
-            return Task.FromResult(doc);
+        private void ExtractMetaData(HtmlDocument doc, string source) {
+            HtmlMetaTags = ExtractMetaTags(doc);
+            OpenGraphMetadata = MapMetaData(HtmlMetaTags, source);
         }
 
-        public async Task<HtmlDocument> LoadWebAsync(HttpClient httpClient, Uri uri, bool useCache = false) {
+        internal async Task<HtmlDocument> LoadWebAsync(HttpClient httpClient, Uri uri, bool useCache = false) {
             string html = null;
             if (useCache)
                 html = TryLodFromCache(uri);
@@ -76,15 +81,17 @@ namespace OpenGraphTilemaker.OpenGraph
             return doc;
         }
 
-        private void WriteToCache(Uri uri, string html) => File.WriteAllText(Filename(uri), html);
+        private Task<HtmlDocument> LoadFileAsync(string filePath) {
+            var doc = new HtmlDocument();
+            doc.Load(filePath);
 
-        private string TryLodFromCache(Uri uri) => File.Exists(Filename(uri)) ? File.ReadAllText(Filename(uri)) : null;
+            return Task.FromResult(doc);
+        }
 
-        private string Filename(Uri uri) => _options.CacheFolder + uri.ToValidFileName();
+        private static IList<HtmlNode> ExtractMetaTags(HtmlDocument doc) {
+            var metaTags = doc.DocumentNode.SelectSingleNode("//head")?.Descendants()?.Where(n => n.Name == "meta");
 
-        private void ExtractMetaData(HtmlDocument doc, string source) {
-            HtmlMetaTags = ExtractMetaTags(doc);
-            OpenGraphMetadata = MapMetaData(HtmlMetaTags, source);
+            return metaTags?.ToList();
         }
 
         private OpenGraphMetadata MapMetaData(IList<HtmlNode> htmlMetaTags, string source) {
@@ -99,8 +106,7 @@ namespace OpenGraphTilemaker.OpenGraph
                     continue;
 
                 var property = tag.GetAttributeValue("property", null) ?? tag.GetAttributeValue("name", null);
-                switch (property)
-                {
+                switch (property) {
                     case "og:type":
                         metadata.Type = content;
                         break;
@@ -134,18 +140,10 @@ namespace OpenGraphTilemaker.OpenGraph
                     case "article:modified_time":
                         metadata.ArticleModifiedTime = content.AsDateTime();
                         break;
-                    default:
-                        break;
                 }
             }
 
             return metadata;
-        }
-
-        private static IList<HtmlNode> ExtractMetaTags(HtmlDocument doc) {
-            var metaTags = doc.DocumentNode.SelectSingleNode("//head")?.Descendants()?.Where(n => n.Name == "meta");
-
-            return metaTags?.ToList();
         }
     }
 }

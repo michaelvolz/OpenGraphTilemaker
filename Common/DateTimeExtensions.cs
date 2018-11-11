@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedMember.Global
 
-namespace OpenGraphTilemaker
+namespace Common
 {
     public static class DateTimeExtensions
     {

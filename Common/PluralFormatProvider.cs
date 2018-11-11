@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenGraphTilemaker
+namespace Common
 {
     public class PluralFormatProvider : IFormatProvider, ICustomFormatter
     {

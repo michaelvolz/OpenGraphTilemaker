@@ -1,4 +1,4 @@
-﻿namespace OpenGraphTilemaker
+﻿namespace Common
 {
     public enum SortOrder
     {

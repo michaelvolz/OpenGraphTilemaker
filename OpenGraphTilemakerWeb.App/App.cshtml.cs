@@ -1,12 +1,8 @@
-﻿using System.Threading.Tasks;
-using BlazorState.Behaviors.ReduxDevTools;
-using BlazorState.Features.JavaScriptInterop;
-using BlazorState.Features.Routing;
-using Microsoft.AspNetCore.Blazor.Components;
+﻿using Microsoft.AspNetCore.Blazor.Components;
 
 namespace OpenGraphTilemakerWeb.App
 {
-    public partial class AppModel : BlazorComponent, IComponent
+    public class AppModel : BlazorComponent, IComponent
     {
 //        [Inject] private JsonRequestHandler JsonRequestHandler { get; set; }
 

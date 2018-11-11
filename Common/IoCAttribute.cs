@@ -8,5 +8,5 @@ namespace Common
     ///     <see cref="M:UnityConfig.RegisterTypes(IUnityContainer container)" />
     /// </summary>
     [MeansImplicitUse]
-    public class IoCAttribute : Attribute {}
+    public class IoCAttribute : Attribute { }
 }

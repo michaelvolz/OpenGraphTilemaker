@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable ClassNeverInstantiated.Global
+
 namespace OpenGraphTilemakerWeb.Server
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
+        public static void Main(string[] args) {
             BuildWebHost(args).Run();
         }
 
