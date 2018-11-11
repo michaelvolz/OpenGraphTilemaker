@@ -10,34 +10,24 @@ namespace OpenGraphTilemaker
 {
     public class FeedService<TEntry>
     {
-        private readonly Uri _feedUri;
+        public async Task<List<TEntry>> GetFeedAsync(Uri uri, Func<ISyndicationItem, TEntry> convert, Func<TEntry, object> property,
+            SortOrder order = SortOrder.Descending) {
+            var feedItems = new List<TEntry>();
 
-        public FeedService(Uri feedUri)
-        {
-            _feedUri = feedUri;
-        }
-
-        public async Task<List<TEntry>> GetNewsFeedAsync(
-            Func<ISyndicationItem, TEntry> convert,
-            Func<TEntry, object> property,
-            SortOrder order = SortOrder.Descending)
-        {
-            var rssNewsItems = new List<TEntry>();
-            using (var xmlReader = XmlReader.Create(_feedUri.OriginalString, new XmlReaderSettings {Async = true}))
-            {
+            using (var xmlReader = XmlReader.Create(uri.OriginalString, new XmlReaderSettings {Async = true})) {
                 var feedReader = new RssFeedReader(xmlReader);
-                while (await feedReader.Read())
-                {
+
+                while (await feedReader.Read()) {
                     if (feedReader.ElementType != SyndicationElementType.Item) continue;
 
                     var item = await feedReader.ReadItem();
-                    rssNewsItems.Add(convert(item));
+                    feedItems.Add(convert(item));
                 }
             }
 
             return order == SortOrder.Ascending
-                ? rssNewsItems.OrderBy(property).ToList()
-                : rssNewsItems.OrderByDescending(property).ToList();
+                ? feedItems.OrderBy(property).ToList()
+                : feedItems.OrderByDescending(property).ToList();
         }
     }
 }
