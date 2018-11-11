@@ -1,5 +1,6 @@
 using System;
 using Common;
+using Common.Extensions;
 using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;

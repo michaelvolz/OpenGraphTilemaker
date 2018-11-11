@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedMember.Global
 
-namespace Common
+namespace Common.Extensions
 {
     public static class DateTimeExtensions
     {

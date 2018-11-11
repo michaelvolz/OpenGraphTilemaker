@@ -12,7 +12,7 @@ namespace OpenGraphTilemaker.OpenGraph
 
         public Exception Error { get; private set; }
 
-        public async Task ScrapeAsync(Func<Task<HtmlDocument>> loadDocument, string source) {
+        public async Task ScrapeAsync(string source, Func<Task<HtmlDocument>> loadDocument) {
             try {
                 var doc = await loadDocument();
                 ExtractMetaData(doc, source);

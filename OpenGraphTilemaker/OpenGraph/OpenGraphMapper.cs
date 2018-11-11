@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Common;
+using Common.Extensions;
 using HtmlAgilityPack;
 
 namespace OpenGraphTilemaker.OpenGraph

@@ -16,20 +16,26 @@ namespace OpenGraphTilemakerWeb.App
             services.AddBlazorState();
 
             services.AddMemoryCache();
+            
             services.AddHttpClient<ITileMakerClient, TileMakerClient>()
                 // BUG-FIX for 2.2 preview 3
                 .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
+            services.AddTransient<OpenGraphTileMaker>();
 
             services.AddSingleton<WeatherForecastService>();
-            services.AddTransient<IGetPocket, GetPocket>();
-            services.AddTransient<OpenGraphTileMaker>();
+            
             services.AddTransient<FeedService<GetPocketEntry>>();
+
+            services.AddTransient<DiscCache>();
+            services.Configure<DiscCacheOptions>(options => { options.CacheFolder = @"C:\WINDOWS\Temp\"; });
+
+            services.AddTransient<HttpLoader>();
+
+            services.AddTransient<IGetPocket, GetPocket>();
             services.Configure<GetPocketOptions>(options => {
                 options.Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/");
                 options.CachingTimeSpan = TimeSpan.FromSeconds(15);
             });
-
-            services.Configure<TileMakerClientOptions>(options => { options.CacheFolder = @"C:\WINDOWS\Temp\"; });
         }
 
         public void Configure(IBlazorApplicationBuilder app) => app.AddComponent<App>("app");
