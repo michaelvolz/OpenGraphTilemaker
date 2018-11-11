@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using BlazorState;
 using Common;
 using Microsoft.Extensions.Options;
-using OpenGraphTilemaker;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 
@@ -31,7 +30,7 @@ namespace OpenGraphTilemakerWeb.App.Features.Tiles
                 var entries = await _pocket.GetEntriesAsync(_pocketOptions);
 
                 TilesState.Tiles.Clear();
-                foreach (GetPocketEntry entry in entries) {
+                foreach (var entry in entries) {
                     var openGraphMetadata = await _tileMakerClient.OpenGraphMetadataAsync(new Uri(entry.Link));
                     if (openGraphMetadata == null) continue;
 

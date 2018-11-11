@@ -1,6 +1,6 @@
 ﻿namespace OpenGraphTilemaker.OpenGraph
 {
-    public class OpenGraphTileMakerOptions
+    public class TileMakerClientOptions
     {
         public string CacheFolder;
     }

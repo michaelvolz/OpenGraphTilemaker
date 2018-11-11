@@ -12,30 +12,34 @@ namespace OpenGraphTilemakerTests.OpenGraph
 {
     public class OpenGraphTileMakerTests : BaseTest
     {
-        private readonly OpenGraphTileMaker _tileMaker;
-        private readonly HttpClient _httpClient;
-
         public OpenGraphTileMakerTests(ITestOutputHelper testConsole) : base(testConsole) {
             // Arrange
-            var options = Options.Create(new OpenGraphTileMakerOptions {CacheFolder = @"C:\WINDOWS\Temp\"});
-            _tileMaker = new OpenGraphTileMaker(options);
+            var options = Options.Create(new TileMakerClientOptions {CacheFolder = @"C:\WINDOWS\Temp\"});
+            _tileMaker = new OpenGraphTileMaker();
             _httpClient = new HttpClient();
+            _tileMakerClient = new TileMakerClient(_httpClient, _tileMaker, options);
         }
+
+        private readonly OpenGraphTileMaker _tileMaker;
+        private readonly HttpClient _httpClient;
+        private readonly TileMakerClient _tileMakerClient;
 
         [Fact]
         public async Task ErroneousUrl_CreatesErrorEntry() {
+            var uri = new Uri("http://brokenurl");
+
             // Act
-            await _tileMaker.ScrapeAsync(_httpClient, new Uri("http://brokenurl"), false);
+            await _tileMaker.ScrapeAsync(async () => await _tileMakerClient.LoadWebAsync(_httpClient, uri, false), "");
 
             _tileMaker.HtmlMetaTags.Should().BeNull();
             _tileMaker.Error.Should().NotBeNull();
         }
 
         [Fact]
-        public async Task LoadWebEnhanced() {
+        public async Task LoadWeb() {
             // Act
-            var result = await _tileMaker.LoadWebAsync(_httpClient,
-                new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx"));
+            var result = await _tileMakerClient.LoadWebAsync(_httpClient,
+                new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx"), false);
 
             result.Should().NotBeNull();
             TestConsole.WriteLine(result.DocumentNode.InnerHtml);
@@ -44,7 +48,8 @@ namespace OpenGraphTilemakerTests.OpenGraph
         [Fact]
         public async Task ParseData_AllValuesCorrect() {
             // Act
-            await _tileMaker.ScrapeAsync("./TestData/TestHtml1.html");
+            var source = "./TestData/TestHtml1.html";
+            await _tileMaker.ScrapeAsync(async () => await FileLoader.LoadAsync(source), source);
 
             _tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
             foreach (var node in _tileMaker.HtmlMetaTags) {
@@ -73,21 +78,22 @@ namespace OpenGraphTilemakerTests.OpenGraph
         }
 
         [Fact]
-        public async Task ScrapeHtml() {
+        public async Task Scrape() {
+            var uri = new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx");
+
             // Act
-            await _tileMaker.ScrapeAsync(_httpClient,
-                new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx"), false);
+            await _tileMaker.ScrapeAsync(async () => await _tileMakerClient.LoadWebAsync(_httpClient, uri, false), "");
 
             _tileMaker.HtmlMetaTags.Should().NotBeNull();
         }
 
         [Fact]
-        public async Task ScrapeHtmlAsync() {
+        public async Task ScrapeAsync() {
+            var uri = new Uri(
+                "https://recode.net/2018/11/2/18053424/elon-musk-tesla-spacex-boring-company-self-driving-cars-saudi-twitter-kara-swisher-decode-podcast");
+
             // Act
-            await _tileMaker.ScrapeAsync(_httpClient,
-                new Uri(
-                    "https://recode.net/2018/11/2/18053424/elon-musk-tesla-spacex-boring-company-self-driving-cars-saudi-twitter-kara-swisher-decode-podcast"),
-                false);
+            await _tileMaker.ScrapeAsync(async () => await _tileMakerClient.LoadWebAsync(_httpClient, uri, false), "");
 
             _tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
             foreach (var node in _tileMaker.HtmlMetaTags) {

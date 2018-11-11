@@ -29,7 +29,7 @@ namespace OpenGraphTilemakerWeb.App
                 options.CachingTimeSpan = TimeSpan.FromSeconds(15);
             });
 
-            services.Configure<OpenGraphTileMakerOptions>(options => { options.CacheFolder = @"C:\WINDOWS\Temp\"; });
+            services.Configure<TileMakerClientOptions>(options => { options.CacheFolder = @"C:\WINDOWS\Temp\"; });
         }
 
         public void Configure(IBlazorApplicationBuilder app) => app.AddComponent<App>("app");
