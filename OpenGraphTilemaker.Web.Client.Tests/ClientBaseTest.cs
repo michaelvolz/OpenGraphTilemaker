@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using BlazorState;
 using Common;
 using Microsoft.Extensions.Caching.Memory;
@@ -8,6 +11,8 @@ using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 using Xunit.Abstractions;
 using Options = Microsoft.Extensions.Options.Options;
+
+// ReSharper disable ArgumentsStyleLiteral
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -21,12 +26,13 @@ namespace OpenGraphTilemaker.Web.Client.Tests
 
         protected ClientBaseTest(ITestOutputHelper testConsole) : base(testConsole) { }
 
-        protected static TileMakerClient TileMakerClient() {
-            return new TileMakerClient(HttpClient(), TileMaker(), HttpLoader());
+        protected static TileMakerClient TileMakerClient(string fakeResponse) {
+            var message = new HttpResponseMessage(HttpStatusCode.OK) {Content = new StringContent(fakeResponse)};
+            return new TileMakerClient(HttpClient(new FakeHttpMessageHandler(message)), TileMaker(), HttpLoader());
         }
 
-        protected static HttpClient HttpClient() {
-            return new HttpClient();
+        protected static HttpClient HttpClient(FakeHttpMessageHandler fakeHttpMessageHandler) {
+            return new HttpClient(fakeHttpMessageHandler);
         }
 
         protected static OpenGraphTileMaker TileMaker() {
@@ -34,7 +40,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
         }
 
         protected static HttpLoader HttpLoader() {
-            return new HttpLoader(DiscCache());
+            return new HttpLoader(DiscCache(), useCache: false);
         }
 
         protected static DiscCache DiscCache() {
@@ -65,6 +71,19 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             var mockStore = new MockStore();
             mockStore.SetState(state);
             return mockStore;
+        }
+    }
+
+    public class FakeHttpMessageHandler : DelegatingHandler
+    {
+        private readonly HttpResponseMessage _fakeResponse;
+
+        public FakeHttpMessageHandler(HttpResponseMessage responseMessage) {
+            _fakeResponse = responseMessage;
+        }
+
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
+            return await Task.FromResult(_fakeResponse);
         }
     }
 }

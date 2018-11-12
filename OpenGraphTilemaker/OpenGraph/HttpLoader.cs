@@ -9,15 +9,17 @@ namespace OpenGraphTilemaker.OpenGraph
     public class HttpLoader
     {
         private readonly DiscCache _discCache;
+        private readonly bool _useCache;
 
-        public HttpLoader(DiscCache cache) {
+        public HttpLoader(DiscCache cache, bool useCache) {
             _discCache = cache;
+            _useCache = useCache;
         }
 
-        public async Task<HtmlDocument> LoadAsync(HttpClient httpClient, Uri uri, bool useCache = true) {
+        public async Task<HtmlDocument> LoadAsync(HttpClient httpClient, Uri uri) {
             string html = null;
 
-            if (useCache)
+            if (_useCache)
                 html = _discCache.TryLoad(uri);
 
             if (html == null) {
@@ -29,7 +31,7 @@ namespace OpenGraphTilemaker.OpenGraph
 
                 html = await data.Content.ReadAsStringAsync();
 
-                if (data.IsSuccessStatusCode && useCache && !string.IsNullOrWhiteSpace(html))
+                if (data.IsSuccessStatusCode && _useCache && !string.IsNullOrWhiteSpace(html))
                     _discCache.WriteTo(uri, html);
             }
 

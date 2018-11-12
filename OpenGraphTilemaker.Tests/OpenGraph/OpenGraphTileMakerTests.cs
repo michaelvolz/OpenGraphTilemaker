@@ -8,6 +8,8 @@ using OpenGraphTilemaker.OpenGraph;
 using Xunit;
 using Xunit.Abstractions;
 
+// ReSharper disable ArgumentsStyleLiteral
+
 namespace OpenGraphTilemaker.Tests.OpenGraph
 {
     public class OpenGraphTileMakerTests : BaseTest
@@ -16,7 +18,7 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             // Arrange
             var options = Options.Create(new DiscCacheOptions {CacheFolder = @"C:\WINDOWS\Temp\"});
             var discCache = new DiscCache(options);
-            _webLoader = new HttpLoader(discCache);
+            _webLoader = new HttpLoader(discCache, useCache: false);
 
             _tileMaker = new OpenGraphTileMaker();
             _httpClient = new HttpClient();
@@ -33,7 +35,7 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             var uri = new Uri("http://brokenurl");
 
             // Act
-            await _tileMaker.ScrapeAsync("", async () => await _webLoader.LoadAsync(_httpClient, uri, false));
+            await _tileMaker.ScrapeAsync("", async () => await _webLoader.LoadAsync(_httpClient, uri));
 
             _tileMaker.HtmlMetaTags.Should().BeNull();
             _tileMaker.Error.Should().NotBeNull();
@@ -43,7 +45,7 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
         public async Task LoadWeb() {
             // Act
             var result = await _webLoader.LoadAsync(_httpClient,
-                new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx"), false);
+                new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx"));
 
             result.Should().NotBeNull();
             TestConsole.WriteLine(result.DocumentNode.InnerHtml);
@@ -86,7 +88,7 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             var uri = new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx");
 
             // Act
-            await _tileMaker.ScrapeAsync("", async () => await _webLoader.LoadAsync(_httpClient, uri, false));
+            await _tileMaker.ScrapeAsync("", async () => await _webLoader.LoadAsync(_httpClient, uri));
 
             _tileMaker.HtmlMetaTags.Should().NotBeNull();
         }
@@ -97,7 +99,7 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
                 "https://recode.net/2018/11/2/18053424/elon-musk-tesla-spacex-boring-company-self-driving-cars-saudi-twitter-kara-swisher-decode-podcast");
 
             // Act
-            await _tileMaker.ScrapeAsync("", async () => await _webLoader.LoadAsync(_httpClient, uri, false));
+            await _tileMaker.ScrapeAsync("", async () => await _webLoader.LoadAsync(_httpClient, uri));
 
             _tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
             foreach (var node in _tileMaker.HtmlMetaTags) {
