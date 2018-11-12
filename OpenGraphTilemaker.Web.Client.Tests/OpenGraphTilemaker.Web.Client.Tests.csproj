@@ -25,4 +25,10 @@
     <ProjectReference Include="..\OpenGraphTilemaker.Web.Client\OpenGraphTilemaker.Web.Client.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Caching.Memory">
+      <HintPath>..\..\..\.nuget\packages\microsoft.extensions.caching.memory\2.1.1\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

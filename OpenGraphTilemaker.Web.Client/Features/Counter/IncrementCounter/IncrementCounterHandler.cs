@@ -18,6 +18,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Counter
 
             public override Task<CounterState> Handle(IncrementCounterRequest req, CancellationToken token) {
                 CounterState.Count += req.Amount;
+
                 return Task.FromResult(CounterState);
             }
         }
