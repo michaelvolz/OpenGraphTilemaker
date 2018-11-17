@@ -42,7 +42,7 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
         }
 
         [Fact]
-        [TestCategory("Integration")]
+        [XunitCategory("Integration")]
         public async Task Scrape_ErroneousUrl_Error() {
             // Arrange
             var uri = new Uri("http://brokenurl");

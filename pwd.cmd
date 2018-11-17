@@ -1,0 +1,2 @@
+pwd.exe
+pause

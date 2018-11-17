@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using JetBrains.Annotations;
 
 namespace Common.Extensions
@@ -12,5 +13,15 @@ namespace Common.Extensions
 
         [CanBeNull]
         public static DateTime? AsDateTimeOrNull(this string value) => DateTime.TryParse(value, out var result) ? (DateTime?) result : null;
+
+        public static bool IsNumeric(this object expression) {
+            if (expression == null) return false;
+
+            return double.TryParse(
+                Convert.ToString(expression, CultureInfo.InvariantCulture),
+                NumberStyles.Any,
+                NumberFormatInfo.InvariantInfo,
+                out var number);
+        }
     }
 }

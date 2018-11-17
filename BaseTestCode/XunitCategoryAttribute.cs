@@ -1,13 +1,16 @@
 using System;
 using Xunit.Sdk;
 
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace BaseTestCode
 {
     [TraitDiscoverer(CategoryDiscoverer.DiscovererTypeName, DiscovererUtil.AssemblyName)]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
-    public class TestCategoryAttribute : Attribute, ITraitAttribute
+    public class XunitCategoryAttribute : Attribute, ITraitAttribute
     {
-        public TestCategoryAttribute(string categoryName) {
+        public XunitCategoryAttribute(string categoryName) {
             Name = categoryName;
         }
 
