@@ -18,9 +18,9 @@ namespace OpenGraphTilemaker.OpenGraph
         public DateTime? ArticlePublishedTime { get; set; }
         public DateTime? ArticleModifiedTime { get; set; }
 
-        public bool IsValid => Title.NotNullOrWhiteSpace() &&
-                               Description.NotNullOrWhiteSpace() &&
-                               Image.NotNullOrWhiteSpace() &&
+        public bool IsValid => Title.NotNullNorWhiteSpace() &&
+                               Description.NotNullNorWhiteSpace() &&
+                               Image.NotNullNorWhiteSpace() &&
                                SourcePublishTime != default;
 
         public string Source { get; set; }

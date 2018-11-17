@@ -7,9 +7,9 @@ namespace OpenGraphTilemaker.GetPocket
     public class PocketEntry
     {
         public PocketEntry([NotNull] string title, string category, [CanBeNull] string link, DateTime pubDate) {
-            Title = title.NotNullOrWhiteSpace() ? title : throw new ArgumentException(nameof(title));
+            Title = title.NotNullNorWhiteSpace() ? title : throw new ArgumentException(nameof(title));
             Category = category ?? string.Empty;
-            Link = link.NotNullOrWhiteSpace() ? link : throw new ArgumentException(nameof(link));
+            Link = link.NotNullNorWhiteSpace() ? link : throw new ArgumentException(nameof(link));
             PubDate = pubDate != default ? pubDate : throw new ArgumentException(nameof(pubDate));
         }
 

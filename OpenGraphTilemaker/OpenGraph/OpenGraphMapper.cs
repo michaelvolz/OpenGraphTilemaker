@@ -42,19 +42,19 @@ namespace OpenGraphTilemaker.OpenGraph
                         metadata.Image = content;
                         break;
                     case "og:image:width":
-                        metadata.ImageWidth = content.AsInt();
+                        metadata.ImageWidth = content.AsIntOrNull();
                         break;
                     case "og:image:height":
-                        metadata.ImageHeight = content.AsInt();
+                        metadata.ImageHeight = content.AsIntOrNull();
                         break;
                     case "og:locale":
                         metadata.Locale = content;
                         break;
                     case "article:published_time":
-                        metadata.ArticlePublishedTime = content.AsDateTime();
+                        metadata.ArticlePublishedTime = content.AsDateTimeOrNull();
                         break;
                     case "article:modified_time":
-                        metadata.ArticleModifiedTime = content.AsDateTime();
+                        metadata.ArticleModifiedTime = content.AsDateTimeOrNull();
                         break;
                 }
             }

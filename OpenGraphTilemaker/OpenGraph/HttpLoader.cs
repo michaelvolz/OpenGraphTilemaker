@@ -37,7 +37,7 @@ namespace OpenGraphTilemaker.OpenGraph
 
                 html = await data.Content.ReadAsStringAsync();
 
-                if (data.IsSuccessStatusCode && _cacheState == Enabled && html.NotNullOrWhiteSpace())
+                if (data.IsSuccessStatusCode && _cacheState == Enabled && html.NotNullNorWhiteSpace())
                     _discCache.WriteToDisc(uri, html);
             }
 
