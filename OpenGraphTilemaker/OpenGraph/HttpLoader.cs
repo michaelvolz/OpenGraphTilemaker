@@ -14,7 +14,7 @@ namespace OpenGraphTilemaker.OpenGraph
         private readonly CacheState _cacheState;
         private readonly DiscCache _discCache;
 
-        public HttpLoader([NotNull] DiscCache discCache, CacheState cacheState) {
+        public HttpLoader([NotNull] DiscCache discCache, CacheState cacheState = Enabled) {
             _discCache = discCache ?? throw new ArgumentNullException(nameof(discCache));
             _cacheState = cacheState != default ? cacheState : throw new ArgumentException(nameof(cacheState));
         }
