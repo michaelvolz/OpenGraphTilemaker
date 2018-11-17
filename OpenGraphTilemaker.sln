@@ -22,7 +22,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CAE67E4B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Tests", "Common.Tests\Common.Tests.csproj", "{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGraphTilemaker.Web.Client.Tests", "OpenGraphTilemaker.Web.Client.Tests\OpenGraphTilemaker.Web.Client.Tests.csproj", "{AF347F6C-7408-4415-9D2F-17E393E9550C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Client.Tests", "OpenGraphTilemaker.Web.Client.Tests\OpenGraphTilemaker.Web.Client.Tests.csproj", "{AF347F6C-7408-4415-9D2F-17E393E9550C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseTestCode", "BaseTestCode\BaseTestCode.csproj", "{58554CFD-298C-4DDE-B640-88F7F66962D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,10 @@ Global
 		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58554CFD-298C-4DDE-B640-88F7F66962D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58554CFD-298C-4DDE-B640-88F7F66962D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58554CFD-298C-4DDE-B640-88F7F66962D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58554CFD-298C-4DDE-B640-88F7F66962D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
 		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
 		{AF347F6C-7408-4415-9D2F-17E393E9550C} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
+		{58554CFD-298C-4DDE-B640-88F7F66962D9} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA84091E-F7E3-4556-8ECF-527827305335}

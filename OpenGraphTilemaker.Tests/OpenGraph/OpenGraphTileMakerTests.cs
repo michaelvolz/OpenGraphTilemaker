@@ -1,7 +1,9 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BaseTestCode;
 using FluentAssertions;
 using Microsoft.Extensions.Options;
 using OpenGraphTilemaker.OpenGraph;
@@ -20,19 +22,33 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             var options = Options.Create(new DiscCacheOptions {CacheFolder = @"C:\WINDOWS\Temp\"});
             _webLoader = new HttpLoader(new DiscCache(options), CacheState.Disabled);
             _tileMaker = new OpenGraphTileMaker();
-            _httpClient = new HttpClient();
         }
 
         private readonly OpenGraphTileMaker _tileMaker;
-        private readonly HttpClient _httpClient;
         private readonly HttpLoader _webLoader;
 
         [Fact]
-        public async Task ErroneousUrl_CreatesErrorEntry() {
+        public async Task LoadWeb_HtmlDoc_ValidContent() {
+            // Act
+            var fakeResponse = "dummy content";
+            var result = await _webLoader.LoadAsync(HttpClient(fakeResponse), new Uri("https://example.org"));
+
+            // Assert
+            result.Should().NotBeNull();
+            result.DocumentNode.InnerHtml.Should().Be(fakeResponse);
+
+            // Log
+            TestConsole.WriteLine(result.DocumentNode.InnerHtml);
+        }
+
+        [Fact]
+        [TestCategory("Integration")]
+        public async Task Scrape_ErroneousUrl_Error() {
+            // Arrange
             var uri = new Uri("http://brokenurl");
 
             // Act
-            await _tileMaker.ScrapeAsync("source-name", async () => await _webLoader.LoadAsync(_httpClient, uri));
+            await _tileMaker.ScrapeAsync("source-name", async () => await _webLoader.LoadAsync(new HttpClient(), uri));
 
             // Assert
             _tileMaker.Error.Should().NotBeNull();
@@ -40,17 +56,56 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
         }
 
         [Fact]
-        public async Task LoadWeb() {
-            // Act
-            var result = await _webLoader.LoadAsync(_httpClient,
-                new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx"));
+        public async Task Scrape_RecodeHtml_Success() {
+            var uri = new Uri("https://example.org");
+            var responseMessage = await File.ReadAllTextAsync("../../../TestData/TestRecode.html");
 
-            result.Should().NotBeNull();
-            TestConsole.WriteLine(result.DocumentNode.InnerHtml);
+            // Act
+            await _tileMaker.ScrapeAsync("source-name", async () => await _webLoader.LoadAsync(HttpClient(responseMessage), uri));
+
+            // Assert
+            _tileMaker.Error.Should().BeNull();
+            _tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
+            foreach (var node in _tileMaker.HtmlMetaTags) {
+                TestConsole.WriteLine(node.Attributes.Aggregate(
+                    "\t", (s, attribute) => s + $"{attribute.Name} = {attribute.Value} ## "));
+            }
+
+            var md = _tileMaker.OpenGraphMetadata;
+            md.Should().NotBeNull();
+            md.Type.Should().NotBeNull();
+            md.Type.Should().BeEquivalentTo("Article");
+            md.Title.Should()
+                .BeEquivalentTo("Elon Musk: The Recode interview");
+            md.Url.Should().BeEquivalentTo(
+                "https://www.recode.net/2018/11/2/18053424/elon-musk-tesla-spacex-boring-company-self-driving-cars-saudi-twitter-kara-swisher-decode-podcast");
+            md.Description.Should().BeEquivalentTo(
+                "Musk talks about his \"excruciating\" 2018, fighting with journalists on Twitter, why Tesla won’t build an electric scooter and much more.");
+            md.SiteName.Should().BeEquivalentTo("Recode");
+            md.Image.Should()
+                .BeEquivalentTo(
+                    "https://cdn.vox-cdn.com/thumbor/0VWGPLAhgTPzvzBYJBZOUiJzVtI=/0x215:3000x1786/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/13372511/REC_Elon_LedeImage__1_.png");
+            md.ImageWidth.Should().Be(1200);
+            md.ImageHeight.Should().Be(630);
+            md.ArticlePublishedTime.Should().Be(DateTime.Parse("2018-11-02T09:04:02+00:00"));
+            md.ArticleModifiedTime.Should().Be(DateTime.Parse("2018-11-02T09:04:02+00:00"));
         }
 
         [Fact]
-        public async Task ParseData_AllValuesCorrect() {
+        public async Task Scrape_TestHanselman1Html_Success() {
+            var uri = new Uri("https://example.org");
+            var responseMessage = await File.ReadAllTextAsync("../../../TestData/TestHanselman1.html");
+
+            // Act
+            await _tileMaker.ScrapeAsync("source-name", async () => await _webLoader.LoadAsync(HttpClient(responseMessage), uri));
+
+            // Assert
+            _tileMaker.Error.Should().BeNull();
+            _tileMaker.HtmlMetaTags.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Scrape_TestHtml1_AllValuesCorrect() {
             // Act
             var source = "./TestData/TestHtml1.html";
             await _tileMaker.ScrapeAsync(source, async () => await FileLoader.LoadAsync(source));
@@ -81,54 +136,6 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             md.Locale.Should().BeEquivalentTo("en_US");
             md.ArticlePublishedTime.Should().Be(DateTime.Parse("2018-10-19T15:39:27+00:00"));
             md.ArticleModifiedTime.Should().Be(DateTime.Parse("2018-10-19T17:22:55+00:00"));
-        }
-
-        [Fact]
-        public async Task Scrape() {
-            var uri = new Uri("https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx");
-
-            // Act
-            await _tileMaker.ScrapeAsync("source-name", async () => await _webLoader.LoadAsync(_httpClient, uri));
-
-            // Assert
-            _tileMaker.Error.Should().BeNull();
-            _tileMaker.HtmlMetaTags.Should().NotBeNull();
-        }
-
-        [Fact]
-        public async Task ScrapeAsync() {
-            var uri = new Uri(
-                "https://recode.net/2018/11/2/18053424/elon-musk-tesla-spacex-boring-company-self-driving-cars-saudi-twitter-kara-swisher-decode-podcast");
-
-            // Act
-            await _tileMaker.ScrapeAsync("source-name", async () => await _webLoader.LoadAsync(_httpClient, uri));
-
-            // Assert
-            _tileMaker.Error.Should().BeNull();
-            _tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
-            foreach (var node in _tileMaker.HtmlMetaTags) {
-                TestConsole.WriteLine(node.Attributes.Aggregate(
-                    "\t", (s, attribute) => s + $"{attribute.Name} = {attribute.Value} ## "));
-            }
-
-            var md = _tileMaker.OpenGraphMetadata;
-            md.Should().NotBeNull();
-            md.Type.Should().NotBeNull();
-            md.Type.Should().BeEquivalentTo("Article");
-            md.Title.Should()
-                .BeEquivalentTo("Elon Musk: The Recode interview");
-            md.Url.Should().BeEquivalentTo(
-                "https://www.recode.net/2018/11/2/18053424/elon-musk-tesla-spacex-boring-company-self-driving-cars-saudi-twitter-kara-swisher-decode-podcast");
-            md.Description.Should().BeEquivalentTo(
-                "Musk talks about his \"excruciating\" 2018, fighting with journalists on Twitter, why Tesla won’t build an electric scooter and much more.");
-            md.SiteName.Should().BeEquivalentTo("Recode");
-            md.Image.Should()
-                .BeEquivalentTo(
-                    "https://cdn.vox-cdn.com/thumbor/0VWGPLAhgTPzvzBYJBZOUiJzVtI=/0x215:3000x1786/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/13372511/REC_Elon_LedeImage__1_.png");
-            md.ImageWidth.Should().Be(1200);
-            md.ImageHeight.Should().Be(630);
-            md.ArticlePublishedTime.Should().Be(DateTime.Parse("2018-11-02T09:04:02+00:00"));
-            md.ArticleModifiedTime.Should().Be(DateTime.Parse("2018-11-02T09:04:02+00:00"));
         }
     }
 }

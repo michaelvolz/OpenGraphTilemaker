@@ -6,9 +6,10 @@ using OpenGraphTilemaker.Web.Client.Features.Counter;
 using Xunit;
 using Xunit.Abstractions;
 
+
 namespace OpenGraphTilemaker.Web.Client.Tests.Features.Counter
 {
-    public class IncrementCounterHandlerTests : BaseTest
+    public class IncrementCounterHandlerTests : ClientBaseTest
     {
         public IncrementCounterHandlerTests(ITestOutputHelper testConsole) : base(testConsole) {
             // Arrange

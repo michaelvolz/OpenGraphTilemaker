@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
+using BaseTestCode;
 using BlazorState;
 using Common;
 using Microsoft.Extensions.Caching.Memory;
@@ -26,12 +24,7 @@ namespace OpenGraphTilemaker.Tests
         protected ClientBaseTest(ITestOutputHelper testConsole) : base(testConsole) { }
 
         protected static TileMakerClient TileMakerClient(string fakeResponse) {
-            var message = new HttpResponseMessage(HttpStatusCode.OK) {Content = new StringContent(fakeResponse)};
-            return new TileMakerClient(HttpClient(new FakeHttpMessageHandler(message)), TileMaker(), HttpLoader());
-        }
-
-        protected static HttpClient HttpClient(FakeHttpMessageHandler fakeHttpMessageHandler) {
-            return new HttpClient(fakeHttpMessageHandler);
+            return new TileMakerClient(HttpClient(fakeResponse, HttpStatusCode.OK), TileMaker(), HttpLoader());
         }
 
         protected static OpenGraphTileMaker TileMaker() {
@@ -85,19 +78,6 @@ namespace OpenGraphTilemaker.Tests
 
         public void SetState(IState aState) {
             _state = aState;
-        }
-    }
-
-    public class FakeHttpMessageHandler : DelegatingHandler
-    {
-        private readonly HttpResponseMessage _fakeResponse;
-
-        public FakeHttpMessageHandler(HttpResponseMessage responseMessage) {
-            _fakeResponse = responseMessage;
-        }
-
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
-            return await Task.FromResult(_fakeResponse);
         }
     }
 }

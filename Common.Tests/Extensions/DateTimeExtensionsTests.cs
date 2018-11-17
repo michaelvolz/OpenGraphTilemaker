@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 
 namespace Common.Tests.Extensions
 {
-    public class DateTimeExtensionsTests : BaseTest
+    public class DateTimeExtensionsTests : BaseTestCode.BaseTest
     {
         public DateTimeExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
 

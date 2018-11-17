@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseTestCode;
 using Common;
 using FluentAssertions;
 using Microsoft.Extensions.Caching.Memory;
@@ -26,7 +27,7 @@ namespace OpenGraphTilemaker.Tests.GetPocket
         private readonly PocketOptions _options;
 
         [Fact]
-        public async Task GetUrls_Scenario_Behavior() {
+        public async Task GetEntries() {
             // Act
             var entries = await _pocket.GetEntriesAsync(_options);
 
@@ -37,12 +38,6 @@ namespace OpenGraphTilemaker.Tests.GetPocket
             first.Title.Should().NotBeNullOrWhiteSpace();
             first.Link.Should().NotBeNull();
             first.PubDate.Should().NotBeSameDateAs(default);
-        }
-
-        [Fact]
-        public async Task Method_Scenario_Behavior() {
-            // Act
-            var entries = await _pocket.GetEntriesAsync(_options);
 
             // Log
             foreach (var item in entries) {
@@ -52,9 +47,6 @@ namespace OpenGraphTilemaker.Tests.GetPocket
                 TestConsole.WriteLine(item.PubDate.ToShortDateString());
                 TestConsole.WriteLine("");
             }
-
-            // Assert
-            entries.Should().NotBeNull();
         }
     }
 }

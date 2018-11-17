@@ -1,4 +1,5 @@
-﻿using Common.Extensions;
+﻿using BaseTestCode;
+using Common.Extensions;
 using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;

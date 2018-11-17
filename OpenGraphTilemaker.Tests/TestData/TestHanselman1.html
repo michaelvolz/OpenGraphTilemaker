@@ -1,0 +1,439 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Azure DevOps Continuous Build/Deploy/Test with ASP.NET Core 2.2 Preview in One Hour - Scott Hanselman</title>
+ 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="title" content="Azure DevOps Continuous Build/Deploy/Test with ASP.NET Core 2.2 Preview in One Hour - Scott Hanselman" />
+	<meta name="author" content="Scott Hanselman" />
+	<meta name="copyright" content="Scott Hanselman" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="Scott, Computer, Zen, .NET, C#, Hanselman, Microsoft, Scott, Weblog, Diabetes, Portland, Zimbabwe, ASP.NET, Azure, Cloud, Productivity, Hanselman" name="keywords" />
+	<meta name="description" content="Scott Hanselman on Programming, The Web, Open Source, .NET, The Cloud and More" />
+	<link rel="meta" type="application/rdf+xml" title="FOAF" href="/blog/foaf.rdf" />
+		
+	<link rel="stylesheet" type="text/css" href="/blog/themes/jinyang/css/supportingstyles.v1.min.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css?v=8" media="screen" >
+  <link rel="stylesheet" type="text/css" href="/blog/themes/jinyang/css/print.v1.min.css" media="print" />
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,700|Open+Sans:400,700|Open+Sans:400,400italic' rel='stylesheet' type='text/css'>    
+<!--	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>   
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic' rel='stylesheet' type='text/css'> -->
+		 
+ 
+  <meta name="application-name" content="Scott Hanselman's Blog"/>
+  <meta name="msapplication-config" content="/browserconfig.xml" />
+  <link rel="shortcut icon" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
+	<link rel="icon" href="/images/apple-touch-icon.png">
+  <link rel="alternate" type="application/rss+xml" title="Scott Hanselman's Blog" href="http://feeds.hanselman.com/ScottHanselman" />
+	<link rel="me" type="text/html" href="https://plus.google.com/108573066018819777334?rel=me"/> 
+	<link rel="me" type="text/html" href="http://feeds.hanselman.com/ScottHanselman"/> 
+	<link rel="me" type="text/html" href="https://twitter.com/shanselman"/> 
+	<link rel="me" type="text/html" href="https://facebook.com/scott.hanselman"/> 
+	<meta name="t_omni_extblogid" content="msstoextblogs1" />
+	<meta name="t_omni_blogname" content="Scott Hanselman" />
+	<link rel="search" type="application/opensearchdescription+xml" href="/blog/opensearch.xml" title="Hanselman Search">
+	<meta name="msapplication-starturl" content="./" />
+  <meta name="msapplication-TileImage" content="/blog/images/hanselman-144.png" />
+ <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.min.js"></script>
+<script>
+  (window.jQuery || document.write('<script src="/blog/scripts/jquery.1.4.min.js"><\/script>'));
+</script>
+ <script src="/blog/themes/JinYang/scripts/header.v1.min.js"></script>
+ 
+<link rel="stylesheet" type="text/css" href="/css/cookieconsent.min.css" />
+<script defer src="/scripts/cookieconsent.min.js"></script>
+<script async>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#83382b",
+      "text": "#ffffff"
+    },
+    "button": {
+      "background": "transparent",
+      "text": "#ffffff",
+      "border": "#e2842c"
+    }
+  }
+})});
+</script>
+ 
+<base href="https://www.hanselman.com/blog/"></base>
+<link rel="alternate" type="application/rss+xml" title="Scott Hanselman" href="https://www.hanselman.com/blog/SyndicationService.asmx/GetRss" />
+<link rel="alternate" type="application/atom+xml" title="Scott Hanselman" href="https://www.hanselman.com/blog/SyndicationService.asmx/GetAtom" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.hanselman.com/blog/EditService.asmx/GetRsd" /><link rel="microsummary" type="application/x.microsummary+xml" href="https://www.hanselman.com/blog/Microsummary.ashx" />
+<link rel="canonical" href="https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx" />
+<meta name="description" content="I've been doing Continuous Integration and Deployment for well over 13 years. We used a lot of custom scripts and a lovely tool called CruiseControl.NET to ..." />
+<meta name="keywords" content="Azure,Open Source" />
+<meta name="twitter:card" content="summary" />
+ <meta name="twitter:site" content="@shanselman" />
+<meta name="twitter:creator" content="@shanselman" />
+<meta name="twitter:title" content="Azure DevOps Continuous Build/Deploy/Test with ASP.NET Core 2.2 Preview in One Hour" />
+<meta name="twitter:description" content="I've been doing Continuous Integration and Deployment for well over 13 years. We used a lot of custom scripts and a ..." />
+<meta name="twitter:image" content="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_thumb_2.png" />
+<meta name="og:url" content="https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx" />
+<meta name="og:title" content="Azure DevOps Continuous Build/Deploy/Test with ASP.NET Core 2.2 Preview in One Hour" />
+<meta name="og:image" content="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_thumb_2.png" />
+<meta name="og:description" content="I've been doing Continuous Integration and Deployment for well over 13 years. We used a lot of custom scripts and a ..." />
+<meta name="og:type" content="blog" />
+<meta name="fb:admins" content="552706617" />
+<meta name="fb:app_id" content="552706617" />
+<script type="application/ld+json"> 
+{
+"@context": "http://schema.org","@type": "BlogPosting","headline": "Azure DevOps Continuous Build/Deploy/Test with ASP.NET Core 2.2 Preview in One Hour","datePublished": "2018-09-18","description": "I've been doing Continuous Integration and Deployment for well over 13 years. We used a lot of custom scripts and a lovely tool called CruiseControl.NET to ... ...","url": "https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx","image": "https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_thumb_2.png"}
+</script>
+</head>
+
+<body class="line-darkbrown"><form method="post" action="/blog/CommentView.aspx?title=AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour" id="mainForm">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTM2MTcxNzAwMA9kFgJmD2QWAgIFD2QWAgIDD2QWAmYPDxYCHgdlbnRyeUlkBSRiNzI2NGMxZC0xNzc1LTQ5YTMtODliZi1hNDM4ZTZiODA3ODFkFgJmD2QWCAIDDxYCHgdWaXNpYmxlZxYCAgEPDxYCHgRUZXh0BRRDb21tZW50cyBhcmUgY2xvc2VkLmRkAgQPFgIfAWgWAgIBDw8WAh8CBUtBbGwgY29tbWVudHMgcmVxdWlyZSB0aGUgYXBwcm92YWwgb2YgdGhlIHNpdGUgb3duZXIgYmVmb3JlIGJlaW5nIGRpc3BsYXllZC5kZAIGDxYCHwFoFgJmD2QWAmYPZBYEAgEPDxYCHwIFBk9wZW5JRGRkAgMPDxYEHhJFbmFibGVDbGllbnRTY3JpcHRoHgxFcnJvck1lc3NhZ2UFOVBsZWFzZSBlbnRlciB5b3VyIE9wZW5JZCBvciB5b3VyIE5hbWUsIEVtYWlsIGFuZCBXZWJwYWdlLmRkAggPFgIfAWgWEmYPZBYCZg9kFgQCAQ8PFgIfAgUETmFtZWRkAgMPDxYCHwQFMVlvdSBtdXN0IGVudGVyIHlvdXIgbmFtZSAtIG9yIGF0IGxlYXN0IHNvbWUgbmFtZS5kZAIBD2QWBGYPZBYEAgEPDxYCHwIFBkUtbWFpbGRkAgMPDxYEHwNoHwQFSlRoZSBlLW1haWwgYWRkcmVzcyBpcyBvcHRpb25hbCwgYnV0IGlmIHlvdSBwcm92aWRlIGl0LCBpdCBzaG91bGQgYmUgdmFsaWQuZGQCAQ9kFgICAw9kFgICAQ8PFgIfAgVUKHdpbGwgc2hvdyB5b3VyIDxhIGhyZWY9Imh0dHA6Ly93d3cuZ3JhdmF0YXIuY29tIiB0YXJnZXQ9Il9ibGFuayI+Z3JhdmF0YXI8L2E+IGljb24pZGQCAg9kFgJmD2QWAgIBDw8WAh8CBQlIb21lIHBhZ2VkZAIDD2QWAmYPZBYCAgEPDxYCHwIFAzIrNWRkAgUPZBYCAgEPZBYCAgEPEA8WAh8CBQtSZW1lbWJlciBNZWRkZGQCBg9kFgJmD2QWBgIBDw8WBB8CBRpDb21tZW50IChIVE1MIG5vdCBhbGxvd2VkKR8BaGRkAgMPDxYCHwIF+wFDb21tZW50IChTb21lIGh0bWwgaXMgYWxsb3dlZDogPGNvZGU+YUBocmVmQHRpdGxlLCBiLCBibG9ja3F1b3RlQGNpdGUsIGVtLCBpLCBsaSwgb2wsIHByZSwgc3RyaWtlLCBzdHJvbmcsIHN1Yiwgc3VwZXIsIHUsIHVsPC9jb2RlPikgd2hlcmUgdGhlIEAgbWVhbnMgImF0dHJpYnV0ZS4iIEZvciBleGFtcGxlLCB5b3UgY2FuIHVzZSAmbHQ7YSBocmVmPSIiIHRpdGxlPSIiJmd0OyBvciAmbHQ7YmxvY2txdW90ZSBjaXRlPSJTY290dCImZ3Q7LmRkAgUPDxYEHwNoHwQFHkVtcHR5IGNvbW1lbnRzIGFyZW4ndCBhbGxvd2VkLmRkAgcPZBYCZg9kFgQCAw8PFgQeB0VuYWJsZWRoHwFoZGQCBQ8PFgIfBAUbUGxlYXNlIGVudGVyIHRoZSBjb2RlIHNob3duZGQCCA9kFgJmD2QWAgIBDw8WAh8CBRRMaXZlIENvbW1lbnQgUHJldmlld2RkAgoPZBYCZg9kFgICBw8PFgIfAgUMU2F2ZSBDb21tZW50ZGRkSMb4TX0i12eYJQO8d8aNmghgC84=" />
+</div>
+
+
+				<script type="text/javascript">
+					var allowedHtmlTags = ['a', 'b', 'blockquote', 'em', 'i', 'li', 'ol', 'pre', 'strike', 'strong', 'sub', 'super', 'u', 'ul'];
+				</script>
+				<script type="text/javascript" src="scripts/LiveCommentPreview.js" defer="defer"></script><script type="text/javascript" language="JavaScript">
+<!--
+function showReferral()
+{
+var elems = document.getElementsByTagName('*');
+var count = 0;
+for (var i=0;i<elems.length;i++) {
+    if ( elems[i].id.indexOf('referralSpanHidden') != -1 ) {
+        elems[i].style.display='inline';
+        count++;
+    }
+    else if ( elems[i].id.indexOf('referralMore') != -1 ) {
+        elems[i].style.display='none';
+        count++;
+    }
+    if (count == 2) {break;}
+}
+}
+// --></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6BAEE71B" />
+</div>
+<section class="containerOuter line-tan" id="topbar">
+	<section class="containerInner">
+    	<h1><a href="/">Scott Hanselman</a></h1>
+        <nav>
+        	<ul>
+            	<li><a href="//hanselman.com/about">about</a></li>
+            	<li><a href="//hanselman.com/blog" class="current">blog</a></li>
+            	<li><a href="//hanselman.com/speaking">speaking</a></li>
+            	<li><a href="//hanselman.com/podcasts">podcasts</a></li>
+            	<li><a href="//hanselman.com/books">books</a></li>  
+          </ul>
+        </nav>        
+    </section>
+</section>
+
+<section class="containerOuter darkbrown searchBar">
+	<section class="containerInner">
+       <div class="searchBarNav">
+              <div id="search">
+                  <input id="searchString" placeholder="Learn to Tweet, Be a Better Developer, etc." onkeypress="if (event.keyCode == 13) {doSearch(searchString.value);return false;}" type="text">
+                  <input id="searchButton" name="googleSearchName" type="button"  value="Search" language="javascript" onclick="doSearch(searchString.value);return false;">
+              </div>
+              <div id="archives">
+                browse by <a title="The complete archive of Scott's Blog" href="//www.hanselman.com/blog/archives.aspx">category</a> or <a title="Scott's blog posts in a friendly calendar format" href="//www.hanselman.com/blog/monthview.aspx">date</a>
+              </div>
+      </div>
+    </section>
+</section>
+
+
+
+<main>
+<div id="ctl01_content" class="bodyContentStyle">
+
+    <div id="ctl01_commentViewContent">
+    <a name="ab7264c1d-1775-49a3-89bf-a438e6b80781"></a><article>
+<section class="containerOuter blogHeader line-chocolate" >
+	<section class="containerInnerNarrow">
+    	<h2 class="blogTitle"><a class="TitleLinkStyle" rel="bookmark" href="https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx">Azure DevOps Continuous Build/Deploy/Test with ASP.NET Core 2.2 Preview in One Hour</a></h2>
+    </section>
+</section>
+
+<section class="containerOuter burntSienna blogMetaInfo">
+	<section class="containerInnerNarrow">
+		<span class="blogMetaDate">September 18, '18</span>
+		<a class="commentLinkStyle" href="https://www.hanselman.com/blog/CommentView.aspx?guid=b7264c1d-1775-49a3-89bf-a438e6b80781#commentstart">Comments [10]</a>
+    <span class="blogMetaCategories">Posted in <a class="categoryLinkStyle" href="https://www.hanselman.com/blog/CategoryView.aspx?category=Azure">Azure</a>&nbsp;|&nbsp;<a class="categoryLinkStyle" href="https://www.hanselman.com/blog/CategoryView.aspx?category=Open+Source">Open Source</a></span>    
+    </section>
+</section>
+<section class="containerOuter blogBodyContainer">
+	<section class="containerInner blogBody">
+          <div class="ad-item ad-sponsoreditem">
+              Sponsored By<br />
+                  <div id="lqdmad">
+                   <!-- <div data-type="ad" class="lqm_ad" data-publisher="lqm.scotthanselman.site" data-zone="ron" data-format="125x125" data-tags="Mobile%2CHTML5%2CCSS%2CWeb%2CJavascript%2CAgile%2CCloud%2CHosting%2Cvs%2CASP.NET%2CWP7%2CWPF%2CXML%2CParallelism%2CEntity%20Framework%2CjQuery%2CMVC%2CAJAX"></div> -->
+                    <div class="lqm_ad" data-type="ad" data-publisher="lqm.scotthanselman.site" data-zone="ron" data-format="160x600" data-tags="Mobile%2CHTML5%2CCSS%2CWeb%2CJavascript%2CAgile%2CCloud%2CHosting%2Cvs%2CASP.NET%2CWP7%2CWPF%2CXML%2CParallelism%2CEntity%20Framework%2CjQuery%2CMVC%2CAJAX"></div>
+
+                  </div>
+         </div>
+		<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_6.png"><img title="Hanselminutes Website" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; float: right; padding-top: 0px; padding-left: 0px; margin: 0px 0px 0px 5px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Hanselminutes Website" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_thumb_2.png" width="352" align="right" height="196"></a>I've been doing <a href="https://www.hanselman.com/blog/ContinuousIntegrationForNETPatrickCauldwellAndIWillBeAtPADNUGOnWedsApril27th2005.aspx">Continuous Integration and Deployment for well over 13 years</a>. We used a lot of custom scripts and a lovely tool called <a href="https://github.com/ccnet/CruiseControl.NET">CruiseControl.NET</a> to check out, build, test, and deploy our code.</p> <p>However, it's easy to get lulled into complacency. To get lazy. I don't set up Automated Continuous Integration and Deployment for all my little projects. But I should.</p> <p>I was manually deploying a change to my <a href="https://www.hanselminutes.com">podcast website</a> this evening via a git deploy to Azure App Service. Pushing to Azure this way via Git uses "<a href="https://azure.microsoft.com/en-us/resources/videos/what-is-kudu-with-david-ebbo/">Kudu</a>" to actually build the site. However, earlier this week I was also trying to update my site to .NET Core 2.2 which is in preview. Plus I have Unit Tests that aren't getting run during deploy.</p> <p>So look at it this way. My simple little podcast website with a few tests and the desire to use a preview .NET Core SDK means I've outgrown a basic "git push to prod" for deploy.</p> <p>I remembered that <a href="https://azure.microsoft.com/services/devops/?nav=min&amp;WT.mc_id=-blog-scottha"><strong>Azure DevOps</strong></a> (formerly VSTS) is out and<strong> offers free unlimited minutes for open source projects.</strong> I have no excuse for my sloppy builds and manual deploys. It also has unlimited free private repos, although I'm happy at GitHub and have no reason to move.</p> <p>It usually takes me 5-10 minutes for a manual build/test/deploy, so I gave myself an hour to see if I could get this same process automated in <a href="https://azure.microsoft.com/services/devops/?nav=min&amp;WT.mc_id=-blog-scottha">Azure DevOps</a>. I've never used this before and I wanted to see if I could do it quickly, and if it was intuitive.</p> <p>Let's review my goals.</p> <ul> <li>My source is in GitHub  <li>Build my ASP.NET Core 2.2 Web Site  <ul> <li>I want to build with .NET Core 2.2 which is <em>currently </em>in Preview.</li></ul> <li>Run my xUnit Unit Tests  <ul> <li>I have some Selenium Unit Tests that can't run in the cloud (at least, I haven't figured it out yet) so I need them skipped.</li></ul> <li>Deploy the resulting site to product in my Azure App Service</li></ul> <p>Cool. So I make a project and point Azure DevOps at my GitHub.</p> <p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(33)_4.png"><img title="Azure DevOps: Source code in GitHub" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Azure DevOps: Source code in GitHub" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(33)_thumb_1.png" width="642" height="448"></a></p> <p>They have a number of starter templates, so I was pleasantly surprised I didn't need manually build my Build Configuration myself. I'll pick ASP.NET app. I could pick Azure Web App for ASP.NET but I wanted a little more control.</p> <p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(36)_4.png"><img title="Select a template" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Select a template" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(36)_thumb_1.png" width="549" height="482"></a></p> <p>Now I've got a basic build pipeline. You can see it will use NuGet, get the packages, build the app, test the assemblies (if there are tests...more on that later) and the publish (zip) the build artifacts.</p> <p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(37)_4.png"><img title="Build Pipeline" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Build Pipeline" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(37)_thumb_1.png" width="609" height="482"></a></p> <p>I then clicked Save &amp; Queue...and it failed. Why? It says that I'm targeting .NET Core 2.2 and it doesn't support anything over 2.1. Shoot.</p> <p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(39)_4.png"><img title="Agent says it doesn't support .NET Core 2.2" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Agent says it doesn't support .NET Core 2.2" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(39)_thumb_1.png" width="642" height="456"></a></p> <p>Fortunately there's a pipeline element that I can add called ".NET Core Tool Installer" that will get specific versions of the .NET Core SDK.</p> <blockquote> <p><strong>NOTE:</strong> I've emailed the team that ".NET Tool Installer" is the wrong name. A .NET Tool is a totally different thing. This task should be called the ".NET Core SDK Installer." Because it wasn't, it took me a minute to find it and figure out what it does.</p></blockquote> <p>I'm using the SDK Agent version <em>2.22.2.100-preview2-009404</em> so I put that string into the properties.</p> <p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(41)_4.png"><img title="Install the .NET Core SDK custom version" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Install the .NET Core SDK custom version" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(41)_thumb_1.png" width="642" height="281"></a></p> <p>At this point it builds, but I get a test error. </p> <p>There's two problems with the tests. When I look at the logs I can see that the "testadapter.dll" that comes with xunit is mistakenly being pulled into the test runner! Why? Because the "Test Files" spec includes a VERY greedy glob in the form of **\*test*.dll. Perhaps testadapter shouldn't include the word test, but then it wouldn't be well-named.</p><pre>**\$(BuildConfiguration)\**\*test*.dll<br>!**\obj\**</pre>
+<p>My test DLLs are all named with "tests" in the filename so I'll change the glob to "**\$(BuildConfiguration)\**\*tests*.dll" to cast a less-wide net.</p>
+<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(45)_4.png"><img title="Screenshot (45)" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Screenshot (45)" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(45)_thumb_1.png" width="514" height="482"></a></p>
+<p>I have four <a href="https://www.hanselman.com/blog/RealBrowserIntegrationTestingWithSeleniumStandaloneChromeAndASPNETCore21.aspx">Selenium Tests</a> for my ASP.NET Core site but I <a href="https://www.hanselman.com/blog/DetectingThatANETCoreAppIsRunningInADockerContainerAndSkippableFactsInXUnit.aspx">don't want them to run when the tests are run in a Docker Container</a> or, in this case, in the Cloud. (Until I figure out how)</p>
+<p>I use SkippableFacts from XUnit and do this:</p><pre class="brush: csharp; gutter: false; toolbar: false; auto-links: false;">public static class AreWe<br>{<br>    public static bool InDockerOrBuildServer { <br>        get { <br>            string retVal = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER");<br>            string retVal2 = Environment.GetEnvironmentVariable("AGENT_NAME");<br>            return (<br>                (String.Compare(retVal, Boolean.TrueString, ignoreCase: true) == 0)  <br>                || <br>                (String.IsNullOrWhiteSpace(retVal2) == false));<br>        } <br>    }<br>}
+</pre>
+<p>Don't tease me. I like it. Now I can skip tests that I don't want running.</p><pre class="brush: csharp; gutter: false; toolbar: false; auto-links: false;">if (AreWe.InDockerOrBuildServer) return;</pre>
+<p>Now my tests run and I get a nice series of charts to show that fact.</p>
+<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(46)_4.png"><img title="22 tests, 4 skipped" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="22 tests, 4 skipped" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(46)_thumb_1.png" width="642" height="319"></a></p>
+<p>I have it building and tests running.</p>
+<p>I could add the Deployment Step to the Build but Azure DevOps Pipelines includes a better way. I make a Release Pipeline that is separate. It takes Artifacts as input and runs n number of Stages.</p>
+<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(48)_4.png"><img title="Creating a new Release Pipeline" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Creating a new Release Pipeline" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(48)_thumb_1.png" width="642" height="473"></a></p>
+<p>I take the Artifact from the Build (the zipped up binaries) and pass them through the pipeline into the Azure App Service Deploy step.</p>
+<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(49)_4.png"><img title="Screenshot (49)" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Screenshot (49)" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(49)_thumb_1.png" width="642" height="251"></a></p>
+<p>Here's the deployment in progress.</p>
+<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(53)_4.png"><img title="Manually Triggered Release" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Manually Triggered Release" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(53)_thumb_1.png" width="642" height="435"></a></p>
+<p>Cool! Now that it works and deploys, I can turn on Continuous Integration Build Triggers (via an automatic GitHub webhook) as well as Continuous Deployment triggers.</p>
+<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_4.png"><img title="Continuous Deployment" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Continuous Deployment" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_thumb_1.png" width="642" height="375"></a></p>
+<p>Azure DevOps even includes badges that I can add to my readme.md so I always know by looking at GitHub if my site builds AND if it has successfully deployed.</p>
+<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_10.png"><img title="4 releases, the final one succeeded" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="4 releases, the final one succeeded" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_thumb_3.png" width="642" height="393"></a></p>
+<p>Now I can see each release as it happens and if it's successful or not.</p>
+<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(50)_7.png"><img title="Build Succeeded, Never Deployed" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Build Succeeded, Never Deployed" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/Screenshot%20(50)_thumb_2.png" width="599" height="482"></a></p>
+<p>To top it all off, now that I have all this data and these pipelines, I even put together a nice little dashboard in about a minute to show Deployment Status and Test Trends.</p>
+<p><a href="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_2.png"><img title="My build and deployment dashboard" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="My build and deployment dashboard" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_thumb.png" width="642" height="425"></a></p>
+<p>When I combine the DevOps Dashboard with my main Azure Dashboard I'm amazed at how much information I can get in so little effort. Consider that my podcast (my little business) is a one-person shop. </p><figure><img title="Azure Dashboard" style="border-left-width: 0px; border-right-width: 0px; background-image: none; border-bottom-width: 0px; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border-top-width: 0px" border="0" alt="Azure Dashboard" src="https://www.hanselman.com/blog/content/binary/Windows-Live-Writer/b6f8d910d964_99EF/image_9.png" width="1001" height="335"></figure> 
+<p>And now I have a CI/CD pipeline with integrated testing gates that deploys worldwide. Many years ago this would have required a team and a lot of custom code.</p>
+<p> Today it took an hour. Awesome. </p>
+<p>I check into GitHub, kicks off a build, tests, emails me the results, and deploys the website if everything is cool. Of course, if I had another team member I could put in deployment gates or reviews, etc.</p>
+<hr>
+
+<p><strong>Sponsor:</strong> Copy: <a href="https://hnsl.mn/2QMyhmf">Rider 2018.2 is here</a>! Publishing to IIS, Docker support in the debugger, built-in spell checking, MacBook Touch Bar support, full C# 7.3 support, advanced Unity support, and more.</p>
+
+<div class="item-prevnext">
+    <a href="https://www.hanselman.com/blog/ACompleteContainerizedNETCoreApplicationMicroserviceThatIsAsSmallAsPossible.aspx">&laquo;&nbsp;A complete containerized .NET Core Appli...</a> | <a href="https://www.hanselman.com/blog/default.aspx" rel="home">Blog Home</a> | <a href="https://www.hanselman.com/blog/ScriptsToRemoveOldNETCoreSDKs.aspx">Scripts to remove old .NET Core SDKs&nbsp;&raquo;</a>
+</div>
+  
+		
+<div class="about-scott">
+	<div class="bioBox">
+	    <h4>About Scott</h4>
+        <div class="bioBoxInner">
+			<p>Scott Hanselman is a former professor, former Chief Architect in finance, now speaker, consultant, father, diabetic, and Microsoft employee. He is a failed stand-up comic, a cornrower, and a book author.</p>
+            <a href="https://facebook.com/scott.hanselman" class="sm-link"><img src="/images/icon-fb.png" alt="facebook"></a>
+            <a href="https://twitter.com/shanselman" class="sm-link"><img src="/images/icon-twitter.png" alt="twitter"></a>
+            <a href="https://plus.google.com/108573066018819777334?rel=author" class="sm-link" rel="author"><img src="/images/icon-gplus.png" alt="g+"></a>
+            <a href="http://feeds.hanselman.com/ScottHanselman" class="sm-link"><img src="/images/icon-rss.png" alt="subscribe"></a><br/>
+            <a href="http://hanselman.com/about">About</a> &nbsp; <a href="http://www.hanselman.com/newsletter">Newsletter</a>
+        </div>
+	</div> 
+    
+      <div class="ads-box">
+          <div class="ad-item ">
+              <strong>Sponsored By</strong><br />
+                  <div id="lqdmad">
+                    <div data-type="ad" class="lqm_ad" data-publisher="lqm.scotthanselman.site" data-zone="ron" data-format="125x125" data-tags="Mobile%2CHTML5%2CCSS%2CWeb%2CJavascript%2CAgile%2CCloud%2CHosting%2Cvs%2CASP.NET%2CWP7%2CWPF%2CXML%2CParallelism%2CEntity%20Framework%2CjQuery%2CMVC%2CAJAX"></div> 
+                  </div>
+         </div>
+         <div class="ad-item">
+              <strong>Hosting By</strong><br />
+                <a rel="nofollow" href="https://sherweb.com"><img alt="Dedicated Windows Server Hosting by SherWeb" class="ad" border="0" valign="top" vspace="4" width="125" height="125" src="https://images.sherweb.com/OrcsWeb/SherWebPoweredbyLogo_V-250x250Color.png" /></a>
+          </div>        
+
+     </div>
+</div>
+  
+  <div class="item-ads">
+    <div class="lqm_ad" lqm_tags="Mobile%2CHTML5%2CCSS%2CWeb%2CJavascript%2CAgile%2CCloud%2CHosting%2Cvs%2CASP.NET%2CWP7%2CWPF%2CXML%2CParallelism%2CEntity%20Framework%2CjQuery%2CMVC%2CAJAX" lqm_publisher="lqm.scotthanselman.site" lqm_zone="RON" lqm_format="728x90"    ></div>
+  </div>
+		
+
+<div class="item-ads">
+</div>
+
+		<div class="item-footer">
+   	      <a class="commentLinkStyle" href="https://www.hanselman.com/blog/CommentView.aspx?guid=b7264c1d-1775-49a3-89bf-a438e6b80781#commentstart">Comments [10]</a>
+        <div class="item-footer-tools">
+        
+        
+          Share on: <a href="https://twitter.com/intent/tweet?url=https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx&text=Azure DevOps Continuous Build/Deploy/Test with ASP.NET Core 2.2 Preview in One Hour - Scott Hanselman&via=shanselman">Twitter</a>, <a href="https://facebook.com/sharer.php?u=https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx">Facebook</a>, <a href="https://plus.google.com/share?url=https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx">Google+</a> or use the 
+        
+          <a href="https://www.hanselman.com/blog/AzureDevOpsContinuousBuildDeployTestWithASPNETCore22PreviewInOneHour.aspx" class="permalink" rel="bookmark">Permalink</a>
+        </div>    
+    </div>
+		
+		
+		
+		
+  </section>
+</section>
+</article>
+<div id="endOfPost" ></div><a name="commentstart"></a><div class="commentBoxStyle"><div class="commentDateStyle"><a name="6e8fec23-0745-4a76-91dc-7c9ca16bd82c"></a>Thursday, September 20, 2018 7:54:41 AM UTC</div><div class="commentBodyStyle">Hi Scott, thanks for your article. Would you mind adding an example of how the build pipeline should look like if you reference other projects that are not available via NuGet? Like pulling a referenced project first, and then build the referenced project before the final build? I have this setup for two different Git repositories A and B where A references B. I can&#39;t use Nuget (private build) and I don&#39;t want to reference push every local build of B into Nuget. So far, I&#39;ve heard about sharing artifacts (like the built binaries of B after pushed somewhere and A retrieves these binaries before its build) but the available resources are usually for even simpler cases. I hope that this inspires you for another blog article :)</div><div class="commentBoxFooterStyle"><span class="commentGravatarBlock"><img class="commentGravatar" src="//www.gravatar.com/avatar.php?gravatar_id=cbc56faf5acffa2031f933b5084b8cd7&rating=PG&size=80&default=identicon"/></span><span class="commentPermalinkStyle">Matthias</span></div></div><div class="commentBoxStyle"><div class="commentDateStyle"><a name="7a13b246-427c-4285-95b7-15352717d100"></a>Thursday, September 20, 2018 8:07:19 AM UTC</div><div class="commentBodyStyle">Nice work. I use a local build agent to debug all my builds.  When you get an error you can go to the relative \agent\_work\ directory and run commands there to debug.<br /><br />So now that you have all that working,  Are you going to convert it to yaml?</div><div class="commentBoxFooterStyle"><span class="commentGravatarBlock"><img class="commentGravatar" src="//www.gravatar.com/avatar.php?gravatar_id=f04c2e095988cb5dfeb995e9de8aca22&rating=PG&size=80&default=identicon"/></span><a class="commentPermalinkStyle" rel="nofollow" href="https://github.com/TimeWarpEngineering/blazor-state">Steven T. Cramer</a></div></div><div class="commentBoxStyle"><div class="commentDateStyle"><a name="70089b83-6e5f-4f97-b6f9-961146214139"></a>Thursday, September 20, 2018 2:38:53 PM UTC</div><div class="commentBodyStyle">@Matthias Couple of ways this could work, you could include B&#39;s repository as a git submodule/subtree or alternatively using Azure DevOps you can publish into a private feed and consume that from project A.<br /><br />I&#39;m working on an improvement to NuKeeper which will allow the build of A to be triggered automatically and presented as a pull request to the main project.</div><div class="commentBoxFooterStyle"><span class="commentGravatarBlock"><img class="commentGravatar" src="//www.gravatar.com/avatar.php?gravatar_id=b78e73a181b5342e66e136acda5b5f51&rating=PG&size=80&default=identicon"/></span><span class="commentPermalinkStyle">Paul Hatcher</span></div></div><div class="commentBoxStyle"><div class="commentDateStyle"><a name="c27c8328-b5c7-45ec-bf75-7d0457cbc6ce"></a>Thursday, September 20, 2018 3:36:27 PM UTC</div><div class="commentBodyStyle">We&#39;re questioning ourselves when we should run our integration and API tests, so stuff that needs external/deployed infrastructure.<br /><br />Would this be a deployment gate after deploying to integration (the first stage)?<br /><br />In theory I would say it is damn too late to run these tests, otherwise you introduced release blockers to your branch which you are using for releases...<br /><br />You would want to test these as early as possible and that is when creating the pull request. This is why I played around with pull request validation (build policy) which does pre-merging of the changes and runs a clone of the CI build (which does not trigger a release pipeline). But obviously... you would not want to deploy anything there either to run your integratio/API tests.<br /><br />Is TestServer, in-memory database and &quot;local&quot; build server tests the solution? Don&#39;t think this would work out in big projects?<br /><br />I am still thinking about this stuff, so if somebody has some links regarding these concept... it would be greatly appreciated. ;-)</div><div class="commentBoxFooterStyle"><span class="commentGravatarBlock"><img class="commentGravatar" src="//www.gravatar.com/avatar.php?gravatar_id=7457e5d3e589791a104f20a3a10f2c45&rating=PG&size=80&default=identicon"/></span><span class="commentPermalinkStyle">timmk</span></div></div><div class="commentBoxStyle"><div class="commentDateStyle"><a name="1a7dbcc8-44b2-4c6f-99eb-9941f3120cbe"></a>Friday, September 21, 2018 3:03:49 AM UTC</div><div class="commentBodyStyle">Hey Scott,<br /><br />I just went through the process of adding Selenium UI Tests to a Azure DevOps release recently. If you include the nuget package &#39;Selenium.WebDriver.ChromeDriver&#39; it will copy the ChromeDriver into your build folder and you will be able to reference it in your tests. <br /><br />browser = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))<br /><br />If you are only running dotnet core I found that the dotnet task with the test argument was faster than using the VsTest task but both will give you the results you are looking for. That should be all you need to run your Selenium UI Tests via Azure Pipelines. I used nunit for my tests but xunit should run essentially the same. </div><div class="commentBoxFooterStyle"><span class="commentGravatarBlock"><img class="commentGravatar" src="//www.gravatar.com/avatar.php?gravatar_id=0d30554fb68531112c4134d9248d5b0e&rating=PG&size=80&default=identicon"/></span><span class="commentPermalinkStyle">Philip Langman</span></div></div><div class="commentBoxStyle"><div class="commentDateStyle"><a name="34fcbe16-5ea2-42f8-9736-0ba92f26f7a8"></a>Friday, September 21, 2018 7:15:03 AM UTC</div><div class="commentBodyStyle">VSTS is a very cool, but terrible slow stuff.<br />So when you build, and create a publish package on local machine less then 1 minute,<br />then it will run more then 10 minutes on VSTS.<br />So be careful with those free minutes :D</div><div class="commentBoxFooterStyle"><span class="commentGravatarBlock"><img class="commentGravatar" src="//www.gravatar.com/avatar.php?gravatar_id=76ba1daef5170dcaf85e60fff77b6610&rating=PG&size=80&default=identicon"/></span><span class="commentPermalinkStyle">Lajos Marton</span></div></div><div class="commentBoxStyle"><div class="commentDateStyle"><a name="dacc5464-cbfe-43d8-a165-f7071f09c452"></a>Friday, September 21, 2018 1:45:23 PM UTC</div><div class="commentBodyStyle">Hi Scott, nice post.<br /><br />I have set up something similiar for a large web app, the only issue I have is that the number of unit tests I have is &gt;1000 so I get a warning during testing and I&#39;m unable to view the test results in VSTS.<br /><br />Just something for you and your readers to bear in mind.<br /><br />:)</div><div class="commentBoxFooterStyle"><span class="commentGravatarBlock"><img class="commentGravatar" src="//www.gravatar.com/avatar.php?gravatar_id=c89497ad1c2be32597f21ae9ed1ce6fc&rating=PG&size=80&default=identicon"/></span><span class="commentPermalinkStyle">Josh</span></div></div><div class="commentBoxStyle"><div class="commentDateStyle"><a name="7c7b3455-dd17-450e-94d0-942a8280ed45"></a>Monday, September 24, 2018 12:09:15 PM UTC</div><div class="commentBodyStyle">Awesome stuff! We&#39;re just working on learning this, and even the very first cautious steps have been super. We have a build server inhouse pulling code from Azure DevOps and a publishing  pipeline deploying to an internal test server - just like that. I&#39;ve been a developer for long enough to appreciate the mountain of work that goes into this, and I truly appreciate the level of polish; this thing just works, for realsies!</div><div class="commentBoxFooterStyle"><span class="commentPermalinkStyle">El Dorko</span></div></div><div class="commentBoxStyle"><div class="commentDateStyle"><a name="fc6ed1f8-07ab-4f6e-86e0-e3205d37efd0"></a>Tuesday, September 25, 2018 7:16:40 PM UTC</div><div class="commentBodyStyle">Lajos Marton,<br /><br />We appreciate the feedback on perf, we are doing a lot to speed up our cloud-hosted build agents. Also want to point out that open source projects have &quot;unlimited build minutes&quot;.</div><div class="commentBoxFooterStyle"><span class="commentGravatarBlock"><img class="commentGravatar" src="//www.gravatar.com/avatar.php?gravatar_id=bc9a008dd36c6f2758249612146adf4e&rating=PG&size=80&default=identicon"/></span><a class="commentPermalinkStyle" rel="nofollow" href="http://www.twitter.com/lyalindotcom">Dmitry Lyalin</a></div></div><div class="commentBoxStyle"><div class="commentDateStyle"><a name="5a2e20e4-ce60-4c9d-af3c-aae20bb2c4c9"></a>Wednesday, September 26, 2018 4:21:29 PM UTC</div><div class="commentBodyStyle">Thanks for sharing. Really helpful. </div><div class="commentBoxFooterStyle"><span class="commentGravatarBlock"><img class="commentGravatar" src="//www.gravatar.com/avatar.php?gravatar_id=26eca77095a0d7a2c7f1801454b3c010&rating=PG&size=80&default=identicon"/></span><span class="commentPermalinkStyle">Mark Tucker</span></div></div></div>
+    <div id="commentViewEntry" class="commentViewBoxStyle">
+        <span id="ctl01_commentsClosed" style="text-align: center">
+            <span id="ctl01_labelCommentsClosed" class="commentViewLabelStyle">Comments are closed.</span>
+        </span>
+        
+        
+    </div>
+</div>
+
+</main>
+<section class="containerOuter blogBodyContainer">
+ <section class="containerInner blogBody">
+				<div id="paging">
+						<div class="paging-prev">
+							
+						</div>
+						<div class="paging-next">
+							
+						</div>
+						
+				</div>
+    </section>
+</section>
+
+
+<section class="containerOuter line-tan" id="disclaimer">
+	<section class="containerInner">
+		<p>Disclaimer: The opinions expressed herein are my own personal opinions and do not represent my employer's view in any way.</p>
+
+    </section>
+</section>
+
+
+
+<footer class="containerOuter line-darkbrown">
+	<section class="containerInner">
+        
+        <div class="footer-container">
+        	<h3>Blog</h3>
+            <ul>
+            	<li><a href="//www.hanselman.com/privacy">Privacy Policy</a></li>
+                <li><a href="//www.hanselman.com/blog/GreatestHits.aspx">Greatest Hits</a></li>
+                <li><a href="//www.hanselman.com/tools">Dev Tool List</a></li>                
+            </ul>
+        </div>
+        
+        <div class="footer-container">
+        	<h3>Podcast</h3>
+            <ul>
+            	<li><a href="http://hanselminutes.com">Hanselminutes</a></li>
+                <li><a href="http://thisdeveloperslife.com">This Developer's Life</a></li>
+                <li><a href="http://ratchetandthegeek.com">Ratchet & The Geek</a></li>                
+            </ul>
+        </div>
+        
+        <div class="footer-container">
+        	<h3>Speaking</h3>
+            <ul>
+            	<li><a href="//www.hanselman.com/blog/CategoryView.aspx?category=Speaking">Speaking/Videos</a></li>
+                <li><a href="http://www.speakinghacks.com">Presentations Tips</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-container">
+        	<h3>Books</h3>
+            <ul>
+            	<li><a href="https://www.amazon.com/gp/product/1118311825/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1118311825&linkCode=as2&tag=diabeticbooks">ASP.NET 4.5</a></li>
+                <li><a href="https://www.amazon.com/gp/product/111834846X/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=111834846X&linkCode=as2&tag=diabeticbooks">ASP.NET MVC 4</a></li>
+                <li><a href="http://relationshiphacks.com">Relationship Hacks</a></li>                
+            </ul>
+        </div> 
+    </section>
+	<div class="copyright">&copy; Copyright 2018, <a href="https://www.hanselman.com">Scott Hanselman</a>. Design by <a href="http://www.8164.org/">@jzy</a></div>        
+</footer>
+
+ <script  language="javascript">
+    <!--
+    function escapeString(searchString)
+    {
+      var newString = escape(searchString);
+      return newString;
+    }
+
+    function doSearch(searchString)
+    {
+      if (searchString != "")
+      {
+        location.href='//www.hanselman.com/blog/googleresults.html?&sa=Search&domains=www.hanselman.com&sitesearch=www.hanselman.com&client=pub-7789616507550168&forid=1&ie=UTF-8&oe=UTF-8&safe=active&cof=GALT%3A%23B47B10%3BGL%3A1%3BDIV%3A%23A9501B%3BVLC%3A6F3C1B%3BAH%3Acenter%3BBGC%3AFFFFFF%3BLBGC%3A336699%3BALC%3AB47B10%3BLC%3AB47B10%3BT%3A000000%3BGFNT%3AA9501B%3BGIMP%3AA9501B%3BFORID%3A11&hl=en&q=' + escapeString(searchString);
+      }
+      return false;
+    }
+    -->
+  </script>
+          
+  <script  src="https://hanselman.com/blog/themes/JinYang/scripts/footer.v2.min.js"></script>
+        
+  <script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-130207-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+
+	<noscript><a href='https://www.omniture.com' title='Web Analytics'><img src='https://mssto.112.2o7.net/b/ss/msstoextblogsnojs/1/H.20.2--NS/0'  height='1' width='1' border='0' alt='' /></a></noscript>
+
+	<script type="text/javascript">
+		SyntaxHighlighter.config.bloggerMode = true;
+		SyntaxHighlighter.config.stripBrs = true;
+		SyntaxHighlighter.defaults['auto-links'] = false;
+		SyntaxHighlighter.all();
+		dp.SyntaxHighlighter.HighlightAll('code');
+	</script>
+
+
+<!-- lake quincy -->
+<script async defer type='text/javascript'>
+    function _dmBootstrap(file) { 
+        var _dma = document.createElement('script');  
+        _dma.type = 'text/javascript'; 
+        _dma.async = true;  
+        _dma.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + file; 
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_dma);
+    }
+    function _dmFollowup(file) { if (typeof DMAds === 'undefined')  _dmBootstrap('cdn2.DeveloperMedia.com/a.min.js');}
+    (function () { _dmBootstrap('cdn1.DeveloperMedia.com/a.min.js'); setTimeout(_dmFollowup, 2000);})();
+</script>
+        
+        
+  <!--  Place this tag after the last plusone tag -->
+	<script type="text/javascript">
+	  (function() {
+		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/plusone.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  })();
+	</script>
+
+  <script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+			$("section .blogBody a:[href$=.jpg],a[href$=.png],a[href$=.gif]").fancybox();
+		});
+	</script>
+
+<script src="/blog/scripts/cda-tracker.js"></script>
+<script >
+cdaTracker({
+    domains: [
+      /(.*\.)?github\.com$/,
+      /(.*\.)?dot\.net$/
+    ], // additional domains (string or regex)
+    event: '',
+    channel: 'blog',
+    alias: 'scottha'
+});
+</script>
+
+</form></body>
+</html>
+
