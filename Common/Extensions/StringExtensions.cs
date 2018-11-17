@@ -48,7 +48,7 @@ namespace Common.Extensions
                 return value;
 
             var nextSpaceIndex = value.LastIndexOf(truncateAtChar, length, StringComparison.Ordinal);
-            return $"{value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length).Trim()} ...";
+            return $"{value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length)}...";
         }
     }
 }

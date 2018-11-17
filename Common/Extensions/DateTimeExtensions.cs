@@ -50,12 +50,5 @@ namespace Common.Extensions
             }
         }
 
-        private static double CeilingBy(this int dividend, int divisor) => Math.Ceiling((double) dividend / divisor);
-
-        private static double FloorBy(this int dividend, int divisor) => Math.Floor((double) dividend / divisor);
-
-        public static int ToInt32(this object arg) => Convert.ToInt32(arg);
-
-        public static int ToAbs(this int arg) => Math.Abs(arg);
     }
 }
