@@ -14,11 +14,11 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         [IoC]
         public class InitializeTilesHandler : RequestHandler<InitializeTilesRequest, TilesState>
         {
-            private readonly IGetPocket _pocket;
-            private readonly IGetPocketOptions _pocketOptions;
+            private readonly IPocket _pocket;
+            private readonly IPocketOptions _pocketOptions;
             private readonly ITileMakerClient _tileMakerClient;
 
-            public InitializeTilesHandler(IGetPocket pocket, ITileMakerClient client, IOptions<GetPocketOptions> options, IStore store) : base(store) {
+            public InitializeTilesHandler(IPocket pocket, ITileMakerClient client, IOptions<PocketOptions> options, IStore store) : base(store) {
                 _pocket = pocket;
                 _tileMakerClient = client;
                 _pocketOptions = options.Value;

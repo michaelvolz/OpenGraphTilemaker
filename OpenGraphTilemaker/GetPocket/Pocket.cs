@@ -10,24 +10,24 @@ namespace OpenGraphTilemaker.GetPocket
     /// <summary>
     ///     GetPocket = https://app.getpocket.com/
     /// </summary>
-    public class GetPocket : IGetPocket
+    public class Pocket : IPocket
     {
-        private readonly FeedService<GetPocketEntry> _feedService;
+        private readonly Feed<PocketEntry> _feed;
         private readonly IMemoryCache _memoryCache;
 
-        public GetPocket([NotNull] IMemoryCache memoryCache, [NotNull] FeedService<GetPocketEntry> feedService) {
+        public Pocket([NotNull] IMemoryCache memoryCache, [NotNull] Feed<PocketEntry> feed) {
             _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
-            _feedService = feedService ?? throw new ArgumentNullException(nameof(feedService));
+            _feed = feed ?? throw new ArgumentNullException(nameof(feed));
         }
 
-        public async Task<List<GetPocketEntry>> GetEntriesAsync(IGetPocketOptions options) {
+        public async Task<List<PocketEntry>> GetEntriesAsync(IPocketOptions options) {
             if (options.Uri == null) throw new ArgumentNullException(nameof(options.Uri));
             if (options.CachingTimeSpan == default) throw new ArgumentOutOfRangeException(nameof(options.CachingTimeSpan));
 
             return await
                 _memoryCache.GetOrCreateAsync(CacheKeys.GetPocketFeed, async entry => {
                     entry.AbsoluteExpirationRelativeToNow = options.CachingTimeSpan;
-                    return await _feedService.GetFeedAsync(options.Uri, item => item.ToPocketEntry(), p => p.PubDate);
+                    return await _feed.GetFeedAsync(options.Uri, item => item.ToPocketEntry(), p => p.PubDate);
                 });
         }
     }

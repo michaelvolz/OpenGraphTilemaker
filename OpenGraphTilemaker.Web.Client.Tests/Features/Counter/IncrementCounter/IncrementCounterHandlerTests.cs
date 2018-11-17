@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
+using OpenGraphTilemaker.Tests;
 using OpenGraphTilemaker.Web.Client.Features.Counter;
 using Xunit;
 using Xunit.Abstractions;

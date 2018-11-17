@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
-using Common;
+﻿using System;
+using System.Collections.Generic;
 using Common.Extensions;
 using HtmlAgilityPack;
+using JetBrains.Annotations;
 
 namespace OpenGraphTilemaker.OpenGraph
 {
     public static class OpenGraphMapper
     {
-        public static OpenGraphMetadata MapMetaData(IList<HtmlNode> htmlMetaTags, string source) {
+        public static OpenGraphMetadata MapMetaData([CanBeNull] IList<HtmlNode> htmlMetaTags, string source) {
+            if (string.IsNullOrWhiteSpace(source)) throw new ArgumentException(nameof(source));
+
             var metadata = new OpenGraphMetadata {Source = source};
 
             if (htmlMetaTags == null)

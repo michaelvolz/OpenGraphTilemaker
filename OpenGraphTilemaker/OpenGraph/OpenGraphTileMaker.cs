@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using JetBrains.Annotations;
 
 namespace OpenGraphTilemaker.OpenGraph
 {
@@ -12,7 +13,10 @@ namespace OpenGraphTilemaker.OpenGraph
 
         public Exception Error { get; private set; }
 
-        public async Task ScrapeAsync(string source, Func<Task<HtmlDocument>> loadDocument) {
+        public async Task ScrapeAsync([NotNull] string source, [NotNull] Func<Task<HtmlDocument>> loadDocument) {
+            if (string.IsNullOrWhiteSpace(source)) throw new ArgumentException(nameof(source));
+            if (loadDocument == null) throw new ArgumentNullException(nameof(loadDocument));
+
             try {
                 var doc = await loadDocument();
                 ExtractMetaData(doc, source);

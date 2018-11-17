@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace OpenGraphTilemaker.GetPocket
 {
-    public interface IGetPocket
+    public interface IPocket
     {
-        Task<List<GetPocketEntry>> GetEntriesAsync(IGetPocketOptions options);
+        Task<List<PocketEntry>> GetEntriesAsync(IPocketOptions options);
     }
 }

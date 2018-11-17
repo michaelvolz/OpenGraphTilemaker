@@ -11,17 +11,31 @@ namespace OpenGraphTilemaker.OpenGraph
 {
     public class DiscCache
     {
-        private readonly DiscCacheOptions _discCacheOptions;
+        private readonly DiscCacheOptions _options;
 
-        public DiscCache(IOptions<DiscCacheOptions> options) {
-            _discCacheOptions = options.Value;
+        public DiscCache([NotNull] IOptions<DiscCacheOptions> options) {
+            if (options == null) throw new ArgumentNullException(nameof(options));
+            _options = options.Value ?? throw new ArgumentNullException(nameof(options.Value));
         }
 
-        public void WriteTo(Uri uri, string html) => File.WriteAllText(Filename(uri), html);
-
         [CanBeNull]
-        public string TryLoad(Uri uri) => File.Exists(Filename(uri)) ? File.ReadAllText(Filename(uri)) : null;
+        public string TryLoadFromDisc([NotNull] Uri uri) {
+            if (uri == null) throw new ArgumentNullException(nameof(uri));
 
-        public string Filename(Uri uri) => _discCacheOptions.CacheFolder + uri.ToValidFileName();
+            return File.Exists(FullPath(uri)) ? File.ReadAllText(FullPath(uri)) : null;
+        }
+
+        public string FullPath([NotNull] Uri uri) {
+            if (uri == null) throw new ArgumentNullException(nameof(uri));
+
+            return _options.CacheFolder + uri.ToValidFileName();
+        }
+
+        public void WriteToDisc([NotNull] Uri uri, string html) {
+            if (uri == null) throw new ArgumentNullException(nameof(uri));
+            if (string.IsNullOrWhiteSpace(html)) throw new ArgumentException(nameof(html));
+
+            File.WriteAllText(FullPath(uri), html);
+        }
     }
 }

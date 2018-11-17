@@ -10,20 +10,20 @@ using Xunit.Abstractions;
 
 namespace OpenGraphTilemaker.Tests.GetPocket
 {
-    public class GetPocketTests : BaseTest
+    public class PocketTests : BaseTest
     {
-        public GetPocketTests(ITestOutputHelper testConsole) : base(testConsole) {
+        public PocketTests(ITestOutputHelper testConsole) : base(testConsole) {
             // Arrange
-            var feedService = new FeedService<GetPocketEntry>();
-            _pocket = new OpenGraphTilemaker.GetPocket.GetPocket(new MemoryCache(new MemoryCacheOptions()), feedService);
-            _options = new GetPocketOptions(Uri, CachingTimeSpan);
+            var feedService = new Feed<PocketEntry>();
+            _pocket = new Pocket(new MemoryCache(new MemoryCacheOptions()), feedService);
+            _options = new PocketOptions(Uri, CachingTimeSpan);
         }
 
         private static readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
         private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(1);
 
-        private readonly OpenGraphTilemaker.GetPocket.GetPocket _pocket;
-        private readonly GetPocketOptions _options;
+        private readonly Pocket _pocket;
+        private readonly PocketOptions _options;
 
         [Fact]
         public async Task GetUrls_Scenario_Behavior() {

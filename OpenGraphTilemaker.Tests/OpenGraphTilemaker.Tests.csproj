@@ -23,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="BlazorState">
+      <HintPath>..\..\..\.nuget\packages\blazor-state\0.2.0\lib\netstandard2.0\BlazorState.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Memory">
       <HintPath>..\..\..\.nuget\packages\microsoft.extensions.caching.memory\2.1.1\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
     </Reference>

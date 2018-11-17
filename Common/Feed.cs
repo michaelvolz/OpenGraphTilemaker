@@ -8,7 +8,7 @@ using Microsoft.SyndicationFeed.Rss;
 
 namespace Common
 {
-    public class FeedService<TEntry>
+    public class Feed<TEntry>
     {
         public async Task<List<TEntry>> GetFeedAsync(Uri uri, Func<ISyndicationItem, TEntry> convert, Func<TEntry, object> property,
             SortOrder order = SortOrder.Descending) {

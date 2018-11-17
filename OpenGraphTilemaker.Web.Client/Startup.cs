@@ -24,15 +24,15 @@ namespace OpenGraphTilemaker.Web.Client
 
             services.AddSingleton<WeatherForecastService>();
 
-            services.AddTransient<FeedService<GetPocketEntry>>();
+            services.AddTransient<Feed<PocketEntry>>();
 
             services.AddTransient<DiscCache>();
             services.Configure<DiscCacheOptions>(options => { options.CacheFolder = @"C:\WINDOWS\Temp\"; });
 
             services.AddTransient<HttpLoader>();
 
-            services.AddTransient<IGetPocket, GetPocket.GetPocket>();
-            services.Configure<GetPocketOptions>(options => {
+            services.AddTransient<IPocket, Pocket>();
+            services.Configure<PocketOptions>(options => {
                 options.Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/");
                 options.CachingTimeSpan = TimeSpan.FromSeconds(15);
             });

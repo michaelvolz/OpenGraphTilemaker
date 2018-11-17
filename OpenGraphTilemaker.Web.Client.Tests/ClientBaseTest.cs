@@ -13,17 +13,16 @@ using Xunit.Abstractions;
 using Options = Microsoft.Extensions.Options.Options;
 
 // ReSharper disable ArgumentsStyleLiteral
-
 // ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable CheckNamespace
 
-namespace OpenGraphTilemaker.Web.Client.Tests
+namespace OpenGraphTilemaker.Tests
 {
     public class ClientBaseTest : BaseTest
     {
         private static readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
         private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(1);
         private static readonly string CachingFolder = @"C:\WINDOWS\Temp\";
-
         protected ClientBaseTest(ITestOutputHelper testConsole) : base(testConsole) { }
 
         protected static TileMakerClient TileMakerClient(string fakeResponse) {
@@ -40,7 +39,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
         }
 
         protected static HttpLoader HttpLoader() {
-            return new HttpLoader(DiscCache(), useCache: false);
+            return new HttpLoader(DiscCache(), CacheState.Disabled);
         }
 
         protected static DiscCache DiscCache() {
@@ -51,16 +50,16 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             return Options.Create(new DiscCacheOptions {CacheFolder = CachingFolder});
         }
 
-        protected static IOptions<GetPocketOptions> GetPocketIOptions() {
-            return Options.Create(new GetPocketOptions(Uri, CachingTimeSpan));
+        protected static IOptions<PocketOptions> GetPocketIOptions() {
+            return Options.Create(new PocketOptions(Uri, CachingTimeSpan));
         }
 
-        protected static GetPocket.GetPocket Pocket() {
-            return new GetPocket.GetPocket(MemoryCache(), FeedService());
+        protected static Pocket Pocket() {
+            return new Pocket(MemoryCache(), FeedService());
         }
 
-        protected static FeedService<GetPocketEntry> FeedService() {
-            return new FeedService<GetPocketEntry>();
+        protected static Feed<PocketEntry> FeedService() {
+            return new Feed<PocketEntry>();
         }
 
         protected static MemoryCache MemoryCache() {
@@ -71,6 +70,21 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             var mockStore = new MockStore();
             mockStore.SetState(state);
             return mockStore;
+        }
+    }
+
+    public class MockStore : IStore
+    {
+        private IState _state;
+
+        public Guid Guid { get; } = Guid.NewGuid();
+
+        public TState GetState<TState>() {
+            return (TState) _state;
+        }
+
+        public void SetState(IState aState) {
+            _state = aState;
         }
     }
 
