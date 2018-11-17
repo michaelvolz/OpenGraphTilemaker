@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.Extensions;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
 
@@ -14,7 +15,7 @@ namespace OpenGraphTilemaker.OpenGraph
         public Exception Error { get; private set; }
 
         public async Task ScrapeAsync([NotNull] string source, [NotNull] Func<Task<HtmlDocument>> loadDocument) {
-            if (string.IsNullOrWhiteSpace(source)) throw new ArgumentException(nameof(source));
+            if (source.IsNullOrWhiteSpace()) throw new ArgumentException(nameof(source));
             if (loadDocument == null) throw new ArgumentNullException(nameof(loadDocument));
 
             try {

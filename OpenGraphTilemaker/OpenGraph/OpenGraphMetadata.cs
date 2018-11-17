@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.Extensions;
 
 namespace OpenGraphTilemaker.OpenGraph
 {
@@ -17,9 +18,9 @@ namespace OpenGraphTilemaker.OpenGraph
         public DateTime? ArticlePublishedTime { get; set; }
         public DateTime? ArticleModifiedTime { get; set; }
 
-        public bool IsValid => !string.IsNullOrWhiteSpace(Title) &&
-                               !string.IsNullOrWhiteSpace(Description) &&
-                               !string.IsNullOrWhiteSpace(Image) &&
+        public bool IsValid => Title.NotNullOrWhiteSpace() &&
+                               Description.NotNullOrWhiteSpace() &&
+                               Image.NotNullOrWhiteSpace() &&
                                SourcePublishTime != default;
 
         public string Source { get; set; }

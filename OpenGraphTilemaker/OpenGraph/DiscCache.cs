@@ -33,7 +33,7 @@ namespace OpenGraphTilemaker.OpenGraph
 
         public void WriteToDisc([NotNull] Uri uri, string html) {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
-            if (string.IsNullOrWhiteSpace(html)) throw new ArgumentException(nameof(html));
+            if (html.IsNullOrWhiteSpace()) throw new ArgumentException(nameof(html));
 
             File.WriteAllText(FullPath(uri), html);
         }

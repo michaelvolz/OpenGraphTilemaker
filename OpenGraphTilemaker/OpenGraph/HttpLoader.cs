@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Common.Extensions;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
 using static System.Net.HttpStatusCode;
@@ -36,7 +37,7 @@ namespace OpenGraphTilemaker.OpenGraph
 
                 html = await data.Content.ReadAsStringAsync();
 
-                if (data.IsSuccessStatusCode && _cacheState == Enabled && !string.IsNullOrWhiteSpace(html))
+                if (data.IsSuccessStatusCode && _cacheState == Enabled && html.NotNullOrWhiteSpace())
                     _discCache.WriteToDisc(uri, html);
             }
 
