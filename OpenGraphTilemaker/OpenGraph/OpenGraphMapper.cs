@@ -9,7 +9,7 @@ namespace OpenGraphTilemaker.OpenGraph
     public static class OpenGraphMapper
     {
         public static OpenGraphMetadata MapMetaData([CanBeNull] IList<HtmlNode> htmlMetaTags, [NotNull] string source) {
-            Guard.Against.NullOrWhiteSpace(source, nameof(source));
+            Guard.Against.NullOrWhiteSpace(() => source);
 
             var metadata = new OpenGraphMetadata {Source = source};
 

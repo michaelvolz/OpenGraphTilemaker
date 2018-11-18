@@ -9,8 +9,8 @@ namespace OpenGraphTilemaker.GetPocket
         public PocketOptions() { }
 
         public PocketOptions([NotNull] Uri uri, TimeSpan caching) {
-            Uri = Guard.Against.Null(uri, nameof(uri));
-            CachingTimeSpan = Guard.Against.Default(caching, nameof(caching));
+            Uri = Guard.Against.Null(() => uri);
+            CachingTimeSpan = Guard.Against.Default(() => caching);
         }
 
         public Uri Uri { get; set; }

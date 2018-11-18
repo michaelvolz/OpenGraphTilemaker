@@ -8,7 +8,7 @@ namespace OpenGraphTilemaker.GetPocket
     public static class SyndicationExtensions
     {
         public static PocketEntry ToPocketEntry([NotNull] this ISyndicationItem item) {
-            Guard.Against.Null(item, nameof(item));
+            Guard.Against.Null(() => item);
 
             return new PocketEntry(item.Title,
                 item.Categories.First().Name,

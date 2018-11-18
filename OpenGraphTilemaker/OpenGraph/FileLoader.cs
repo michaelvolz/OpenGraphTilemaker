@@ -8,7 +8,7 @@ namespace OpenGraphTilemaker.OpenGraph
     public static class FileLoader
     {
         public static Task<HtmlDocument> LoadAsync([NotNull] string filePath) {
-            Guard.Against.NullOrWhiteSpace(filePath, nameof(filePath));
+            Guard.Against.NullOrWhiteSpace(() => filePath);
 
             var doc = new HtmlDocument();
             doc.Load(filePath);

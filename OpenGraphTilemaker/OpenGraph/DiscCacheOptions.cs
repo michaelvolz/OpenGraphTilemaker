@@ -13,10 +13,10 @@ namespace OpenGraphTilemaker.OpenGraph
             if (!Enum.IsDefined(typeof(CacheState), cacheState))
                 throw new InvalidEnumArgumentException(nameof(cacheState), (int) cacheState, typeof(CacheState));
 
-            Guard.Against.Enum(cacheState, typeof(CacheState), nameof(cacheState));
+            Guard.Against.Enum(() => cacheState, typeof(CacheState));
 
-            CacheFolder = Guard.Against.NullOrWhiteSpace(cacheFolder, nameof(cacheFolder));
-            CacheState = Guard.Against.Default(cacheState, nameof(cacheState));
+            CacheFolder = Guard.Against.NullOrWhiteSpace(() => cacheFolder);
+            CacheState = Guard.Against.Default(() => cacheState);
         }
 
         public string CacheFolder { get; set; } = @"C:\WINDOWS\Temp\";

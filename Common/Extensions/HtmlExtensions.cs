@@ -7,7 +7,7 @@ namespace Common.Extensions
     public static class HtmlExtensions
     {
         public static string DeEntitize([NotNull] this string value) {
-            Guard.Against.NullOrWhiteSpace(value, nameof(value));
+            Guard.Against.NullOrWhiteSpace(() => value);
 
             return HtmlEntity.DeEntitize(value);
         }

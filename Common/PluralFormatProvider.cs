@@ -12,7 +12,7 @@ namespace Common
         private const string Space = " ";
 
         public string Format(string format, [NotNull] object argument, IFormatProvider formatProvider) {
-            Guard.Against.Null(argument, nameof(argument));
+            Guard.Against.Null(() => argument);
             Guard.Against.Assert(() => argument.IsNumeric(), nameof(argument));
 
             if (format == null) format = string.Empty;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common;
@@ -17,13 +16,13 @@ namespace OpenGraphTilemaker.GetPocket
         private readonly IMemoryCache _memoryCache;
 
         public Pocket([NotNull] IMemoryCache memoryCache, [NotNull] Feed<PocketEntry> feed) {
-            _memoryCache = Guard.Against.Null(memoryCache, nameof(memoryCache));
-            _feed = Guard.Against.Null(feed, nameof(feed));
+            _memoryCache = Guard.Against.Null(() => memoryCache);
+            _feed = Guard.Against.Null(() => feed);
         }
 
         public async Task<List<PocketEntry>> GetEntriesAsync(IPocketOptions options) {
-            Guard.Against.Null(options.Uri, nameof(options.Uri));
-            Guard.Against.Default(options.CachingTimeSpan, nameof(options.CachingTimeSpan));
+            Guard.Against.Null(() => options.Uri);
+            Guard.Against.Default(() => options.CachingTimeSpan);
 
             return await
                 _memoryCache.GetOrCreateAsync(CacheKeys.GetPocketFeed, async entry => {

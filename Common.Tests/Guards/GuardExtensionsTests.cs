@@ -19,10 +19,10 @@ namespace Common.Tests.Guards
         [InlineData("     ", "Value cannot be whitespace.")]
         public void GuardNullOrWhiteSpace(string value, string expected)
         {
-            var parameterName = "Jauser";
+            var parameterName = nameof(value);
 
             try {
-                Guard.Against.NullOrWhiteSpace(value, parameterName);
+                Guard.Against.NullOrWhiteSpace(() => value);
             }
             catch (Exception e) {
                 var message = e.RewindStackTraceMessage();
@@ -124,10 +124,11 @@ namespace Common.Tests.Guards
 
         [Fact]
         public void GuardException_ToString() {
-            var parameterName = "Jauser";
+            var parameter = new TimeSpan();
+            var parameterName = nameof(parameter);
 
             try {
-                Guard.Against.Default(new TimeSpan(), parameterName);
+                Guard.Against.Default(() => parameter);
             }
             catch (Exception e) {
                 var message = e.ToString();
@@ -147,11 +148,37 @@ namespace Common.Tests.Guards
         }
 
         [Fact]
-        public void RewindCallStackMessage_GuardAgainstDefault() {
-            var parameterName = "Jauser";
+        public void GuardNull() {
+            var parameter = (object)null;
+            var parameterName = nameof(parameter);
 
             try {
-                Guard.Against.Default(new TimeSpan(), parameterName);
+                Guard.Against.Null(() => parameter);
+            }
+            catch (Exception e) {
+                var message = e.RewindStackTraceMessage();
+                message.Should().NotBeNullOrWhiteSpace();
+
+                TestConsole.WriteLine(message);
+
+                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
+                message.Should().Contain(parameterName);
+                message.Should().Contain("Value cannot be null.");
+                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNull)}()*");
+                message.Should().NotContain("GuardClauseExtensions");
+                return;
+            }
+
+            "No exception thrown!".Should().Be("This should never execute!");
+        }
+
+        [Fact]
+        public void RewindCallStackMessage_GuardAgainstDefault() {
+            var parameter = new TimeSpan();
+            var parameterName = nameof(parameter);
+
+            try {
+                Guard.Against.Default(() => parameter);
             }
             catch (Exception e) {
                 var message = e.RewindStackTraceMessage();

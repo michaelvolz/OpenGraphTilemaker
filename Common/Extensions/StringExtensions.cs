@@ -43,9 +43,9 @@ namespace Common.Extensions
         }
 
         public static string TruncateAtWord([CanBeNull] this string value, int length, [NotNull] string ellipsis = "…", [NotNull] string truncateAtChar = " ") {
-            Guard.Against.OutOfRange(length,nameof(length),1,int.MaxValue);
-            Guard.Against.Null(ellipsis, nameof(ellipsis));
-            Guard.Against.Null(truncateAtChar, nameof(truncateAtChar));
+            Guard.Against.OutOfRange(() => length, 1, int.MaxValue);
+            Guard.Against.Null(() => ellipsis);
+            Guard.Against.Null(() => truncateAtChar);
             
             if (value == null || value.Length <= length)
                 return value;

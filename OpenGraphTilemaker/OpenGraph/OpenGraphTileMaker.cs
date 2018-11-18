@@ -15,8 +15,8 @@ namespace OpenGraphTilemaker.OpenGraph
         public Exception Error { get; private set; }
 
         public async Task ScrapeAsync([NotNull] string source, [NotNull] Func<Task<HtmlDocument>> loadDocument) {
-            Guard.Against.NullOrWhiteSpace(source, nameof(source));
-            Guard.Against.Null(loadDocument, nameof(loadDocument));
+            Guard.Against.NullOrWhiteSpace(() => source);
+            Guard.Against.Null(() => loadDocument);
 
             try {
                 var doc = await loadDocument();

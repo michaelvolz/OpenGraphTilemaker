@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Linq.Expressions;
+using JetBrains.Annotations;
 
 // ReSharper disable UnusedMethodReturnValue.Global
 // ReSharper disable InconsistentNaming
@@ -39,6 +41,10 @@ namespace Ardalis.GuardClauses
             return input;
         }
 
+        public static int OutOfRange(this IGuardClause guardClause, [NotNull] Expression<Func<int>> input, int rangeFrom, int rangeTo) {
+            return OutOfRange<int>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
+        }
+
         /// <summary>
         ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see cref="input" /> is less than <see cref="rangeFrom" />
         ///     or greater than <see cref="rangeTo" />.
@@ -55,6 +61,10 @@ namespace Ardalis.GuardClauses
             OutOfRange<DateTime>(guardClause, input, parameterName, rangeFrom, rangeTo);
 
             return input;
+        }
+
+        public static DateTime OutOfRange(this IGuardClause guardClause, [NotNull] Expression<Func<DateTime>> input, DateTime rangeFrom, DateTime rangeTo) {
+            return OutOfRange<DateTime>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq.Expressions;
 using Ardalis.GuardClauses;
+using JetBrains.Annotations;
 
 // ReSharper disable UnusedMethodReturnValue.Global
 // ReSharper disable UnusedParameter.Global
@@ -27,4 +29,20 @@ public static partial class GuardClauseExtensions
 
         return input;
     }
+
+    /// <summary>
+    ///     Throws an <see cref="ArgumentNullException" /> if <see cref="input" /> is null.
+    ///     Throws an <see cref="ArgumentException" /> if <see cref="input" /> is an empty string.
+    /// </summary>
+    /// <param name="guardClause"></param>
+    /// <param name="input"></param>
+    /// <param name="parameterName"></param>
+    /// <returns>The input for variable initialization</returns>
+    /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid</exception>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="ArgumentException"></exception>
+    public static string NullOrEmpty(this IGuardClause guardClause, [NotNull] Expression<Func<string>> input) {
+        return Guard.Against.NullOrEmpty(input.Compile()(), input.MemberExpressionName());
+    }
+
 }

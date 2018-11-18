@@ -11,13 +11,13 @@ namespace Common.Extensions
     public static class FileExtensions
     {
         public static string ToValidFileName([NotNull] this Uri uri) {
-            Guard.Against.Null(uri, nameof(uri));
+            Guard.Against.Null(() => uri);
 
             return uri.OriginalString.ToValidFileName();
         }
 
         public static string ToValidFileName([NotNull] this string name) {
-            Guard.Against.NullOrWhiteSpace(name, nameof(name));
+            Guard.Against.NullOrWhiteSpace(() => name);
 
             var invalidChars = new string(Path.GetInvalidFileNameChars());
             var escapedInvalidChars = Regex.Escape(invalidChars);

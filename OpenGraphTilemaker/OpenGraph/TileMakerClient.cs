@@ -17,13 +17,13 @@ namespace OpenGraphTilemaker.OpenGraph
         private readonly OpenGraphTileMaker _openGraphTileMaker;
 
         public TileMakerClient([NotNull] HttpClient client, [NotNull] OpenGraphTileMaker tileMaker, [NotNull] HttpLoader loader) {
-            _httpClient = Guard.Against.Null(client, nameof(client));
-            _openGraphTileMaker = Guard.Against.Null(tileMaker, nameof(tileMaker));
-            _httpLoader = Guard.Against.Null(loader, nameof(loader));
+            _httpClient = Guard.Against.Null(() => client);
+            _openGraphTileMaker = Guard.Against.Null(() => tileMaker);
+            _httpLoader = Guard.Against.Null(() => loader);
         }
 
         public async Task<OpenGraphMetadata> OpenGraphMetadataAsync([NotNull] Uri uri) {
-            Guard.Against.Null(uri, nameof(uri));
+            Guard.Against.Null(() => uri);
 
             await _openGraphTileMaker.ScrapeAsync(uri.OriginalString, async () => await _httpLoader.LoadAsync(_httpClient, uri));
 

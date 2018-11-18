@@ -17,9 +17,9 @@ namespace Common
             [NotNull] Func<ISyndicationItem, TEntry> convert,
             [NotNull] Func<TEntry, object> property,
             SortOrder order = SortOrder.Descending) {
-            Guard.Against.Null(uri, nameof(uri));
-            Guard.Against.Null(convert, nameof(convert));
-            Guard.Against.Null(property, nameof(property));
+            Guard.Against.Null(() => uri);
+            Guard.Against.Null(() => convert);
+            Guard.Against.Null(() => property);
 
             var feedItems = new List<TEntry>();
 
