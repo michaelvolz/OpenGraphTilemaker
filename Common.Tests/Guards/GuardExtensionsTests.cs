@@ -13,6 +13,35 @@ namespace Common.Tests.Guards
     {
         public GuardExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
+        [Theory]
+        [InlineData(null, "Value cannot be null.")]
+        [InlineData("", "Value cannot be empty.")]
+        [InlineData("     ", "Value cannot be whitespace.")]
+        public void GuardNullOrWhiteSpace(string value, string expected)
+        {
+            var parameterName = "Jauser";
+
+            try {
+                Guard.Against.NullOrWhiteSpace(value, parameterName);
+            }
+            catch (Exception e) {
+                var message = e.RewindStackTraceMessage();
+                message.Should().NotBeNullOrWhiteSpace();
+
+                TestConsole.WriteLine(message);
+
+                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
+                message.Should().Contain(parameterName);
+                message.Should().Contain(expected);
+                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNullOrWhiteSpace)}*");
+                message.Should().NotContain("GuardClauseExtensions");
+
+                return;
+            }
+
+            "No exception thrown!".Should().Be("This should never execute!");
+        }
+
         [Fact]
         public void GuardCondition()
         {

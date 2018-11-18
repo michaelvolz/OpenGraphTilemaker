@@ -33,6 +33,17 @@ namespace Ardalis.GuardClauses
 
                 var stackTrace = new StackTrace(exception, skipFrames, fNeedFileInfo: true);
 
+                stackTrace = ExcludeGuardFrames(stackTrace, skipFrames);
+
+                return stackTrace;
+            }
+
+            StackTrace ExcludeGuardFrames(StackTrace stackTrace, int skipFrames) {
+                while (stackTrace.ToString().Contains(nameof(GuardClauseExtensions))) {
+                    skipFrames += 1;
+                    stackTrace = new StackTrace(exception, skipFrames, fNeedFileInfo: true);
+                }
+
                 return stackTrace;
             }
 
@@ -61,7 +72,9 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentNullException"></exception>
         public static T Null<T>(this IGuardClause guardClause, T input, string parameterName) {
             if (null == input) {
-                throw new GuardException(new ArgumentNullException(parameterName));
+                throw new GuardException(
+                    new ArgumentNullException(parameterName)
+                );
             }
 
             return input;
@@ -76,13 +89,15 @@ namespace Ardalis.GuardClauses
         /// <param name="parameterName"></param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static void NullOrEmpty(this IGuardClause guardClause, string input, string parameterName) {
+        public static string NullOrEmpty(this IGuardClause guardClause, string input, string parameterName) {
             Guard.Against.Null(input, parameterName);
             if (input == string.Empty) {
                 throw new GuardException(
-                    new ArgumentException($"Required input {parameterName} was empty.", parameterName)
+                    new ArgumentException("Value cannot be empty.", parameterName)
                 );
             }
+
+            return input;
         }
 
         /// <summary>
@@ -97,7 +112,7 @@ namespace Ardalis.GuardClauses
         public static string NullOrWhiteSpace(this IGuardClause guardClause, string input, string parameterName) {
             Guard.Against.NullOrEmpty(input, parameterName);
             if (string.IsNullOrWhiteSpace(input)) {
-                throw new GuardException(new ArgumentException($"Required input {parameterName} was empty.", parameterName));
+                throw new GuardException(new ArgumentException("Value cannot be whitespace.", parameterName));
             }
 
             return input;
@@ -114,8 +129,10 @@ namespace Ardalis.GuardClauses
         /// <param name="rangeTo"></param>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static void OutOfRange(this IGuardClause guardClause, int input, string parameterName, int rangeFrom, int rangeTo) {
+        public static int OutOfRange(this IGuardClause guardClause, int input, string parameterName, int rangeFrom, int rangeTo) {
             OutOfRange<int>(guardClause, input, parameterName, rangeFrom, rangeTo);
+
+            return input;
         }
 
         /// <summary>
@@ -129,8 +146,10 @@ namespace Ardalis.GuardClauses
         /// <param name="rangeTo"></param>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static void OutOfRange(this IGuardClause guardClause, DateTime input, string parameterName, DateTime rangeFrom, DateTime rangeTo) {
+        public static DateTime OutOfRange(this IGuardClause guardClause, DateTime input, string parameterName, DateTime rangeFrom, DateTime rangeTo) {
             OutOfRange<DateTime>(guardClause, input, parameterName, rangeFrom, rangeTo);
+
+            return input;
         }
 
         /// <summary>
@@ -141,15 +160,17 @@ namespace Ardalis.GuardClauses
         /// <param name="input"></param>
         /// <param name="parameterName"></param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static void OutOfSQLDateRange(this IGuardClause guardClause, DateTime input, string parameterName) {
+        public static DateTime OutOfSQLDateRange(this IGuardClause guardClause, DateTime input, string parameterName) {
             // System.Data is unavailable in .NET Standard so we can't use SqlDateTime.
             const long sqlMinDateTicks = 552877920000000000;
             const long sqlMaxDateTicks = 3155378975999970000;
 
             OutOfRange<DateTime>(guardClause, input, parameterName, new DateTime(sqlMinDateTicks), new DateTime(sqlMaxDateTicks));
+
+            return input;
         }
 
-        private static void OutOfRange<T>(this IGuardClause guardClause, T input, string parameterName, T rangeFrom, T rangeTo) {
+        private static T OutOfRange<T>(this IGuardClause guardClause, T input, string parameterName, T rangeFrom, T rangeTo) {
             var comparer = Comparer<T>.Default;
 
             if (comparer.Compare(rangeFrom, rangeTo) > 0) {
@@ -163,6 +184,8 @@ namespace Ardalis.GuardClauses
                     new ArgumentOutOfRangeException($"Input {parameterName} was out of range", parameterName)
                 );
             }
+
+            return input;
         }
     }
 }
