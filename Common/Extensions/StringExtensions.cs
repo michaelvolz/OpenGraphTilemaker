@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using JetBrains.Annotations;
 
 // ReSharper disable UnusedMember.Global
@@ -40,15 +41,19 @@ namespace Common.Extensions
             return string.IsNullOrWhiteSpace(value);
         }
 
-        public static string TruncateAtWord([CanBeNull] this string value, int length, [NotNull] string truncateAtChar = " ") {
-            if (truncateAtChar.IsNullOrEmpty()) throw new ArgumentNullException(nameof(truncateAtChar));
+        public static string TruncateAtWord([CanBeNull] this string value, int length, [NotNull] string ellipsis = "…", [NotNull] string truncateAtChar = " ") {
             if (length <= 0) throw new ArgumentOutOfRangeException(nameof(length));
+            if (ellipsis.IsNullOrEmpty()) throw new ArgumentNullException(nameof(ellipsis));
+            if (truncateAtChar.IsNullOrEmpty()) throw new ArgumentNullException(nameof(truncateAtChar));
 
             if (value == null || value.Length <= length)
                 return value;
 
             var nextSpaceIndex = value.LastIndexOf(truncateAtChar, length, StringComparison.Ordinal);
-            return $"{value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length)}...";
+            var truncatedString = $"{value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length)}".Trim();
+            var lastCharacter = truncatedString.Last().ToString();
+
+            return lastCharacter.IsPureAlphaNumeric() ? $"{truncatedString}{ellipsis}" : $"{truncatedString} {ellipsis}";
         }
     }
 }

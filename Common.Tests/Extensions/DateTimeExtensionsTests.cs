@@ -1,19 +1,20 @@
 using System;
+using BaseTestCode;
 using Common.Extensions;
 using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace Common.Tests.Extensions
 {
-    public class DateTimeExtensionsTests : BaseTestCode.BaseTest
+    public class DateTimeExtensionsTests : BaseTest
     {
         public DateTimeExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
         private const string SingularPlural = "singular;plural";
 
-        // ReSharper disable once MemberCanBePrivate.Global
-        // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public static object[][] TestData => new[] {
             new object[] {DateTime.UtcNow, "just now"},
             new object[] {DateTime.UtcNow.AddMinutes(-1), "1 minute ago"},
