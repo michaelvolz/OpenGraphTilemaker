@@ -1,8 +1,11 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
+using JetBrains.Annotations;
+using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Tiles
@@ -12,7 +15,13 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         [IoC]
         public class SortTilesHandler : RequestHandler<SortTilesRequest, TilesState>
         {
-            public SortTilesHandler(IStore store) : base(store) { }
+            [NotNull] private readonly ILogger<SortTilesHandler> _logger;
+            private readonly Stop _stop;
+
+            public SortTilesHandler([NotNull] ILogger<SortTilesHandler> logger, [NotNull] Stop stop, IStore store) : base(store) {
+                _logger = Guard.Against.Null(() => logger);
+                _stop = Guard.Against.Null(() => stop);
+            }
 
             private TilesState TilesState => Store.GetState<TilesState>();
 
@@ -23,7 +32,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                 if (req.SortOrder != SortOrder.Undefined)
                     TilesState.SortOrder = req.SortOrder;
 
-                SortTiles();
+                _stop.Watch(SortTiles, nameof(SortTilesHandler));
 
                 return Task.FromResult(TilesState);
             }

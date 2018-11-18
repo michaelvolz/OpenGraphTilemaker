@@ -16,6 +16,8 @@ namespace OpenGraphTilemaker.Web.Client
 
             services.AddMemoryCache();
 
+            services.AddTransient<Stop>();
+
             services.AddHttpClient<ITileMakerClient, TileMakerClient>()
                 // BUG-FIX for 2.2 preview 3
                 //.SetHandlerLifetime(Timeout.InfiniteTimeSpan)
