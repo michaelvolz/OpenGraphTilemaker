@@ -1,34 +1,28 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Common.Extensions;
+using Ardalis.GuardClauses;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
 using static System.Net.HttpStatusCode;
-using static OpenGraphTilemaker.OpenGraph.CacheState;
 
 namespace OpenGraphTilemaker.OpenGraph
 {
     public class HttpLoader
     {
-        private readonly CacheState _cacheState;
         private readonly DiscCache _discCache;
 
-        public HttpLoader([NotNull] DiscCache discCache, CacheState cacheState = Enabled) {
-            _discCache = discCache ?? throw new ArgumentNullException(nameof(discCache));
-            _cacheState = cacheState != default ? cacheState : throw new ArgumentException(nameof(cacheState));
+        public HttpLoader([NotNull] DiscCache discCache) {
+            _discCache = Guard.Against.Null(discCache, nameof(discCache));
         }
 
         public async Task<HtmlDocument> LoadAsync([NotNull] HttpClient httpClient, [NotNull] Uri uri) {
-            if (httpClient == null) throw new ArgumentNullException(nameof(httpClient));
-            if (uri == null) throw new ArgumentNullException(nameof(uri));
+            Guard.Against.Null(httpClient, nameof(httpClient));
+            Guard.Against.Null(uri, nameof(uri));
 
-            string html = null;
+            var loadedFromCache = _discCache.TryLoadFromDisc(uri, out var html);
 
-            if (_cacheState == Enabled)
-                html = _discCache.TryLoadFromDisc(uri);
-
-            if (html == null) {
+            if (!loadedFromCache) {
                 var data = await httpClient.GetAsync(uri);
                 var httpStatusCode = data.StatusCode;
 
@@ -37,7 +31,7 @@ namespace OpenGraphTilemaker.OpenGraph
 
                 html = await data.Content.ReadAsStringAsync();
 
-                if (data.IsSuccessStatusCode && _cacheState == Enabled && html.NotNullNorWhiteSpace())
+                if (data.IsSuccessStatusCode)
                     _discCache.WriteToDisc(uri, html);
             }
 

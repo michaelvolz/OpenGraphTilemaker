@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
+using Ardalis.GuardClauses;
 using JetBrains.Annotations;
 using Microsoft.SyndicationFeed;
 using Microsoft.SyndicationFeed.Rss;
@@ -16,9 +17,9 @@ namespace Common
             [NotNull] Func<ISyndicationItem, TEntry> convert,
             [NotNull] Func<TEntry, object> property,
             SortOrder order = SortOrder.Descending) {
-            if (uri == null) throw new ArgumentNullException(nameof(uri));
-            if (convert == null) throw new ArgumentNullException(nameof(convert));
-            if (property == null) throw new ArgumentNullException(nameof(property));
+            Guard.Against.Null(uri, nameof(uri));
+            Guard.Against.Null(convert, nameof(convert));
+            Guard.Against.Null(property, nameof(property));
 
             var feedItems = new List<TEntry>();
 

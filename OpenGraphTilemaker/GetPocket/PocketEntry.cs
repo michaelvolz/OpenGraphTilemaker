@@ -1,16 +1,16 @@
 ﻿using System;
-using Common.Extensions;
+using Ardalis.GuardClauses;
 using JetBrains.Annotations;
 
 namespace OpenGraphTilemaker.GetPocket
 {
     public class PocketEntry
     {
-        public PocketEntry([NotNull] string title, string category, [CanBeNull] string link, DateTime pubDate) {
-            Title = title.NotNullNorWhiteSpace() ? title : throw new ArgumentException(nameof(title));
+        public PocketEntry([NotNull] string title, string category, [NotNull] string link, DateTime pubDate) {
+            Title = Guard.Against.NullOrWhiteSpace(title, nameof(title));
             Category = category ?? string.Empty;
-            Link = link.NotNullNorWhiteSpace() ? link : throw new ArgumentException(nameof(link));
-            PubDate = pubDate != default ? pubDate : throw new ArgumentException(nameof(pubDate));
+            Link = Guard.Against.NullOrWhiteSpace(link, nameof(link));
+            PubDate = Guard.Against.Default(pubDate, nameof(pubDate));
         }
 
         public string Title { get; }

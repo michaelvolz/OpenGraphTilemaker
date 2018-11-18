@@ -1,4 +1,5 @@
 ﻿using System;
+using Ardalis.GuardClauses;
 using JetBrains.Annotations;
 
 namespace OpenGraphTilemaker.GetPocket
@@ -8,8 +9,8 @@ namespace OpenGraphTilemaker.GetPocket
         public PocketOptions() { }
 
         public PocketOptions([NotNull] Uri uri, TimeSpan caching) {
-            Uri = uri ?? throw new ArgumentNullException(nameof(uri));
-            CachingTimeSpan = caching != default ? caching : throw new ArgumentException(nameof(caching));
+            Uri = Guard.Against.Null(uri, nameof(uri));
+            CachingTimeSpan = Guard.Against.Default(caching, nameof(caching));
         }
 
         public Uri Uri { get; set; }

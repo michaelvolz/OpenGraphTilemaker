@@ -19,8 +19,8 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
     {
         public OpenGraphTileMakerTests(ITestOutputHelper testConsole) : base(testConsole) {
             // Arrange
-            var options = Options.Create(new DiscCacheOptions {CacheFolder = @"C:\WINDOWS\Temp\"});
-            _webLoader = new HttpLoader(new DiscCache(options), CacheState.Disabled);
+            var options = Options.Create(new DiscCacheOptions(@"C:\WINDOWS\Temp\", CacheState.Disabled));
+            _webLoader = new HttpLoader(new DiscCache(options));
             _tileMaker = new OpenGraphTileMaker();
         }
 

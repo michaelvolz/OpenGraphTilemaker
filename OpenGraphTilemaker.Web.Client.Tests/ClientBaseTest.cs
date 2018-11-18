@@ -10,7 +10,7 @@ using OpenGraphTilemaker.OpenGraph;
 using Xunit.Abstractions;
 using Options = Microsoft.Extensions.Options.Options;
 
-// ReSharper disable ArgumentsStyleLiteral
+// ReSharper disable RedundantArgumentDefaultValue
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable CheckNamespace
 
@@ -32,7 +32,7 @@ namespace OpenGraphTilemaker.Tests
         }
 
         protected static HttpLoader HttpLoader() {
-            return new HttpLoader(DiscCache(), CacheState.Disabled);
+            return new HttpLoader(DiscCache());
         }
 
         protected static DiscCache DiscCache() {

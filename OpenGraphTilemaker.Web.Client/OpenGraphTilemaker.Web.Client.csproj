@@ -15,7 +15,7 @@
     <PackageReference Include="Blazor-State" Version="0.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0" PrivateAssets="all" />
-  </ItemGroup>
+  </ItemGroup> 
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />

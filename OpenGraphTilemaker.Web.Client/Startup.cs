@@ -27,7 +27,10 @@ namespace OpenGraphTilemaker.Web.Client
             services.AddTransient<Feed<PocketEntry>>();
 
             services.AddTransient<DiscCache>();
-            services.Configure<DiscCacheOptions>(options => { options.CacheFolder = @"C:\WINDOWS\Temp\"; });
+            services.Configure<DiscCacheOptions>(options => {
+                options.CacheState = CacheState.Enabled;
+                options.CacheFolder = @"C:\WINDOWS\Temp\";
+            });
 
             services.AddTransient<HttpLoader>();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Ardalis.GuardClauses;
 using JetBrains.Annotations;
 
 // ReSharper disable UnusedMember.Global
@@ -42,10 +43,10 @@ namespace Common.Extensions
         }
 
         public static string TruncateAtWord([CanBeNull] this string value, int length, [NotNull] string ellipsis = "…", [NotNull] string truncateAtChar = " ") {
-            if (length <= 0) throw new ArgumentOutOfRangeException(nameof(length));
-            if (ellipsis.IsNullOrEmpty()) throw new ArgumentNullException(nameof(ellipsis));
-            if (truncateAtChar.IsNullOrEmpty()) throw new ArgumentNullException(nameof(truncateAtChar));
-
+            Guard.Against.OutOfRange(length,nameof(length),1,int.MaxValue);
+            Guard.Against.Null(ellipsis, nameof(ellipsis));
+            Guard.Against.Null(truncateAtChar, nameof(truncateAtChar));
+            
             if (value == null || value.Length <= length)
                 return value;
 

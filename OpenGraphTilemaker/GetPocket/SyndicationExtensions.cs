@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using Ardalis.GuardClauses;
 using JetBrains.Annotations;
 using Microsoft.SyndicationFeed;
 
@@ -8,7 +8,7 @@ namespace OpenGraphTilemaker.GetPocket
     public static class SyndicationExtensions
     {
         public static PocketEntry ToPocketEntry([NotNull] this ISyndicationItem item) {
-            if (item == null) throw new ArgumentNullException(nameof(item));
+            Guard.Against.Null(item, nameof(item));
 
             return new PocketEntry(item.Title,
                 item.Categories.First().Name,

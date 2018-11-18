@@ -1,5 +1,7 @@
 ﻿using System;
+using Ardalis.GuardClauses;
 using Common.Extensions;
+using JetBrains.Annotations;
 
 namespace Common
 {
@@ -9,10 +11,11 @@ namespace Common
         private const int PluralIndex = 1;
         private const string Space = " ";
 
-        public string Format(string format, object argument, IFormatProvider formatProvider) {
+        public string Format(string format, [NotNull] object argument, IFormatProvider formatProvider) {
+            Guard.Against.Null(argument, nameof(argument));
+            Guard.Against.Assert(() => argument.IsNumeric(), nameof(argument));
+
             if (format == null) format = string.Empty;
-            if (argument == null) throw new ArgumentNullException(nameof(argument));
-            if (!argument.IsNumeric()) throw new ArgumentOutOfRangeException(nameof(argument), "'argument' needs to be numeric!");
 
             var strings = format.Split(';');
             var hasStrings = strings.Length >= 2;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using Common;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Caching.Memory;
@@ -16,13 +17,13 @@ namespace OpenGraphTilemaker.GetPocket
         private readonly IMemoryCache _memoryCache;
 
         public Pocket([NotNull] IMemoryCache memoryCache, [NotNull] Feed<PocketEntry> feed) {
-            _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
-            _feed = feed ?? throw new ArgumentNullException(nameof(feed));
+            _memoryCache = Guard.Against.Null(memoryCache, nameof(memoryCache));
+            _feed = Guard.Against.Null(feed, nameof(feed));
         }
 
         public async Task<List<PocketEntry>> GetEntriesAsync(IPocketOptions options) {
-            if (options.Uri == null) throw new ArgumentNullException(nameof(options.Uri));
-            if (options.CachingTimeSpan == default) throw new ArgumentOutOfRangeException(nameof(options.CachingTimeSpan));
+            Guard.Against.Null(options.Uri, nameof(options.Uri));
+            Guard.Against.Default(options.CachingTimeSpan, nameof(options.CachingTimeSpan));
 
             return await
                 _memoryCache.GetOrCreateAsync(CacheKeys.GetPocketFeed, async entry => {

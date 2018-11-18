@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Ardalis.GuardClauses;
 using Common.Extensions;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
@@ -8,8 +8,8 @@ namespace OpenGraphTilemaker.OpenGraph
 {
     public static class OpenGraphMapper
     {
-        public static OpenGraphMetadata MapMetaData([CanBeNull] IList<HtmlNode> htmlMetaTags, string source) {
-            if (source.IsNullOrWhiteSpace()) throw new ArgumentException(nameof(source));
+        public static OpenGraphMetadata MapMetaData([CanBeNull] IList<HtmlNode> htmlMetaTags, [NotNull] string source) {
+            Guard.Against.NullOrWhiteSpace(source, nameof(source));
 
             var metadata = new OpenGraphMetadata {Source = source};
 
