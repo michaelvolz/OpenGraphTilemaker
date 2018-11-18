@@ -51,7 +51,7 @@ namespace Common.Tests.Guards
                 Guard.Against.Condition(() => DateTime.Now != DateTime.MinValue, parameterName);
             }
             catch (Exception e) {
-                var message = e.ToString();
+                var message = e.RewindStackTraceMessage();
                 message.Should().NotBeNullOrWhiteSpace();
 
                 TestConsole.WriteLine(message);
@@ -77,7 +77,7 @@ namespace Common.Tests.Guards
                 Guard.Against.Assert(() => DateTime.Now == DateTime.MinValue, parameterName);
             }
             catch (Exception e) {
-                var message = e.ToString();
+                var message = e.RewindStackTraceMessage();
                 message.Should().NotBeNullOrWhiteSpace();
 
                 TestConsole.WriteLine(message);
@@ -104,7 +104,7 @@ namespace Common.Tests.Guards
                 Guard.Against.Enum(invalidValue, typeof(CacheState), parameterName);
             }
             catch (Exception e) {
-                var message = e.ToString();
+                var message = e.RewindStackTraceMessage();
                 message.Should().NotBeNullOrWhiteSpace();
 
                 TestConsole.WriteLine(message);
@@ -139,7 +139,7 @@ namespace Common.Tests.Guards
                 message.Should().Contain(parameterName);
                 message.Should().Contain("Value cannot be default.");
                 message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardException_ToString)}()*");
-                message.Should().NotContain("GuardClauseExtensions");
+                message.Should().Contain("GuardClauseExtensions");
                 return;
             }
 

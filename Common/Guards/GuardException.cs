@@ -3,10 +3,13 @@ using System.Runtime.Serialization;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable CheckNamespace
-// ReSharper disable IdentifierTypo
 
 namespace Ardalis.GuardClauses
 {
+    /// <summary>
+    ///     Specialized Guard <see cref="Exception" /> which overwrites the <see cref="ToString" /> method to trim the
+    ///     included <see cref="System.Diagnostics.StackTrace" />
+    /// </summary>
     [Serializable]
     public class GuardException : ArgumentException
     {
@@ -23,7 +26,7 @@ namespace Ardalis.GuardClauses
         protected GuardException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
         public override string ToString() {
-            return this.RewindStackTraceMessage() + Environment.NewLine + base.ToString();;
+            return this.RewindStackTraceMessage() + Environment.NewLine + base.ToString();
         }
     }
 }

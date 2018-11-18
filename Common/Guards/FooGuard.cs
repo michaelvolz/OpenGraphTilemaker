@@ -7,7 +7,7 @@
 
 namespace Ardalis.GuardClauses
 {
-    public static class FooGuard
+    public static partial class GuardClauseExtensions
     {
         public static void Foo(this IGuardClause guardClause, string input, string parameterName) {
             if (input?.ToLower() == "foo")
