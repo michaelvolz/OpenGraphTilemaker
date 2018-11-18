@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable ParameterOnlyUsedForPreconditionCheck.Global
@@ -14,7 +15,7 @@ namespace Ardalis.GuardClauses
     {
         /// <summary>
         ///     Throws an <see cref="InvalidEnumArgumentException" /> if <see cref="input" /> is not a valid value for the defined
-        ///     <see cref="enumClass" />.
+        ///     <see cref="enumClass" />. 
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
@@ -33,6 +34,7 @@ namespace Ardalis.GuardClauses
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
         /// <param name="enumClass"></param>
+        /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid</exception>
         /// <exception cref="InvalidEnumArgumentException"></exception>
         public static void Enum<T>(this IGuardClause guardClause, [NotNull] Expression<Func<T>> input, Type enumClass) {
             Guard.Against.Enum(input.Compile()(), enumClass, input.MemberExpressionName());

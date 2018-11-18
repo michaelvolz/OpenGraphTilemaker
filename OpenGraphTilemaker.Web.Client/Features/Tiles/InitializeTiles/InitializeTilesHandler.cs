@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorState;
@@ -22,6 +24,8 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                 _pocket = pocket;
                 _tileMakerClient = client;
                 _pocketOptions = options.Value;
+
+                TilesState.Tiles = new List<OpenGraphMetadata>();
             }
 
             private TilesState TilesState => Store.GetState<TilesState>();
@@ -29,14 +33,21 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
             public override async Task<TilesState> Handle(InitializeTilesRequest req, CancellationToken token) {
                 var entries = await _pocket.GetEntriesAsync(_pocketOptions);
 
-                TilesState.Tiles.Clear();
-                foreach (var entry in entries) {
-                    var openGraphMetadata = await _tileMakerClient.OpenGraphMetadataAsync(new Uri(entry.Link));
-                    if (openGraphMetadata == null) continue;
+                var tasks = new List<Task<OpenGraphMetadata>>();
 
-                    openGraphMetadata.SourcePublishTime = entry.PubDate;
-                    TilesState.Tiles.Add(openGraphMetadata);
+                foreach (var entry in entries) {
+                    tasks.Add(_tileMakerClient.OpenGraphMetadataAsync(new Uri(entry.Link), entry));
                 }
+
+
+                var taskResults = await Task.WhenAll(tasks);
+
+                foreach (var entry in taskResults) {
+                    if (entry == null || !entry.IsValid) continue;
+                    TilesState.Tiles.Add(entry);
+                }
+
+                TilesState.Tiles = TilesState.Tiles.Distinct().ToList();
 
                 return TilesState;
             }

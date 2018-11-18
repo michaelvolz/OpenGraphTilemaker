@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using BaseTestCode;
 using BlazorState;
 using Common;
@@ -16,12 +17,20 @@ using Options = Microsoft.Extensions.Options.Options;
 
 namespace OpenGraphTilemaker.Tests
 {
-    public class ClientBaseTest : BaseTest
+    public class ClientBaseTest : BaseTest, IDisposable
     {
         private static readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
-        private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(1);
+        private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(120);
         private static readonly string CachingFolder = @"C:\WINDOWS\Temp\";
-        protected ClientBaseTest(ITestOutputHelper testConsole) : base(testConsole) { }
+        private readonly HttpClient _realHttpClient;
+        
+        protected ClientBaseTest(ITestOutputHelper testConsole) : base(testConsole) {
+            _realHttpClient = new HttpClient();
+        }
+
+        protected TileMakerClient RealTileMakerClient() {
+            return new TileMakerClient(_realHttpClient, TileMaker(), HttpLoader());
+        }
 
         protected static TileMakerClient TileMakerClient(string fakeResponse) {
             return new TileMakerClient(HttpClient(fakeResponse, HttpStatusCode.OK), TileMaker(), HttpLoader());
@@ -40,7 +49,7 @@ namespace OpenGraphTilemaker.Tests
         }
 
         protected static IOptions<DiscCacheOptions> DiscCacheIOptions() {
-            return Options.Create(new DiscCacheOptions {CacheFolder = CachingFolder});
+            return Options.Create(new DiscCacheOptions {CacheFolder = CachingFolder, CacheState = CacheState.Disabled});
         }
 
         protected static IOptions<PocketOptions> GetPocketIOptions() {
@@ -63,6 +72,10 @@ namespace OpenGraphTilemaker.Tests
             var mockStore = new MockStore();
             mockStore.SetState(state);
             return mockStore;
+        }
+
+        public void Dispose() {
+            _realHttpClient.Dispose();
         }
     }
 

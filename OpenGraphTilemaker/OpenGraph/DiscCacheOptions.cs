@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using Ardalis.GuardClauses;
+﻿using Ardalis.GuardClauses;
 using JetBrains.Annotations;
 
 namespace OpenGraphTilemaker.OpenGraph
@@ -10,9 +8,6 @@ namespace OpenGraphTilemaker.OpenGraph
         public DiscCacheOptions() { }
 
         public DiscCacheOptions([NotNull] string cacheFolder, CacheState cacheState) {
-            if (!Enum.IsDefined(typeof(CacheState), cacheState))
-                throw new InvalidEnumArgumentException(nameof(cacheState), (int) cacheState, typeof(CacheState));
-
             Guard.Against.Enum(() => cacheState, typeof(CacheState));
 
             CacheFolder = Guard.Against.NullOrWhiteSpace(() => cacheFolder);

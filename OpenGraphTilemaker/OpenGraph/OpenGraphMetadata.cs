@@ -20,8 +20,7 @@ namespace OpenGraphTilemaker.OpenGraph
 
         public bool IsValid => Title.NotNullNorWhiteSpace() &&
                                Description.NotNullNorWhiteSpace() &&
-                               Image.NotNullNorWhiteSpace() &&
-                               SourcePublishTime != default;
+                               Image.NotNullNorWhiteSpace();
 
         public string Source { get; set; }
         public DateTime SourcePublishTime { get; set; }

@@ -4,6 +4,8 @@ using System.Data.SqlTypes;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
+// ReSharper disable UnusedParameter.Local
+
 // ReSharper disable UnusedMethodReturnValue.Global
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMethodReturnValue.Local
@@ -41,6 +43,18 @@ namespace Ardalis.GuardClauses
             return input;
         }
 
+        /// <summary>
+        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see cref="input" /> is less than <see cref="rangeFrom" />
+        ///     or greater than <see cref="rangeTo" />.
+        /// </summary>
+        /// <param name="guardClause"></param>
+        /// <param name="input"></param>
+        /// <param name="rangeFrom"></param>
+        /// <param name="rangeTo"></param>
+        /// <returns>The input for variable initialization</returns>
+        /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid</exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static int OutOfRange(this IGuardClause guardClause, [NotNull] Expression<Func<int>> input, int rangeFrom, int rangeTo) {
             return OutOfRange<int>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
         }
@@ -63,6 +77,18 @@ namespace Ardalis.GuardClauses
             return input;
         }
 
+        /// <summary>
+        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see cref="input" /> is less than <see cref="rangeFrom" />
+        ///     or greater than <see cref="rangeTo" />.
+        /// </summary>
+        /// <param name="guardClause"></param>
+        /// <param name="input"></param>
+        /// <param name="rangeFrom"></param>
+        /// <param name="rangeTo"></param>
+        /// <returns>The input for variable initialization</returns>
+        /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid</exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static DateTime OutOfRange(this IGuardClause guardClause, [NotNull] Expression<Func<DateTime>> input, DateTime rangeFrom, DateTime rangeTo) {
             return OutOfRange<DateTime>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
         }

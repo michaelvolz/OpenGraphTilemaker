@@ -34,7 +34,6 @@ namespace Ardalis.GuardClauses
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
-        /// <param name="parameterName"></param>
         /// <returns>The input for variable initialization</returns>
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid</exception>
         /// <exception cref="ArgumentNullException"></exception>

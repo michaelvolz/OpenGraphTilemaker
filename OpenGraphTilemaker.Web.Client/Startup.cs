@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using BlazorState;
 using Common;
 using Microsoft.AspNetCore.Blazor.Builder;
@@ -19,7 +18,8 @@ namespace OpenGraphTilemaker.Web.Client
 
             services.AddHttpClient<ITileMakerClient, TileMakerClient>()
                 // BUG-FIX for 2.2 preview 3
-                .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
+                //.SetHandlerLifetime(Timeout.InfiniteTimeSpan)
+                ;
             services.AddTransient<OpenGraphTileMaker>();
 
             services.AddSingleton<WeatherForecastService>();

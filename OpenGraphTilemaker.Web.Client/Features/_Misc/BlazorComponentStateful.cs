@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using BlazorState;
 using MediatR;
 using Microsoft.AspNetCore.Blazor.Components;
@@ -22,13 +23,8 @@ namespace OpenGraphTilemaker.Web.Client.Features
         [Inject] public IStore Store { get; set; }
 
 
-        protected void Request<T>(IRequest<T> request) {
-            var send = Mediator.Send(request);
-
-            if (send.IsFaulted) {
-                var exception = send.Exception;
-                Log.LogError(exception, $"### Invalid MediatR request of '{request.GetType().Name}'!{Environment.NewLine}");
-            }
+        protected async Task RequestAsync<T>(IRequest<T> request) {
+            await Mediator.Send(request);
         }
     }
 }

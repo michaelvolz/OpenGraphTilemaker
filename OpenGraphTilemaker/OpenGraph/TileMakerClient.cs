@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common;
 using JetBrains.Annotations;
+using OpenGraphTilemaker.GetPocket;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -22,12 +23,15 @@ namespace OpenGraphTilemaker.OpenGraph
             _httpLoader = Guard.Against.Null(() => loader);
         }
 
-        public async Task<OpenGraphMetadata> OpenGraphMetadataAsync([NotNull] Uri uri) {
-            Guard.Against.Null(() => uri);
+        public async Task<OpenGraphMetadata> OpenGraphMetadataAsync([NotNull] Uri uri, PocketEntry entry) {
+            //Guard.Against.Null(() => uri);
 
             await _openGraphTileMaker.ScrapeAsync(uri.OriginalString, async () => await _httpLoader.LoadAsync(_httpClient, uri));
 
-            return _openGraphTileMaker.OpenGraphMetadata;
+            var result = _openGraphTileMaker.OpenGraphMetadata;
+            result.SourcePublishTime = entry.PubDate;
+
+            return result;
         }
     }
 }

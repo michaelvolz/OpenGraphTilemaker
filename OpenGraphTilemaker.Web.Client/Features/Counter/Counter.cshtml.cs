@@ -1,13 +1,15 @@
 ﻿// ReSharper disable MemberCanBeProtected.Global
 
+using System.Threading.Tasks;
+
 namespace OpenGraphTilemaker.Web.Client.Features.Counter
 {
     public class CounterModel : BlazorComponentStateful
     {
         public CounterState CounterState => Store.GetState<CounterState>();
 
-        public void ButtonClick() {
-            Request(new IncrementCounterRequest {Amount = 2});
+        public async Task ButtonClick() {
+            await RequestAsync(new IncrementCounterRequest {Amount = 2});
         }
     }
 }
