@@ -9,8 +9,7 @@ namespace Common.Exceptions
     [Serializable]
     public class ArgumentNullOrWhiteSpaceException : ArgumentNullException
     {
-        [NonSerialized]
-        private const string CanNotBeNullOrWhiteSpace = "Value cannot be NullOrWhiteSpace.";
+        [NonSerialized] private const string CanNotBeNullOrWhiteSpace = "Value cannot be NullOrWhiteSpace.";
 
         public ArgumentNullOrWhiteSpaceException() { }
 

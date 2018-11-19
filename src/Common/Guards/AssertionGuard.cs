@@ -5,8 +5,6 @@ using System.Linq.Expressions;
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable ParameterOnlyUsedForPreconditionCheck.Global
 // ReSharper disable CheckNamespace
-#pragma warning disable SA1614 // Element parameter documentation should have text
-#pragma warning disable SA1627 // Documentation text should not be empty
 
 namespace Ardalis.GuardClauses
 {
@@ -29,6 +27,3 @@ namespace Ardalis.GuardClauses
         }
     }
 }
-
-#pragma warning restore SA1614 // Element parameter documentation should have text
-#pragma warning restore SA1627 // Documentation text should not be empty

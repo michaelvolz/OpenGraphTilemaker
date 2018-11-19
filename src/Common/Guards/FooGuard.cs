@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Globalization;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable ParameterOnlyUsedForPreconditionCheck.Global
 // ReSharper disable CheckNamespace
-#pragma warning disable SA1614 // Element parameter documentation should have text
-#pragma warning disable SA1627 // Documentation text should not be empty
 
 namespace Ardalis.GuardClauses
 {
     /// <summary>
-    /// Foo Guard.
+    ///     Foo Guard.
     /// </summary>
     public static partial class GuardClauseExtensions
     {
@@ -21,6 +18,3 @@ namespace Ardalis.GuardClauses
         }
     }
 }
-
-#pragma warning restore SA1614 // Element parameter documentation should have text
-#pragma warning restore SA1627 // Documentation text should not be empty

@@ -18,7 +18,7 @@ namespace Common.Extensions
         public static DateTime? AsDateTimeOrNull(this string value) => DateTime.TryParse(value, out var result) ? (DateTime?)result : null;
 
         /// <summary>
-        /// Checks for a-z A-Z 0-9 only.
+        ///     Checks for a-z A-Z 0-9 only.
         /// </summary>
         /// <param name="value">value.</param>
         /// <returns>True or false.</returns>

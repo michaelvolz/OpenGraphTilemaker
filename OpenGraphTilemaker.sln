@@ -28,6 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		README.md = README.md
 		Solution.dictionary = Solution.dictionary
 		Solution.ruleset = Solution.ruleset
+		StyleCop.json = StyleCop.json
 		Test.ps1 = Test.ps1
 	EndProjectSection
 EndProject

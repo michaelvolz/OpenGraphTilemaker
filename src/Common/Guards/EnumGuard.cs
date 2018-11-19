@@ -8,8 +8,6 @@ using JetBrains.Annotations;
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable ParameterOnlyUsedForPreconditionCheck.Global
 // ReSharper disable CheckNamespace
-#pragma warning disable SA1614 // Element parameter documentation should have text
-#pragma warning disable SA1627 // Documentation text should not be empty
 
 namespace Ardalis.GuardClauses
 {
@@ -19,8 +17,8 @@ namespace Ardalis.GuardClauses
     public static partial class GuardClauseExtensions
     {
         /// <summary>
-        ///     Throws an <see cref="InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the defined
-        ///     <see paramref="enumClass" />.
+        ///     Throws an <see cref="InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the
+        ///     defined <see paramref="enumClass" />.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
@@ -33,7 +31,8 @@ namespace Ardalis.GuardClauses
         }
 
         /// <summary>
-        ///     Throws an <see cref="InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the defined
+        ///     Throws an <see cref="InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the
+        ///     defined
         ///     <see paramref="enumClass" />.
         /// </summary>
         /// <param name="guardClause"></param>
@@ -46,6 +45,3 @@ namespace Ardalis.GuardClauses
         }
     }
 }
-
-#pragma warning restore SA1614 // Element parameter documentation should have text
-#pragma warning restore SA1627 // Documentation text should not be empty

@@ -6,7 +6,7 @@
     <members>
         <member name="M:Common.Extensions.DataTypeExtensions.IsPureAlphaNumeric(System.String)">
             <summary>
-            Checks for a-z A-Z 0-9 only.
+                Checks for a-z A-Z 0-9 only.
             </summary>
             <param name="value">value.</param>
             <returns>True or false.</returns>
@@ -43,7 +43,7 @@
                 EnumGuard.
             </summary>
             <summary>
-            Foo Guard.
+                Foo Guard.
             </summary>
             <summary>
                 MemberExpression.
@@ -107,8 +107,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Enum(Ardalis.GuardClauses.IGuardClause,System.Object,System.Type,System.String)">
             <summary>
-                Throws an <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the defined
-                <see paramref="enumClass" />.
+                Throws an <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the
+                defined <see paramref="enumClass" />.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -118,7 +118,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Enum``1(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{``0}},System.Type)">
             <summary>
-                Throws an <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the defined
+                Throws an <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the
+                defined
                 <see paramref="enumClass" />.
             </summary>
             <param name="guardClause"></param>

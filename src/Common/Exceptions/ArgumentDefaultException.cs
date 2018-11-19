@@ -9,8 +9,7 @@ namespace Common.Exceptions
     [Serializable]
     public class ArgumentDefaultException : ArgumentOutOfRangeException
     {
-        [NonSerialized]
-        private const string CanNotBeDefault = "Value cannot be default.";
+        [NonSerialized] private const string CanNotBeDefault = "Value cannot be default.";
 
         public ArgumentDefaultException() { }
         public ArgumentDefaultException(string paramName) : base(paramName, CanNotBeDefault) { }

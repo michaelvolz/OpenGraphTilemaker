@@ -8,6 +8,8 @@ using JetBrains.Annotations;
 using Microsoft.SyndicationFeed;
 using Microsoft.SyndicationFeed.Rss;
 
+#pragma warning disable SA1649 // File name should match first type name
+
 namespace Common
 {
     public class Feed<TEntry>
