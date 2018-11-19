@@ -1,30 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2048
+VisualStudioVersion = 15.0.28306.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Tests", "OpenGraphTilemaker.Tests\OpenGraphTilemaker.Tests.csproj", "{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "src\Common\Common.csproj", "{5656AF6F-0CA8-4C6F-AB23-A51895EB5B50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Server", "OpenGraphTilemaker.Web.Server\OpenGraphTilemaker.Web.Server.csproj", "{72EC2D59-ADAD-46D5-AC36-AD50219705C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker", "src\OpenGraphTilemaker\OpenGraphTilemaker.csproj", "{9AC61145-C7BC-4A25-A802-633BC81C60F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Client", "OpenGraphTilemaker.Web.Client\OpenGraphTilemaker.Web.Client.csproj", "{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Client", "src\OpenGraphTilemaker.Web.Client\OpenGraphTilemaker.Web.Client.csproj", "{FC428C8F-8B58-47D9-8808-10E4C70B53B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker", "OpenGraphTilemaker\OpenGraphTilemaker.csproj", "{E15A9072-2158-49E0-B4E2-3A3FAE92156C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Server", "src\OpenGraphTilemaker.Web.Server\OpenGraphTilemaker.Web.Server.csproj", "{C5389BCF-2303-42E0-A7D4-988815AC5933}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{18ED9B69-FEF9-4F5C-8B61-5682500ADC7E}"
-	ProjectSection(SolutionItems) = preProject
-		OpenGraphTilemaker.Web.Server\Properties\launchSettings.json = OpenGraphTilemaker.Web.Server\Properties\launchSettings.json
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{09FEECE9-ED4E-4157-8D74-2523495CC60F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseTestCode", "tests\BaseTestCode\BaseTestCode.csproj", "{EB4AB1E5-58B6-400E-88D6-3C84027DCE7D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Tests", "tests\Common.Tests\Common.Tests.csproj", "{89DF4061-2955-4017-A0ED-EF5119AB5EF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Tests", "Common.Tests\Common.Tests.csproj", "{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Tests", "tests\OpenGraphTilemaker.Tests\OpenGraphTilemaker.Tests.csproj", "{473A204E-6C3F-4C28-977E-5BA3ABC66EB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Client.Tests", "OpenGraphTilemaker.Web.Client.Tests\OpenGraphTilemaker.Web.Client.Tests.csproj", "{AF347F6C-7408-4415-9D2F-17E393E9550C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseTestCode", "BaseTestCode\BaseTestCode.csproj", "{58554CFD-298C-4DDE-B640-88F7F66962D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Client.Tests", "tests\OpenGraphTilemaker.Web.Client.Tests\OpenGraphTilemaker.Web.Client.Tests.csproj", "{794944BE-577B-4AF1-A706-C3916CB7C65C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,49 +27,49 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72EC2D59-ADAD-46D5-AC36-AD50219705C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72EC2D59-ADAD-46D5-AC36-AD50219705C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72EC2D59-ADAD-46D5-AC36-AD50219705C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72EC2D59-ADAD-46D5-AC36-AD50219705C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC418D5F-9AF7-4EE5-B08B-7EEF6C13C4A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E15A9072-2158-49E0-B4E2-3A3FAE92156C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E15A9072-2158-49E0-B4E2-3A3FAE92156C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E15A9072-2158-49E0-B4E2-3A3FAE92156C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E15A9072-2158-49E0-B4E2-3A3FAE92156C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE62FAAF-FC1D-46EE-8E30-4F012B65D437}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF347F6C-7408-4415-9D2F-17E393E9550C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58554CFD-298C-4DDE-B640-88F7F66962D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58554CFD-298C-4DDE-B640-88F7F66962D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58554CFD-298C-4DDE-B640-88F7F66962D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58554CFD-298C-4DDE-B640-88F7F66962D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5656AF6F-0CA8-4C6F-AB23-A51895EB5B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5656AF6F-0CA8-4C6F-AB23-A51895EB5B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5656AF6F-0CA8-4C6F-AB23-A51895EB5B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5656AF6F-0CA8-4C6F-AB23-A51895EB5B50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AC61145-C7BC-4A25-A802-633BC81C60F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AC61145-C7BC-4A25-A802-633BC81C60F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AC61145-C7BC-4A25-A802-633BC81C60F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AC61145-C7BC-4A25-A802-633BC81C60F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC428C8F-8B58-47D9-8808-10E4C70B53B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC428C8F-8B58-47D9-8808-10E4C70B53B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC428C8F-8B58-47D9-8808-10E4C70B53B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC428C8F-8B58-47D9-8808-10E4C70B53B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5389BCF-2303-42E0-A7D4-988815AC5933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5389BCF-2303-42E0-A7D4-988815AC5933}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5389BCF-2303-42E0-A7D4-988815AC5933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5389BCF-2303-42E0-A7D4-988815AC5933}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB4AB1E5-58B6-400E-88D6-3C84027DCE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB4AB1E5-58B6-400E-88D6-3C84027DCE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB4AB1E5-58B6-400E-88D6-3C84027DCE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB4AB1E5-58B6-400E-88D6-3C84027DCE7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89DF4061-2955-4017-A0ED-EF5119AB5EF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89DF4061-2955-4017-A0ED-EF5119AB5EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89DF4061-2955-4017-A0ED-EF5119AB5EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89DF4061-2955-4017-A0ED-EF5119AB5EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{473A204E-6C3F-4C28-977E-5BA3ABC66EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{473A204E-6C3F-4C28-977E-5BA3ABC66EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{473A204E-6C3F-4C28-977E-5BA3ABC66EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{473A204E-6C3F-4C28-977E-5BA3ABC66EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{794944BE-577B-4AF1-A706-C3916CB7C65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794944BE-577B-4AF1-A706-C3916CB7C65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794944BE-577B-4AF1-A706-C3916CB7C65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794944BE-577B-4AF1-A706-C3916CB7C65C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{EA711187-02FF-4D44-832A-0C3A1EA5F1C9} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
-		{CC2386D2-37FC-4AD5-B82F-264CAB8B0EEE} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
-		{AF347F6C-7408-4415-9D2F-17E393E9550C} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
-		{58554CFD-298C-4DDE-B640-88F7F66962D9} = {CAE67E4B-6FA2-464F-9B1B-0479BE4D6942}
+		{EB4AB1E5-58B6-400E-88D6-3C84027DCE7D} = {09FEECE9-ED4E-4157-8D74-2523495CC60F}
+		{89DF4061-2955-4017-A0ED-EF5119AB5EF3} = {09FEECE9-ED4E-4157-8D74-2523495CC60F}
+		{473A204E-6C3F-4C28-977E-5BA3ABC66EB3} = {09FEECE9-ED4E-4157-8D74-2523495CC60F}
+		{794944BE-577B-4AF1-A706-C3916CB7C65C} = {09FEECE9-ED4E-4157-8D74-2523495CC60F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EA84091E-F7E3-4556-8ECF-527827305335}
+		SolutionGuid = {BE4F462C-412D-4B22-B4C8-3E2949ADB57D}
 	EndGlobalSection
 EndGlobal

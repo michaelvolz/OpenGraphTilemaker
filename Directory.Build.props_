@@ -1,0 +1,24 @@
+<Project>
+  <PropertyGroup>
+    <Version>0.11</Version>
+    <Authors>Michael A. Volz</Authors>
+    <FileVersion>0.1.0.0</FileVersion>
+    <Product>OpenGraphTileMaker</Product>
+    <Copyright>Copyright © 2018, Michael A. Volz</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)Solution.ruleset</CodeAnalysisRuleSet>
+    <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2" PrivateAssets="all" />
+    <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml">
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+</Project>
