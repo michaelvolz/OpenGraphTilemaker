@@ -13,12 +13,14 @@ namespace OpenGraphTilemaker.Web.Server
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseConfiguration(new ConfigurationBuilder()
                     .AddCommandLine(args)
                     .Build())
-                .UseStartup<Startup>()
-                .Build();
+                .UseStartup<Startup>();
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            CreateWebHostBuilder(args).Build();
     }
 }

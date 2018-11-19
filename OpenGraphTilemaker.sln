@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		Directory.Build.props = Directory.Build.props
 		License.txt = License.txt
 		README.md = README.md
+		Solution.debug.ruleset = Solution.debug.ruleset
 		Solution.dictionary = Solution.dictionary
 		Solution.ruleset = Solution.ruleset
 		StyleCop.json = StyleCop.json

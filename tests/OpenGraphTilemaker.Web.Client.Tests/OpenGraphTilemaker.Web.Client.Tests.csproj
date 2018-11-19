@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <IsPackable>false</IsPackable>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +10,8 @@
     <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.5.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.5.0" />
     <PackageReference Include="FluentAssertions" Version="5.5.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
@@ -23,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\OpenGraphTilemaker.Web.Server\OpenGraphTilemaker.Web.Server.csproj" />
     <ProjectReference Include="..\..\tests\BaseTestCode\BaseTestCode.csproj" />
     <ProjectReference Include="..\..\src\OpenGraphTilemaker.Web.Client\OpenGraphTilemaker.Web.Client.csproj" />
   </ItemGroup>

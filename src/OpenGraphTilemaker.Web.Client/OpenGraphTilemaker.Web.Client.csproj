@@ -3,8 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>latest</LangVersion>
-
     <!-- The linker is not beneficial for server-side execution. Re-enable this if you switch to WebAssembly execution. -->
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <AssemblyName>OpenGraphTilemaker.Web.Client</AssemblyName>
