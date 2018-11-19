@@ -16,7 +16,7 @@ namespace Ardalis.GuardClauses
     public static partial class GuardClauseExtensions
     {
         /// <summary>
-        ///     Throws an <see cref="ArgumentException" /> if <see cref="input" /> is false.
+        ///     Throws an <see cref="ArgumentException" /> if <see paramref="input" /> is false.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>

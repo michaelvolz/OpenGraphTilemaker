@@ -13,7 +13,7 @@ namespace Ardalis.GuardClauses
     public static partial class GuardClauseExtensions
     {
         /// <summary>
-        ///     Throws an <see cref="ArgumentNullException" /> if <see cref="input" /> is null.
+        ///     Throws an <see cref="ArgumentNullException" /> if <paramref name="input"/> is null.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
@@ -27,7 +27,7 @@ namespace Ardalis.GuardClauses
         }
 
         /// <summary>
-        ///     Throws an <see cref="ArgumentNullException" /> if <see cref="input" /> is null.
+        ///     Throws an <see cref="ArgumentNullException" /> if <paramref name="input"/> is null.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>

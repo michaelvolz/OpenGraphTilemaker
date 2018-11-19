@@ -1,7 +1,9 @@
 using System;
+using AutoFixture.Xunit2;
 using BaseTestCode;
 using Common.Extensions;
 using FluentAssertions;
+using JetBrains.Annotations;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -15,7 +17,7 @@ namespace Common.Tests.Extensions
 
         private const string SingularPlural = "singular;plural";
 
-        public static object[][] TestData { get; } = {
+        public static object[][] TestData { [UsedImplicitly] get; } = {
             new object[] { DateTime.UtcNow, "just now" },
             new object[] { DateTime.UtcNow.AddMinutes(-1), "1 minute ago" },
             new object[] { DateTime.UtcNow.AddMinutes(-2), "2 minutes ago" },
@@ -36,25 +38,23 @@ namespace Common.Tests.Extensions
         }
 
         [Theory]
-        [InlineData(0, "0 plural", SingularPlural)]
-        [InlineData(1, "1 singular", SingularPlural)]
-        [InlineData(2, "2 plural", SingularPlural)]
-        [InlineData(-1, "-1 singular", SingularPlural)]
-        [InlineData(-2, "-2 plural", SingularPlural)]
-        [InlineData(0, "0 b", "a;b;c")]
-        [InlineData(1, "1 a", "a;b;c")]
-        [InlineData(7, "7 b", "a;b;c")]
-        [InlineData(-1, "-1 a", "a;b;c")]
-        [InlineData(-7, "-7 b", "a;b;c")]
-        [InlineData(0, "0 just-one-text", "just-one-text")]
-        [InlineData(1, "1 just-one-text", "just-one-text")]
-        [InlineData(2, "2 just-one-text", "just-one-text")]
-        [InlineData(-1, "-1 just-one-text", "just-one-text")]
-        [InlineData(-2, "-2 just-one-text", "just-one-text")]
-        [InlineData(12, "12", null)]
-        public void PluralFormatProvider_ValidValues(int value, string expected, string format) {
-            var sut = new PluralFormatProvider();
-
+        [InlineAutoData(0, "0 plural", SingularPlural)]
+        [InlineAutoData(1, "1 singular", SingularPlural)]
+        [InlineAutoData(2, "2 plural", SingularPlural)]
+        [InlineAutoData(-1, "-1 singular", SingularPlural)]
+        [InlineAutoData(-2, "-2 plural", SingularPlural)]
+        [InlineAutoData(0, "0 b", "a;b;c")]
+        [InlineAutoData(1, "1 a", "a;b;c")]
+        [InlineAutoData(7, "7 b", "a;b;c")]
+        [InlineAutoData(-1, "-1 a", "a;b;c")]
+        [InlineAutoData(-7, "-7 b", "a;b;c")]
+        [InlineAutoData(0, "0 just-one-text", "just-one-text")]
+        [InlineAutoData(1, "1 just-one-text", "just-one-text")]
+        [InlineAutoData(2, "2 just-one-text", "just-one-text")]
+        [InlineAutoData(-1, "-1 just-one-text", "just-one-text")]
+        [InlineAutoData(-2, "-2 just-one-text", "just-one-text")]
+        [InlineAutoData(12, "12", null)]
+        public void PluralFormatProvider_ValidValues(int value, string expected, string format, PluralFormatProvider sut) {
             var result = sut.Format(format, value, null);
 
             result.Should().Be(expected);

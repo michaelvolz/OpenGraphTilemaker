@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BaseTestCode;
 using FluentAssertions;
 using OpenGraphTilemaker.Tests;
 using OpenGraphTilemaker.Web.Client.Features.Tiles;
@@ -36,6 +37,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests.Features.Tiles
         }
 
         [Fact]
+        [XunitCategory("Integration")]
         public async Task InitializeTilesRequest_WithRealHttpClient() {
             // Arrange
             var request = new InitializeTilesRequest();

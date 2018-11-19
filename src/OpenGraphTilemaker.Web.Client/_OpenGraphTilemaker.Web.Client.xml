@@ -29,5 +29,10 @@
                 Set the Initial State.
             </summary>
         </member>
+        <member name="T:OpenGraphTilemaker.Web.Client.Startup">
+            <summary>
+                Client Startup.
+            </summary>
+        </member>
     </members>
 </doc>

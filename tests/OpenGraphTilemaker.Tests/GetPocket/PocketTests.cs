@@ -27,6 +27,7 @@ namespace OpenGraphTilemaker.Tests.GetPocket
         private readonly PocketOptions _options;
 
         [Fact]
+        [XunitCategory("Integration")]
         public async Task GetEntries() {
             // Act
             var entries = await _pocket.GetEntriesAsync(_options);

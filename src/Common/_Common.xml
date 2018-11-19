@@ -69,7 +69,7 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Assert(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{System.Boolean}},System.String)">
             <summary>
-                Throws an <see cref="T:System.ArgumentException" /> if <see cref="!:input" /> is false.
+                Throws an <see cref="T:System.ArgumentException" /> if <see paramref="input" /> is false.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -78,7 +78,7 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Condition(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{System.Boolean}},System.String)">
             <summary>
-                Throws an <see cref="T:System.ArgumentException" /> if <see cref="!:input" /> is true.
+                Throws an <see cref="T:System.ArgumentException" /> if <see paramref="input" /> is true.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -87,7 +87,7 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Default``1(Ardalis.GuardClauses.IGuardClause,``0,System.String)">
             <summary>
-                Throws an <see cref="T:Common.Exceptions.ArgumentDefaultException" /> if <see cref="!:input" /> is the default value.
+                Throws an <see cref="T:Common.Exceptions.ArgumentDefaultException" /> if <see paramref="input" /> is the default value.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -97,7 +97,7 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Default``1(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{``0}})">
             <summary>
-                Throws an <see cref="T:Common.Exceptions.ArgumentDefaultException" /> if <see cref="!:input" /> is the default value.
+                Throws an <see cref="T:Common.Exceptions.ArgumentDefaultException" /> if <see paramref="input" /> is the default value.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -107,8 +107,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Enum(Ardalis.GuardClauses.IGuardClause,System.Object,System.Type,System.String)">
             <summary>
-                Throws an <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> if <see cref="!:input" /> is not a valid value for the defined
-                <see cref="!:enumClass" />.
+                Throws an <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the defined
+                <see paramref="enumClass" />.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -118,8 +118,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Enum``1(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{``0}},System.Type)">
             <summary>
-                Throws an <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> if <see cref="!:input" /> is not a valid value for the defined
-                <see cref="!:enumClass" />.
+                Throws an <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the defined
+                <see paramref="enumClass" />.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -129,7 +129,7 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Null``1(Ardalis.GuardClauses.IGuardClause,``0,System.String)">
             <summary>
-                Throws an <see cref="T:System.ArgumentNullException" /> if <see cref="!:input" /> is null.
+                Throws an <see cref="T:System.ArgumentNullException" /> if <paramref name="input"/> is null.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -139,7 +139,7 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.Null``1(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{``0}})">
             <summary>
-                Throws an <see cref="T:System.ArgumentNullException" /> if <see cref="!:input" /> is null.
+                Throws an <see cref="T:System.ArgumentNullException" /> if <paramref name="input"/> is null.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -149,8 +149,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.NullOrEmpty(Ardalis.GuardClauses.IGuardClause,System.String,System.String)">
             <summary>
-                Throws an <see cref="T:System.ArgumentNullException" /> if <see cref="!:input" /> is null.
-                Throws an <see cref="T:System.ArgumentException" /> if <see cref="!:input" /> is an empty string.
+                Throws an <see cref="T:System.ArgumentNullException" /> if <see paramref="input" /> is null.
+                Throws an <see cref="T:System.ArgumentException" /> if <see paramref="input" /> is an empty string.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -161,8 +161,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.NullOrEmpty(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{System.String}})">
             <summary>
-                Throws an <see cref="T:System.ArgumentNullException" /> if <see cref="!:input" /> is null.
-                Throws an <see cref="T:System.ArgumentException" /> if <see cref="!:input" /> is an empty string.
+                Throws an <see cref="T:System.ArgumentNullException" /> if <see paramref="input" /> is null.
+                Throws an <see cref="T:System.ArgumentException" /> if <see paramref="input" /> is an empty string.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -173,8 +173,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.NullOrWhiteSpace(Ardalis.GuardClauses.IGuardClause,System.String,System.String)">
             <summary>
-                Throws an <see cref="T:System.ArgumentNullException" /> if <see cref="!:input" /> is null.
-                Throws an <see cref="T:System.ArgumentException" /> if <see cref="!:input" /> is an empty or white space string.
+                Throws an <see cref="T:System.ArgumentNullException" /> if <see paramref="input" /> is null.
+                Throws an <see cref="T:System.ArgumentException" /> if <see paramref="input" /> is an empty or white space string.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -185,8 +185,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.NullOrWhiteSpace(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{System.String}})">
             <summary>
-                Throws an <see cref="T:System.ArgumentNullException" /> if <see cref="!:input" /> is null.
-                Throws an <see cref="T:System.ArgumentException" /> if <see cref="!:input" /> is an empty or white space string.
+                Throws an <see cref="T:System.ArgumentNullException" /> if <see paramref="input" /> is null.
+                Throws an <see cref="T:System.ArgumentException" /> if <see paramref="input" /> is an empty or white space string.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -197,8 +197,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.OutOfRange(Ardalis.GuardClauses.IGuardClause,System.Int32,System.String,System.Int32,System.Int32)">
             <summary>
-                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see cref="!:input" /> is less than <see cref="!:rangeFrom" />
-                or greater than <see cref="!:rangeTo" />.
+                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see paramref="input" /> is less than <see paramref="rangeFrom" />
+                or greater than <see paramref="rangeTo" />.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -211,8 +211,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.OutOfRange(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{System.Int32}},System.Int32,System.Int32)">
             <summary>
-                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see cref="!:input" /> is less than <see cref="!:rangeFrom" />
-                or greater than <see cref="!:rangeTo" />.
+                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see paramref="input" /> is less than <see paramref="rangeFrom" />
+                or greater than <see paramref="rangeTo" />.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -225,8 +225,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.OutOfRange(Ardalis.GuardClauses.IGuardClause,System.DateTime,System.String,System.DateTime,System.DateTime)">
             <summary>
-                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see cref="!:input" /> is less than <see cref="!:rangeFrom" />
-                or greater than <see cref="!:rangeTo" />.
+                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see paramref="input" /> is less than <see paramref="rangeFrom" />
+                or greater than <see paramref="rangeTo" />.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -239,8 +239,8 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.OutOfRange(Ardalis.GuardClauses.IGuardClause,System.Linq.Expressions.Expression{System.Func{System.DateTime}},System.DateTime,System.DateTime)">
             <summary>
-                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see cref="!:input" /> is less than <see cref="!:rangeFrom" />
-                or greater than <see cref="!:rangeTo" />.
+                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see paramref="input" /> is less than <see paramref="rangeFrom" />
+                or greater than <see paramref="rangeTo" />.
             </summary>
             <param name="guardClause"></param>
             <param name="input"></param>
@@ -253,7 +253,7 @@
         </member>
         <member name="M:Ardalis.GuardClauses.GuardClauseExtensions.OutOfSQLDateRange(Ardalis.GuardClauses.IGuardClause,System.DateTime,System.String)">
             <summary>
-                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see cref="!:input" /> is not in the range of valid
+                Throws an <see cref="T:System.ArgumentOutOfRangeException" /> if <see paramref="input" /> is not in the range of valid
                 <see cref="T:System.Data.SqlTypes.SqlDateTime" /> values.
             </summary>
             <param name="guardClause"></param>
@@ -275,15 +275,15 @@
             </summary>
             <remarks>See http://www.weeklydevtips.com/004 on Guard Clauses.</remarks>
         </member>
-        <member name="T:Ardalis.GuardClauses.IGuardClause">
-            <summary>
-                Simple interface to provide a generic mechanism to build guard clause extension methods from.
-            </summary>
-        </member>
         <member name="T:Ardalis.GuardClauses.GuardException">
             <summary>
                 Specialized Guard <see cref="T:System.Exception" /> which overwrites the <see cref="M:Ardalis.GuardClauses.GuardException.ToString" /> method to trim the
                 included <see cref="T:System.Diagnostics.StackTrace" />.
+            </summary>
+        </member>
+        <member name="T:Ardalis.GuardClauses.IGuardClause">
+            <summary>
+                Simple interface to provide a generic mechanism to build guard clause extension methods from.
             </summary>
         </member>
     </members>

@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.5.0" />
+    <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.5.0" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.5.0" />
     <PackageReference Include="Blazor-State" Version="0.3.1" />
     <PackageReference Include="FluentAssertions" Version="5.5.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="NSubstitute" Version="4.0.0-rc1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>

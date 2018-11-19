@@ -21,6 +21,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Client.Tests", "tests\OpenGraphTilemaker.Web.Client.Tests\OpenGraphTilemaker.Web.Client.Tests.csproj", "{794944BE-577B-4AF1-A706-C3916CB7C65C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{BD66E03F-E41E-443A-BEA6-495E97329B03}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		License.txt = License.txt
+		README.md = README.md
+		Solution.dictionary = Solution.dictionary
+		Solution.ruleset = Solution.ruleset
+		Test.ps1 = Test.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

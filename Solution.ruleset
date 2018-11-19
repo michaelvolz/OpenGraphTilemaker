@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--https://dotnetanalyzers.github.io/StyleCopAnalyzers/-->
 <RuleSet Name="Generic" ToolsVersion="11.0">
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1016" Action="None" />
-    <Rule Id="CA1020" Action="None" />
+    <!--<Rule Id="CA1020" Action="None" />-->
     <Rule Id="CA1034" Action="None" />
-    <Rule Id="CA1040" Action="None" />
+    <!--<Rule Id="CA1040" Action="None" />-->
     <Rule Id="CA1052" Action="None" />
-    <Rule Id="CA1200" Action="None" />
+    <!--<Rule Id="CA1200" Action="None" />-->
     <Rule Id="CA1305" Action="None" />
     <Rule Id="CA1707" Action="None" />
     <Rule Id="CA1724" Action="None" />
     <Rule Id="CA1822" Action="None" />
     <Rule Id="CA2007" Action="None" />
-    <Rule Id="CS1573" Action="None" />
-    <Rule Id="CS1574" Action="None" />
-    <Rule Id="CS1591" Action="None" />
+    <!--<Rule Id="CS1573" Action="None" />-->
+    <!--<Rule Id="CS1574" Action="None" />-->
+    <!--<Rule Id="CS1591" Action="None" />-->
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
-    <Rule Id="SA1009" Action="None" />
-    <Rule Id="SA1034" Action="None" />
-    <Rule Id="SA1101" Action="None" />
-    <Rule Id="SA1118" Action="None" />
-    <Rule Id="SA1121" Action="None" />
-    <Rule Id="SA1124" Action="Warning" />
+    <!--<Rule Id="SA1009" Action="None" />-->
+    <!--<Rule Id="SA1034" Action="None" />-->
+    <Rule Id="SA1101" Action="None" />  
+    <!--<Rule Id="SA1118" Action="None" />-->
+    <!--<Rule Id="SA1121" Action="None" />-->
+    <!--<Rule Id="SA1124" Action="Warning" />-->
     <Rule Id="SA1127" Action="None" />
     <Rule Id="SA1128" Action="None" />
     <Rule Id="SA1134" Action="None" />
@@ -47,9 +48,9 @@
     <Rule Id="SA1618" Action="None" />
     <Rule Id="SA1622" Action="None" />
     <Rule Id="SA1627" Action="None" />
-    <Rule Id="SA1628" Action="Warning" />
-    <Rule Id="SA1629" Action="Warning" />
+    <!--<Rule Id="SA1628" Action="Warning" />-->
+    <!--<Rule Id="SA1629" Action="Warning" />-->
     <Rule Id="SA1633" Action="None" />
-    <Rule Id="SA1652" Action="None" />
+    <!--<Rule Id="SA1652" Action="None" />-->
   </Rules>
 </RuleSet>

@@ -22,8 +22,8 @@ namespace Ardalis.GuardClauses
     public static partial class GuardClauseExtensions
     {
         /// <summary>
-        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see cref="input" /> is less than <see cref="rangeFrom" />
-        ///     or greater than <see cref="rangeTo" />.
+        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see paramref="input" /> is less than <see paramref="rangeFrom" />
+        ///     or greater than <see paramref="rangeTo" />.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
@@ -40,8 +40,8 @@ namespace Ardalis.GuardClauses
         }
 
         /// <summary>
-        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see cref="input" /> is less than <see cref="rangeFrom" />
-        ///     or greater than <see cref="rangeTo" />.
+        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see paramref="input" /> is less than <see paramref="rangeFrom" />
+        ///     or greater than <see paramref="rangeTo" />.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
@@ -56,8 +56,8 @@ namespace Ardalis.GuardClauses
         }
 
         /// <summary>
-        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see cref="input" /> is less than <see cref="rangeFrom" />
-        ///     or greater than <see cref="rangeTo" />.
+        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see paramref="input" /> is less than <see paramref="rangeFrom" />
+        ///     or greater than <see paramref="rangeTo" />.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
@@ -74,8 +74,8 @@ namespace Ardalis.GuardClauses
         }
 
         /// <summary>
-        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see cref="input" /> is less than <see cref="rangeFrom" />
-        ///     or greater than <see cref="rangeTo" />.
+        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see paramref="input" /> is less than <see paramref="rangeFrom" />
+        ///     or greater than <see paramref="rangeTo" />.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
@@ -90,7 +90,7 @@ namespace Ardalis.GuardClauses
         }
 
         /// <summary>
-        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see cref="input" /> is not in the range of valid
+        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see paramref="input" /> is not in the range of valid
         ///     <see cref="SqlDateTime" /> values.
         /// </summary>
         /// <param name="guardClause"></param>

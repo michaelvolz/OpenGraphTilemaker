@@ -19,7 +19,7 @@ namespace Ardalis.GuardClauses
     public static partial class GuardClauseExtensions
     {
         /// <summary>
-        ///     Throws an <see cref="ArgumentDefaultException" /> if <see cref="input" /> is the default value.
+        ///     Throws an <see cref="ArgumentDefaultException" /> if <see paramref="input" /> is the default value.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
@@ -35,7 +35,7 @@ namespace Ardalis.GuardClauses
         }
 
         /// <summary>
-        ///     Throws an <see cref="ArgumentDefaultException" /> if <see cref="input" /> is the default value.
+        ///     Throws an <see cref="ArgumentDefaultException" /> if <see paramref="input" /> is the default value.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>

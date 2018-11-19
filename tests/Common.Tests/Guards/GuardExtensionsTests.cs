@@ -1,5 +1,6 @@
 ﻿using System;
 using Ardalis.GuardClauses;
+using AutoFixture.Xunit2;
 using BaseTestCode;
 using Common.Extensions;
 using FluentAssertions;
@@ -17,12 +18,10 @@ namespace Common.Tests.Guards
         [InlineData(null, "Value cannot be null.")]
         [InlineData("", "Value cannot be empty.")]
         [InlineData("     ", "Value cannot be whitespace.")]
-        public void GuardNullOrWhiteSpace(string value, string expected)
+        public void GuardNullOrWhiteSpace(string testParameter, string expected)
         {
-            var parameterName = nameof(value);
-
             try {
-                Guard.Against.NullOrWhiteSpace(() => value);
+                Guard.Against.NullOrWhiteSpace(() => testParameter);
             }
             catch (Exception e) {
                 var message = e.RewindStackTraceMessage();
@@ -31,7 +30,7 @@ namespace Common.Tests.Guards
                 TestConsole.WriteLine(message);
 
                 message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-                message.Should().Contain(parameterName);
+                message.Should().Contain(nameof(testParameter));
                 message.Should().Contain(expected);
                 message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNullOrWhiteSpace)}*");
                 message.Should().NotContain("GuardClauseExtensions");
@@ -42,11 +41,10 @@ namespace Common.Tests.Guards
             "No exception thrown!".Should().Be("This should never execute!");
         }
 
-        [Fact]
-        public void GuardCondition()
+        [Theory]
+        [AutoData]
+        public void GuardCondition(string parameterName)
         {
-            var parameterName = "Jauser";
-
             try {
                 Guard.Against.Condition(() => DateTime.Now != DateTime.MinValue, parameterName);
             }
@@ -59,7 +57,7 @@ namespace Common.Tests.Guards
                 message.Should().StartWithEquivalent(GuardException.GuardPrefix);
                 message.Should().Contain(parameterName);
                 message.Should().Contain("Condition");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardCondition)}()*");
+                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardCondition)}*");
                 message.Should().NotContain("GuardClauseExtensions");
 
                 return;
@@ -68,11 +66,10 @@ namespace Common.Tests.Guards
             "No exception thrown!".Should().Be("This should never execute!");
         }
 
-        [Fact]
-        public void GuardAssert()
+        [Theory]
+        [AutoData]
+        public void GuardAssert(string parameterName)
         {
-            var parameterName = "Jauser";
-
             try {
                 Guard.Against.Assert(() => DateTime.Now == DateTime.MinValue, parameterName);
             }
@@ -85,7 +82,7 @@ namespace Common.Tests.Guards
                 message.Should().StartWithEquivalent(GuardException.GuardPrefix);
                 message.Should().Contain(parameterName);
                 message.Should().Contain("Assertion");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardAssert)}()*");
+                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardAssert)}*");
                 message.Should().NotContain("GuardClauseExtensions");
 
                 return;
@@ -94,11 +91,10 @@ namespace Common.Tests.Guards
             "No exception thrown!".Should().Be("This should never execute!");
         }
 
-        [Fact]
-        public void GuardEnum()
+        [Theory]
+        [AutoData]
+        public void GuardEnum(string parameterName)
         {
-            var parameterName = "Jauser";
-
             var invalidValue = 3;
             try {
                 Guard.Against.Enum(invalidValue, typeof(CacheState), parameterName);
@@ -112,7 +108,7 @@ namespace Common.Tests.Guards
                 message.Should().StartWithEquivalent(GuardException.GuardPrefix);
                 message.Should().Contain(parameterName);
                 message.Should().Contain($"The value of argument '{parameterName}' ({invalidValue}) is invalid for Enum type '{nameof(CacheState)}'.");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardEnum)}()*");
+                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardEnum)}*");
                 message.Should().NotContain("GuardClauseExtensions");
 
                 return;
@@ -138,7 +134,7 @@ namespace Common.Tests.Guards
                 message.Should().StartWithEquivalent(GuardException.GuardPrefix);
                 message.Should().Contain(parameterName);
                 message.Should().Contain("Value cannot be default.");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardException_ToString)}()*");
+                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardException_ToString)}*");
                 message.Should().Contain("GuardClauseExtensions");
                 return;
             }
@@ -163,7 +159,7 @@ namespace Common.Tests.Guards
                 message.Should().StartWithEquivalent(GuardException.GuardPrefix);
                 message.Should().Contain(parameterName);
                 message.Should().Contain("Value cannot be null.");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNull)}()*");
+                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNull)}*");
                 message.Should().NotContain("GuardClauseExtensions");
                 return;
             }
@@ -188,7 +184,7 @@ namespace Common.Tests.Guards
                 message.Should().StartWithEquivalent(GuardException.GuardPrefix);
                 message.Should().Contain(parameterName);
                 message.Should().Contain("Value cannot be default.");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(RewindCallStackMessage_GuardAgainstDefault)}()*");
+                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(RewindCallStackMessage_GuardAgainstDefault)}*");
                 message.Should().NotContain("GuardClauseExtensions");
                 return;
             }
@@ -196,10 +192,9 @@ namespace Common.Tests.Guards
             "No exception thrown!".Should().Be("This should never execute!");
         }
 
-        [Fact]
-        public void RewindCallStackMessage_GuardAgainstNull() {
-            var parameterName = "Jauser";
-
+        [Theory]
+        [AutoData]
+        public void RewindCallStackMessage_GuardAgainstNull(string parameterName) {
             try {
                 Guard.Against.Null<object>(null, parameterName);
             }
@@ -212,7 +207,7 @@ namespace Common.Tests.Guards
                 message.Should().StartWithEquivalent(GuardException.GuardPrefix);
                 message.Should().Contain(parameterName);
                 message.Should().Contain("Value cannot be null.");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(RewindCallStackMessage_GuardAgainstNull)}()*");
+                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(RewindCallStackMessage_GuardAgainstNull)}*");
                 message.Should().NotContain("GuardClauseExtensions");
                 return;
             }

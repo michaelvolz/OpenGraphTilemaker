@@ -19,8 +19,8 @@ namespace Ardalis.GuardClauses
     public static partial class GuardClauseExtensions
     {
         /// <summary>
-        ///     Throws an <see cref="InvalidEnumArgumentException" /> if <see cref="input" /> is not a valid value for the defined
-        ///     <see cref="enumClass" />.
+        ///     Throws an <see cref="InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the defined
+        ///     <see paramref="enumClass" />.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>
@@ -33,8 +33,8 @@ namespace Ardalis.GuardClauses
         }
 
         /// <summary>
-        ///     Throws an <see cref="InvalidEnumArgumentException" /> if <see cref="input" /> is not a valid value for the defined
-        ///     <see cref="enumClass" />.
+        ///     Throws an <see cref="InvalidEnumArgumentException" /> if <see paramref="input" /> is not a valid value for the defined
+        ///     <see paramref="enumClass" />.
         /// </summary>
         /// <param name="guardClause"></param>
         /// <param name="input"></param>

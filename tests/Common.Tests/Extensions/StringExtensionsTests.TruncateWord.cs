@@ -1,5 +1,6 @@
 ﻿using Common.Extensions;
 using FluentAssertions;
+using JetBrains.Annotations;
 using Xunit;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -8,7 +9,7 @@ namespace Common.Tests.Extensions
 {
     public partial class StringExtensionsTests
     {
-        public static object[][] TestData => new[] {
+        public static object[][] TestData { [UsedImplicitly] get; } = {
             new object[] { "Text1_Text2_Text3", 15, "Text1_Text2_Tex" + Ellipsis },
             new object[] { "Text1 Text2 Text3", 15, "Text1 Text2" + Ellipsis },
             new object[] { "Text1 - Text2 - Text3", 15, "Text1 - Text2 - " + Ellipsis },

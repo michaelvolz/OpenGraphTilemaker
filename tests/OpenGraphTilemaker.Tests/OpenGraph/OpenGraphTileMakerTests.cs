@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using AutoFixture.Xunit2;
 using BaseTestCode;
 using FluentAssertions;
 using Microsoft.Extensions.Options;
@@ -18,7 +19,6 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
     public class OpenGraphTileMakerTests : BaseTest
     {
         public OpenGraphTileMakerTests(ITestOutputHelper testConsole) : base(testConsole) {
-            // Arrange
             var options = Options.Create(new DiscCacheOptions(@"C:\WINDOWS\Temp\", CacheState.Disabled));
             _webLoader = new HttpLoader(new DiscCache(options));
             _tileMaker = new OpenGraphTileMaker();
@@ -27,10 +27,9 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
         private readonly OpenGraphTileMaker _tileMaker;
         private readonly HttpLoader _webLoader;
 
-        [Fact]
-        public async Task LoadWeb_HtmlDoc_ValidContent() {
-            // Act
-            var fakeResponse = "dummy content";
+        [Theory]
+        [AutoData]
+        public async Task LoadWeb_HtmlDoc_ValidContent(string fakeResponse) {
             var result = await _webLoader.LoadAsync(HttpClient(fakeResponse), new Uri("https://example.org"));
 
             // Assert
@@ -106,7 +105,6 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
 
         [Fact]
         public async Task Scrape_TestHtml1_AllValuesCorrect() {
-            // Act
             var source = "./TestData/TestHtml1.html";
             await _tileMaker.ScrapeAsync(source, async () => await FileLoader.LoadAsync(source));
 

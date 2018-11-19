@@ -1,6 +1,7 @@
 using System;
 using BlazorState;
 using Common;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using OpenGraphTilemaker.GetPocket;
@@ -9,6 +10,9 @@ using OpenGraphTilemaker.Web.Client.ClientApp.Services;
 
 namespace OpenGraphTilemaker.Web.Client
 {
+    /// <summary>
+    ///     Client Startup.
+    /// </summary>
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services) {
@@ -44,6 +48,7 @@ namespace OpenGraphTilemaker.Web.Client
             });
         }
 
+        [UsedImplicitly]
         public void Configure(IBlazorApplicationBuilder app) => app.AddComponent<App>("app");
     }
 }
