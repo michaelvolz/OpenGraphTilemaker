@@ -16,9 +16,7 @@ namespace Ardalis.GuardClauses
         }
 
         public static MemberExpression MemberExpression<T>(this Expression<Func<T>> func) {
-            var member = func.Body as MemberExpression;
-            var unary = func.Body as UnaryExpression;
-            return member ?? (unary != null ? unary.Operand as MemberExpression : null);
+            return ((func.Body as UnaryExpression)?.Operand ?? func.Body) as MemberExpression;
         }
     }
 }

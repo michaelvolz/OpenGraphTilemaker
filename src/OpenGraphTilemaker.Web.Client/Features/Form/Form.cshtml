@@ -1,36 +1,38 @@
 ﻿@page "/form"
 @inherits FormModel
 
-<h1>Form @Person.HasError()</h1>
+<h1>Form</h1>
 
-<div class="container needs-validation" novalidate>
+<div class="container">
     <p class="form-group">
         <label for="firstname">First Name</label>
-        <input id="firstname" type="text" class="form-control @Person.ClassName(() => Person.FirstName)" bind="@Person.FirstName" placeholder="First Name"/>
+        <input id="firstname" type="text" class="form-control @IsValid(() => Person.FirstName)" bind="@Person.FirstName" placeholder="First Name"/>
         <div class="valid-feedback">Success! You've done it.</div>
         <div class="invalid-feedback">
-            <ValidationError Subject="@FormState.Person" Property="@nameof(Person.FirstName)"/>
+            <ValidationError Subject="@Person" Property="@nameof(Person.FirstName)"/>
         </div>
     </p>
     <p class="form-group">
         <label for="lastname">Last Name</label>
-        <input id="lastname" type="text" class="form-control @Person.ClassName(() => Person.LastName)" bind="@Person.LastName" placeholder="Last Name"/>
+        <input id="lastname" type="text" class="form-control @IsValid(() => Person.LastName)" bind="@Person.LastName" placeholder="Last Name"/>
         <div class="valid-feedback">Success! You've done it.</div>
         <div class="invalid-feedback">
-            <ValidationError Subject="@FormState.Person" Property="@nameof(Person.LastName)"/>
+            <ValidationError Subject="@Person" Property="@nameof(Person.LastName)"/>
         </div>
     </p>
     <p class="form-group">
         <label for="age">Age</label>
-        <input id="age" type="number" class="form-control  @Person.ClassName(() => Person.Age)" bind="@Person.Age" placeholder="Age"/>
+        <input id="age" type="number" class="form-control  @IsValid(() => Person.Age)" bind="@Person.Age" placeholder="Age"/>
         <small class="form-text text-muted">We'll never share your age with anyone else.</small>
-        <ValidationError Subject="@FormState.Person" Property="@nameof(Person.Age)"/>
+        <div class="invalid-feedback">
+            <ValidationError Subject="@Person" Property="@nameof(Person.Age)"/>
+        </div>
     </p>
 
     <hr/>
 
-    <div class="">
-        <ValidationSummary Subject="@FormState.Person"/>
+    <div class="form-text">
+        <ValidationSummary Subject="@Person"/>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

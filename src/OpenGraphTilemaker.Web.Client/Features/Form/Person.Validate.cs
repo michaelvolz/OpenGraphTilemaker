@@ -25,7 +25,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
             return property != null ? Validate(property.MemberExpressionName()) : Validate();
         }
 
-        public string ClassName(Expression<Func<object>> property) {
+        public string IsValid(Expression<Func<object>> property) {
             return HasError(property) ? "is-invalid" : "is-valid";
         }
 

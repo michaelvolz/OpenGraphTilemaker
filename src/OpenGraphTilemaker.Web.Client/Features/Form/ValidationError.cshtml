@@ -1,6 +1,6 @@
 ﻿@using FluentValidation.Results
 @if (GetValidationErrors().Any()) {
-    <div class="error text-danger">
+    <div class="text-danger">
         <ul>
             @foreach (var error in GetValidationErrors()) {
                 <li>@error</li>
