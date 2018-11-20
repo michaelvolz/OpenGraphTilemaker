@@ -1,4 +1,36 @@
 ﻿@page "/form"
 @inherits FormModel
 
-<h1>Form</h1>
+<h1>Form </h1>
+
+
+<div class="container">
+    <p class="form-group row">
+        <label for="firstname" class="col-sm-2 col-form-label text-success">First Name</label>
+        <div class="col-sm-7">
+            <input id="firstname" type="text" class="form-control is-valid" bind="@FormState.Person.FirstName"/>
+            <ValidationError Subject="@FormState.Person" Property="@nameof(FormState.Person.FirstName)"/>
+
+        </div>
+    </p>
+    <p class="form-group row">
+        <label for="lastname" class="col-sm-2 col-form-label text-success">Last Name</label>
+        <div class="col-sm-7">
+            <input id="lastname" type="text" class="form-control is-valid" bind="@FormState.Person.LastName"/>
+            <ValidationError Subject="@FormState.Person" Property="@nameof(FormState.Person.LastName)"/>
+        </div>
+    </p>
+    <p class="form-group row">
+        <label for="age" class="col-sm-2 col-form-label text-success">Age</label>
+        <div class="col-sm-7">
+            <input id="age" type="number" class="form-control is-valid" bind="@FormState.Person.Age"/>
+            <ValidationError Subject="@FormState.Person" Property="@nameof(FormState.Person.Age)"/>
+        </div>
+    </p>
+</div>
+
+<hr/>
+
+<div class="col-sm-7">
+    <ValidationSummary Subject="@FormState.Person"/>
+</div>

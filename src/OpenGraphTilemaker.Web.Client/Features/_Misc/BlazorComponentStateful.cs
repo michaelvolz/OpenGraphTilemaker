@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
-    public class BlazorComponentStateful : BlazorComponent, IBlazorStateComponent
+    public class BlazorComponentStateful : BlazorComponent
     {
         private readonly Lazy<ILogger<BlazorComponentStateful>> _lazyLogger;
 
@@ -23,10 +23,6 @@ namespace OpenGraphTilemaker.Web.Client.Features
 
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public IStore Store { get; set; }
-
-        public void ReRender() {
-            throw new NotImplementedException();
-        }
 
         protected async Task RequestAsync<T>(IRequest<T> request) {
             await Time.ThisAsync(async () => await Mediator.Send(request), request.GetType().Name);

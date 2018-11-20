@@ -1,0 +1,25 @@
+﻿@using Blazor.Validation.Shared
+@using FluentValidation.Results
+@if (GetValidationErrors().Any()) {
+    <div class="alert-danger">
+        <ul>
+            @foreach (var error in GetValidationErrors()) {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+@functions {
+
+    [Parameter]
+    protected object Subject { get; set; }
+
+    [Parameter]
+    protected string Property { get; set; }
+
+    public IList<ValidationFailure> GetValidationErrors() {
+        return ((IValidate)Subject).GetValidationErrors(Property);
+    }
+
+}
