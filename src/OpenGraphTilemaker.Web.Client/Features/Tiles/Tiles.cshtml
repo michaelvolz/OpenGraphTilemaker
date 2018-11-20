@@ -1,10 +1,9 @@
 ﻿@inherits TilesModel;
-
 @{ var columns = 3; }
 
 <div>
-    <a href="#" class="btn btn-primary" onclick="@OnSortPropertyButtonClick">Sort Property</a>
-    <a href="#" class="btn btn-primary" onclick="@OnSortOrderButtonClick">Sort Order</a>
+    <button class="btn btn-primary" onclick="@OnSortPropertyButtonClick">Sort Property</button>
+    <button class="btn btn-primary" onclick="@OnSortOrderButtonClick">Sort Order</button>
     @TilesState.SortProperty, @TilesState.SortOrder, @TilesState.Tiles.Count
 </div>
 

@@ -13,28 +13,31 @@
 
   <!-- We always want a good debugging experience in tests -->
   <PropertyGroup>
+    <NoWarn>1701;1702;CS1591;CA1801;SA0001</NoWarn>
     <Optimize>false</Optimize>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <EmbedAllSources>true</EmbedAllSources>
     <Deterministic>true</Deterministic>
     <PreserveCompilationContext>true</PreserveCompilationContext>
+    <DocumentationFile>_$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
   
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>_$(MSBuildProjectName).xml</DocumentationFile>
-    <NoWarn>1701;1702;CS1591;CA1801;SA0001</NoWarn>
+  <PropertyGroup>
+    <RuleSetRelease Condition="$(RuleSetRelease) == ''">Solution.ruleset</RuleSetRelease>
+    <RuleSetDebug Condition="$(RuleSetDebug) == ''">Solution.debug.ruleset</RuleSetDebug>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)Solution.debug.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetDebug)</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>_$(MSBuildProjectName).xml</DocumentationFile>
-    <NoWarn>1701;1702;CS1591;CA1801;SA0001</NoWarn>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)Solution.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -50,6 +53,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.0-preview3-35497" PrivateAssets="all" />
     <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
-    <None Include="$(CodeAnalysisRuleSet)" Condition="'$(CodeAnalysisRuleSet)' != ''" Link="%(Filename)%(Extension)" />
-  </ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)$(RuleSetRelease)" Condition="'$(MSBuildThisFileDirectory)$(RuleSetRelease)' != ''" Link="%(Filename)%(Extension)" />
+    <None Include="$(MSBuildThisFileDirectory)$(RuleSetDebug)" Condition="'$(MSBuildThisFileDirectory)$(RuleSetDebug)' != ''" Link="%(Filename)%(Extension)" />
+ </ItemGroup>
 </Project>

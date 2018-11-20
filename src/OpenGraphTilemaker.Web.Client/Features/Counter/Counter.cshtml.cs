@@ -10,6 +10,19 @@ namespace OpenGraphTilemaker.Web.Client.Features.Counter
 
         public async Task ButtonClick() {
             await RequestAsync(new IncrementCounterRequest { Amount = 2 });
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

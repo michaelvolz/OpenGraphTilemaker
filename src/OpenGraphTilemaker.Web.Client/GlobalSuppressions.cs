@@ -11,3 +11,6 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "Razor/Blazor", Scope = "namespace", Target = "OpenGraphTilemaker.Web.Client.Features.Counter")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "Razor/Blazor", Scope = "type", Target = "~T:OpenGraphTilemaker.Web.Client.Features.Counter.CounterModel")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "Razor/Blazor", Scope = "namespace", Target = "OpenGraphTilemaker.Web.Client.Features.Form")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "Razor/Blazor", Scope = "type", Target = "~T:OpenGraphTilemaker.Web.Client.Features.Form.FormModel")]
