@@ -3,9 +3,14 @@
 -->
 <Project>
   <PropertyGroup>
-    <Version>0.11</Version>
+    <Version Condition="$(Version) == ''">0.1.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>$(Version)</Version>
     <Authors>Michael A. Volz</Authors>
-    <FileVersion>0.1.0.0</FileVersion>
+    <FileVersion>$(Version)</FileVersion>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
     <Product>OpenGraphTileMaker</Product>
     <Copyright>Copyright © 2018, Michael A. Volz</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
@@ -21,31 +26,24 @@
     <Deterministic>true</Deterministic>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <DocumentationFile>_$(MSBuildProjectName).xml</DocumentationFile>
-  </PropertyGroup>
-  
-  <PropertyGroup>
-    <RuleSetRelease Condition="$(RuleSetRelease) == ''">Solution.ruleset</RuleSetRelease>
-    <RuleSetDebug Condition="$(RuleSetDebug) == ''">Solution.debug.ruleset</RuleSetDebug>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetDebug)</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup>
+  <PropertyGroup>
+    <RuleSetRelease Condition="$(RuleSetRelease) == ''">Solution.ruleset</RuleSetRelease>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Aspnetcore.Mvc.Analyzers" Version="2.2.0-preview3-35497" PrivateAssets="all" />
@@ -54,6 +52,6 @@
     <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
     <None Include="$(MSBuildThisFileDirectory)$(RuleSetRelease)" Condition="'$(MSBuildThisFileDirectory)$(RuleSetRelease)' != ''" Link="%(Filename)%(Extension)" />
-    <None Include="$(MSBuildThisFileDirectory)$(RuleSetDebug)" Condition="'$(MSBuildThisFileDirectory)$(RuleSetDebug)' != ''" Link="%(Filename)%(Extension)" />
- </ItemGroup>
+  </ItemGroup>
+
 </Project>
