@@ -1,5 +1,4 @@
-﻿@using Blazor.Validation.Shared
-@using FluentValidation.Results
+﻿@using FluentValidation.Results
 @if (GetValidationErrors().Any()) {
     <div class="text-danger">
         <ul>
@@ -16,7 +15,7 @@
     protected object Subject { get; set; }
 
     public IList<ValidationFailure> GetValidationErrors() {
-        return ((IValidate)Subject).GetValidationErrors();
+        return ((IValidate)Subject).Validate();
     }
 
 }

@@ -12,14 +12,13 @@ namespace Ardalis.GuardClauses
     public static partial class GuardClauseExtensions
     {
         public static string MemberExpressionName<T>(this Expression<Func<T>> func) {
-            return func.MemberExpression().Member.Name;
+            return func.MemberExpression()?.Member.Name ?? "MemberExpression-ERROR";
         }
 
         public static MemberExpression MemberExpression<T>(this Expression<Func<T>> func) {
-            if (!(func.Body is MemberExpression member))
-                throw new ArgumentException($"'{func}'  is not a valid expression for this method.");
-
-            return member;
+            var member = func.Body as MemberExpression;
+            var unary = func.Body as UnaryExpression;
+            return member ?? (unary != null ? unary.Operand as MemberExpression : null);
         }
     }
 }

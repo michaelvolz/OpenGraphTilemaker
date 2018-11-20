@@ -1,7 +1,6 @@
-﻿@using Blazor.Validation.Shared
-@using FluentValidation.Results
+﻿@using FluentValidation.Results
 @if (GetValidationErrors().Any()) {
-    <div class="alert-danger">
+    <div class="error text-danger">
         <ul>
             @foreach (var error in GetValidationErrors()) {
                 <li>@error</li>
@@ -19,7 +18,7 @@
     protected string Property { get; set; }
 
     public IList<ValidationFailure> GetValidationErrors() {
-        return ((IValidate)Subject).GetValidationErrors(Property);
+        return ((IValidate)Subject).Validate(Property);
     }
 
 }

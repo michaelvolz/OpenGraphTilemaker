@@ -31,7 +31,7 @@ namespace Common
             return FindMemberOrNull(expression).Name;
         }
 
-        private static MemberInfo FindMemberOrNull(Expression expression) {
+        public static MemberInfo FindMemberOrNull(Expression expression) {
             switch (expression.NodeType) {
                 case ExpressionType.Convert:
                     return FindMemberOrNull(((UnaryExpression)expression).Operand);

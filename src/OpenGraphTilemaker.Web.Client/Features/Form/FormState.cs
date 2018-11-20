@@ -1,6 +1,4 @@
-﻿using Blazor.Validation.Shared;
-
-namespace OpenGraphTilemaker.Web.Client.Features.Form
+﻿namespace OpenGraphTilemaker.Web.Client.Features.Form
 {
     public partial class FormState
     {
