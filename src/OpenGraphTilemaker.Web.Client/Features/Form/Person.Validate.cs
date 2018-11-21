@@ -19,7 +19,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
             var validator = (IValidator<T>)Activator.CreateInstance<TValidator>();
 
             var result = string.IsNullOrWhiteSpace(property)
-                ? validator.Validate<T>(this as T)
+                ? validator.Validate(this as T)
                 : validator.Validate(this as T, property);
 
             return result.Errors;
@@ -29,7 +29,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
             var validator = (IValidator<T>)Activator.CreateInstance<TValidator>();
 
             var result = string.IsNullOrWhiteSpace(property)
-                ? await validator.ValidateAsync<T>(obj, token)
+                ? await validator.ValidateAsync(obj, token)
                 : await validator.ValidateAsync(obj, token, property);
 
             return result.Errors;
