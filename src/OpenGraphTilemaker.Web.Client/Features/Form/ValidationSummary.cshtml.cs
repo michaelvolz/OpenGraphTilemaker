@@ -9,15 +9,15 @@ using Microsoft.AspNetCore.Blazor.Components;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Form
 {
-    public class ValidationSummaryModel : BlazorComponent
+    public class ValidationSummaryModel<TItem> : BlazorComponent
     {
-        [Parameter] protected object Subject { get; set; }
+        [Parameter] protected TItem Subject { get; set; }
 
         protected IList<ValidationFailure> ValidationFailures { get; set; }
         protected bool HasValidationFailures => ValidationFailures.Any();
 
         protected override async Task OnParametersSetAsync() {
-            ValidationFailures = await ((IValidate)Subject).ValidateAsync();
+            ValidationFailures = await ((IValidate)Subject).ValidateAsync(Subject);
         }
     }
 }

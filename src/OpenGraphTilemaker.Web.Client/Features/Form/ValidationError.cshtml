@@ -1,4 +1,5 @@
-﻿@inherits ValidationErrorModel
+﻿@typeparam TItem
+@inherits ValidationErrorModel<TItem>
 @if (HasValidationFailures) {
     <div class="text-danger">
         <ul>

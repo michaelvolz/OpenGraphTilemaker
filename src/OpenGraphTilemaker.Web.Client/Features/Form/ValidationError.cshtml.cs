@@ -9,16 +9,16 @@ using Microsoft.AspNetCore.Blazor.Components;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Form
 {
-    public class ValidationErrorModel : BlazorComponent
+    public class ValidationErrorModel<TItem> : BlazorComponent
     {
-        [Parameter] protected object Subject { get; set; }
+        [Parameter] protected TItem Subject { get; set; }
         [Parameter] protected string Property { get; set; }
 
         protected IList<ValidationFailure> ValidationFailures { get; set; }
         protected bool HasValidationFailures => ValidationFailures.Any();
 
         protected override async Task OnParametersSetAsync() {
-            ValidationFailures = await ((IValidate)Subject).ValidateAsync(Property);
+            ValidationFailures = await ((IValidate)Subject).ValidateAsync(Subject, Property);
         }
     }
 }

@@ -3,7 +3,7 @@
 
 namespace OpenGraphTilemaker.Web.Client.Features.Form
 {
-    public partial class Person
+    public class Person : ValidationBase<PersonValidator>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

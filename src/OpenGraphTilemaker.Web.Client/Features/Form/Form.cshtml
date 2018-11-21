@@ -1,39 +1,45 @@
 ﻿@page "/form"
 @inherits FormModel
 
+@{
+    RenderFragment successText = @<span>Success! You've done it.</span>;
+    RenderFragment success = @<div class="valid-feedback">@successText</div>;
+}
+
 <h1>Form</h1>
 
 <div class="@SuccessVisibility">
-    <h4 class="text-success">Success! You've done it.</h4>
+    <h4 class="text-success">@successText</h4>
 </div>
 
 <div class="@ErrorVisibility">
-    <ValidationSummary Subject="@Person"/>
+    <ValidationSummary Subject="@Person" TItem="Person"/>
 </div>
 
 <div class="container @FormVisibility">
     <p class="form-group">
         <label for="firstname">First Name</label>
         <input id="firstname" type="text" class="form-control @IsValid(() => Person.FirstName)" bind="@Person.FirstName"/>
-        <div class="valid-feedback">Success! You've done it.</div>
+        @success
         <div class="invalid-feedback">
-            <ValidationError Subject="@Person" Property="@nameof(Person.FirstName)"/>
+            <ValidationError Subject="@Person" Property="@nameof(Person.FirstName)" TItem="Person"/>
         </div>
     </p>
     <p class="form-group">
         <label for="lastname">Last Name</label>
         <input id="lastname" type="text" class="form-control @IsValid(() => Person.LastName)" bind="@Person.LastName"/>
-        <div class="valid-feedback">Success! You've done it.</div>
+        @success
         <div class="invalid-feedback">
-            <ValidationError Subject="@Person" Property="@nameof(Person.LastName)"/>
+            <ValidationError Subject="@Person" Property="@nameof(Person.LastName)" TItem="Person"/>
         </div>
     </p>
     <p class="form-group">
         <label for="age">Age</label>
         <input id="age" type="number" class="form-control  @IsValid(() => Person.Age)" bind="@Person.Age"/>
         <small class="form-text text-muted">We'll never share your age with anyone else.</small>
+        @success
         <div class="invalid-feedback">
-            <ValidationError Subject="@Person" Property="@nameof(Person.Age)"/>
+            <ValidationError Subject="@Person" Property="@nameof(Person.Age)" TItem="Person"/>
         </div>
     </p>
 

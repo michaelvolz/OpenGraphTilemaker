@@ -19,13 +19,13 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
         public string ErrorVisibility { get; set; } = Hidden;
 
         protected async Task SubmitAsync() {
-            if (!Person.HasError()) {
+            if (!Person.HasError<Person>()) {
                 FormVisibility = Hidden;
                 ErrorVisibility = Hidden;
                 SuccessVisibility = Revealed;
             }
 
-            if (Person.HasError()) {
+            if (Person.HasError<Person>()) {
                 ErrorVisibility = Revealed;
                 await JSRuntime.Current.InvokeAsync<bool>("showAlert", ThereIsStillSomethingWrong);
                 Console.WriteLine($"### {ThereIsStillSomethingWrong}");
@@ -33,7 +33,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
         }
 
         protected string IsValid(Expression<Func<object>> property) {
-            return Person.IsValid(property);
+            return Person.IsValid<Person>(property);
         }
     }
 }
