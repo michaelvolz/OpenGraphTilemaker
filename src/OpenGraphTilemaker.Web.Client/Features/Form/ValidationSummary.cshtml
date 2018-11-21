@@ -1,21 +1,10 @@
-﻿@using FluentValidation.Results
-@if (GetValidationErrors().Any()) {
+﻿@inherits ValidationSummaryModel
+@if (HasValidationFailures) {
     <div class="text-danger">
         <ul>
-            @foreach (var error in GetValidationErrors()) {
+            @foreach (var error in ValidationFailures) {
                 <li>@error</li>
             }
         </ul>
     </div>
-}
-
-@functions {
-
-    [Parameter]
-    protected object Subject { get; set; }
-
-    public IList<ValidationFailure> GetValidationErrors() {
-        return ((IValidate)Subject).Validate();
-    }
-
 }

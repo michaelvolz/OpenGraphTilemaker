@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using FluentValidation;
 using FluentValidation.Results;
@@ -16,7 +18,19 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
         public IList<ValidationFailure> Validate(string property = null) {
             var validator = new PersonValidator();
 
-            var result = string.IsNullOrWhiteSpace(property) ? validator.Validate(this) : validator.Validate(this, property);
+            var result = string.IsNullOrWhiteSpace(property)
+                ? validator.Validate(this)
+                : validator.Validate(this, property);
+
+            return result.Errors;
+        }
+
+        public async Task<IList<ValidationFailure>> ValidateAsync(string property = null, CancellationToken token = default) {
+            var validator = new PersonValidator();
+
+            var result = string.IsNullOrWhiteSpace(property)
+                ? await validator.ValidateAsync(this, token)
+                : await validator.ValidateAsync(this, token, property);
 
             return result.Errors;
         }

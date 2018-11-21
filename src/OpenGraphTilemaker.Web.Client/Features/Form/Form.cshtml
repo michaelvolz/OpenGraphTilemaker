@@ -1,9 +1,6 @@
 ﻿@page "/form"
 @inherits FormModel
 
-@functions {
-}
-
 <h1>Form</h1>
 
 <div class="@SuccessVisibility">
@@ -17,7 +14,7 @@
 <div class="container @FormVisibility">
     <p class="form-group">
         <label for="firstname">First Name</label>
-        <input id="firstname" type="text" class="form-control @IsValid(() => Person.FirstName)" bind="@Person.FirstName" placeholder="First Name"/>
+        <input id="firstname" type="text" class="form-control @IsValid(() => Person.FirstName)" bind="@Person.FirstName"/>
         <div class="valid-feedback">Success! You've done it.</div>
         <div class="invalid-feedback">
             <ValidationError Subject="@Person" Property="@nameof(Person.FirstName)"/>
@@ -25,7 +22,7 @@
     </p>
     <p class="form-group">
         <label for="lastname">Last Name</label>
-        <input id="lastname" type="text" class="form-control @IsValid(() => Person.LastName)" bind="@Person.LastName" placeholder="Last Name"/>
+        <input id="lastname" type="text" class="form-control @IsValid(() => Person.LastName)" bind="@Person.LastName"/>
         <div class="valid-feedback">Success! You've done it.</div>
         <div class="invalid-feedback">
             <ValidationError Subject="@Person" Property="@nameof(Person.LastName)"/>
@@ -33,7 +30,7 @@
     </p>
     <p class="form-group">
         <label for="age">Age</label>
-        <input id="age" type="number" class="form-control  @IsValid(() => Person.Age)" bind="@Person.Age" placeholder="Age"/>
+        <input id="age" type="number" class="form-control  @IsValid(() => Person.Age)" bind="@Person.Age"/>
         <small class="form-text text-muted">We'll never share your age with anyone else.</small>
         <div class="invalid-feedback">
             <ValidationError Subject="@Person" Property="@nameof(Person.Age)"/>
@@ -42,5 +39,5 @@
 
     <hr/>
 
-    <button type="submit" class="btn btn-primary" onclick="@Submit">Submit</button>
+    <button type="submit" class="btn btn-primary" onclick="@(async () => await SubmitAsync())">Submit</button>
 </div>
