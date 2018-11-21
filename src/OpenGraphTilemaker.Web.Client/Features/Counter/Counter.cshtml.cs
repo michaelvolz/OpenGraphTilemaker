@@ -8,7 +8,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Counter
     {
         public CounterState CounterState => Store.GetState<CounterState>();
 
-        public async Task ButtonClick() {
+        public async Task ButtonClickAsync() {
             await RequestAsync(new IncrementCounterRequest { Amount = 2 });
         }
     }

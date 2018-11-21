@@ -1,9 +1,20 @@
 ﻿@page "/form"
 @inherits FormModel
 
+@functions {
+}
+
 <h1>Form</h1>
 
-<div class="container">
+<div class="@SuccessVisibility">
+    <h4 class="text-success">Success! You've done it.</h4>
+</div>
+
+<div class="@ErrorVisibility">
+    <ValidationSummary Subject="@Person"/>
+</div>
+
+<div class="container @FormVisibility">
     <p class="form-group">
         <label for="firstname">First Name</label>
         <input id="firstname" type="text" class="form-control @IsValid(() => Person.FirstName)" bind="@Person.FirstName" placeholder="First Name"/>
@@ -31,9 +42,5 @@
 
     <hr/>
 
-    <div class="form-text">
-        <ValidationSummary Subject="@Person"/>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" onclick="@Submit">Submit</button>
 </div>

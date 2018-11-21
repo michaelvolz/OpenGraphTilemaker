@@ -5,4 +5,4 @@
 
 <p>Current count: @CounterState.Count</p>
 
-<button class="btn btn-primary" onclick="@ButtonClick">Click me</button>
+<button class="btn btn-primary" onclick="@(async () => await ButtonClickAsync())">Click me</button>
