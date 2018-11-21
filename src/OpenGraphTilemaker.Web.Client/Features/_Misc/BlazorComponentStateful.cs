@@ -4,6 +4,7 @@ using BlazorState;
 using Common;
 using MediatR;
 using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.Extensions.Logging;
 
 namespace OpenGraphTilemaker.Web.Client.Features
@@ -23,7 +24,8 @@ namespace OpenGraphTilemaker.Web.Client.Features
 
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public IStore Store { get; set; }
-
+        [Inject] public IUriHelper UriHelper { get; set; }
+        
         protected async Task RequestAsync<T>(IRequest<T> request) {
             await Time.ThisAsync(async () => await Mediator.Send(request), request.GetType().Name);
         }

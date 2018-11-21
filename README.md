@@ -1,8 +1,9 @@
-# README
+# Blazor.net (Razor Components / Serverside) Examples
 
-## Implemented
+## Implemented Features
 
+* State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and MediatR
+* Formvalidation = Fluent Validation
 * Routing => Blazor routing
-* State management => (Blazor.State)[https://github.com/TimeWarpEngineering/blazor-state]
-* Formvalidation = Razor/ASP.NET
-
+* Tests => xUnit, Autofixture, nSubstitute
+* 
