@@ -3,7 +3,24 @@
 
 @* @if (OpenGraphMetadata?.Image != null && OpenGraphMetadata?.Url != null && OpenGraphMetadata.Image.StartsWith("http")) { *@
 @if (OpenGraphMetadata?.Image != null) {
-    <div class="card" style="margin-bottom: 1em; width: 18rem;">
+    
+    <div class="card" style="margin-bottom: 1em; width: 14rem;">
+        @*<div class="card-divider">
+            @OpenGraphMetadata.Title
+        </div>*@
+        <img src="@OpenGraphMetadata.Image" alt="" title="@OpenGraphMetadata.Source">
+        <div class="card-section">
+            <h4>@OpenGraphMetadata.Title</h4>
+            <p>@OpenGraphMetadata.Description</p>
+            <a href="@OpenGraphMetadata.Url" class="button primary" target="_new">
+                <span style="color: white;">
+                    @(OpenGraphMetadata.SiteName.TruncateAtWord(25) ?? "Link")
+                </span>
+            </a>
+        </div>
+    </div>
+    
+    @*<div class="card" style="margin-bottom: 1em; width: 18rem;">
         <img class="card-img-top" src="@OpenGraphMetadata.Image" alt="" title="@OpenGraphMetadata.Source">
         <div class="card-body">
             <h5 class="card-title">@OpenGraphMetadata.Title</h5>
@@ -21,7 +38,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div>*@
 } else {
-    <div class="alert-danger" style="margin-bottom: 1em; width: 18rem;">@OpenGraphMetadata?.Source</div>
+    <div class="text alert" style="margin-bottom: 1em; width: 18rem;">@OpenGraphMetadata?.Source</div>
 }

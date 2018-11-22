@@ -2,7 +2,6 @@
   "name": "opengraphtilemaker",
   "version": "1.0.0",
   "devDependencies": {
-    "bootstrap": "4.*",
-    "daemonite-material": "4.*"
+    "foundation-sites": "6.*"
   }
 }

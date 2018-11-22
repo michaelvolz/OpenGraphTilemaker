@@ -1,45 +1,45 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">OpenGraph Tilemaker</a>
-    <button class="navbar-toggler" onclick="@ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
+﻿<div class="callout primary">
+    <a href="/">OpenGraph Tilemaker</a>
+    <button class="navbar-toggler button tiny secondary" onclick="@ToggleNavMenu">
+        <i class="fi-list"></i>
     </button>
 </div>
 
-<div class=@(CollapseNavMenu ? "collapse" : null) onclick="@ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+<div class="nav-menu @(CollapseNavMenu ? "hidden" : null)" onclick="@ToggleNavMenu">
+    <ul class="vertical menu">
+        <li>
+            <NavLink href="" Match="NavLinkMatch.All">
+                <i class="fi-home"></i> Home
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="tiles">
-                <span class="oi oi-plus" aria-hidden="true"></span> Tiles
+        <li>
+            <NavLink href="tiles">
+                <i class="fi-thumbnails"></i> Tiles
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="form">
-                <span class="oi oi-plus" aria-hidden="true"></span> Form
+        <li>
+            <NavLink href="form">
+                <i class="fi-results"></i> Form
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="tabs">
-                <span class="oi oi-plus" aria-hidden="true"></span> Tabs
+        <li>
+            <NavLink href="tabs">
+                <i class="fi-comments"></i> Tabs
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="dynamicrender">
-                <span class="oi oi-plus" aria-hidden="true"></span> Dynamic Render
+        <li>
+            <NavLink href="dynamicrender">
+                <i class="fi-graph-trend"></i> Dynamic Render
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+        <li>
+            <NavLink href="counter">
+                <i class="fi-database"></i> Counter
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+        <li>
+            <NavLink href="fetchdata">
+                <i class="fi-list-thumbnails"></i> Fetch data
             </NavLink>
         </li>
     </ul>

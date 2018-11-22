@@ -1,0 +1,105 @@
+﻿/*@import "settings/settings";*/
+@import "_foundation-icons.scss";
+
+$foundation-palette: ( primary: hsla(246%, 46%, 33%, 1), secondary: hsla(239%, 100%, 83%, 1), success: hsla(153%, 100%, 59%, 1), warning: hsla(60%, 80%, 59%, 1), alert: hsla(340%, 97%, 48%, 1), );
+
+@import "foundation";
+@include add-foundation-colors();
+
+@include foundation-everything(true, true);
+
+@import "../../features/tabs/tabs";
+
+body    {
+    margin-top: .25em;
+    overflow-y:scroll;
+}
+
+ul.menu a.active {
+    color: $secondary-color;
+}
+
+@include breakpoint(medium) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .nav-menu.hidden {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.revealed {
+    display: block;
+}
+
+.text {
+    &.primary {
+        color: $primary-color;
+    }
+
+    &.secondary {
+        color: $secondary-color;
+    }
+
+    &.success {
+        color: $success-color;
+    }
+
+    &.warning {
+        color: $warning-color;
+    }
+
+    &.alert {
+        color: $alert-color;
+    }
+}
+
+.debug-b {
+    &.primary {
+        border: 3px solid $primary-color;
+    }
+
+    &.secondary {
+        border: 3px solid $secondary-color;
+    }
+
+    &.success {
+        border: 3px solid $success-color;
+    }
+
+    &.warning {
+        border: 3px solid $warning-color;
+    }
+
+    &, &.alert {
+        border: 3px solid $alert-color;
+    }
+}
+
+.debug {
+    &.primary {
+        outline: 3px solid $primary-color;
+    }
+
+    &.secondary {
+        outline: 3px solid $secondary-color;
+    }
+
+    &.success {
+        outline: 3px solid $success-color;
+    }
+
+    &.warning {
+        outline: 3px solid $warning-color;
+    }
+
+    &, &.alert {
+        outline: 3px solid $alert-color;
+    }
+}

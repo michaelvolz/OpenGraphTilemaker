@@ -17,6 +17,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Features\Tabs\_tabs.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Features\Tabs\_tabs.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
@@ -34,7 +44,11 @@
   </ItemGroup> 
 
   <ItemGroup>
-    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\scss\abstracts\" />
+    <Folder Include="wwwroot\scss\base\" />
+    <Folder Include="wwwroot\scss\pages\" />
+    <Folder Include="wwwroot\scss\themes\" />
+    <Folder Include="wwwroot\scss\vendors\" />
   </ItemGroup>
 
 </Project>
