@@ -17,16 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Features\Tabs\_tabs.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Features\Tabs\_tabs.scss">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 

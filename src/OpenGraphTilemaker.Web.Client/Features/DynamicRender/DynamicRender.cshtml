@@ -1,14 +1,14 @@
 ﻿@page "/dynamicrender"
 
+<h1>Dynamic Render</h1>
+
 <p>
-    <button type="button" onclick="@(() => ShouldRender())">
+    <button type="button" class="button primary shadow radius" onclick="@(() => ShouldRender())">
         Trigger rendering (i.e. makes text longer)
     </button>
 </p>
 
 <p>@DynamicFragment</p>
-
-<p>Lorem ipsum...</p>
 
 @functions {
     private string dynamicContent = "This is a long text...";

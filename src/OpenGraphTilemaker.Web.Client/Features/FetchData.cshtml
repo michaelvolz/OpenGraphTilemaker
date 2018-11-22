@@ -6,24 +6,23 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
+@if (forecasts == null) {
+    <p>
+        <em>Loading...</em>
+    </p>
+} else {
+    <div class="table-scroll">
+        <table class="hover">
+            <thead>
             <tr>
                 <th>Date</th>
                 <th>Temp. (C)</th>
                 <th>Temp. (F)</th>
                 <th>Summary</th>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
+            </thead>
+            <tbody>
+            @foreach (var forecast in forecasts) {
                 <tr>
                     <td>@forecast.Date.ToShortDateString()</td>
                     <td>@forecast.TemperatureC</td>
@@ -31,15 +30,16 @@ else
                     <td>@forecast.Summary</td>
                 </tr>
             }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 }
 
 @functions {
     WeatherForecast[] forecasts;
 
-    protected override async Task OnInitAsync()
-    {
+    protected override async Task OnInitAsync() {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
+
 }
