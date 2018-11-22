@@ -12,6 +12,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
     public class ValidationSummaryModel<TItem> : BlazorComponent
     {
         [Parameter] protected TItem Subject { get; set; }
+        [Parameter] protected string Class { get; set; }
 
         protected IList<ValidationFailure> ValidationFailures { get; set; }
         protected bool HasValidationFailures => ValidationFailures.Any();

@@ -4,7 +4,7 @@
 @* @if (OpenGraphMetadata?.Image != null && OpenGraphMetadata?.Url != null && OpenGraphMetadata.Image.StartsWith("http")) { *@
 @if (OpenGraphMetadata?.Image != null) {
     
-    <div class="card" style="margin-bottom: 1em; width: 14rem;">
+    <div class="card shadow" style="margin-bottom: 1em; width: 17.5em;">
         @*<div class="card-divider">
             @OpenGraphMetadata.Title
         </div>*@
@@ -12,8 +12,8 @@
         <div class="card-section">
             <h4>@OpenGraphMetadata.Title</h4>
             <p>@OpenGraphMetadata.Description</p>
-            <a href="@OpenGraphMetadata.Url" class="button primary" target="_new">
-                <span style="color: white;">
+            <a href="@OpenGraphMetadata.Url" class="button secondary radius shadow float-right" target="_new">
+                <span style="color: black;">
                     @(OpenGraphMetadata.SiteName.TruncateAtWord(25) ?? "Link")
                 </span>
             </a>

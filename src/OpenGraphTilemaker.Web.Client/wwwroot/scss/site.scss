@@ -16,6 +16,8 @@ body    {
 }
 
 ul.menu a.active {
+    @include shadow();
+    @include border-radius();
     color: $secondary-color;
 }
 

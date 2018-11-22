@@ -13,6 +13,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
     {
         [Parameter] protected TItem Subject { get; set; }
         [Parameter] protected string Property { get; set; }
+        [Parameter] protected string Class { get; set; }
 
         protected IList<ValidationFailure> ValidationFailures { get; set; }
         protected bool HasValidationFailures => ValidationFailures.Any();

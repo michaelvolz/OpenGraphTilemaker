@@ -1,6 +1,6 @@
-﻿<div class="callout primary">
+﻿<div class="callout primary shadow radius">
     <a href="/">OpenGraph Tilemaker</a>
-    <button class="navbar-toggler button tiny secondary" onclick="@ToggleNavMenu">
+    <button class="navbar-toggler button tiny secondary float-right" onclick="@ToggleNavMenu">
         <i class="fi-list"></i>
     </button>
 </div>
@@ -8,7 +8,7 @@
 <div class="nav-menu @(CollapseNavMenu ? "hidden" : null)" onclick="@ToggleNavMenu">
     <ul class="vertical menu">
         <li>
-            <NavLink href="" Match="NavLinkMatch.All">
+            <NavLink href="/" Match="NavLinkMatch.All">
                 <i class="fi-home"></i> Home
             </NavLink>
         </li>
@@ -43,6 +43,8 @@
             </NavLink>
         </li>
     </ul>
+
+    <hr class="show-for-small-only"/>
 </div>
 
 @functions {

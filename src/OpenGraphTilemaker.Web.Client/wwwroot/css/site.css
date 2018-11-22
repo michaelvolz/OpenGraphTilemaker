@@ -6394,6 +6394,8 @@ body {
   overflow-y: scroll; }
 
 ul.menu a.active {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 0.1875rem;
   color: #a8aaff; }
 
 @media print, screen and (min-width: 40em) {

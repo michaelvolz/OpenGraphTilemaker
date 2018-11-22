@@ -1,47 +1,44 @@
-﻿@inherits TilesModel;
+﻿@using Common.Extensions
+@inherits TilesModel;
 @{
     var columns = 3;
-    if (WindowWidth > 0 && WindowWidth <= 1003)
-    {
+    if (WindowWidth > 0 && WindowWidth <= 1200) {
         columns = 2;
     }
-    if (WindowWidth > 0 && WindowWidth <= 524 || WindowWidth >= 638 && WindowWidth <= 746)
-    {
+    if (WindowWidth > 0 && WindowWidth <= 890) {
         columns = 1;
     }
 }
 
 <div>
-    <button class="button primary" onclick="@OnSortPropertyButtonClick">Sort Property</button>
-    <button class="button primary" onclick="@OnSortOrderButtonClick">Sort Order</button>
-    <div><small class="cell small-12">@TilesState.SortProperty @TilesState.SortOrder, Count: @TilesState.Tiles.Count, Columns: @columns</small></div>
+    <button class="button primary shadow radius" onclick="@OnSortPropertyButtonClick">Sort Property</button>
+    <button class="button primary shadow radius" onclick="@OnSortOrderButtonClick">Sort Order</button>
 </div>
+<small class="cell small-12">@TilesState.SortProperty @TilesState.SortOrder.ToString().TruncateAtWord(4, ""), Count @TilesState.Tiles.Count, Columns&nbsp;@columns</small>
 
 <p></p>
 
-
-<div class="">
-    <div class="grid-x grid-margin-x align-center">
-        <div class="cell shrink debug secondary">
-            @for (var index = 0; index < TilesState.Tiles.Count; index += columns)
-            {
-                var item = TilesState.Tiles[index];
-                <Tile OpenGraphMetadata="@item"></Tile>
-            }
-        </div>
-        <div class="cell shrink debug secondary">
-            @for (var index = 1; index < TilesState.Tiles.Count; index += columns)
-            {
-                var item = TilesState.Tiles[index];
-                <Tile OpenGraphMetadata="@item"></Tile>
-            }
-        </div>
-        <div class="cell shrink debug secondary">
-            @for (var index = 2; index < TilesState.Tiles.Count; index += columns)
-            {
-                var item = TilesState.Tiles[index];
-                <Tile OpenGraphMetadata="@item"></Tile>
-            }
-        </div>
+<div class="grid-x grid-margin-x align-center">
+    <div class="cell shrink">
+        @for (var index = 0; index < TilesState.Tiles.Count; index += columns) {
+            var item = TilesState.Tiles[index];
+            <Tile OpenGraphMetadata="@item"></Tile>
+        }
     </div>
+    @if (columns >= 2) {
+        <div class="cell shrink">
+            @for (var index = 1; index < TilesState.Tiles.Count; index += columns) {
+                var item = TilesState.Tiles[index];
+                <Tile OpenGraphMetadata="@item"></Tile>
+            }
+        </div>
+    }
+    @if (columns >= 3) {
+        <div class="cell shrink">
+            @for (var index = 2; index < TilesState.Tiles.Count; index += columns) {
+                var item = TilesState.Tiles[index];
+                <Tile OpenGraphMetadata="@item"></Tile>
+            }
+        </div>
+    }
 </div>

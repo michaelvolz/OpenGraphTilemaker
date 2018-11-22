@@ -3,47 +3,39 @@
 
 @{
     RenderFragment successText = @<span>Success! You've done it.</span>;
-    RenderFragment success = @<div class="valid-feedback">@successText</div>;
 }
 
 <h1>Form</h1>
 
 <div class="@SuccessVisibility">
-    <h4 class="text-success">@successText</h4>
+    <h4 class="text success">@successText</h4>
 </div>
 
 <div class="@ErrorVisibility">
-    <ValidationSummary Subject="@Person" TItem="Person"/>
+    <ValidationSummary class="text alert" Subject="@Person" TItem="Person"/>
 </div>
 
-<div class="container @FormVisibility">
-    <p class="form-group">
-        <label for="firstname">First Name</label>
-        <input id="firstname" type="text" class="form-control @IsValid(() => Person.FirstName)" bind="@Person.FirstName"/>
-        @success
-        <div class="invalid-feedback">
-            <ValidationError Subject="@Person" Property="@nameof(Person.FirstName)" TItem="Person"/>
-        </div>
+<div class="@FormVisibility">
+    <p>
+        <label for="firstname">First Name
+            <input id="firstname" type="text" class="@IsValid(() => Person.FirstName)" bind="@Person.FirstName"/>
+        </label>
+        <ValidationError class="text alert" Subject="@Person" Property="@nameof(Person.FirstName)" TItem="Person"/>
     </p>
-    <p class="form-group">
-        <label for="lastname">Last Name</label>
-        <input id="lastname" type="text" class="form-control @IsValid(() => Person.LastName)" bind="@Person.LastName"/>
-        @success
-        <div class="invalid-feedback">
-            <ValidationError Subject="@Person" Property="@nameof(Person.LastName)" TItem="Person"/>
-        </div>
+    <p>
+        <label for="lastname">Last Name
+            <input id="lastname" type="text" class="@IsValid(() => Person.LastName)" bind="@Person.LastName"/>
+        </label>
+        <ValidationError class="text alert"  Subject="@Person" Property="@nameof(Person.LastName)" TItem="Person"/>
     </p>
-    <p class="form-group">
+    <p>
         <label for="age">Age</label>
-        <input id="age" type="number" class="form-control  @IsValid(() => Person.Age)" bind="@Person.Age"/>
-        <small class="form-text text-muted">We'll never share your age with anyone else.</small>
-        @success
-        <div class="invalid-feedback">
-            <ValidationError Subject="@Person" Property="@nameof(Person.Age)" TItem="Person"/>
-        </div>
+        <input id="age" type="number" class="@IsValid(() => Person.Age)" bind="@Person.Age"/>
+        <small class="text secondary">We'll never share your age with anyone else.</small>
+        <ValidationError Class="text alert" Subject="@Person" Property="@nameof(Person.Age)" TItem="Person"/>
     </p>
 
     <hr/>
 
-    <button type="submit" class="btn btn-primary" onclick="@(async () => await SubmitAsync())">Submit</button>
+    <button type="submit" class="button primary" onclick="@(async () => await SubmitAsync())">Submit</button>
 </div>

@@ -10,16 +10,16 @@
         <h5 class="debug text alert">Hello, world!</h5>
     </div>
     <div class="medium-6 cell">
-        <button class="button primary">Primary</button>
-        <button class="button secondary">Secondary</button>
-        <button class="button success">Success</button>
-        <button class="button warning">Warning</button>
-        <button class="button alert">Alert</button>
+        <button class="button primary shadow radius">Primary</button>
+        <button class="button secondary shadow radius">Secondary</button>
+        <button class="button success shadow radius">Success</button>
+        <button class="button warning shadow radius">Warning</button>
+        <button class="button alert shadow radius">Alert</button>
     </div>
 </div>
 <p>Welcome to your new app.</p>
 <div>WindowWidth: @WindowWidth</div>
-<button onclick="@(async () => await GetWindowWidth())">GetWindowWidth</button>
+<button class="button button secondary shadow radius" onclick="@(async () => await GetWindowWidth())">GetWindowWidth</button>
 
 <br />
 
