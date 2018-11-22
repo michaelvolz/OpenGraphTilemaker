@@ -8,32 +8,30 @@
 <h1>Form</h1>
 
 <div class="@SuccessVisibility">
-    <h4 class="text success">@successText</h4>
+    <div class="callout success">@successText</div>
 </div>
 
 <div class="@ErrorVisibility">
-    <ValidationSummary class="text alert" Subject="@Person" TItem="Person"/>
+    <ValidationSummary class="alert callout" Subject="@Person" TItem="Person"/>
 </div>
 
 <div class="@FormVisibility">
-    <p>
-        <label for="firstname">First Name
-            <input id="firstname" type="text" class="@IsValid(() => Person.FirstName)" bind="@Person.FirstName"/>
-        </label>
-        <ValidationError class="text alert" Subject="@Person" Property="@nameof(Person.FirstName)" TItem="Person"/>
-    </p>
-    <p>
-        <label for="lastname">Last Name
-            <input id="lastname" type="text" class="@IsValid(() => Person.LastName)" bind="@Person.LastName"/>
-        </label>
-        <ValidationError class="text alert"  Subject="@Person" Property="@nameof(Person.LastName)" TItem="Person"/>
-    </p>
-    <p>
-        <label for="age">Age</label>
-        <input id="age" type="number" class="@IsValid(() => Person.Age)" bind="@Person.Age"/>
-        <small class="text secondary">We'll never share your age with anyone else.</small>
-        <ValidationError Class="text alert" Subject="@Person" Property="@nameof(Person.Age)" TItem="Person"/>
-    </p>
+    <label for="firstname" class="@IsValidLabel(() => Person.FirstName)">
+        First Name
+        <input id="firstname" type="text" class="@IsValidInput(() => Person.FirstName)" bind="@Person.FirstName"/>
+        <ValidationError class="form-error is-visible" Subject="@Person" Property="@nameof(Person.FirstName)" TItem="Person"/>
+    </label>
+    <label for="lastname" class="@IsValidLabel(() => Person.LastName)">
+        Last Name
+        <input id="lastname" type="text" class="@IsValidInput(() => Person.LastName)" bind="@Person.LastName"/>
+        <ValidationError class="form-error is-visible" Subject="@Person" Property="@nameof(Person.LastName)" TItem="Person"/>
+    </label>
+    <label for="age" class="@IsValidLabel(() => Person.Age)">
+        Age
+        <input id="age" type="number" class="@IsValidInput(() => Person.Age)" bind="@Person.Age"/>
+        <ValidationError Class="form-error is-visible" Subject="@Person" Property="@nameof(Person.Age)" TItem="Person"/>
+        <small class="help-text">We'll never share your age with anyone else.</small>
+    </label>
 
     <hr/>
 

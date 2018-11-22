@@ -36,8 +36,16 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
             return obj.HasError<T>();
         }
 
-        protected string IsValid(Expression<Func<object>> property) {
-            return Person.IsValid<Person>(property);
+        protected string IsValidLabel(Expression<Func<object>> property) {
+            return Person.IsValid<Person>(property, ", is-invalid-label");
+        }
+
+        protected string IsValidInput(Expression<Func<object>> property) {
+            return Person.IsValid<Person>(property, "is-invalid-input");
+        }
+        
+        protected string IsValid(Expression<Func<object>> property, string failureClass) {
+            return Person.IsValid<Person>(property, failureClass);
         }
     }
 }

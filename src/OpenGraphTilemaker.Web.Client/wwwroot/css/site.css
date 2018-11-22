@@ -6371,27 +6371,33 @@ ol.list-upper-roman {
   padding-top: 3rem !important;
   padding-bottom: 3rem !important; }
 
-.nav-tabs .nav-link {
+body {
+  margin-top: .25em;
+  overflow-y: scroll; }
+
+ul.tabs .tabs-title {
+  border-radius: 0.1875rem;
   background-color: #f9f9f9;
   border-bottom-color: #dee2e6;
   border-color: #dee2e6 #dee2e6 #fff; }
 
-.nav-tabs .active {
+ul.tabs .tabs-title.is-active {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   background-color: white;
   border-bottom: 1px solid transparent;
   border-top: 4px solid #e0108b !important;
-  padding-top: 5px; }
+  margin-top: -5px; }
 
-.nav-tabs > li {
-  margin-bottom: -1px; }
+ul.tabs li {
+  margin-bottom: -5px; }
 
-.nav-tabs-body {
-  border: 1px solid #dee2e6;
+.tabs-panel {
+  /*border: 1px solid #dee2e6;*/
   border-top-width: 0; }
 
-body {
-  margin-top: .25em;
-  overflow-y: scroll; }
+.validationsummary ul, .validationerror ul {
+  margin: 0 0 0 0.25em;
+  list-style: none; }
 
 ul.menu a.active {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);

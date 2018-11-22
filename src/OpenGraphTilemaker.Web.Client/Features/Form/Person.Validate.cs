@@ -39,8 +39,8 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
             return property != null ? Validate<T>(property.MemberExpressionName()) : Validate<T>();
         }
 
-        public string IsValid<T>(Expression<Func<object>> property) where T : class {
-            return HasError<T>(property) ? "is-invalid" : "is-valid";
+        public string IsValid<T>(Expression<Func<object>> property, string failureClass) where T : class {
+            return HasError<T>(property) ? failureClass : "";
         }
 
         public bool HasError<T>(Expression<Func<object>> property = null) where T : class {

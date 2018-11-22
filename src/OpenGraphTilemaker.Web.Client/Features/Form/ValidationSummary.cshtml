@@ -1,10 +1,10 @@
 ﻿@typeparam TItem
 @inherits ValidationSummaryModel<TItem>
 @if (HasValidationFailures) {
-    <div class="@Class">
+    <div class="validationsummary @Class">
         <ul>
             @foreach (var failure in ValidationFailures) {
-                <li>@failure</li>
+                <li><i class="fi-alert"></i> @failure</li>
             }
         </ul>
     </div>

@@ -1,13 +1,20 @@
 ﻿<!-- Display the tab headers -->
 <CascadingValue Value="this">
-    <ul class="nav nav-tabs">
+    <ul class="tabs">
         @ChildContent
     </ul>
 </CascadingValue>
 
 <!-- Display body for only the active tab -->
-<div class="nav-tabs-body p-4">
-    @ActiveTab?.ChildContent
+<div class="tabs-content">
+    <div class="tabs-panel is-active">
+        @ActiveTab?.ChildContent
+    </div>
+</div>
+
+
+<div class="tabs-panel">
+    
 </div>
 
 @functions {

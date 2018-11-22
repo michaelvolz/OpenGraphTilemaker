@@ -1,8 +1,8 @@
 ﻿@implements IDisposable
 @implements ITab
 
-<li>
-    <a onclick="@Activate" class="nav-link @TitleCssClass">
+<li class="tabs-title @TitleCssClass">
+    <a onclick="@Activate">
         @Title
     </a>
 </li>
@@ -15,7 +15,7 @@
 
     [Parameter] public RenderFragment ChildContent { get; private set; }
 
-    string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
+    string TitleCssClass => ContainerTabSet.ActiveTab == this ? "is-active" : null;
 
     protected override void OnInit() {
         ContainerTabSet.AddTab(this);
