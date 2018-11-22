@@ -1,141 +1,44 @@
-﻿@charset 'utf-8';
-/*@import "settings/settings";*/
-@import "_foundation-icons.scss";
+﻿@charset "utf-8";
 
-$foundation-palette: ( primary: hsla(246%, 46%, 33%, 1), secondary: hsla(239%, 100%, 83%, 1), success: hsla(153%, 100%, 59%, 1), warning: hsla(60%, 80%, 59%, 1), alert: hsla(340%, 97%, 48%, 1) );
+@import "abstracts/variables";
 
-@import "foundation";
-@include add-foundation-colors();
-
+@import "../../node_modules/foundation-sites/scss/foundation";
 @include foundation-everything(true, true);
 
-$misc-red-color: #e0108b;
+// 1. Configuration and helpers
+@import
+  "abstracts/functions",
+  "abstracts/mixins";
 
-body {
-    margin-top: .25em;
-    overflow-y: scroll;
-}
+// 2. Vendors
+/*@import
+  "vendor/normalize";*/
 
-ul.tabs {
-    .tabs-title {
-        @include border-radius();
-        background-color: #f9f9f9;
-        border-bottom-color: #dee2e6;
-        border-color: #dee2e6 #dee2e6 #fff;
-    }
+// 3. Base stuff
+@import
+  "base/base",
+  "base/fonts",
+  "base/typography",
+  "base/helpers";
 
-    .tabs-title.is-active {
-        @include shadow();
-        background-color: white;
-        border-bottom: 1px solid transparent;
-        border-top: 4px solid $misc-red-color !important;
-        margin-top: -5px;
-    }
+// 4. Layout-related sections
+@import
+  "layout/layout",
+  "layout/header",
+  "layout/footer";
 
-    li {
-        margin-bottom: -5px;
-    }
-}
+// 5. Components
+@import 
+  "components/_tabs.scss",  
+  "components/navigation",
+  "components/validation",
+  "components/button";
 
-.tabs-panel {
-    /*border: 1px solid #dee2e6;*/
-    border-top-width: 0;
-}
+// 6. Page-specific styles
+@import
+  "pages/home";
 
-.validationsummary, .validationerror {
-    ul {
-        margin: 0 0 0 0.25em;
-        list-style: none;
-    }
-}
+// 7. Themes
+@import
+  "themes/default";
 
-ul.menu a.active {
-    @include shadow();
-    @include border-radius();
-    color: $secondary-color;
-}
-
-@include breakpoint(medium) {
-    .navbar-toggler {
-        display: none;
-    }
-
-    .nav-menu.hidden {
-        /* Never collapse the sidebar for wide screens */
-        display: block;
-    }
-}
-
-.hidden {
-    display: none;
-}
-
-.revealed {
-    display: block;
-}
-
-.text {
-    &.primary {
-        color: $primary-color;
-    }
-
-    &.secondary {
-        color: $secondary-color;
-    }
-
-    &.success {
-        color: $success-color;
-    }
-
-    &.warning {
-        color: $warning-color;
-    }
-
-    &.alert {
-        color: $alert-color;
-    }
-}
-
-.debug-b {
-    &.primary {
-        border: 3px solid $primary-color;
-    }
-
-    &.secondary {
-        border: 3px solid $secondary-color;
-    }
-
-    &.success {
-        border: 3px solid $success-color;
-    }
-
-    &.warning {
-        border: 3px solid $warning-color;
-    }
-
-    &, &.alert {
-        border: 3px solid $alert-color;
-    }
-}
-
-.debug {
-    &.primary {
-        outline: 3px solid $primary-color;
-    }
-
-    &.secondary {
-        outline: 3px solid $secondary-color;
-    }
-
-    &.success {
-        outline: 3px solid $success-color;
-    }
-
-    &.warning {
-        outline: 3px solid $warning-color;
-    }
-
-    &, &.alert {
-        outline: 3px solid $alert-color;
-    }
-}

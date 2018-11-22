@@ -25,6 +25,6 @@ namespace OpenGraphTilemaker.OpenGraph
                                Image.NotNullNorWhiteSpace();
 
         public string Source { get; set; }
-        public DateTime SourcePublishTime { get; set; }
+        public DateTime BookmarkTime { get; set; }
     }
 }

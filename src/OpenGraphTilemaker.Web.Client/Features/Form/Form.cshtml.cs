@@ -8,8 +8,8 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
     public class FormModel : BlazorComponentStateful
     {
         private const string ThereIsStillSomethingWrong = "There is still something wrong!";
-        private const string Revealed = "revealed";
-        private const string Hidden = "hidden";
+        private const string Revealed = "";
+        private const string Hidden = "hide";
 
         public Person Person => State.Person;
         public FormState State => Store.GetState<FormState>();
@@ -42,10 +42,6 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
 
         protected string IsValidInput(Expression<Func<object>> property) {
             return Person.IsValid<Person>(property, "is-invalid-input");
-        }
-        
-        protected string IsValid(Expression<Func<object>> property, string failureClass) {
-            return Person.IsValid<Person>(property, failureClass);
         }
     }
 }

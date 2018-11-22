@@ -29,7 +29,7 @@ namespace OpenGraphTilemaker.OpenGraph
             await _openGraphTileMaker.ScrapeAsync(uri.OriginalString, async () => await _httpLoader.LoadAsync(_httpClient, uri));
 
             var result = _openGraphTileMaker.GraphMetadata;
-            result.SourcePublishTime = entry.PubDate;
+            result.BookmarkTime = entry.PubDate;
 
             return result;
         }

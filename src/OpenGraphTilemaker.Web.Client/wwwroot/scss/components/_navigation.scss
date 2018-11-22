@@ -1,0 +1,25 @@
+﻿@import "../../../node_modules/foundation-sites/scss/prototype/shadow";
+@import "../../../node_modules/foundation-sites/scss/prototype/rounded";
+@import "../../../node_modules/foundation-sites/scss/util/breakpoint";
+@import "../abstracts/variables";
+
+.navigation {
+    min-height: 30em;
+
+    ul.menu a.active {
+        @include shadow();
+        @include border-radius();
+        color: $secondary-color;
+    }
+
+    @include breakpoint(medium) {
+        .navbar-toggler {
+            display: none;
+        }
+
+        .nav-menu.hidden {
+            /* Never collapse the sidebar for wide screens */
+            display: block;
+        }
+    }
+}

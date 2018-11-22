@@ -19,7 +19,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         public override object Clone() => new TilesState(this);
 
         protected override void Initialize() {
-            SortProperty = nameof(OpenGraphMetadata.SourcePublishTime);
+            SortProperty = nameof(OpenGraphMetadata.BookmarkTime);
             SortOrder = SortOrder.Descending;
             Tiles = new List<OpenGraphMetadata>();
         }

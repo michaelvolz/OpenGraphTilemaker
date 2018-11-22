@@ -45,10 +45,10 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                             : TilesState.Tiles.OrderByDescending(f => f.Title).ToList();
                         break;
 
-                    case nameof(OpenGraphMetadata.SourcePublishTime):
+                    case nameof(OpenGraphMetadata.BookmarkTime):
                         TilesState.Tiles = TilesState.SortOrder == SortOrder.Ascending
-                            ? TilesState.Tiles.OrderBy(f => f.SourcePublishTime).ToList()
-                            : TilesState.Tiles.OrderByDescending(f => f.SourcePublishTime).ToList();
+                            ? TilesState.Tiles.OrderBy(f => f.BookmarkTime).ToList()
+                            : TilesState.Tiles.OrderByDescending(f => f.BookmarkTime).ToList();
                         break;
                 }
             }

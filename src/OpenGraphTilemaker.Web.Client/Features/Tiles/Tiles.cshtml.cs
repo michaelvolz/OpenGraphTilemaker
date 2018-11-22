@@ -21,7 +21,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         protected async Task OnSortPropertyButtonClick() {
             var sortProperty = TilesState.SortProperty != nameof(OpenGraphMetadata.Title)
                 ? nameof(OpenGraphMetadata.Title)
-                : nameof(OpenGraphMetadata.SourcePublishTime);
+                : nameof(OpenGraphMetadata.BookmarkTime);
             await RequestAsync(new SortTilesRequest { SortProperty = sortProperty });
         }
 
