@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Blazor.Components;
+﻿using System.Threading.Tasks;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
-    public class IndexModel : BlazorComponent { }
+    public class IndexModel : BlazorComponentStateful
+    {
+    }
 }

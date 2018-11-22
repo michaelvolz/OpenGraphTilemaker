@@ -1,15 +1,23 @@
 ﻿@inherits TilesModel;
-@{ var columns = 3; }
+@{
+    int columns = 3;
+    if (WindowWidth > 0 && WindowWidth < 1218) {
+        columns = 2;
+    }
+    if (WindowWidth > 0 && WindowWidth < 672 || (WindowWidth > 766 && WindowWidth < 928)) {
+        columns = 1;
+    }
+}
 
 <div>
     <button class="btn btn-primary" onclick="@OnSortPropertyButtonClick">Sort Property</button>
     <button class="btn btn-primary" onclick="@OnSortOrderButtonClick">Sort Order</button>
-    @TilesState.SortProperty, @TilesState.SortOrder, @TilesState.Tiles.Count
 </div>
 
 <p></p>
 
-<div class="container">
+<div class="container-fluid">
+    <small>@TilesState.SortProperty @TilesState.SortOrder, Count: @TilesState.Tiles.Count, Columns: @columns</small>
     <div class="row no-gutters">
         <div class="col">
             @for (var index = 0; index < TilesState.Tiles.Count; index += columns) {
@@ -17,17 +25,21 @@
                 <Tile OpenGraphMetadata="@item"></Tile>
             }
         </div>
-        <div class="col">
-            @for (var index = 1; index < TilesState.Tiles.Count; index += columns) {
-                var item = TilesState.Tiles[index];
-                <Tile OpenGraphMetadata="@item"></Tile>
-            }
-        </div>
-        <div class="col">
-            @for (var index = 2; index < TilesState.Tiles.Count; index += columns) {
-                var item = TilesState.Tiles[index];
-                <Tile OpenGraphMetadata="@item"></Tile>
-            }
-        </div>
+        @if (columns > 1) {
+            <div class="col">
+                @for (var index = 1; index < TilesState.Tiles.Count; index += columns) {
+                    var item = TilesState.Tiles[index];
+                    <Tile OpenGraphMetadata="@item"></Tile>
+                }
+            </div>
+        }
+        @if (columns > 2) {
+            <div class="col">
+                @for (var index = 2; index < TilesState.Tiles.Count; index += columns) {
+                    var item = TilesState.Tiles[index];
+                    <Tile OpenGraphMetadata="@item"></Tile>
+                }
+            </div>
+        }
     </div>
 </div>

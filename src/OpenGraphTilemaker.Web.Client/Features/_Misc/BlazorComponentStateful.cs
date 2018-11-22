@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
@@ -25,9 +26,22 @@ namespace OpenGraphTilemaker.Web.Client.Features
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public IStore Store { get; set; }
         [Inject] public IUriHelper UriHelper { get; set; }
-        
+
+        public int WindowWidth { get; set; }
+
         protected async Task RequestAsync<T>(IRequest<T> request) {
             await Time.ThisAsync(async () => await Mediator.Send(request), request.GetType().Name);
+        }
+
+        protected async override Task OnParametersSetAsync() {
+            await GetWindowWidth();
+            base.OnParametersSet();
+        }
+
+        public async Task<int> GetWindowWidth() {
+            WindowWidth = await JSRuntime.Current.InvokeAsync<int>("getWindowsWidth");
+            StateHasChanged();
+            return WindowWidth;
         }
     }
 }
