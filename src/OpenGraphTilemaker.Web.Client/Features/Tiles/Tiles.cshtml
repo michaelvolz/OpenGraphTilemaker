@@ -8,6 +8,7 @@
     if (WindowWidth > 0 && WindowWidth <= 890) {
         columns = 1;
     }
+    columns = 1;
 }
 
 <div>
@@ -18,7 +19,16 @@
 
 <p></p>
 
-<div class="grid-x grid-margin-x align-center">
+<div class="masonry-css">
+    @for (var index = 0; index < TilesState.Tiles.Count; index += columns) {
+        var item = TilesState.Tiles[index];
+        <div class="masonry-css-item auto">
+            <Tile OpenGraphMetadata="@item"></Tile>
+        </div>
+    }
+</div>
+
+@*<div class="grid-x grid-margin-x align-center">
     <div class="cell shrink">
         @for (var index = 0; index < TilesState.Tiles.Count; index += columns) {
             var item = TilesState.Tiles[index];
@@ -41,4 +51,4 @@
             }
         </div>
     }
-</div>
+</div>*@

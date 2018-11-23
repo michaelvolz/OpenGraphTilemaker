@@ -22,3 +22,40 @@
 
 @import "pages/home";
 @import "themes/default";
+
+
+$masonry-css-column-gap: $global-margin;
+
+.masonry-css {
+    column-count: 1;
+    column-gap: $masonry-css-column-gap;
+
+    .tile {
+        margin-bottom: 1em;
+
+        .card-section a {
+            float: right;
+        }
+    }
+
+    @include breakpoint(500px) {
+        column-count: 2;
+    }
+
+    @include breakpoint(640px) {
+        column-count: 1;
+    }
+
+    @include breakpoint(667px) {
+        column-count: 2;
+    }
+
+    @include breakpoint(1000px) {
+        column-count: 3;
+    }
+}
+
+.masonry-css-item {
+    break-inside: avoid;
+    margin-bottom: $masonry-css-column-gap;
+}

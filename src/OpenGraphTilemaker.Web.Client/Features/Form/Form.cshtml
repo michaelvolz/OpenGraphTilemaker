@@ -12,21 +12,21 @@
 </div>
 
 <div class="@ErrorVisibility">
-    <ValidationSummary class="alert callout" Subject="@Person" TItem="Person"/>
+    <ValidationSummary class="callout alert" Subject="@Person" TItem="Person"/>
 </div>
 
 <div class="@FormVisibility">
-    <label for="firstname" class="@IsValidTag(() => Person.FirstName)">
+    <label for="firstname" class="@IsValid(() => Person.FirstName)">
         First Name
         <input id="firstname" type="text" bind="@Person.FirstName" onkeypress="@KeyPress"/>
         <ValidationError class="form-error is-visible" Subject="@Person" Property="@nameof(Person.FirstName)" TItem="Person"/>
     </label>
-    <label for="lastname" class="@IsValidTag(() => Person.LastName)">
+    <label for="lastname" class="@IsValid(() => Person.LastName)">
         Last Name
         <input id="lastname" type="text" bind="@Person.LastName"/>
         <ValidationError class="form-error is-visible" Subject="@Person" Property="@nameof(Person.LastName)" TItem="Person"/>
     </label>
-    <label for="age" class="@IsValidTag(() => Person.Age)">
+    <label for="age" class="@IsValid(() => Person.Age)">
         Age
         <input id="age" type="number" bind="@Person.Age"/>
         <ValidationError Class="form-error is-visible" Subject="@Person" Property="@nameof(Person.Age)" TItem="Person"/>
