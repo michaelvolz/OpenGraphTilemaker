@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Blazor;
 using Microsoft.JSInterop;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Form
@@ -27,7 +28,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
 
             if (HasError(Person)) {
                 ErrorVisibility = Revealed;
-                await JSRuntime.Current.InvokeAsync<bool>("showAlert", ThereIsStillSomethingWrong);
+                await JSRuntime.Current.InvokeAsync<bool>("blazorDemo.showAlert", ThereIsStillSomethingWrong);
                 Console.WriteLine($"### {ThereIsStillSomethingWrong}");
             }
         }
@@ -36,12 +37,18 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
             return obj.HasError<T>();
         }
 
+        protected string IsValidTag(Expression<Func<object>> property) {
+            return Person.IsValid<Person>(property, "is-invalid");
+        }
+
         protected string IsValidLabel(Expression<Func<object>> property) {
-            return Person.IsValid<Person>(property, ", is-invalid-label");
+            return Person.IsValid<Person>(property, "xis-invalid-label");
         }
 
         protected string IsValidInput(Expression<Func<object>> property) {
-            return Person.IsValid<Person>(property, "is-invalid-input");
+            return Person.IsValid<Person>(property, "xis-invalid-input");
         }
+
+        protected void KeyPress(UIKeyboardEventArgs ev) => Console.WriteLine($"KeyPress: { ev.Key + ", " + ev.Code }");
     }
 }

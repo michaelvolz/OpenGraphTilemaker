@@ -1,4 +1,5 @@
-﻿window.blazorDemo = {
+﻿"use strict";
+window.blazorDemo = {
     showAlert: (data) => {
         alert(data);
 
@@ -34,21 +35,24 @@
         document.body.onmousemove = setLeftButtonState;
         document.body.onmouseup = setLeftButtonState;
 
-        window.addEventListener("resize",
-            function() {
-                if (typeof window.resizeTimer !== "undefined") {
-                    clearTimeout(window.resizeTimer);
-                }
+        var resizeName = "resize";
+        var resizer = function() {
+            if (typeof window.resizeTimer !== "undefined") {
+                clearTimeout(window.resizeTimer);
+            }
 
-                window.resizeTimer = setTimeout(function() {
-                        // Run code here, resizing has "stopped"
-                        dotnetClassInstance.invokeMethodAsync("WindowResizedAsync", window.innerWidth)
-                            .then(data => {
-                                console.log(data);
-                            });
-                    },
-                    250);
-            });
+            window.resizeTimer = setTimeout(function() {
+                    // Run code here, resizing has "stopped"
+                    dotnetClassInstance.invokeMethodAsync("WindowResizedAsync", window.innerWidth)
+                        .then(data => {
+                            console.log(data);
+                        });
+                },
+                250);
+        };
+
+        window.removeEventListener(resizeName, resizer, true);
+        window.addEventListener(resizeName, resizer, true);
 
         console.log("JS initialize finished!");
     }

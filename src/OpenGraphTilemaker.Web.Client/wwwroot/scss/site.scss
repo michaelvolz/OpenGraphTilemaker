@@ -5,44 +5,20 @@
 @import "../../node_modules/foundation-sites/scss/foundation";
 @include foundation-everything(true, true);
 
-// 1. Configuration and helpers
-@import
-  "abstracts/functions",
-  "abstracts/mixins";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "base/base";
+@import "base/fonts";
+@import "base/typography";
+@import "base/helpers";
+@import "layout/layout";
+@import "layout/header";
+@import "layout/footer";
 
-// 2. Vendors
-/*@import
-  "vendor/normalize";*/
+@import "components/tabs";
+@import "components/navigation";
+@import "components/validation";
+@import "components/button";
 
-// 3. Base stuff
-@import
-  "base/base",
-  "base/fonts",
-  "base/typography",
-  "base/helpers";
-
-// 4. Layout-related sections
-@import
-  "layout/layout",
-  "layout/header",
-  "layout/footer";
-
-// 5. Components
-@import 
-  "components/_tabs.scss",  
-  "components/navigation",
-  "components/validation",
-  "components/button";
-
-// 6. Page-specific styles
-@import
-  "pages/home";
-
-// 7. Themes
-@import
-  "themes/default";
-
-
-.collapsed {
-    display: none;
-}
+@import "pages/home";
+@import "themes/default";

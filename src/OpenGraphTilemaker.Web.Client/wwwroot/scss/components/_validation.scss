@@ -1,6 +1,15 @@
-﻿.validationsummary, .validationerror {
+﻿
+.validationsummary, .validationerror {
     ul {
         margin: 0 0 0 0.25em;
         list-style: none;
+    }
+}
+label.is-invalid {
+    @import "../../../node_modules/foundation-sites/scss/forms/error";
+    color: $form-label-color-invalid;
+
+    input {
+        @include form-input-error;
     }
 }

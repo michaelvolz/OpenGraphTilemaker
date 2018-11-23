@@ -4,6 +4,10 @@
 // This file contains CSS helper classes.
 // -----------------------------------------------------------------------------
 
+.collapsed {
+    display: none;
+}
+
 .debug-b {
     &.primary {
         border: 3px solid $primary-color;
