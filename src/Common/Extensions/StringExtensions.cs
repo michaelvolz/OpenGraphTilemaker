@@ -52,9 +52,22 @@ namespace Common.Extensions
 
             var nextSpaceIndex = value.LastIndexOf(truncateAtChar, length, StringComparison.Ordinal);
             var truncatedString = $"{value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length)}".Trim();
-            var lastCharacter = truncatedString.Last().ToString();
+            string lastCharacter = truncatedString.Last().ToString();
 
-            return lastCharacter.IsPureAlphaNumeric() ? $"{truncatedString}{ellipsis}" : $"{truncatedString} {ellipsis}";
+            if (lastCharacter.IsPureAlphaNumeric()) {
+                return $"{truncatedString}{ellipsis}";
+            }
+
+            string temp = truncatedString.Substring(0, truncatedString.Length - 1);
+            string tempLast = temp.LastOrDefault().ToString();
+            while (!tempLast.IsPureAlphaNumeric()) {
+                if (temp.Length <= 1) break;
+                
+                temp = temp.Substring(0, temp.Length - 1);
+                tempLast = temp.LastOrDefault().ToString();
+            }
+
+            return $"{temp}{ellipsis}";
         }
     }
 }

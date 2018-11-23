@@ -4,6 +4,31 @@
 @import "../abstracts/variables";
 
 .navigation {
+    .mobile-nav-bar {
+        background-color: $primary-color;
+        position: absolute;
+        top: 0;
+        width: 97%;
+
+        a {
+            color: $white;
+        }
+
+        @include breakpoint(640px) {
+            position: relative;
+            top: 0;
+            width: 100%;
+        }
+    }
+
+    .navbar-spacer {
+        height: 3em;
+
+        @include breakpoint(640px) {
+            height: 1em;
+        }
+    }
+
     ul.menu a.active {
         @include shadow();
         @include border-radius();

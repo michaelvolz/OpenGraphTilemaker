@@ -15,138 +15,15 @@
 @import "layout/header";
 @import "layout/footer";
 
-@import "components/tabs";
+@import "components/button";
+@import "components/callout";
+
 @import "components/navigation";
 @import "components/validation";
-@import "components/button";
+
+@import "components/tiles";
+@import "components/tabs";
 
 @import "pages/home";
 @import "themes/default";
-
-
-.mobile-nav-bar {
-    background-color: $primary-color;
-    position: absolute;
-    top: 0;
-    width: 97%;
-
-    a {
-        color: $white;
-    }
-
-    @include breakpoint(640px) {
-        position: relative;
-        top: 0;
-        width: 100%;
-    }
-}
-
-.navbar-spacer {
-    height: 3em;
-
-    @include breakpoint(640px) {
-        height: 1em;
-    }
-}
-
-.tile {
-    margin-bottom: 1em;
-
-    .card-section a {
-        float: right;
-    }
-}
-
-$masonry-css-column-gap: $global-margin;
-
-.masonry-css {
-    column-count: 1;
-    column-gap: $masonry-css-column-gap;
-
-    @include breakpoint(568px) {
-        column-count: 2;
-    }
-
-    @include breakpoint(640px) {
-        column-count: 1;
-    }
-
-    @include breakpoint(667px) {
-        column-count: 2;
-    }
-
-    @include breakpoint(1024px) {
-        column-count: 3;
-    }
-}
-
-.masonry-css-item {
-    break-inside: avoid;
-    margin-bottom: $masonry-css-column-gap;
-}
-
-
-$alert-callout-border-left-width: rem-calc(5);
-$alert-callout-border-padding: 1.3rem;
-$alert-callout-border-radius: 0.6rem;
-
-.callout.emphasize {
-    width: 100%;
-    padding: $alert-callout-border-padding;
-    border-left-width: $alert-callout-border-left-width;
-    border-left-color: $medium-gray;
-
-    strong {
-        color: $body-font-color;
-    }
-
-    .close-button {
-        @include vertical-center;
-    }
-
-    &.radius {
-        border-radius: $alert-callout-border-radius;
-    }
-
-    &.primary {
-        border-left-color: $primary-color;
-
-        strong {
-            color: $primary-color;
-        }
-    }
-
-    &.secondary {
-        border-left-color: $secondary-color;
-
-        strong {
-            color: $secondary-color;
-        }
-    }
-
-    &.alert {
-        border-left-color: $alert-color;
-
-        strong {
-            color: $alert-color;
-        }
-    }
-
-    &.success {
-        border-left-color: $success-color;
-
-        strong {
-            color: $success-color;
-        }
-    }
-
-    &.warning {
-        border-left-color: $warning-color;
-
-        strong {
-            color: $warning-color;
-        }
-    }
-}
-
 
