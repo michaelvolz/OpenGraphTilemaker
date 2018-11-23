@@ -4,8 +4,6 @@
 @import "../abstracts/variables";
 
 .navigation {
-    min-height: 30em;
-
     ul.menu a.active {
         @include shadow();
         @include border-radius();
@@ -13,11 +11,13 @@
     }
 
     @include breakpoint(medium) {
+        min-height: 30em;
+
         .navbar-toggler {
             display: none;
         }
 
-        .nav-menu.hidden {
+        .nav-menu.collapsed {
             /* Never collapse the sidebar for wide screens */
             display: block;
         }

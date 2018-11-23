@@ -6419,7 +6419,8 @@ ol.list-upper-roman {
 
 body {
   overflow-y: scroll;
-  margin-top: .25em; }
+  margin-top: .25em;
+  margin-bottom: 1em; }
 
 ul.tabs .tabs-title {
   border-radius: 0.1875rem;
@@ -6440,16 +6441,17 @@ ul.tabs li {
 .tabs-panel {
   border-top-width: 0; }
 
-.navigation {
-  min-height: 30em; }
-  .navigation ul.menu a.active {
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    border-radius: 0.1875rem;
-    color: #a8aaff; }
-  @media print, screen and (min-width: 40em) {
+.navigation ul.menu a.active {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 0.1875rem;
+  color: #a8aaff; }
+
+@media print, screen and (min-width: 40em) {
+  .navigation {
+    min-height: 30em; }
     .navigation .navbar-toggler {
       display: none; }
-    .navigation .nav-menu.hidden {
+    .navigation .nav-menu.collapsed {
       /* Never collapse the sidebar for wide screens */
       display: block; } }
 
@@ -6460,3 +6462,6 @@ ul.tabs li {
 .button {
   border-radius: 0.1875rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
+
+.collapsed {
+  display: none; }
