@@ -4,7 +4,10 @@
 
 $body-font-family: "Open Sans", Ubuntu, "Nimbus Sans L", Avenir, AvenirNext, "Segoe UI", Helvetica, Arial, sans-serif;
 
-$foundation-palette: ( primary: hsla(246%, 46%, 33%, 1), secondary: hsla(239%, 100%, 83%, 1), success: hsla(153%, 100%, 59%, 1), warning: hsla(60%, 80%, 59%, 1), alert: hsla(340%, 97%, 48%, 1) );
+/*$foundation-palette: ( primary: hsla(246%, 46%, 33%, 1), secondary: hsla(239%, 100%, 83%, 1), success: hsla(153%, 100%, 59%, 1), warning: #F95113, alert: hsla(340%, 97%, 48%, 1) );*/
+
+$foundation-palette: ( primary: hsla(294%, 72%, 39%, 1), secondary: hsla(262%, 52%, 48%, 1), success: hsla(122%, 57%, 63%, 1), warning: hsla(28%, 91%, 54%, 1), alert: hsla(337%, 94%, 59%, 1) );
+
 $primary-color: map-get($foundation-palette, primary) !global;
 $secondary-color: map-get($foundation-palette, secondary) !global;
 $success-color: map-get($foundation-palette, success) !global;

@@ -21,6 +21,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
         }
 
         [JSInvokable]
+        [UsedImplicitly]
         public static Task<string> FromJSWindowResizedAsync([NotNull] Window window) {
             Guard.Against.Null(() => window);
 
@@ -34,7 +35,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
 
     public class Window
     {
-        public int Width;
         public int Height;
+        public int Width;
     }
 }
