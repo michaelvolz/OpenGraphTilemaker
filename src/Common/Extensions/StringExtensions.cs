@@ -51,23 +51,22 @@ namespace Common.Extensions
                 return value;
 
             var nextSpaceIndex = value.LastIndexOf(truncateAtChar, length, StringComparison.Ordinal);
-            var truncatedString = $"{value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length)}".Trim();
-            string lastCharacter = truncatedString.Last().ToString();
+            var substring = $"{value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length)}".Trim();
+            substring = RemoveNonAlphaNumericTrailingCharacters(substring);
 
-            if (lastCharacter.IsPureAlphaNumeric()) {
-                return $"{truncatedString}{ellipsis}";
+            return $"{substring}{ellipsis}";
+        }
+
+        private static string RemoveNonAlphaNumericTrailingCharacters(string text) {
+            if (text.Length < 1 || text.LastOrDefault().ToString().IsPureAlphaNumeric()) return text;
+
+            var substring = text.Substring(0, text.Length - 1);
+
+            while (substring.Length > 0 && !substring.Last().ToString().IsPureAlphaNumeric()) {
+                substring = substring.Substring(0, substring.Length - 1);
             }
 
-            string temp = truncatedString.Substring(0, truncatedString.Length - 1);
-            string tempLast = temp.LastOrDefault().ToString();
-            while (!tempLast.IsPureAlphaNumeric()) {
-                if (temp.Length <= 1) break;
-                
-                temp = temp.Substring(0, temp.Length - 1);
-                tempLast = temp.LastOrDefault().ToString();
-            }
-
-            return $"{temp}{ellipsis}";
+            return substring;
         }
     }
 }

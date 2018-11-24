@@ -26,7 +26,6 @@ namespace Common.Tests.Extensions
 
             result.Should().BeEquivalentTo(expected);
             result.Trim().Length.Should().BeLessOrEqualTo(index + Ellipsis.Length);
-
         }
     }
 }

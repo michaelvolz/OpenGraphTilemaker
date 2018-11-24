@@ -13,7 +13,7 @@ namespace Common
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly ILogger _logger;
 
-        private readonly string _timeInMs = "### ({0}) took {1}";
+        public static readonly string TimeFormat = "### ({0}) took {1}";
 
         public Time([NotNull] ILogger<Time> logger, [NotNull] IHostingEnvironment environment) {
             _hostingEnvironment = Guard.Against.Null(() => environment);
@@ -31,7 +31,7 @@ namespace Common
             action();
 
             stopwatch.Stop();
-            _logger.LogInformation(string.Format(_timeInMs, name, Ticks(stopwatch)));
+            _logger.LogInformation(string.Format(TimeFormat, name, Ticks(stopwatch)));
         }
 
         public async Task ThisAsync(Func<Task> action, string name) {
@@ -45,10 +45,10 @@ namespace Common
             await action();
 
             stopwatch.Stop();
-            _logger.LogInformation(string.Format(_timeInMs, name, Ticks(stopwatch)));
+            _logger.LogInformation(string.Format(TimeFormat, name, Ticks(stopwatch)));
         }
 
-        private static string Ticks(Stopwatch stopwatch) {
+        public static string Ticks(Stopwatch stopwatch) {
             return new DateTime(stopwatch.ElapsedTicks).ToString("s.fff_ffff");
         }
     }

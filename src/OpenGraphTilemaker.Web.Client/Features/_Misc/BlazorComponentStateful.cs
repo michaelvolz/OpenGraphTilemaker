@@ -6,7 +6,6 @@ using MediatR;
 using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
@@ -27,30 +26,8 @@ namespace OpenGraphTilemaker.Web.Client.Features
         [Inject] public IStore Store { get; set; }
         [Inject] public IUriHelper UriHelper { get; set; }
 
-        public int WindowWidth { get; set; }
-
-        [JSInvokable]
-        public Task<string> WindowResizedAsync(int windowWidth) {
-            Console.WriteLine($"Window resized: new width: '{windowWidth}'!");
-            WindowWidth = windowWidth;
-            StateHasChanged();
-            return Task.FromResult($"new WindowWidth: {windowWidth}");
-        }
-
         protected async Task RequestAsync<T>(IRequest<T> request) {
             await Time.ThisAsync(async () => await Mediator.Send(request), request.GetType().Name);
-        }
-
-        protected override async Task OnParametersSetAsync() {
-            await JSRuntime.Current.InvokeAsync<object>("blazorDemo.initialize", new DotNetObjectRef(this));
-            await GetWindowWidth();
-            base.OnParametersSet();
-        }
-
-        public async Task<int> GetWindowWidth() {
-            WindowWidth = await JSRuntime.Current.InvokeAsync<int>("blazorDemo.getWindowsWidth");
-            StateHasChanged();
-            return WindowWidth;
         }
     }
 }
