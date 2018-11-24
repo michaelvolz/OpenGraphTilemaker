@@ -1,6 +1,4 @@
-﻿"use strict";
-
-window.blazorDemo = {
+﻿window.blazorDemo = {
     showAlert: (data) => {
         alert(data);
 
@@ -27,7 +25,7 @@ window.blazorDemo = {
         console.info("JS onInit!");
     },
 
-    onParametersSet: (dotnetClassInstance) => {
+    onParametersSet: () => {
         console.info("JS onAfterRender!");
 
         var resizeName = "resize";
@@ -37,7 +35,8 @@ window.blazorDemo = {
             }
 
             window.resizeTimer = setTimeout(function() {
-                    dotnetClassInstance.invokeMethodAsync("FromJSWindowResizedAsync", window.innerWidth)
+                    var win = { Width: window.innerWidth, Height: window.innerHeight };
+                    DotNet.invokeMethodAsync("OpenGraphTilemaker.Web.Client", "FromJSWindowResizedAsync", win)
                         .then(data => { console.log(data); });
                 },
                 250);
@@ -45,8 +44,8 @@ window.blazorDemo = {
 
         window.removeEventListener(resizeName, resizer, true);
         window.addEventListener(resizeName, resizer, true);
-    }, 
-    
+    },
+
     onAfterRender: (dotnetClassInstance) => {
         console.info("JS onAfterRender!");
     }

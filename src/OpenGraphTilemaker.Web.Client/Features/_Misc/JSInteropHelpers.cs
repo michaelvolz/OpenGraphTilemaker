@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
+using JetBrains.Annotations;
 using Microsoft.JSInterop;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -8,33 +10,31 @@ namespace OpenGraphTilemaker.Web.Client.Features
 {
     public static class JSInteropHelpers
     {
+        [UsedImplicitly] public static Action<Window> OnWindowResized;
+
         public static async Task<int> GetWindowWidthAsync() {
             return await JSRuntime.Current.InvokeAsync<int>("blazorDemo.getWindowWidth");
         }
 
-        public static async Task<JSState> OnParametersSet() {
-            var jsState = new JSState();
-            await JSRuntime.Current.InvokeAsync<object>("blazorDemo.onParametersSet", new DotNetObjectRef(jsState));
-            jsState.WindowWidth = await GetWindowWidthAsync();
-
-            return jsState;
+        public static async Task OnParametersSet() {
+            await JSRuntime.Current.InvokeAsync<object>("blazorDemo.onParametersSet");
         }
 
-        public class JSState
-        {
-            public Action OnWindowResized;
+        [JSInvokable]
+        public static Task<string> FromJSWindowResizedAsync([NotNull] Window window) {
+            Guard.Against.Null(() => window);
 
-            public int WindowWidth { get; set; }
+            Console.WriteLine($"Window resized: new width: '{window.Width}'!");
 
-            [JSInvokable]
-            public Task<string> FromJSWindowResizedAsync(int windowWidth) {
-                Console.WriteLine($"Window resized: new width: '{windowWidth}'!");
-                WindowWidth = windowWidth;
+            OnWindowResized(window);
 
-                OnWindowResized();
-
-                return Task.FromResult($"new WindowWidth: {windowWidth}");
-            }
+            return Task.FromResult($"new WindowWidth: {window.Width}");
         }
+    }
+
+    public class Window
+    {
+        public int Width;
+        public int Height;
     }
 }
