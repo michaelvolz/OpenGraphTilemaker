@@ -8,11 +8,10 @@ namespace OpenGraphTilemaker.Web.Client
     public class AppModel : BlazorComponent, IComponent
 #pragma warning restore SA1649 // File name should match first type name
     {
-// [Inject] private JsonRequestHandler JsonRequestHandler { get; set; }
-// [Inject] private RouteManager RouteManager { get; set; }
+        // [Inject] private JsonRequestHandler JsonRequestHandler { get; set; }
+        // [Inject] private RouteManager RouteManager { get; set; }
+        // [Inject] private ReduxDevToolsInterop ReduxDevToolsInterop { get; set; }
 
-        [Inject] private ReduxDevToolsInterop ReduxDevToolsInterop { get; set; }
-
-        protected override async Task OnInitAsync() => await ReduxDevToolsInterop.InitAsync();
+        // protected override async Task OnInitAsync() => await ReduxDevToolsInterop.InitAsync();
     }
 }

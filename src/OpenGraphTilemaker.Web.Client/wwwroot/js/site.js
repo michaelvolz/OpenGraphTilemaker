@@ -5,6 +5,10 @@
         return true;
     },
 
+    navigateTo: (url) => {
+        window.location.href = url;
+    },
+    
     say: (data) => {
         console.dir(data);
 
@@ -21,12 +25,12 @@
         return true;
     },
 
-    onInit: (dotnetClassInstance) => {
+    onInit: () => {
         console.info("JS onInit!");
     },
 
     onParametersSet: () => {
-        console.info("JS onAfterRender!");
+        console.info("JS onParametersSet!");
 
         var resizeName = "resize";
         var resizer = function() {
@@ -46,7 +50,7 @@
         window.addEventListener(resizeName, resizer, true);
     },
 
-    onAfterRender: (dotnetClassInstance) => {
+    onAfterRender: () => {
         console.info("JS onAfterRender!");
     }
 };

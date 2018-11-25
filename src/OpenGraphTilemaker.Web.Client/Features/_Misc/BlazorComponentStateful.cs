@@ -17,7 +17,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
             _lazyLogger = new Lazy<ILogger<BlazorComponentStateful>>(() => LoggerFactory.CreateLogger<BlazorComponentStateful>());
         }
 
-        [Inject] public Time Time { get; set; }
+        //[Inject] public Time Time { get; set; }
         [Inject] public ILoggerFactory LoggerFactory { get; set; }
 
         public ILogger<BlazorComponentStateful> Log => _lazyLogger.Value;
@@ -27,7 +27,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
         [Inject] public IUriHelper UriHelper { get; set; }
 
         protected async Task RequestAsync<T>(IRequest<T> request) {
-            await Time.ThisAsync(async () => await Mediator.Send(request), request.GetType().Name);
+            await Mediator.Send(request);
         }
     }
 }

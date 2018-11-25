@@ -16,11 +16,9 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         public class SortTilesHandler : RequestHandler<SortTilesRequest, TilesState>
         {
             [NotNull] private readonly ILogger<SortTilesHandler> _logger;
-            private readonly Time _time;
 
-            public SortTilesHandler([NotNull] ILogger<SortTilesHandler> logger, [NotNull] Time time, IStore store) : base(store) {
+            public SortTilesHandler([NotNull] ILogger<SortTilesHandler> logger, IStore store) : base(store) {
                 _logger = Guard.Against.Null(() => logger);
-                _time = Guard.Against.Null(() => time);
             }
 
             private TilesState TilesState => Store.GetState<TilesState>();
@@ -32,7 +30,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                 if (req.SortOrder != SortOrder.Undefined)
                     TilesState.SortOrder = req.SortOrder;
 
-                _time.This(SortTiles, nameof(SortTilesHandler));
+                SortTiles();
 
                 return Task.FromResult(TilesState);
             }

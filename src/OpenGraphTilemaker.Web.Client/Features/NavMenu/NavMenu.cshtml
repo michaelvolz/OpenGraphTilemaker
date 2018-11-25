@@ -1,14 +1,23 @@
-﻿<div class="mobile-nav-bar title-bar">
+﻿@using System.Globalization
+@inherits BlazorComponentStateful
+
+<div class="mobile-nav-bar title-bar">
     <div class="title-bar-left">
         <button class="menu-icon show-for-small-only" style="margin-top: -5px;" type="button" onclick="@ToggleNavMenu"></button>
     </div>
     <div class="title-bar-center">
-        <div class="title-bar-text"><a href="/">OpenGraph Tilemaker</a></div>
+        <div class="title-bar-text">
+            <a href="/">OpenGraph Tilemaker</a>
+        </div>
     </div>
     <div class="title-bar-right">
         <div class="show-for-small-only">
             <span class="title-bar-text">Actions</span>&nbsp;
-            <span class="title-bar-text"><a href="/"><i class="fi-home"></i></a></span>
+            <span class="title-bar-text">
+                <a href="/">
+                    <i class="fi-home"></i>
+                </a>
+            </span>
         </div>
     </div>
 </div>
@@ -43,8 +52,8 @@
             </NavLink>
         </li>
         <li>
-            <NavLink href="counter">
-                <i class="fi-database"></i> Counter
+            <NavLink href="NavMenu">
+                <i class="fi-database"></i> NavMenu
             </NavLink>
         </li>
         <li>
@@ -54,14 +63,69 @@
         </li>
     </ul>
 
+    <hr/>
+
+    <ul class="vertical menu">
+        <li>
+            <a class="@ClientModeCSS()" onclick="@ClientMode">
+                Client Mode
+            </a>
+        </li>
+
+        <li>
+            <a class="@ServerModeCSS()" onclick="@ServerMode">
+                Server Mode
+            </a>
+        </li>
+    </ul>
+
+
     <hr class="show-for-small-only"/>
 </div>
 
 @functions {
     private bool CollapseNavMenu { get; set; } = true;
 
-    void ToggleNavMenu() {
+    public NavMenuState NavMenuState => Store.GetState<NavMenuState>();
+
+    protected override async Task OnInitAsync() {
+        var url = UriHelper.GetAbsoluteUri();
+
+        if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(url, "mode=server", CompareOptions.IgnoreCase) >= 0) {
+            await RequestAsync(new SetModeRequest { IsServerMode = true });
+        }
+
+        if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(url, "mode=client", CompareOptions.IgnoreCase) >= 0) {
+            await RequestAsync(new SetModeRequest { IsServerMode = false });
+        }
+    }
+
+    public void ToggleNavMenu() {
         CollapseNavMenu = !CollapseNavMenu;
+    }
+
+    public string ServerModeCSS() {
+        return NavMenuState.IsServerMode ? "active" : "";
+    }
+
+    public string ClientModeCSS() {
+        return NavMenuState.IsServerMode ? "" : "active";
+    }
+
+    private async Task ClientMode() {
+        await RequestAsync(new SetModeRequest { IsServerMode = false });
+
+        await JSRuntime.Current.InvokeAsync<bool>("blazorDemo.navigateTo", "http://localhost:50709/?mode=client");
+    }
+
+    private async Task ServerMode() {
+        await RequestAsync(new SetModeRequest { IsServerMode = true });
+
+        await JSRuntime.Current.InvokeAsync<bool>("blazorDemo.navigateTo", "http://localhost:50709/?mode=server");
+    }
+
+    private static async Task Alert() {
+        await JSRuntime.Current.InvokeAsync<bool>("blazorDemo.showAlert", "You need to refresh the page manually for the change to work!");
     }
 
 }
