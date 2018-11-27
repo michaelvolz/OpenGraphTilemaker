@@ -11,17 +11,26 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         public TilesState() { }
 
         protected TilesState(TilesState state) {
-            Tiles = state.Tiles;
+            OriginalTiles = state.OriginalTiles;
+            CurrentTiles = state.CurrentTiles;
+
             SortOrder = state.SortOrder;
             SortProperty = state.SortProperty;
+            SearchText = state.SearchText;
+            LastSearchText = state.LastSearchText;
         }
 
         public override object Clone() => new TilesState(this);
 
         protected override void Initialize() {
-            SortProperty = nameof(OpenGraphMetadata.BookmarkTime);
+            OriginalTiles = new List<OpenGraphMetadata>();
+            CurrentTiles = new List<OpenGraphMetadata>();
+
             SortOrder = SortOrder.Descending;
-            Tiles = new List<OpenGraphMetadata>();
+            SortProperty = nameof(OpenGraphMetadata.BookmarkTime);
+
+            SearchText = string.Empty;
+            LastSearchText = string.Empty;
         }
     }
 }

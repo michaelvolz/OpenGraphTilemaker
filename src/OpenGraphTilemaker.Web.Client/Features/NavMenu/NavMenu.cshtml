@@ -93,10 +93,10 @@
 
         if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(url, "mode=server", CompareOptions.IgnoreCase) >= 0) {
             await RequestAsync(new SetModeRequest { IsServerMode = true });
-        }
-
-        if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(url, "mode=client", CompareOptions.IgnoreCase) >= 0) {
+        } else if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(url, "mode=client", CompareOptions.IgnoreCase) >= 0) {
             await RequestAsync(new SetModeRequest { IsServerMode = false });
+        } else {
+            await RequestAsync(new SetModeRequest { IsServerMode = true });
         }
     }
 

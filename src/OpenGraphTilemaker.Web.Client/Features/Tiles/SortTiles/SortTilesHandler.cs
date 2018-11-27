@@ -32,21 +32,23 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
                 SortTiles();
 
+                _logger.LogInformation($"SortTilesHandler for: '{TilesState.SortProperty}, {TilesState.SortOrder}'");
+
                 return Task.FromResult(TilesState);
             }
 
             private void SortTiles() {
                 switch (TilesState.SortProperty) {
                     case nameof(OpenGraphMetadata.Title):
-                        TilesState.Tiles = TilesState.SortOrder == SortOrder.Ascending
-                            ? TilesState.Tiles.OrderBy(f => f.Title).ToList()
-                            : TilesState.Tiles.OrderByDescending(f => f.Title).ToList();
+                        TilesState.CurrentTiles = TilesState.SortOrder == SortOrder.Ascending
+                            ? TilesState.CurrentTiles.OrderBy(f => f.Title).ToList()
+                            : TilesState.CurrentTiles.OrderByDescending(f => f.Title).ToList();
                         break;
 
                     case nameof(OpenGraphMetadata.BookmarkTime):
-                        TilesState.Tiles = TilesState.SortOrder == SortOrder.Ascending
-                            ? TilesState.Tiles.OrderBy(f => f.BookmarkTime).ToList()
-                            : TilesState.Tiles.OrderByDescending(f => f.BookmarkTime).ToList();
+                        TilesState.CurrentTiles = TilesState.SortOrder == SortOrder.Ascending
+                            ? TilesState.CurrentTiles.OrderBy(f => f.BookmarkTime).ToList()
+                            : TilesState.CurrentTiles.OrderByDescending(f => f.BookmarkTime).ToList();
                         break;
                 }
             }

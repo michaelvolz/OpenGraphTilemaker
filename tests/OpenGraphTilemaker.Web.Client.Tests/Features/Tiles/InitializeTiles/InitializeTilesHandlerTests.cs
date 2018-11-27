@@ -28,8 +28,8 @@ namespace OpenGraphTilemaker.Web.Client.Tests.Features.Tiles
 
             // Assert
             result.Should().NotBeNull();
-            result.Tiles.Should().NotBeNullOrEmpty();
-            var first = result.Tiles.First();
+            result.OriginalTiles.Should().NotBeNullOrEmpty();
+            var first = result.OriginalTiles.First();
             first.Title.Should().NotBeNullOrWhiteSpace();
             first.Title.Should().Be("Microsoft launches Spend iOS app that automatically tracks and matches expenses");
 
@@ -48,9 +48,9 @@ namespace OpenGraphTilemaker.Web.Client.Tests.Features.Tiles
 
             // Assert
             result.Should().NotBeNull();
-            result.Tiles.Should().NotBeNullOrEmpty();
+            result.OriginalTiles.Should().NotBeNullOrEmpty();
 
-            foreach (var tile in result.Tiles) {
+            foreach (var tile in result.OriginalTiles) {
                 TestConsole.WriteLine(tile?.Title ?? "---");
             }
         }

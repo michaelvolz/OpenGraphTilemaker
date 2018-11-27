@@ -25,7 +25,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                 _tileMakerClient = client;
                 _pocketOptions = options.Value;
 
-                TilesState.Tiles = new List<OpenGraphMetadata>();
+                TilesState.OriginalTiles = new List<OpenGraphMetadata>();
             }
 
             private TilesState TilesState => Store.GetState<TilesState>();
@@ -43,10 +43,11 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
                 foreach (var entry in taskResults) {
                     if (entry == null || !entry.IsValid) continue;
-                    TilesState.Tiles.Add(entry);
+                    TilesState.OriginalTiles.Add(entry);
                 }
 
-                TilesState.Tiles = TilesState.Tiles.Distinct().ToList();
+                TilesState.OriginalTiles = TilesState.OriginalTiles.Distinct().ToList();
+                TilesState.CurrentTiles = TilesState.OriginalTiles;
 
                 return TilesState;
             }
