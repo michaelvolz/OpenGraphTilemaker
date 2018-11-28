@@ -1,4 +1,4 @@
-# Blazor.net (Razor Components / Serverside) Examples
+# Some Blazor.net (Razor Components / Serverside) Examples
 
 ## Implemented Features
 
@@ -6,4 +6,3 @@
 * Formvalidation = Fluent Validation
 * Routing => Blazor routing
 * Tests => xUnit, Autofixture, nSubstitute
-* 
