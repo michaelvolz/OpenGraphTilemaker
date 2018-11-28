@@ -20,6 +20,14 @@ namespace OpenGraphTilemaker.Web.Client.Features
             await JSRuntime.Current.InvokeAsync<object>("blazorDemo.onParametersSet");
         }
 
+        public static async Task Alert(string value) {
+            await JSRuntime.Current.InvokeAsync<bool>("blazorDemo.showAlert", value);
+        }
+
+        public static async Task NavigateTo(string url) {
+            await JSRuntime.Current.InvokeAsync<bool>("blazorDemo.navigateTo", $"{url}");
+        }
+        
         [JSInvokable]
         [UsedImplicitly]
         public static Task<string> FromJSWindowResizedAsync([NotNull] Window window) {

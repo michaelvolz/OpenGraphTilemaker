@@ -2,6 +2,6 @@
 {
     public partial class NavMenuState
     {
-        public bool IsServerMode { get; private set; }
+        public BlazorMode BlazorMode { get; private set; }
     }
 }

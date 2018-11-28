@@ -10,14 +10,14 @@ namespace OpenGraphTilemaker.Web.Client.Features.NavMenu
     public partial class NavMenuState
     {
         [IoC]
-        public class SetModeHandler : RequestHandler<SetModeRequest, NavMenuState>
+        public class SetBlazorModeHandler : RequestHandler<SetBlazorModeRequest, NavMenuState>
         {
-            public SetModeHandler(IStore store) : base(store) { }
+            public SetBlazorModeHandler(IStore store) : base(store) { }
 
             public NavMenuState NavMenuState => Store.GetState<NavMenuState>();
 
-            public override Task<NavMenuState> Handle(SetModeRequest req, CancellationToken token) {
-                NavMenuState.IsServerMode = req.IsServerMode;
+            public override Task<NavMenuState> Handle(SetBlazorModeRequest req, CancellationToken token) {
+                NavMenuState.BlazorMode = req.BlazorMode;
 
                 return Task.FromResult(NavMenuState);
             }

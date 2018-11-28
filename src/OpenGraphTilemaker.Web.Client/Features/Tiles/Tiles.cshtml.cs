@@ -12,13 +12,13 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
     public class TilesModel : BlazorComponentStateful
     {
-        protected TilesState TilesState => Store.GetState<TilesState>();
+        protected TilesState State => Store.GetState<TilesState>();
 
         /// <summary>
         ///     OnInit
         /// </summary>
         protected override async Task OnInitAsync() {
-            if (!TilesState.OriginalTiles.Any()) {
+            if (!State.OriginalTiles.Any()) {
                 await RequestAsync(new InitializeTilesRequest());
                 StateHasChanged();
             }
@@ -28,20 +28,24 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         ///     BuildRenderTree
         /// </summary>
         protected override void BuildRenderTree(RenderTreeBuilder builder) {
-            SearchIfUpdatedAsync().GetAwaiter().GetResult();
+            UpdateIfChangeHappenedWithoutCustomEvent();
 
             base.BuildRenderTree(builder);
         }
 
+        private void UpdateIfChangeHappenedWithoutCustomEvent() {
+            SearchIfUpdatedAsync().GetAwaiter().GetResult();
+        }
+
         protected async Task OnSortPropertyButtonClick() {
-            var sortProperty = TilesState.SortProperty != nameof(OpenGraphMetadata.Title)
+            var sortProperty = State.SortProperty != nameof(OpenGraphMetadata.Title)
                 ? nameof(OpenGraphMetadata.Title)
                 : nameof(OpenGraphMetadata.BookmarkTime);
             await RequestAsync(new SortTilesRequest { SortProperty = sortProperty });
         }
 
         protected async Task OnSortOrderButtonClick() {
-            var sortOrder = TilesState.SortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+            var sortOrder = State.SortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
             await RequestAsync(new SortTilesRequest { SortOrder = sortOrder });
         }
 
@@ -50,8 +54,8 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         }
 
         private async Task SearchIfUpdatedAsync() {
-            if (TilesState.LastSearchText != TilesState.SearchText) {
-                await RequestAsync(new SearchTilesRequest { SearchText = TilesState.SearchText });
+            if (State.LastSearchText != State.SearchText) {
+                await RequestAsync(new SearchTilesRequest { SearchText = State.SearchText });
                 await RequestAsync(new SortTilesRequest());
             }
         }

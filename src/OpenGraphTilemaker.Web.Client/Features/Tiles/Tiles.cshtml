@@ -1,7 +1,7 @@
 ﻿@inherits TilesModel;
 <fieldset class="callout" style="padding-bottom: 0; padding-top: 0;">
     <legend>
-        <small style="padding: 0 .5em 0 .5em;">@TilesState.SortProperty @TilesState.SortOrder, Count @TilesState.CurrentTiles.Count</small>
+        <small style="padding: 0 .5em 0 .5em;">@State.SortProperty @State.SortOrder, Count @State.CurrentTiles.Count</small>
     </legend>
 
     <div class="grid-x">
@@ -14,7 +14,7 @@
                 <span class="input-group-label">
                     <i class="fi-page-search"></i>
                 </span>
-                <input class="input-group-field" type="text" bind="@TilesState.SearchText"/>
+                <input class="input-group-field" type="text" bind="@State.SearchText"/>
                 <div class="input-group-button">
                     <input type="submit" class="button" value="Search" placeholder="search value" onclick="@OnSearchButtonClick"/>
                 </div>
@@ -28,8 +28,8 @@
 
 <div class="masonry-css">
     @{
-        for (var index = 0; index < TilesState.CurrentTiles.Count; index += 1) {
-            var item = TilesState.CurrentTiles[index];
+        for (var index = 0; index < State.CurrentTiles.Count; index += 1) {
+            var item = State.CurrentTiles[index];
             <div class="masonry-css-item auto">
                 <Tile OpenGraphMetadata="@item"></Tile>
             </div>
