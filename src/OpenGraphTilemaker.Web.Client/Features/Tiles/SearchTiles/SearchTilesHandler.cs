@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
@@ -8,7 +7,6 @@ using Common;
 using Common.Extensions;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
-using OpenGraphTilemaker.OpenGraph;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
@@ -27,18 +25,17 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
             public override Task<TilesState> Handle(SearchTilesRequest req, CancellationToken token) {
                 if (TilesState.LastSearchText != TilesState.SearchText) {
-                    
                     if (TilesState.SearchText.IsNullOrWhiteSpace()) {
                         TilesState.CurrentTiles = TilesState.OriginalTiles;
                     }
                     else {
-                        var search = TilesState.SearchText.ToLowerInvariant();
+                        var search = TilesState.SearchText.ToUpperInvariant();
 
                         TilesState.CurrentTiles = TilesState.OriginalTiles
                             .Where(
-                                t => t.Title != null && t.Title.ToLowerInvariant().Contains(search)
-                                     || t.Description != null && t.Description.ToLowerInvariant().Contains(search)
-                                     || t.SiteName != null && t.SiteName.ToLowerInvariant().Contains(search)
+                                t => t.Title != null && t.Title.ToUpperInvariant().Contains(search)
+                                     || t.Description != null && t.Description.ToUpperInvariant().Contains(search)
+                                     || t.SiteName != null && t.SiteName.ToUpperInvariant().Contains(search)
                             ).ToList();
 
                         _logger.LogInformation($"SearchTilesHandler for: '{TilesState.SearchText}', Count: {TilesState.CurrentTiles.Count}");

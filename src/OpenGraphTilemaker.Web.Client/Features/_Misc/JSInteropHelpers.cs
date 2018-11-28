@@ -13,11 +13,10 @@ namespace OpenGraphTilemaker.Web.Client.Features
     {
         private const string BlazorDemo = "blazorDemo.";
 
-        public static Action<Window> OnWindowResized;
+        public static Action<Window> OnWindowResized { get; set; }
 
         public static bool IsRegistered(this Action<Window> handler, Action<Window> prospectiveHandler) =>
             handler != null && handler.GetInvocationList().Any(existingHandler => ReferenceEquals(existingHandler, prospectiveHandler));
-
 
         public static bool IsEventHandlerRegistered(Action<Window> prospectiveHandler) {
             if (OnWindowResized == null) return false;
@@ -54,11 +53,5 @@ namespace OpenGraphTilemaker.Web.Client.Features
 
             return Task.FromResult("Resize noticed!");
         }
-    }
-
-    public class Window
-    {
-        public int Height;
-        public int Width;
     }
 }

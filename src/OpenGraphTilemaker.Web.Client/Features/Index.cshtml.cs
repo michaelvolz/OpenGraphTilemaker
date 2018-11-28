@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace OpenGraphTilemaker.Web.Client.Features
@@ -8,8 +7,8 @@ namespace OpenGraphTilemaker.Web.Client.Features
     {
         protected int WindowWidth { get; private set; }
 
-        [SuppressMessage("ReSharper", "DelegateSubtraction")]
         public void Dispose() {
+            // ReSharper disable once DelegateSubtraction
             JSInteropHelpers.OnWindowResized -= WindowResized;
             Console.WriteLine("OnWindowResized event removed!");
         }
@@ -19,16 +18,6 @@ namespace OpenGraphTilemaker.Web.Client.Features
 
             await JSInteropHelpers.InitializeWindowResizeEvent();
 
-            if (JSInteropHelpers.IsEventHandlerRegistered(WindowResized)) {
-                Console.WriteLine("!!! Already registered!");
-            }
-            
-            if (JSInteropHelpers.OnWindowResized.IsRegistered(WindowResized)) {
-                Console.WriteLine("!!! Already registered!");
-            }
-
-            // ReSharper disable once DelegateSubtraction
-            JSInteropHelpers.OnWindowResized -= WindowResized;
             JSInteropHelpers.OnWindowResized += WindowResized;
             Console.WriteLine("OnWindowResized event added!");
 

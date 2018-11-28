@@ -35,7 +35,7 @@ namespace OpenGraphTilemaker.Web.Client
 
             services.AddMemoryCache();
 
-            //services.AddTransient<Time>();
+            services.AddTransient<Time>();
 
             services.AddHttpClient<ITileMakerClient, TileMakerClient>();
 

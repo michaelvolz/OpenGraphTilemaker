@@ -15,7 +15,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         protected TilesState State => Store.GetState<TilesState>();
 
         /// <summary>
-        ///     OnInit
+        ///     OnInit.
         /// </summary>
         protected override async Task OnInitAsync() {
             if (!State.OriginalTiles.Any()) {
@@ -25,16 +25,12 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         }
 
         /// <summary>
-        ///     BuildRenderTree
+        ///     BuildRenderTree.
         /// </summary>
         protected override void BuildRenderTree(RenderTreeBuilder builder) {
             UpdateIfChangeHappenedWithoutCustomEvent();
 
             base.BuildRenderTree(builder);
-        }
-
-        private void UpdateIfChangeHappenedWithoutCustomEvent() {
-            SearchIfUpdatedAsync().GetAwaiter().GetResult();
         }
 
         protected async Task OnSortPropertyButtonClick() {
@@ -49,9 +45,9 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
             await RequestAsync(new SortTilesRequest { SortOrder = sortOrder });
         }
 
-        protected async Task OnSearchButtonClick() {
-            await SearchIfUpdatedAsync();
-        }
+        protected async Task OnSearchButtonClick() => await SearchIfUpdatedAsync();
+
+        private void UpdateIfChangeHappenedWithoutCustomEvent() => SearchIfUpdatedAsync().GetAwaiter().GetResult();
 
         private async Task SearchIfUpdatedAsync() {
             if (State.LastSearchText != State.SearchText) {

@@ -27,34 +27,34 @@
     <Deterministic>true</Deterministic>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <DocumentationFile>_$(MSBuildProjectName).xml</DocumentationFile>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
+    <RuleSetDebug Condition="$(RuleSetDebug) == ''">Solution.debug.ruleset</RuleSetDebug>
     <RuleSetRelease Condition="$(RuleSetRelease) == ''">Solution.ruleset</RuleSetRelease>
   </PropertyGroup>
 
   <PropertyGroup>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetDebug)</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Aspnetcore.Mvc.Analyzers" Version="2.2.0-preview3-35497" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers" Version="2.2.0-preview3-35497" PrivateAssets="all" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.0-preview3-35497" PrivateAssets="all" />
-    <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
-    <None Include="$(MSBuildThisFileDirectory)$(RuleSetRelease)" Condition="'$(MSBuildThisFileDirectory)$(RuleSetRelease)' != ''" Link="%(Filename)%(Extension)" />
   </ItemGroup>
 </Project>

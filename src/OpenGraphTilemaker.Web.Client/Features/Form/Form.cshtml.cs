@@ -8,16 +8,17 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
 {
     public class FormModel : BlazorComponentStateful
     {
-        private const string ThereIsStillSomethingWrong = "There is still something wrong!";
-        private const string Revealed = "";
-        private const string Hidden = "hide";
-
         protected Person Person => State.Person;
-        private FormState State => Store.GetState<FormState>();
 
         protected string Form { get; private set; } = Revealed;
         protected string Success { get; private set; } = Hidden;
         protected string Error { get; private set; } = Hidden;
+
+        private FormState State => Store.GetState<FormState>();
+
+        private const string ThereIsStillSomethingWrong = "There is still something wrong!";
+        private const string Revealed = "";
+        private const string Hidden = "hide";
 
         protected async Task SubmitAsync() {
             if (HasError(Person)) {
@@ -32,14 +33,10 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
             }
         }
 
-        private bool HasError<T>(T obj) where T : class, IValidate {
-            return obj.HasError<T>();
-        }
-
-        protected string IsValid(Expression<Func<object>> property) {
-            return Person.IsValid<Person>(property, "is-invalid");
-        }
+        protected string IsValid(Expression<Func<object>> property) => Person.IsValid<Person>(property, "is-invalid");
 
         protected void KeyPress(UIKeyboardEventArgs ev) => Console.WriteLine($"KeyPress: {ev.Key + ", " + ev.Code}");
+
+        private bool HasError<T>(T obj) where T : class, IValidate => obj.HasError<T>();
     }
 }

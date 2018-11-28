@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BlazorState;
+using Common;
 using MediatR;
 using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor.Services;
@@ -16,7 +17,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
             _lazyLogger = new Lazy<ILogger<BlazorComponentStateful>>(() => LoggerFactory.CreateLogger<BlazorComponentStateful>());
         }
 
-        //[Inject] public Time Time { get; set; }
+        [Inject] public Time Time { get; set; }
         [Inject] public ILoggerFactory LoggerFactory { get; set; }
 
         public ILogger<BlazorComponentStateful> Log => _lazyLogger.Value;

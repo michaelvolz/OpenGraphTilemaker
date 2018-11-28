@@ -13,7 +13,9 @@
 
     [Parameter] private string Title { get; set; }
 
-    [Parameter] public RenderFragment ChildContent { get; private set; }
+#pragma warning disable BL9993 // Component parameter is marked public
+    [Parameter] public RenderFragment ChildContent { get; set; }
+#pragma warning restore BL9993 // Component parameter is marked public
 
     string TitleCssClass => ContainerTabSet.ActiveTab == this ? "is-active" : null;
 

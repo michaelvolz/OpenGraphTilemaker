@@ -15,22 +15,22 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
 {
     public class ValidationBase<TValidator> : IValidate
     {
-        public IList<ValidationFailure> Validate<T>(string property = null) where T : class {
+        public IList<ValidationFailure> Validate<T>(string propertyName = null) where T : class {
             var validator = (IValidator<T>)Activator.CreateInstance<TValidator>();
 
-            var result = string.IsNullOrWhiteSpace(property)
+            var result = string.IsNullOrWhiteSpace(propertyName)
                 ? validator.Validate(this as T)
-                : validator.Validate(this as T, property);
+                : validator.Validate(this as T, propertyName);
 
             return result.Errors;
         }
 
-        public async Task<IList<ValidationFailure>> ValidateAsync<T>(T obj, string property = null, CancellationToken token = default) {
+        public async Task<IList<ValidationFailure>> ValidateAsync<T>(T subject, string propertyName = null, CancellationToken token = default) {
             var validator = (IValidator<T>)Activator.CreateInstance<TValidator>();
 
-            var result = string.IsNullOrWhiteSpace(property)
-                ? await validator.ValidateAsync(obj, token)
-                : await validator.ValidateAsync(obj, token, property);
+            var result = string.IsNullOrWhiteSpace(propertyName)
+                ? await validator.ValidateAsync(subject, token)
+                : await validator.ValidateAsync(subject, token, propertyName);
 
             return result.Errors;
         }
@@ -40,11 +40,11 @@ namespace OpenGraphTilemaker.Web.Client.Features.Form
         }
 
         public string IsValid<T>(Expression<Func<object>> property, string failureClass) where T : class {
-            return HasError<T>(property) ? failureClass : "";
+            return HasError<T>(property) ? failureClass : string.Empty;
         }
 
-        public bool HasError<T>(Expression<Func<object>> property = null) where T : class {
-            return Validate<T>(property).Any();
+        public bool HasError<T>(Expression<Func<object>> propertyExpression = null) where T : class {
+            return Validate<T>(propertyExpression).Any();
         }
     }
 }

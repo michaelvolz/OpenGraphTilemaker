@@ -10,12 +10,12 @@ namespace OpenGraphTilemaker.Web.Client.Features.NavMenu
 
         protected void ToggleNavMenu() => NavMenuCSS = NavMenuCSS == null ? "collapsed" : null;
 
-        protected string ServerModeCSS() => IsClientMode() ? "" : "active";
-        protected string ClientModeCSS() => IsClientMode() ? "active" : "";
-
-        private bool IsClientMode() => JSRuntime.Current is MonoWebAssemblyJSRuntime;
+        protected string ServerModeCSS() => IsClientMode() ? string.Empty : "active";
+        protected string ClientModeCSS() => IsClientMode() ? "active" : string.Empty;
 
         protected async Task ActivateClientMode() => await JSInteropHelpers.NavigateToAsync($"{UriHelper.GetBaseUri()}?mode=client");
         protected async Task ActivateServerMode() => await JSInteropHelpers.NavigateToAsync($"{UriHelper.GetBaseUri()}?mode=server");
+
+        private bool IsClientMode() => JSRuntime.Current is MonoWebAssemblyJSRuntime;
     }
 }
