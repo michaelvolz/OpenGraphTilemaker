@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
-    public partial class BlazorComponentStateful : BlazorComponent
+    public class BlazorComponentStateful : BlazorComponent
     {
         private readonly Lazy<ILogger<BlazorComponentStateful>> _lazyLogger;
 

@@ -8,7 +8,7 @@
     navigateTo: (url) => {
         window.location.href = url;
     },
-    
+
     say: (data) => {
         console.dir(data);
 
@@ -29,8 +29,8 @@
         console.info("JS onInit!");
     },
 
-    onParametersSet: () => {
-        console.info("JS onParametersSet!");
+    initializeWindowResizeEvent: () => {
+        console.info("JS initializeWindowResizeEvent!");
 
         var resizeName = "resize";
         var resizer = function() {
@@ -39,9 +39,12 @@
             }
 
             window.resizeTimer = setTimeout(function() {
+                    console.info("JS resizeTimer timeout!");
+
                     var win = { Width: window.innerWidth, Height: window.innerHeight };
                     DotNet.invokeMethodAsync("OpenGraphTilemaker.Web.Client", "FromJSWindowResizedAsync", win)
-                        .then(data => { console.log(data); });
+                        .then(data => { console.log(data); })
+                        .catch(err => { console.error(err) });
                 },
                 250);
         };

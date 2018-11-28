@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using JetBrains.Annotations;
@@ -10,34 +11,48 @@ namespace OpenGraphTilemaker.Web.Client.Features
 {
     public static class JSInteropHelpers
     {
-        [UsedImplicitly] public static Action<Window> OnWindowResized;
+        private const string BlazorDemo = "blazorDemo.";
+
+        public static Action<Window> OnWindowResized;
+
+        public static bool IsRegistered(this Action<Window> handler, Action<Window> prospectiveHandler) =>
+            handler != null && handler.GetInvocationList().Any(existingHandler => ReferenceEquals(existingHandler, prospectiveHandler));
+
+
+        public static bool IsEventHandlerRegistered(Action<Window> prospectiveHandler) {
+            if (OnWindowResized == null) return false;
+
+            return OnWindowResized.GetInvocationList().Any(handler => handler.Equals(prospectiveHandler));
+        }
 
         public static async Task<int> GetWindowWidthAsync() {
-            return await JSRuntime.Current.InvokeAsync<int>("blazorDemo.getWindowWidth");
+            return await JSRuntime.Current.InvokeAsync<int>($"{BlazorDemo}getWindowWidth");
         }
 
-        public static async Task OnParametersSet() {
-            await JSRuntime.Current.InvokeAsync<object>("blazorDemo.onParametersSet");
+        public static async Task InitializeWindowResizeEvent() {
+            await JSRuntime.Current.InvokeAsync<object>($"{BlazorDemo}initializeWindowResizeEvent");
         }
 
-        public static async Task Alert(string value) {
-            await JSRuntime.Current.InvokeAsync<bool>("blazorDemo.showAlert", value);
+        public static async Task AlertAsync(string value) {
+            await JSRuntime.Current.InvokeAsync<bool>($"{BlazorDemo}showAlert", value);
         }
 
-        public static async Task NavigateTo(string url) {
-            await JSRuntime.Current.InvokeAsync<bool>("blazorDemo.navigateTo", $"{url}");
+        public static async Task NavigateToAsync(string url) {
+            await JSRuntime.Current.InvokeAsync<bool>($"{BlazorDemo}navigateTo", $"{url}");
         }
-        
+
         [JSInvokable]
         [UsedImplicitly]
         public static Task<string> FromJSWindowResizedAsync([NotNull] Window window) {
             Guard.Against.Null(() => window);
 
-            Console.WriteLine($"Window resized: new width: '{window.Width}'!");
+            Console.WriteLine($"Window resized! Width: '{window.Width}', Height: '{window.Height}'!");
 
-            OnWindowResized(window);
+            Console.WriteLine($"SubscriberCount: {OnWindowResized.GetInvocationList().Length}");
 
-            return Task.FromResult($"new WindowWidth: {window.Width}");
+            OnWindowResized?.Invoke(window);
+
+            return Task.FromResult("Resize noticed!");
         }
     }
 
