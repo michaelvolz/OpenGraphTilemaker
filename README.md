@@ -13,6 +13,8 @@
   * Sorting 
   * Searching
   * Disc and memory caching
+  * TODO: paging
+  * TODO: switch layouts
 * ZURB foundation 6.5
 * Code Analysis
   * FxCopAnalyzers
