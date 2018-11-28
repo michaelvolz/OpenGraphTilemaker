@@ -26,5 +26,6 @@
 * Modified filestructure
   * Features Folder
   * Layout Folder
+* Using as less JavaScript as possible
 
 License: http://unlicense.org/
