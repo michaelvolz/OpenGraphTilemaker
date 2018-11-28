@@ -20,20 +20,17 @@ namespace OpenGraphTilemaker.Web.Client
     {
         public void ConfigureServices(IServiceCollection services) {
             // Server Side Blazor doesn't register HttpClient by default
-            if (services.All(x => x.ServiceType != typeof(HttpClient)))
-            {
+            if (services.All(x => x.ServiceType != typeof(HttpClient))) {
                 // Setup HttpClient for server side in a client side compatible fashion
-                services.AddScoped<HttpClient>(s =>
-                {
+                services.AddScoped(s => {
                     // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.
                     var uriHelper = s.GetRequiredService<IUriHelper>();
-                    return new HttpClient
-                    {
+                    return new HttpClient {
                         BaseAddress = new Uri(uriHelper.GetBaseUri())
                     };
                 });
             }
-            
+
             services.AddBlazorState();
 
             services.AddMemoryCache();
@@ -41,9 +38,6 @@ namespace OpenGraphTilemaker.Web.Client
             //services.AddTransient<Time>();
 
             services.AddHttpClient<ITileMakerClient, TileMakerClient>();
-
-            // BUG-FIX for 2.2 preview 3
-            // .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
 
             services.AddTransient<OpenGraphTileMaker>();
 
