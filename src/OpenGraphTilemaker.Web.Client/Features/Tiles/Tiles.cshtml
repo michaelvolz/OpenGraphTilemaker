@@ -1,4 +1,5 @@
 ﻿@inherits TilesModel;
+
 <fieldset class="tiles-title">
     <legend>
         <small>@State.SortProperty @State.SortOrder, Count @State.CurrentTiles.Count</small>
@@ -6,8 +7,8 @@
 
     <div class="grid-x">
         <div class="cell large-6">
-            <button class="button primary" onclick="@OnSortPropertyButtonClick">Sort Property</button>
-            <button class="button primary" onclick="@OnSortOrderButtonClick">Sort Order</button>
+            <button class="button primary" onclick="@OnSortProperty">Sort Property</button>
+            <button class="button primary" onclick="@OnSortOrder">Sort Order</button>
         </div>
         <div class="cell large-6">
             <div class="input-group">
@@ -16,7 +17,7 @@
                 </span>
                 <input class="input-group-field" type="text" bind="@State.SearchText"/>
                 <div class="input-group-button">
-                    <input type="submit" class="button" value="Search" placeholder="search value" onclick="@OnSearchButtonClick"/>
+                    <input type="submit" class="button" value="Search" placeholder="search value" onclick="@OnSearch"/>
                 </div>
             </div>
         </div>
@@ -26,19 +27,16 @@
 
 <p></p>
 
-<h1 class="@(IsLoading ? "" : "collapsed")">Loading...</h1>
+<div class="callout success emphasize radius @ShowIf(Loading)">Loading...</div>
 
-@if (State.CurrentTiles.Any()) {
-    <div class="masonry-css">
-        @{
-            for (var index = 0; index < State.CurrentTiles.Count; index += 1) {
-                var item = State.CurrentTiles[index];
-                <div class="masonry-css-item auto">
-                    <Tile OpenGraphMetadata="@item"></Tile>
-                </div>
-            }
-        }
-    </div>
-} else {
-    <h1>Empty!</h1>
-}
+<div class="callout warning emphasize radius @HideIf(Empty)">Empty!</div>
+
+<div class="masonry-css @ShowIf(Any)">
+
+    @foreach (var item in State.CurrentTiles) {
+        <div class="masonry-css-item auto">
+            <Tile OpenGraphMetadata="@item"></Tile>
+        </div>
+    }
+
+</div>
