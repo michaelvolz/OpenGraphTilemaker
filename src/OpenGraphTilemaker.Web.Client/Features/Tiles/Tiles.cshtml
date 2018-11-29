@@ -1,7 +1,7 @@
 ﻿@inherits TilesModel;
-<fieldset class="callout" style="padding-bottom: 0; padding-top: 0;">
+<fieldset class="tiles-title">
     <legend>
-        <small style="padding: 0 .5em 0 .5em;">@State.SortProperty @State.SortOrder, Count @State.CurrentTiles.Count</small>
+        <small>@State.SortProperty @State.SortOrder, Count @State.CurrentTiles.Count</small>
     </legend>
 
     <div class="grid-x">
@@ -26,13 +26,19 @@
 
 <p></p>
 
-<div class="masonry-css">
-    @{
-        for (var index = 0; index < State.CurrentTiles.Count; index += 1) {
-            var item = State.CurrentTiles[index];
-            <div class="masonry-css-item auto">
-                <Tile OpenGraphMetadata="@item"></Tile>
-            </div>
+<h1 class="@(IsLoading ? "" : "collapsed")">Loading...</h1>
+
+@if (State.CurrentTiles.Any()) {
+    <div class="masonry-css">
+        @{
+            for (var index = 0; index < State.CurrentTiles.Count; index += 1) {
+                var item = State.CurrentTiles[index];
+                <div class="masonry-css-item auto">
+                    <Tile OpenGraphMetadata="@item"></Tile>
+                </div>
+            }
         }
-    }
-</div>
+    </div>
+} else {
+    <h1>Empty!</h1>
+}

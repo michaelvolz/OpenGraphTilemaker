@@ -13,15 +13,18 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
     public class TilesModel : BlazorComponentStateful
     {
         protected TilesState State => Store.GetState<TilesState>();
+        protected bool IsLoading { get; set; } = true;
 
         /// <summary>
         ///     OnInit.
         /// </summary>
         protected override async Task OnInitAsync() {
             if (!State.OriginalTiles.Any()) {
+                IsLoading = true;
                 await RequestAsync(new InitializeTilesRequest());
                 StateHasChanged();
             }
+            IsLoading = false;
         }
 
         /// <summary>

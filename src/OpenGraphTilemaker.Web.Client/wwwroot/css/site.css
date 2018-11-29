@@ -6471,6 +6471,8 @@ body {
   position: absolute;
   top: 0;
   width: 97%; }
+  .navigation .mobile-nav-bar .menu-icon {
+    margin-top: -5px; }
   .navigation .mobile-nav-bar a {
     color: #fefefe; }
   @media screen and (min-width: 40em) {
@@ -6514,6 +6516,23 @@ label.is-invalid {
     label.is-invalid input:not(:focus)::placeholder {
       color: #f93480; }
 
+fieldset.tiles-title {
+  position: relative;
+  margin: 0 0 1rem 0;
+  padding: 1rem;
+  border: 1px solid rgba(10, 10, 10, 0.25);
+  border-radius: 0;
+  background-color: white;
+  color: #0a0a0a;
+  padding-bottom: 0;
+  padding-top: 0; }
+  fieldset.tiles-title > :first-child {
+    margin-top: 0; }
+  fieldset.tiles-title > :last-child {
+    margin-bottom: 0; }
+  fieldset.tiles-title legend {
+    padding: 0 .5em 0 .5em; }
+
 .masonry-css {
   column-count: 1;
   column-gap: 1rem; }
@@ -6538,6 +6557,10 @@ label.is-invalid {
   margin-bottom: 1em; }
   .tile .card-section a {
     float: right; }
+
+.tile-invalid {
+  margin-bottom: 1em;
+  width: 18rem; }
 
 /*$foundation-palette: ( primary: hsla(246%, 46%, 33%, 1), secondary: hsla(239%, 100%, 83%, 1), success: hsla(153%, 100%, 59%, 1), warning: #F95113, alert: hsla(340%, 97%, 48%, 1) );*/
 ul.tabs .tabs-title {
