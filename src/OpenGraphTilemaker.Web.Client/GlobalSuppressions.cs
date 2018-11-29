@@ -20,5 +20,4 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "Razor/Blazor", Scope = "namespace", Target = "OpenGraphTilemaker.Web.Client.Features.NavMenu")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "Razor/Blazor", Scope = "type", Target = "~T:OpenGraphTilemaker.Web.Client.Features.NavMenu.NavMenuModel")]
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", Justification = "<Pending>", Scope = "type", Target = "~T:OpenGraphTilemaker.Web.Client.Features.Form.PersonValidator")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1816:Dispose methods should call SuppressFinalize", Justification = "<Pending>", Scope = "member", Target = "~M:OpenGraphTilemaker.Web.Client.Features.IndexModel.Dispose")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", Justification = "Razor/Blazor", Scope = "type", Target = "~T:OpenGraphTilemaker.Web.Client.Features.Form.PersonValidator")]

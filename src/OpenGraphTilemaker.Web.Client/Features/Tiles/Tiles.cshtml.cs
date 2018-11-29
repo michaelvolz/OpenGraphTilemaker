@@ -24,6 +24,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                 await RequestAsync(new InitializeTilesRequest());
                 StateHasChanged();
             }
+
             IsLoading = false;
         }
 
