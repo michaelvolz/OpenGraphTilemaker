@@ -44,7 +44,7 @@
                     var win = { Width: window.innerWidth, Height: window.innerHeight };
                     DotNet.invokeMethodAsync("OpenGraphTilemaker.Web.Client", "FromJSWindowResizedAsync", win)
                         .then(data => { console.log(data); })
-                        .catch(err => { console.error(err) });
+                        .catch(err => { console.error(err); });
                 },
                 250);
         };
