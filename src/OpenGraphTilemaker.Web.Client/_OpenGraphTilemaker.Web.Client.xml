@@ -4,6 +4,81 @@
         <name>OpenGraphTilemaker.Web.Client</name>
     </assembly>
     <members>
+        <member name="T:OpenGraphTilemaker.Web.Client.Diagnostics.ControlledLevelSwitch">
+            <summary>
+            Instances of this type are single-threaded, generally only updated on a background
+            timer thread. An exception is <see cref="M:OpenGraphTilemaker.Web.Client.Diagnostics.ControlledLevelSwitch.IsIncluded(Serilog.Events.LogEvent)"/>, which may be called
+            concurrently but performs no synchronization.
+            </summary>
+        </member>
+        <member name="T:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserConsoleExtensions">
+            <summary>
+            Adds the WriteTo.BrowserConsole() extension method to <see cref="T:Serilog.LoggerConfiguration"/>.
+            </summary>
+        </member>
+        <member name="M:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserConsoleExtensions.BrowserConsole(Serilog.Configuration.LoggerSinkConfiguration,Serilog.Events.LogEventLevel,System.String,System.IFormatProvider,Serilog.Core.LoggingLevelSwitch,System.Nullable{Serilog.Events.LogEventLevel})">
+            <summary>
+            Writes log events to <see cref="T:System.Console"/>.
+            </summary>
+            <param name="sinkConfiguration">Logger sink configuration.</param>
+            <param name="restrictedToMinimumLevel">The minimum level for
+            events passed through the sink. Ignored when <paramref name="levelSwitch"/> is specified.</param>
+            <param name="levelSwitch">A switch allowing the pass-through minimum level
+            to be changed at runtime.</param>
+            <param name="outputTemplate">A message template describing the format used to write to the sink.
+            the default is "{Timestamp} [{Level}] {Message}{NewLine}{Exception}".</param>
+            <param name="formatProvider">Supplies culture-specific formatting information, or null.</param>
+            <param name="standardErrorFromLevel">Specifies the level at which events will be written to standard error.</param>
+            <returns>Configuration object allowing method chaining.</returns>
+        </member>
+        <member name="M:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserConsoleExtensions.BrowserConsole(Serilog.Configuration.LoggerSinkConfiguration,Serilog.Formatting.ITextFormatter,Serilog.Events.LogEventLevel,Serilog.Core.LoggingLevelSwitch,System.Nullable{Serilog.Events.LogEventLevel})">
+            <summary>
+            Writes log events to <see cref="T:System.Console"/>.
+            </summary>
+            <param name="sinkConfiguration">Logger sink configuration.</param>
+            <param name="formatter">Controls the rendering of log events into text, for example to log JSON. To
+            control plain text formatting, use the overload that accepts an output template.</param>
+            <param name="restrictedToMinimumLevel">The minimum level for
+            events passed through the sink. Ignored when <paramref name="levelSwitch"/> is specified.</param>
+            <param name="levelSwitch">A switch allowing the pass-through minimum level
+            to be changed at runtime.</param>
+            <param name="standardErrorFromLevel">Specifies the level at which events will be written to standard error.</param>
+            <returns>Configuration object allowing method chaining.</returns>
+        </member>
+        <member name="T:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserHttpExtensions">
+            <summary>
+            Extends Serilog configuration to write events via HTTP.
+            </summary>
+        </member>
+        <member name="M:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserHttpExtensions.BrowserHttp(Serilog.Configuration.LoggerSinkConfiguration,System.String,Serilog.Events.LogEventLevel,System.Int32,System.Nullable{System.TimeSpan},System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},Serilog.Core.LoggingLevelSwitch,System.Net.Http.HttpMessageHandler,System.Int32)">
+            <summary>
+            Adds a sink that writes log events to an HTTP server.
+            </summary>
+            <param name="loggerSinkConfiguration">The logger configuration.</param>
+            <param name="endpointUrl">The URL of the server logging endpoint.</param>
+            <param name="restrictedToMinimumLevel">The minimum log event level required 
+            in order to write an event to the sink.</param>
+            <param name="batchPostingLimit">The maximum number of events to post in a single batch.</param>
+            <param name="period">The time to wait between checking for event batches.</param>
+            <param name="bufferBaseFilename">Path for a set of files that will be used to buffer events until they
+            can be successfully transmitted across the network. Individual files will be created using the
+            pattern <paramref name="bufferBaseFilename"/>*.json, which should not clash with any other filenames
+            in the same directory.</param>
+            <param name="bufferSizeLimitBytes">The maximum amount of data, in bytes, to which the buffer
+            log file for a specific date will be allowed to grow. By default no limit will be applied.</param>
+            <param name="eventBodyLimitBytes">The maximum size, in bytes, that the JSON representation of
+            an event may take before it is dropped rather than being sent to the Seq server. Specify null for no limit.
+            The default is 265 KB.</param>
+            <param name="controlLevelSwitch">If provided, the switch will be updated based on the Seq server's level setting
+            for the corresponding API key. Passing the same key to MinimumLevel.ControlledBy() will make the whole pipeline
+            dynamically controlled. Do not specify <paramref name="restrictedToMinimumLevel"/> with this setting.</param>
+            <param name="messageHandler">Used to construct the HttpClient that will send the log messages to Seq.</param>
+            <param name="queueSizeLimit">The maximum number of events that will be held in-memory while waiting to ship them to
+            Seq. Beyond this limit, events will be dropped. The default is 100,000. Has no effect on
+            durable log shipping.</param>
+            <returns>Logger configuration, allowing configuration to continue.</returns>
+            <exception cref="T:System.ArgumentNullException">A required parameter is null.</exception>
+        </member>
         <member name="M:OpenGraphTilemaker.Web.Client.Features.Counter.CounterState.#ctor">
             <summary>
                 Initializes a new instance of the <see cref="T:OpenGraphTilemaker.Web.Client.Features.Counter.CounterState" /> class.

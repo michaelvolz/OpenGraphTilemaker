@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
+using OpenGraphTilemaker.Web.Server.Diagnostics;
 
 namespace OpenGraphTilemaker.Web.Server
 {
@@ -27,6 +28,8 @@ namespace OpenGraphTilemaker.Web.Server
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSerilogClient();
 
             app.UseServerSideBlazor<Client.Startup>();
         }

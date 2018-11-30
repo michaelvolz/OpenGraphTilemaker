@@ -4,6 +4,11 @@ namespace Common.Logging
 {
     public static class ApplicationLogging
     {
-        public static ILogger<T> CreateLogger<T>() => ServiceLocator.Current.GetInstance<ILogger<T>>();
+        public static ILogger<T> CreateLogger<T>() {
+            var factory = ServiceLocator.Current.GetInstance<ILoggerFactory>();
+            var logger = factory.CreateLogger<T>();
+
+            return logger;
+        }
     }
 }

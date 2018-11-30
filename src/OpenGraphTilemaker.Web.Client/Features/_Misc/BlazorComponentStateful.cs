@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using BlazorState;
 using Common;
+using Common.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor.Services;
@@ -20,7 +21,8 @@ namespace OpenGraphTilemaker.Web.Client.Features
         [Inject] protected Time Time { get; set; }
         [Inject] protected IStore Store { get; set; }
         [Inject] protected IUriHelper UriHelper { get; set; }
-        [Inject] protected ILogger<TComponent> Logger { get; set; }
+
+        protected ILogger<TComponent> Logger { get; set; } = ApplicationLogging.CreateLogger<TComponent>();
 
         protected bool IsLoading { get; set; } = true;
 

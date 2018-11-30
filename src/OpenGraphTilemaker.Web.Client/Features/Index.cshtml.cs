@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Common.Exceptions;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 #pragma warning disable CA1063 // Modify IndexModel.Finalize so that it calls Dispose(false) and then returns.
 #pragma warning disable CA1821 // Remove empty Finalizers

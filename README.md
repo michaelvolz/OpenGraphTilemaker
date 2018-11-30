@@ -31,6 +31,7 @@
   * Features Folder
   * Layout Folder
 * Serilog for Logging
+   * Blazor client-logging by NBlumhardt https://github.com/nblumhardt/serilog-blazor
 * Using as less JavaScript as possible
 
 License: http://unlicense.org/

@@ -7,9 +7,14 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 using OpenGraphTilemaker.Web.Client.ClientApp.Services;
+using Serilog;
+using Serilog.AspNetCore;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace OpenGraphTilemaker.Web.Client
 {
@@ -19,6 +24,7 @@ namespace OpenGraphTilemaker.Web.Client
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services) {
+            Log.Information("ConfigureServices!");
             // Server Side Blazor doesn't register HttpClient by default
             if (services.All(x => x.ServiceType != typeof(HttpClient)))
                 services.AddScoped(s => {
@@ -57,7 +63,15 @@ namespace OpenGraphTilemaker.Web.Client
                 options.CachingTimeSpan = TimeSpan.FromSeconds(15);
             });
 
+
+            services.Replace(ServiceDescriptor.Transient<ILoggerFactory, SerilogLoggerFactory>());
+            
             ServiceLocator.SetServiceProvider(services.BuildServiceProvider());
+
+            var factory = ServiceLocator.Current.GetInstance<ILoggerFactory>();
+            var logger = factory.CreateLogger<Startup>();
+
+            logger.LogWarning("ConfigureServices!!!");
         }
 
         [UsedImplicitly]

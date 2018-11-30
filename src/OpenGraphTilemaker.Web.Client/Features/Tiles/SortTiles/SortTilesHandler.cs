@@ -1,10 +1,9 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
-using JetBrains.Annotations;
+using Common.Logging;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 
@@ -15,11 +14,9 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         [IoC]
         public class SortTilesHandler : RequestHandler<SortTilesRequest, TilesState>
         {
-            [NotNull] private readonly ILogger<SortTilesHandler> _logger;
+            private readonly ILogger<SortTilesHandler> _logger = ApplicationLogging.CreateLogger<SortTilesHandler>();
 
-            public SortTilesHandler([NotNull] ILogger<SortTilesHandler> logger, IStore store) : base(store) {
-                _logger = Guard.Against.Null(() => logger);
-            }
+            public SortTilesHandler(IStore store) : base(store) { }
 
             private TilesState TilesState => Store.GetState<TilesState>();
 
