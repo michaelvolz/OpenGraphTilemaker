@@ -10,34 +10,11 @@ namespace OpenGraphTilemaker.Web.Client.Features
 {
     public class IndexModel : BlazorComponentStateful, IDisposable
     {
-        public IndexModel() => NestedExceptionLoggingTest();
-
         protected int WindowWidth { get; private set; }
 
         public void Dispose() {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }
-
-        private static void NestedExceptionLoggingTest() {
-            try {
-                try {
-                    try {
-                        throw new InvalidOperationException("Inner Test Exception");
-                    }
-                    catch (Exception e) when (!(e is LoggedException)) {
-                        var errorMsg = "An INNER TEST ERROR occurred ---some details---";
-                        throw new LoggedException(errorMsg, e, nameof(IndexModel));
-                    }
-                }
-                catch (Exception e) when (!(e is LoggedException)) {
-                    var errorMsg = "THIS SHOULD NEVER BE LOGGED! An OUTER error occurred ---some details---";
-                    throw new LoggedException(errorMsg, e, nameof(IndexModel));
-                }
-            }
-            catch (Exception e) {
-                Console.WriteLine(e);
-            }
         }
 
         protected override async Task OnParametersSetAsync() {
@@ -48,6 +25,8 @@ namespace OpenGraphTilemaker.Web.Client.Features
             JSInteropHelpers.OnWindowResized += WindowResized;
             Log.LogInformation("OnWindowResized event added!");
 
+            NestedExceptionLoggingTest();
+
             await base.OnParametersSetAsync();
         }
 
@@ -56,6 +35,27 @@ namespace OpenGraphTilemaker.Web.Client.Features
                 // ReSharper disable once DelegateSubtraction
                 JSInteropHelpers.OnWindowResized -= WindowResized;
                 Log.LogInformation("OnWindowResized event removed!");
+            }
+        }
+
+        private void NestedExceptionLoggingTest() {
+            try {
+                try {
+                    try {
+                        throw new InvalidOperationException("Inner Test Exception");
+                    }
+                    catch (Exception e) when (!(e is LoggedException)) {
+                        var errorMsg = "An INNER TEST ERROR occurred ---some details---";
+                        throw new LoggedException(typeof(IndexModel), e, errorMsg);
+                    }
+                }
+                catch (Exception e) when (!(e is LoggedException)) {
+                    var errorMsg = "THIS SHOULD NEVER BE LOGGED! An OUTER error occurred ---some details---";
+                    throw new LoggedException(typeof(IndexModel), e, errorMsg);
+                }
+            }
+            catch (Exception e) {
+                Log.LogWarning(e, "Oops!");
             }
         }
 

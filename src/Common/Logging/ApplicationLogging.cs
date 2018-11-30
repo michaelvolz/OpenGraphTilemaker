@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System;
+using Microsoft.Extensions.Logging;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
@@ -12,6 +13,6 @@ namespace Common.Logging
     {
         public static ILoggerFactory LoggerFactory { get; set; } // = new LoggerFactory();
         public static ILogger CreateLogger<T>() => LoggerFactory.CreateLogger<T>();
-        public static ILogger CreateLogger(string categoryName) => LoggerFactory.CreateLogger(categoryName);
+        public static ILogger CreateLogger(Type type) => LoggerFactory.CreateLogger(type);
     }
 }

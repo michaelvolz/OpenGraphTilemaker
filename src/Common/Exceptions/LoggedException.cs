@@ -10,15 +10,17 @@ namespace Common.Exceptions
 {
     public class LoggedException : Exception
     {
-        public LoggedException(string message, string loggerName) : base(message)
-            => LogException(message, null, loggerName);
+        public LoggedException(Type loggerType, string message, params object[] args)
+            : base(string.Format(message, args))
+            => LogException(loggerType, null, message, args);
 
-        public LoggedException(string message, Exception innerException, string loggerName) : base(message, innerException)
-            => LogException(message, innerException, loggerName);
+        public LoggedException(Type loggerType, Exception innerException, string message, params object[] args)
+            : base(string.Format(message, args), innerException) =>
+            LogException(loggerType, innerException, message, args);
 
-        private void LogException(string message, Exception innerException, string loggerName) {
-            var logger = ApplicationLogging.CreateLogger(loggerName);
-            logger.LogError(innerException, message);
+        private void LogException(Type loggerType, Exception innerException, string message, params object[] args) {
+            var logger = ApplicationLogging.CreateLogger(loggerType);
+            logger.LogError(innerException, message, args);
         }
     }
 }

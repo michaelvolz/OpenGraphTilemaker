@@ -21,7 +21,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
     {
         private const string BlazorDemo = "blazorDemo.";
 
-        private static readonly ILogger Log = ApplicationLogging.CreateLogger(nameof(JSInteropHelpers));
+        private static readonly ILogger Log = ApplicationLogging.CreateLogger(typeof(JSInteropHelpers));
 
         public static Action<Window> OnWindowResized { get; set; }
 
