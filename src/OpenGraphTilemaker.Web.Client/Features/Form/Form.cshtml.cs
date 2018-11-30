@@ -7,7 +7,7 @@ using Microsoft.JSInterop;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Form
 {
-    public class FormModel : BlazorComponentStateful
+    public class FormModel : BlazorComponentStateful<FormModel>
     {
         protected Person Person => State.Person;
 

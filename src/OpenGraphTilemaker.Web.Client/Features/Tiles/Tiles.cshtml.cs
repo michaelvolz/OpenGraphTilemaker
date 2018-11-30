@@ -13,7 +13,7 @@ using OpenGraphTilemaker.OpenGraph;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
-    public class TilesModel : BlazorComponentStateful
+    public class TilesModel : BlazorComponentStateful<TilesModel>
     {
         private const int OneSecondInMilliseconds = 1000;
         private readonly string _logPrefix;

@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
-    public class SortingAndSearchModel : BlazorComponentStateful
+    public class SortingAndSearchModel : BlazorComponentStateful<SortingAndSearchModel>
     {
         [Parameter] private Action<string> OnSortProperty { get; set; }
         [Parameter] private Action<SortOrder> OnSortOrder { get; set; }

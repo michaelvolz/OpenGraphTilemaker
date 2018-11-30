@@ -69,11 +69,6 @@
                 OnInit.
             </summary>
         </member>
-        <member name="M:OpenGraphTilemaker.Web.Client.Features.BlazorComponentStateful.#ctor">
-            <summary>
-                Initializes a new instance of the <see cref="T:OpenGraphTilemaker.Web.Client.Features.BlazorComponentStateful" /> class.
-            </summary>
-        </member>
         <member name="T:OpenGraphTilemaker.Web.Client.Startup">
             <summary>
                 Client Startup.

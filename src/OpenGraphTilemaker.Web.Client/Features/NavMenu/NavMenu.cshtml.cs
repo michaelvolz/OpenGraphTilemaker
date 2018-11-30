@@ -4,7 +4,7 @@ using Mono.WebAssembly.Interop;
 
 namespace OpenGraphTilemaker.Web.Client.Features.NavMenu
 {
-    public class NavMenuModel : BlazorComponentStateful
+    public class NavMenuModel : BlazorComponentStateful<NavMenuModel>
     {
         protected string NavMenuCSS { get; private set; }
 

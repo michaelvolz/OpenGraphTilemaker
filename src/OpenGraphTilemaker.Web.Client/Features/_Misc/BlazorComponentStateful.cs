@@ -13,15 +13,12 @@ using Microsoft.Extensions.Logging;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
-    public class BlazorComponentStateful : BlazorComponent
+    public class BlazorComponentStateful<TComponent> : BlazorComponent
     {
-        private readonly Lazy<ILogger<BlazorComponentStateful>> _lazyLogger;
+        private readonly Lazy<ILogger<TComponent>> _lazyLogger;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="BlazorComponentStateful" /> class.
-        /// </summary>
         protected BlazorComponentStateful() =>
-            _lazyLogger = new Lazy<ILogger<BlazorComponentStateful>>(() => LoggerFactory.CreateLogger<BlazorComponentStateful>());
+            _lazyLogger = new Lazy<ILogger<TComponent>>(() => LoggerFactory.CreateLogger<TComponent>());
 
         [Inject] private ILoggerFactory LoggerFactory { get; set; }
         [Inject] private IMediator Mediator { get; set; }
@@ -30,13 +27,13 @@ namespace OpenGraphTilemaker.Web.Client.Features
         [Inject] protected IStore Store { get; set; }
         [Inject] protected IUriHelper UriHelper { get; set; }
 
-        protected ILogger<BlazorComponentStateful> Log => _lazyLogger.Value;
+        protected ILogger<TComponent> Log => _lazyLogger.Value;
 
         protected bool IsLoading { get; set; } = true;
 
         protected string HideIf(Func<bool> predicate) => predicate() ? "collapsed" : null;
         protected string ShowIf(Func<bool> predicate) => predicate() ? null : "collapsed";
 
-        protected async Task RequestAsync<T>(IRequest<T> request) => await Mediator.Send(request);
+        protected async Task RequestAsync<TRequest>(IRequest<TRequest> request) => await Mediator.Send(request);
     }
 }

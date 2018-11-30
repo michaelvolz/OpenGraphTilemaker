@@ -3,7 +3,6 @@ using Common.Logging;
 using Microsoft.Extensions.Logging;
 
 // ReSharper disable UnusedMember.Global
-// ReSharper disable UnusedParameter.Local
 #pragma warning disable CA1032 // Implement standard exception constructors
 
 namespace Common.Exceptions

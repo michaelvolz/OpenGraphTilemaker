@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Counter
 {
-    public class CounterModel : BlazorComponentStateful
+    public class CounterModel : BlazorComponentStateful<CounterModel>
     {
         public CounterState CounterState => Store.GetState<CounterState>();
 

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
-    public class IndexModel : BlazorComponentStateful, IDisposable
+    public class IndexModel : BlazorComponentStateful<IndexModel>, IDisposable
     {
         protected int WindowWidth { get; private set; }
 
@@ -20,7 +20,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
         protected override async Task OnParametersSetAsync() {
             WindowWidth = await JSInteropHelpers.GetWindowWidthAsync();
 
-            await JSInteropHelpers.InitializeWindowResizeEvent();
+            await JSInteropHelpers.InitializeWindowResizeEventAsync();
 
             JSInteropHelpers.OnWindowResized += WindowResized;
             Log.LogInformation("OnWindowResized event added!");
@@ -45,7 +45,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
                         throw new InvalidOperationException("Inner Test Exception");
                     }
                     catch (Exception e) when (!(e is LoggedException)) {
-                        var errorMsg = "An INNER TEST ERROR occurred ---some details---";
+                        var errorMsg = "An INNER TEST ERROR occurred ###some details###";
                         throw new LoggedException(typeof(IndexModel), e, errorMsg);
                     }
                 }
