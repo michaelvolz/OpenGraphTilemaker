@@ -13,8 +13,10 @@
   * Sorting 
   * Searching
   * Disc and memory caching
+  * Loading indicator
   * TODO: paging
   * TODO: switch layouts
+  * TODO: use API call for client version (feedreader is not compatible)
 * ZURB foundation 6.5
 * Code Analysis
   * FxCopAnalyzers
@@ -28,6 +30,7 @@
 * Modified filestructure
   * Features Folder
   * Layout Folder
+* Serilog for Logging
 * Using as less JavaScript as possible
 
 License: http://unlicense.org/
