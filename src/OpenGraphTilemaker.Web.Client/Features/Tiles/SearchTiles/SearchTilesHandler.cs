@@ -24,6 +24,8 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
             private TilesState TilesState => Store.GetState<TilesState>();
 
             public override Task<TilesState> Handle(SearchTilesRequest req, CancellationToken token) {
+                TilesState.SearchText = req.SearchText;
+
                 if (TilesState.LastSearchText != TilesState.SearchText) {
                     if (TilesState.SearchText.IsNullOrWhiteSpace()) {
                         TilesState.CurrentTiles = TilesState.OriginalTiles;

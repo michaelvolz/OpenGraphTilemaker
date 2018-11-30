@@ -54,6 +54,11 @@
                 Set the Initial State.
             </summary>
         </member>
+        <member name="M:OpenGraphTilemaker.Web.Client.Features.Tiles.SortingAndSearchModel.BuildRenderTree(Microsoft.AspNetCore.Blazor.RenderTree.RenderTreeBuilder)">
+            <summary>
+                BuildRenderTree.
+            </summary>
+        </member>
         <member name="M:OpenGraphTilemaker.Web.Client.Features.Tiles.TilesModel.#ctor">
             <summary>
                 Initializes a new instance of the <see cref="T:OpenGraphTilemaker.Web.Client.Features.Tiles.TileModel" /> class.
@@ -62,11 +67,6 @@
         <member name="M:OpenGraphTilemaker.Web.Client.Features.Tiles.TilesModel.OnInitAsync">
             <summary>
                 OnInit.
-            </summary>
-        </member>
-        <member name="M:OpenGraphTilemaker.Web.Client.Features.Tiles.TilesModel.BuildRenderTree(Microsoft.AspNetCore.Blazor.RenderTree.RenderTreeBuilder)">
-            <summary>
-                BuildRenderTree.
             </summary>
         </member>
         <member name="M:OpenGraphTilemaker.Web.Client.Features.BlazorComponentStateful.#ctor">

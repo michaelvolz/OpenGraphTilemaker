@@ -1,29 +1,14 @@
-﻿@inherits TilesModel;
+﻿@using Common
+@inherits TilesModel;
 
-<fieldset class="tiles-title">
-    <legend>
-        <small>@State.SortProperty @State.SortOrder, Count @State.CurrentTiles.Count</small>
-    </legend>
-
-    <div class="grid-x">
-        <div class="cell large-6">
-            <button class="button primary" onclick="@OnSortProperty">Sort Property</button>
-            <button class="button primary" onclick="@OnSortOrder">Sort Order</button>
-        </div>
-        <div class="cell large-6">
-            <div class="input-group">
-                <span class="input-group-label">
-                    <i class="fi-page-search"></i>
-                </span>
-                <input class="input-group-field" type="text" bind="@State.SearchText"/>
-                <div class="input-group-button">
-                    <input type="submit" class="button" value="Search" placeholder="search value" onclick="@OnSearch"/>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</fieldset>
+<SortingAndSearch ref="SortComponent"
+                  Count="@State.CurrentTiles.Count"
+                  OnSearch="@((Action<string>)OnSearch)"
+                  OnSortOrder="@((Action<SortOrder>)OnSortOrder)"
+                  OnSortProperty="@((Action<string>)OnSortProperty)"
+                  SearchText="@State.SearchText"
+                  SortOrder="@State.SortOrder"
+                  SortProperty="@State.SortProperty"/>
 
 <p></p>
 

@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor.RenderTree;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
@@ -16,6 +18,8 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         private const int OneSecondInMilliseconds = 1000;
         private readonly string _logPrefix;
 
+        protected SortingAndSearch SortComponent { get; set; }
+        
         /// <summary>
         ///     Initializes a new instance of the <see cref="TileModel" /> class.
         /// </summary>
@@ -38,7 +42,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
                 IsLoading = true;
                 // for testing purposes only!
-                await Task.Delay(5 * OneSecondInMilliseconds);
+                await Task.Delay(0 * OneSecondInMilliseconds);
                 await RequestAsync(new InitializeTilesRequest());
 
                 StateHasChanged();
@@ -47,35 +51,37 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
             IsLoading = false;
         }
 
-        /// <summary>
-        ///     BuildRenderTree.
-        /// </summary>
-        protected override void BuildRenderTree(RenderTreeBuilder builder) {
-            // Fires when 'enter' was pressed in the searchBox  or  searchBox -> blur
-            SearchIfUpdatedAsync().GetAwaiter().GetResult();
+        protected async void OnSortProperty(string sortProperty) {
+            SortComponent.TextInjectedFromParent("myParentText");
 
-            base.BuildRenderTree(builder);
-        }
-
-        protected async Task OnSortProperty() {
-            var sortProperty = State.SortProperty != nameof(OpenGraphMetadata.Title)
+            sortProperty = sortProperty != nameof(OpenGraphMetadata.Title)
                 ? nameof(OpenGraphMetadata.Title)
                 : nameof(OpenGraphMetadata.BookmarkTime);
             await RequestAsync(new SortTilesRequest { SortProperty = sortProperty });
+
+            StateHasChanged();
         }
 
-        protected async Task OnSortOrder() {
-            var sortOrder = State.SortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+        protected async void OnSortOrder(SortOrder sortOrder) {
+            sortOrder = sortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
             await RequestAsync(new SortTilesRequest { SortOrder = sortOrder });
+
+            StateHasChanged();
         }
 
-        protected async Task OnSearch() => await SearchIfUpdatedAsync();
+        protected async void OnSearch(string searchText) {
+            await Task.FromResult(0);
 
-        private async Task SearchIfUpdatedAsync() {
-            if (State.LastSearchText != State.SearchText) {
-                await RequestAsync(new SearchTilesRequest { SearchText = State.SearchText });
-                await RequestAsync(new SortTilesRequest());
-            }
+            SearchIfUpdatedAsync(searchText).GetAwaiter().GetResult();
+
+            StateHasChanged();
+        }
+
+        private async Task SearchIfUpdatedAsync(string searchText) {
+            Log.LogInformation("searchText: " + searchText);
+
+            await RequestAsync(new SearchTilesRequest { SearchText = searchText });
+            await RequestAsync(new SortTilesRequest());
         }
     }
 }

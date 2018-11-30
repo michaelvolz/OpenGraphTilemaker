@@ -3,10 +3,12 @@ using System.Linq;
 using System.Net.Http;
 using BlazorState;
 using Common;
+using Common.Logging;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 using OpenGraphTilemaker.Web.Client.ClientApp.Services;
@@ -19,6 +21,8 @@ namespace OpenGraphTilemaker.Web.Client
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services) {
+            ApplicationLogging.LoggerFactory = new LoggerFactory();
+            
             // Server Side Blazor doesn't register HttpClient by default
             if (services.All(x => x.ServiceType != typeof(HttpClient))) {
                 // Setup HttpClient for server side in a client side compatible fashion
