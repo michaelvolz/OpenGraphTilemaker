@@ -35,10 +35,10 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         ///     OnInit.
         /// </summary>
         protected override async Task OnInitAsync() {
-            Log.LogInformation($"{_logPrefix}.{nameof(OnInitAsync)}");
+            Logger.LogInformation($"{_logPrefix}.{nameof(OnInitAsync)}");
 
             if (!State.OriginalTiles.Any()) {
-                Log.LogInformation($"{_logPrefix}.{nameof(OnInitAsync)} loading data...");
+                Logger.LogInformation($"{_logPrefix}.{nameof(OnInitAsync)} loading data...");
 
                 IsLoading = true;
                 // for testing purposes only!
@@ -74,12 +74,12 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
             SearchIfUpdatedAsync(searchText).GetAwaiter().GetResult();
 
+            //Logger.Debug("State: {@state}", State.CurrentTiles);
+
             StateHasChanged();
         }
 
         private async Task SearchIfUpdatedAsync(string searchText) {
-            Log.LogInformation("searchText: " + searchText);
-
             await RequestAsync(new SearchTilesRequest { SearchText = searchText });
             await RequestAsync(new SortTilesRequest());
         }

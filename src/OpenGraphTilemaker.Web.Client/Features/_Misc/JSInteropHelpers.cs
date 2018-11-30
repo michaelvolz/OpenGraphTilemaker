@@ -17,10 +17,11 @@ namespace OpenGraphTilemaker.Web.Client.Features
         public static async Task FocusAsync(this ElementRef elementRef) => await JSInteropHelpers.FocusAsync(elementRef);
     }
 
-    public static class JSInteropHelpers
+    [UsedImplicitly]
+    public class JSInteropHelpers
     {
         private const string BlazorDemo = "blazorDemo.";
-        private static readonly ILogger Log = ApplicationLogging.CreateLogger(typeof(JSInteropHelpers));
+        private static readonly ILogger Logger = ApplicationLogging.CreateLogger<JSInteropHelpers>();
 
         public static Action<Window> OnWindowResized { get; set; }
 
@@ -35,9 +36,9 @@ namespace OpenGraphTilemaker.Web.Client.Features
         public static Task<string> FromJSWindowResizedAsync([NotNull] Window window) {
             Guard.Against.Null(() => window);
 
-            Log.LogInformation($"Window resized! Width: '{window.Width}', Height: '{window.Height}'!");
+            Logger.LogInformation($"Window resized! Width: '{window.Width}', Height: '{window.Height}'!");
 
-            Log.LogInformation($"SubscriberCount: {OnWindowResized.GetInvocationList().Length}");
+            Logger.LogInformation($"SubscriberCount: {OnWindowResized.GetInvocationList().Length}");
 
             OnWindowResized?.Invoke(window);
 

@@ -29,11 +29,6 @@
                 Decorates a class as IoC injected. No direct instantiation is necessary.
             </summary>
         </member>
-        <member name="T:Common.Logging.ApplicationLogging">
-            <summary>
-                Shared logger
-            </summary>
-        </member>
         <member name="T:Ardalis.GuardClauses.GuardClauseExtensions">
             <summary>
             Assertion Guard.

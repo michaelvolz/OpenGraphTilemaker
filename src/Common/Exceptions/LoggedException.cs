@@ -7,19 +7,23 @@ using Microsoft.Extensions.Logging;
 
 namespace Common.Exceptions
 {
-    public class LoggedException : Exception
+    public class LoggedException<T> : Exception, ILoggedException
     {
-        public LoggedException(Type loggerType, string message, params object[] args)
-            : base(string.Format(message, args))
-            => LogException(loggerType, null, message, args);
+        public LoggedException(string message, object propertyValue0 = null, object propertyValue1 = null, object propertyValue2 = null)
+            : base(message)
+            => LogException(null, message, propertyValue0, propertyValue1, propertyValue2);
 
-        public LoggedException(Type loggerType, Exception innerException, string message, params object[] args)
-            : base(string.Format(message, args), innerException) =>
-            LogException(loggerType, innerException, message, args);
+        public LoggedException(Exception innerException, string message, object propertyValue0 = null, object propertyValue1 = null,
+            object propertyValue2 = null)
+            : base(message, innerException) =>
+            LogException(innerException, message, propertyValue0, propertyValue1, propertyValue2);
 
-        private void LogException(Type loggerType, Exception innerException, string message, params object[] args) {
-            var logger = ApplicationLogging.CreateLogger(loggerType);
-            logger.LogError(innerException, message, args);
+        private void LogException<T0, T1, T2>(Exception innerException, string message,
+            T0 propertyValue0, T1 propertyValue1, T2 propertyValue2) {
+            var logger = ApplicationLogging.CreateLogger<T>();
+            logger.LogError(innerException, message, propertyValue0, propertyValue1, propertyValue2);
         }
     }
+
+    public interface ILoggedException { }
 }

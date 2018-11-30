@@ -55,7 +55,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
         [UsedImplicitly]
         public void TextInjectedFromParent(string text) {
-            Log.LogInformation($"Received from parent control: '{text}'");
+            Logger.LogInformation($"Received from parent control: '{text}'");
         }
     }
 }

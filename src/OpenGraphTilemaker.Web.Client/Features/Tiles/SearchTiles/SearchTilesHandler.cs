@@ -40,7 +40,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                                      || t.SiteName != null && t.SiteName.ToUpperInvariant().Contains(search)
                             ).ToList();
 
-                        _logger.LogInformation($"SearchTilesHandler for: '{TilesState.SearchText}', Count: {TilesState.CurrentTiles.Count}");
+                        _logger.LogInformation("SearchTilesHandler for: {SearchText}, Count: {Count}", TilesState.SearchText, TilesState.CurrentTiles.Count);
                     }
 
                     TilesState.LastSearchText = TilesState.SearchText;

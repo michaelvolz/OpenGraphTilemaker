@@ -23,7 +23,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
             await JSInteropHelpers.InitializeWindowResizeEventAsync();
 
             JSInteropHelpers.OnWindowResized += WindowResized;
-            Log.LogInformation("OnWindowResized event added!");
+            Logger.LogInformation("OnWindowResized event added!");
 
             NestedExceptionLoggingTest();
 
@@ -34,7 +34,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
             if (disposing) {
                 // ReSharper disable once DelegateSubtraction
                 JSInteropHelpers.OnWindowResized -= WindowResized;
-                Log.LogInformation("OnWindowResized event removed!");
+                Logger.LogInformation("OnWindowResized event removed!");
             }
         }
 
@@ -44,18 +44,18 @@ namespace OpenGraphTilemaker.Web.Client.Features
                     try {
                         throw new InvalidOperationException("Inner Test Exception");
                     }
-                    catch (Exception e) when (!(e is LoggedException)) {
+                    catch (Exception e) when (!(e is ILoggedException)) {
                         var errorMsg = "An INNER TEST ERROR occurred ###some details###";
-                        throw new LoggedException(typeof(IndexModel), e, errorMsg);
+                        throw new LoggedException<IndexModel>(e, errorMsg);
                     }
                 }
-                catch (Exception e) when (!(e is LoggedException)) {
+                catch (Exception e) when (!(e is ILoggedException)) {
                     var errorMsg = "THIS SHOULD NEVER BE LOGGED! An OUTER error occurred ---some details---";
-                    throw new LoggedException(typeof(IndexModel), e, errorMsg);
+                    throw new LoggedException<IndexModel>(e, errorMsg);
                 }
             }
             catch (Exception e) {
-                Log.LogWarning(e, "Oops!");
+                Logger.LogWarning(e, "Oops!");
             }
         }
 
