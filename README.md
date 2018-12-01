@@ -5,8 +5,8 @@
 * State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and MediatR
 * Formvalidation:
   * Fluent Validation
-  * ValidationError
-  * ValidationSummary
+  * ValidationError idea from https://github.com/PeterHimschoot/Blazor.Validation
+  * ValidationSummary idea from https://github.com/PeterHimschoot/Blazor.Validation
 * Tests => xUnit, Autofixture, nSubstitute
 * OpenGraph TileMaker:
   * RSS feedreader as source
@@ -28,10 +28,14 @@
   * Server side
   * Client side
 * Modified filestructure
-  * Features Folder
-  * Layout Folder
+  * Blazor Feature Folders adapted from https://scottsauber.com/2016/04/25/feature-folder-structure-in-asp-net-core/
+  * Removed Pages, Shared
 * Serilog for Logging
    * Blazor client-logging by NBlumhardt https://github.com/nblumhardt/serilog-blazor
 * Using as less JavaScript as possible
+* JetBrains Annotations
+* Custom Guard clauses, customised from Ardalis.GuardClauses https://github.com/ardalis/GuardClauses
+* Feed Syndication = Microsoft.SyndicationFeed.ReaderWriter
+* Foundation Icons
 
 License: http://unlicense.org/
