@@ -28,7 +28,7 @@ using Serilog.Formatting.Compact;
 using Serilog.Formatting.Json;
 using Serilog.Sinks.PeriodicBatching;
 
-namespace OpenGraphTilemaker.Web.Client.Diagnostics
+namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
 {
     class BrowserHttpSink : PeriodicBatchingSink
     {

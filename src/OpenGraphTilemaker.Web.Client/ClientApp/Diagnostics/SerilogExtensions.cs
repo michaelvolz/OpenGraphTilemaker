@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Serilog.AspNetCore;
 using ILogger = Serilog.ILogger;
 
-namespace OpenGraphTilemaker.Web.Client.Diagnostics
+namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
 {
     public static class SerilogExtensions
     {

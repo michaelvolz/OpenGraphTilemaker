@@ -9,7 +9,7 @@ using Serilog.Core;
 using Serilog.Debugging;
 using Serilog.Formatting.Compact.Reader;
 
-namespace OpenGraphTilemaker.Web.Server.Diagnostics
+namespace OpenGraphTilemaker.Web.Server.ServerApp.Diagnostics
 {
     internal class SerilogClientLoggingMiddleware
     {

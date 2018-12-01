@@ -18,7 +18,7 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
 
-namespace OpenGraphTilemaker.Web.Client.Diagnostics
+namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
 {
     class BrowserConsoleSink : ILogEventSink
     {

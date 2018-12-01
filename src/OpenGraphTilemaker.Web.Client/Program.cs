@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Blazor.Hosting;
-using OpenGraphTilemaker.Web.Client.Diagnostics;
+using OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics;
 using Serilog;
 using Serilog.Core;
 using Serilog.Debugging;

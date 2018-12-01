@@ -20,7 +20,7 @@ using Serilog.Events;
 using Serilog.Formatting;
 using Serilog.Formatting.Display;
 
-namespace OpenGraphTilemaker.Web.Client.Diagnostics
+namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
 {
     /// <summary>
     /// Adds the WriteTo.BrowserConsole() extension method to <see cref="LoggerConfiguration"/>.

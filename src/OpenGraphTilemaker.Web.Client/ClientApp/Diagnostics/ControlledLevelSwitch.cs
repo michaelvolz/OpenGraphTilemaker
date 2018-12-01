@@ -15,7 +15,7 @@
 using Serilog.Core;
 using Serilog.Events;
 
-namespace OpenGraphTilemaker.Web.Client.Diagnostics
+namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
 {
     /// <summary>
     /// Instances of this type are single-threaded, generally only updated on a background

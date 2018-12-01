@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
-using OpenGraphTilemaker.Web.Server.Diagnostics;
+using OpenGraphTilemaker.Web.Server.ServerApp.Diagnostics;
 
 namespace OpenGraphTilemaker.Web.Server
 {

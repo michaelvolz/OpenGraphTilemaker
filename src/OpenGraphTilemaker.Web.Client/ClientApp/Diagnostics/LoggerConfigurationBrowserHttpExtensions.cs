@@ -19,7 +19,7 @@ using Serilog.Configuration;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace OpenGraphTilemaker.Web.Client.Diagnostics
+namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
 {
     /// <summary>
     /// Extends Serilog configuration to write events via HTTP.

@@ -2,7 +2,7 @@
 using Serilog;
 using Serilog.Core;
 
-namespace OpenGraphTilemaker.Web.Server.Diagnostics
+namespace OpenGraphTilemaker.Web.Server.ServerApp.Diagnostics
 {
     public static class ApplicationBuilderSerilogClientExtensions
     {

@@ -15,7 +15,7 @@
 using System;
 using Serilog.Events;
 
-namespace OpenGraphTilemaker.Web.Client.Diagnostics
+namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
 {
     class SerilogServerApi
     {
