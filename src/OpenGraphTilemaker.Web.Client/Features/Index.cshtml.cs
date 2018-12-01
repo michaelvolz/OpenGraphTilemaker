@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Exceptions;
+using Microsoft.AspNetCore.Blazor.RenderTree;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.Web.Client.Features.Global;
 
@@ -14,6 +15,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
     public class IndexModel : BlazorComponentStateful<IndexModel>, IDisposable
     {
         private const string ThisShouldNeverBeLogged = "THIS SHOULD NEVER BE LOGGED!";
+
         public Globals MyGlobals { get; set; }
 
         protected GlobalState GlobalState => Store.GetState<GlobalState>();
@@ -36,7 +38,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
             await RequestAsync(request);
         }
 
-        protected override async Task OnParametersSetAsync() {
+        protected override async Task OnInitAsync() {
             WindowWidth = await JSInteropHelpers.GetWindowWidthAsync();
 
             await JSInteropHelpers.InitializeWindowResizeEventAsync();
@@ -44,9 +46,13 @@ namespace OpenGraphTilemaker.Web.Client.Features
             JSInteropHelpers.OnWindowResized += WindowResized;
             Logger.LogInformation("OnWindowResized event added!");
 
-            NestedExceptionLoggingTest();
+            await base.OnInitAsync();
+        }
 
+        protected override async Task OnParametersSetAsync() {
             await base.OnParametersSetAsync();
+
+            NestedExceptionLoggingTest();
         }
 
         private void NestedExceptionLoggingTest() {
@@ -67,7 +73,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
                     throw new LoggedException(ThisShouldNeverBeLogged + " An OUTER error occurred!", e);
                 }
             }
-            catch (Exception e) when (e.LogException<IndexModel>()) {
+            catch (Exception e) {
                 if (e.ToString().Contains(ThisShouldNeverBeLogged)) Logger.LogWarning(e, "Oops!");
             }
         }
