@@ -11,7 +11,6 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         public TilesState() { }
 
         protected TilesState(TilesState state) {
-            OriginalTiles = state.OriginalTiles;
             CurrentTiles = state.CurrentTiles;
 
             SortOrder = state.SortOrder;
@@ -23,7 +22,6 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         public override object Clone() => new TilesState(this);
 
         protected override void Initialize() {
-            OriginalTiles = new List<OpenGraphMetadata>();
             CurrentTiles = new List<OpenGraphMetadata>();
 
             SortOrder = SortOrder.Descending;

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorState;
@@ -27,25 +28,25 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                 if (req.SortOrder != SortOrder.Undefined)
                     TilesState.SortOrder = req.SortOrder;
 
-                SortTiles();
+                SortTiles(req.CurrentTiles);
 
                 _logger.LogInformation($"SortTilesHandler for: '{TilesState.SortProperty}, {TilesState.SortOrder}'");
 
                 return Task.FromResult(TilesState);
             }
 
-            private void SortTiles() {
+            private void SortTiles(List<OpenGraphMetadata> tiles) {
                 switch (TilesState.SortProperty) {
                     case nameof(OpenGraphMetadata.Title):
                         TilesState.CurrentTiles = TilesState.SortOrder == SortOrder.Ascending
-                            ? TilesState.CurrentTiles.OrderBy(f => f.Title).ToList()
-                            : TilesState.CurrentTiles.OrderByDescending(f => f.Title).ToList();
+                            ? tiles.OrderBy(f => f.Title).ToList()
+                            : tiles.OrderByDescending(f => f.Title).ToList();
                         break;
 
                     case nameof(OpenGraphMetadata.BookmarkTime):
                         TilesState.CurrentTiles = TilesState.SortOrder == SortOrder.Ascending
-                            ? TilesState.CurrentTiles.OrderBy(f => f.BookmarkTime).ToList()
-                            : TilesState.CurrentTiles.OrderByDescending(f => f.BookmarkTime).ToList();
+                            ? tiles.OrderBy(f => f.BookmarkTime).ToList()
+                            : tiles.OrderByDescending(f => f.BookmarkTime).ToList();
                         break;
                 }
             }

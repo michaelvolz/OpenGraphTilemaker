@@ -1,20 +1,20 @@
 ﻿@using Common
 @inherits TilesModel;
 
-<SortingAndSearch ref="SortComponent"
-                  Count="@State.CurrentTiles.Count"
-                  OnSearch="@((Action<string>)OnSearch)"
-                  OnSortOrder="@((Action<SortOrder>)OnSortOrder)"
-                  OnSortProperty="@((Action<string>)OnSortProperty)"
-                  SearchText="@State.SearchText"
-                  SortOrder="@State.SortOrder"
-                  SortProperty="@State.SortProperty"/>
+<div class="@ShowIf(() => OriginalTiles != null && OriginalTiles.Any())">
+    <SortingAndSearch ref="SortComponent"
+                      Count="@State.CurrentTiles.Count"
+                      OnSearch="@((Action<string>)OnSearch)"
+                      OnSortOrder="@((Action<SortOrder>)OnSortOrder)"
+                      OnSortProperty="@((Action<string>)OnSortProperty)"
+                      SearchText="@State.SearchText"
+                      SortOrder="@State.SortOrder"
+                      SortProperty="@State.SortProperty"/>
+</div>
 
 <p></p>
 
-<div class="callout success emphasize radius @ShowIf(Loading)">Loading...</div>
-
-<div class="callout warning emphasize radius @HideIf(Empty)">Empty!</div>
+<div class="callout warning emphasize radius @ShowIf(Empty)">Empty!</div>
 
 <div class="masonry-css @ShowIf(Any)">
 

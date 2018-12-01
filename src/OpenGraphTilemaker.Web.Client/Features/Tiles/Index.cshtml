@@ -1,6 +1,8 @@
 ﻿@page "/tiles"
+@inherits IndexModel
 
 <h1>Tiles</h1>
 
+<div class="callout success emphasize radius @ShowIf(Loading)">Loading...</div>
 
-<Tiles></Tiles>
+<Tiles OriginalTiles="@OriginalTiles"></Tiles>

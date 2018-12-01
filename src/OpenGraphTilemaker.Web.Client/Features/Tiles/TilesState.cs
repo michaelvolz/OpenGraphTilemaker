@@ -9,7 +9,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
     public partial class TilesState
     {
-        public List<OpenGraphMetadata> OriginalTiles { get; private set; }
+        //public List<OpenGraphMetadata> OriginalTiles { get; private set; }
         public List<OpenGraphMetadata> CurrentTiles { get; private set; }
 
         public string SortProperty { get; private set; }
