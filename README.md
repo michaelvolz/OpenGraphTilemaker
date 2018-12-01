@@ -16,8 +16,10 @@
   * Loading indicator
   * TODO: paging
   * TODO: switch layouts
-  * TODO: use API call for client version (feedreader is not compatible)
+  * TODO: use API call for client version (feedreader is not client compatible)
+  * TODO: move data initialisation into parent -> best practices
 * ZURB foundation 6.5
+  * Foundation Icons
 * Code Analysis
   * FxCopAnalyzers 
   * Aspnetcore.Mvc.Analyzers
@@ -36,6 +38,5 @@
 * JetBrains Annotations
 * Custom Guard clauses, customised from [Ardalis.GuardClauses](https://github.com/ardalis/GuardClauses)
 * Feed Syndication = Microsoft.SyndicationFeed.ReaderWriter
-* Foundation Icons
 
 License: [unlicense](http://unlicense.org/)
