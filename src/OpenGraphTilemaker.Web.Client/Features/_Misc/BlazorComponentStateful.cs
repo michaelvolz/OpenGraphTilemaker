@@ -29,6 +29,6 @@ namespace OpenGraphTilemaker.Web.Client.Features
         protected string HideIf(Func<bool> predicate) => predicate() ? "collapsed" : null;
         protected string ShowIf(Func<bool> predicate) => predicate() ? null : "collapsed";
 
-        protected async Task RequestAsync<TRequest>(IRequest<TRequest> request) => await Mediator.Send(request);
+        protected async Task<TRequest> RequestAsync<TRequest>(IRequest<TRequest> request) => await Mediator.Send(request);
     }
 }
