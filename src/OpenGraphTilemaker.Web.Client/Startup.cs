@@ -7,11 +7,9 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 using OpenGraphTilemaker.Web.Client.ClientApp.Services;
-using Serilog.AspNetCore;
 
 namespace OpenGraphTilemaker.Web.Client
 {
