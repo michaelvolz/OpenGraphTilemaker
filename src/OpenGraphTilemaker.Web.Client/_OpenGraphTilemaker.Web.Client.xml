@@ -4,19 +4,19 @@
         <name>OpenGraphTilemaker.Web.Client</name>
     </assembly>
     <members>
-        <member name="T:OpenGraphTilemaker.Web.Client.Diagnostics.ControlledLevelSwitch">
+        <member name="T:OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics.ControlledLevelSwitch">
             <summary>
             Instances of this type are single-threaded, generally only updated on a background
-            timer thread. An exception is <see cref="M:OpenGraphTilemaker.Web.Client.Diagnostics.ControlledLevelSwitch.IsIncluded(Serilog.Events.LogEvent)"/>, which may be called
+            timer thread. An exception is <see cref="M:OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics.ControlledLevelSwitch.IsIncluded(Serilog.Events.LogEvent)"/>, which may be called
             concurrently but performs no synchronization.
             </summary>
         </member>
-        <member name="T:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserConsoleExtensions">
+        <member name="T:OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics.LoggerConfigurationBrowserConsoleExtensions">
             <summary>
             Adds the WriteTo.BrowserConsole() extension method to <see cref="T:Serilog.LoggerConfiguration"/>.
             </summary>
         </member>
-        <member name="M:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserConsoleExtensions.BrowserConsole(Serilog.Configuration.LoggerSinkConfiguration,Serilog.Events.LogEventLevel,System.String,System.IFormatProvider,Serilog.Core.LoggingLevelSwitch,System.Nullable{Serilog.Events.LogEventLevel})">
+        <member name="M:OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics.LoggerConfigurationBrowserConsoleExtensions.BrowserConsole(Serilog.Configuration.LoggerSinkConfiguration,Serilog.Events.LogEventLevel,System.String,System.IFormatProvider,Serilog.Core.LoggingLevelSwitch,System.Nullable{Serilog.Events.LogEventLevel})">
             <summary>
             Writes log events to <see cref="T:System.Console"/>.
             </summary>
@@ -31,7 +31,7 @@
             <param name="standardErrorFromLevel">Specifies the level at which events will be written to standard error.</param>
             <returns>Configuration object allowing method chaining.</returns>
         </member>
-        <member name="M:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserConsoleExtensions.BrowserConsole(Serilog.Configuration.LoggerSinkConfiguration,Serilog.Formatting.ITextFormatter,Serilog.Events.LogEventLevel,Serilog.Core.LoggingLevelSwitch,System.Nullable{Serilog.Events.LogEventLevel})">
+        <member name="M:OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics.LoggerConfigurationBrowserConsoleExtensions.BrowserConsole(Serilog.Configuration.LoggerSinkConfiguration,Serilog.Formatting.ITextFormatter,Serilog.Events.LogEventLevel,Serilog.Core.LoggingLevelSwitch,System.Nullable{Serilog.Events.LogEventLevel})">
             <summary>
             Writes log events to <see cref="T:System.Console"/>.
             </summary>
@@ -45,12 +45,12 @@
             <param name="standardErrorFromLevel">Specifies the level at which events will be written to standard error.</param>
             <returns>Configuration object allowing method chaining.</returns>
         </member>
-        <member name="T:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserHttpExtensions">
+        <member name="T:OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics.LoggerConfigurationBrowserHttpExtensions">
             <summary>
             Extends Serilog configuration to write events via HTTP.
             </summary>
         </member>
-        <member name="M:OpenGraphTilemaker.Web.Client.Diagnostics.LoggerConfigurationBrowserHttpExtensions.BrowserHttp(Serilog.Configuration.LoggerSinkConfiguration,System.String,Serilog.Events.LogEventLevel,System.Int32,System.Nullable{System.TimeSpan},System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},Serilog.Core.LoggingLevelSwitch,System.Net.Http.HttpMessageHandler,System.Int32)">
+        <member name="M:OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics.LoggerConfigurationBrowserHttpExtensions.BrowserHttp(Serilog.Configuration.LoggerSinkConfiguration,System.String,Serilog.Events.LogEventLevel,System.Int32,System.Nullable{System.TimeSpan},System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},Serilog.Core.LoggingLevelSwitch,System.Net.Http.HttpMessageHandler,System.Int32)">
             <summary>
             Adds a sink that writes log events to an HTTP server.
             </summary>
@@ -157,16 +157,6 @@
         <member name="M:OpenGraphTilemaker.Web.Client.Features.Tiles.SortingAndSearchModel.BuildRenderTree(Microsoft.AspNetCore.Blazor.RenderTree.RenderTreeBuilder)">
             <summary>
                 BuildRenderTree.
-            </summary>
-        </member>
-        <member name="M:OpenGraphTilemaker.Web.Client.Features.Tiles.TilesModel.#ctor">
-            <summary>
-                Initializes a new instance of the <see cref="T:OpenGraphTilemaker.Web.Client.Features.Tiles.TileModel" /> class.
-            </summary>
-        </member>
-        <member name="M:OpenGraphTilemaker.Web.Client.Features.Tiles.TilesModel.OnInitAsync">
-            <summary>
-                OnInit.
             </summary>
         </member>
         <member name="T:OpenGraphTilemaker.Web.Client.Startup">
