@@ -25,14 +25,10 @@
         return true;
     },
 
-    onInit: () => {
-        console.info("JS onInit!");
-    },
-
     initializeWindowResizeEvent: () => {
         console.info("JS initializeWindowResizeEvent!");
 
-        var resizeName = "resize";
+        var onResize = "resize";
         var resizer = function() {
             if (typeof window.resizeTimer !== "undefined") {
                 clearTimeout(window.resizeTimer);
@@ -42,18 +38,14 @@
                     console.info("JS resizeTimer timeout!");
 
                     var win = { Width: window.innerWidth, Height: window.innerHeight };
-                    DotNet.invokeMethodAsync("OpenGraphTilemaker.Web.Client", "FromJSWindowResizedAsync", win)
+                    window.DotNet.invokeMethodAsync("OpenGraphTilemaker.Web.Client", "FromJSWindowResizedAsync", win)
                         .then(data => { console.log(data); })
                         .catch(err => { console.error(err); });
                 },
                 250);
         };
 
-        window.removeEventListener(resizeName, resizer, true);
-        window.addEventListener(resizeName, resizer, true);
-    },
-
-    onAfterRender: () => {
-        console.info("JS onAfterRender!");
+        window.removeEventListener(onResize, resizer, true);
+        window.addEventListener(onResize, resizer, true);
     }
 };
