@@ -1,21 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Exceptions;
 using Microsoft.Extensions.Logging;
-using Serilog;
+using OpenGraphTilemaker.Web.Client.Features.Global;
 
 #pragma warning disable CA1063 // Modify IndexModel.Finalize so that it calls Dispose(false) and then returns.
 #pragma warning disable CA1821 // Remove empty Finalizers
+#pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
     public class IndexModel : BlazorComponentStateful<IndexModel>, IDisposable
     {
+        private const string ThisShouldNeverBeLogged = "THIS SHOULD NEVER BE LOGGED!";
+        public Globals MyGlobals { get; set; }
+
+        protected GlobalState GlobalState => Store.GetState<GlobalState>();
+
         protected int WindowWidth { get; private set; }
 
         public void Dispose() {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            // ReSharper disable once DelegateSubtraction
+            JSInteropHelpers.OnWindowResized -= WindowResized;
+            Logger.LogInformation("OnWindowResized event removed!");
+        }
+
+        protected async Task ChangeThemeColors() {
+            var request = new ChangeThemeColorsRequest {
+                ThemeColor1 = GlobalState.ThemeColor2,
+                ThemeColor2 = GlobalState.ThemeColor3,
+                ThemeColor3 = GlobalState.ThemeColor1
+            };
+
+            await RequestAsync(request);
         }
 
         protected override async Task OnParametersSetAsync() {
@@ -31,32 +49,26 @@ namespace OpenGraphTilemaker.Web.Client.Features
             await base.OnParametersSetAsync();
         }
 
-        protected virtual void Dispose(bool disposing) {
-            if (disposing) {
-                // ReSharper disable once DelegateSubtraction
-                JSInteropHelpers.OnWindowResized -= WindowResized;
-                Logger.LogInformation("OnWindowResized event removed!");
-            }
-        }
-
         private void NestedExceptionLoggingTest() {
             try {
                 try {
                     try {
-                        throw new InvalidOperationException("Inner Test Exception");
+                        using (Logger.BeginScope(new Dictionary<string, object> { ["CustomerId"] = 12345, ["OrderId"] = 54 })) {
+                            Logger.LogInformation("Processing credit card payment...");
+
+                            throw new InvalidOperationException("Inner Test Exception!");
+                        }
                     }
-                    catch (Exception e) when (!(e is ILoggedException)) {
-                        var errorMsg = "An INNER TEST ERROR occurred ###some details###";
-                        throw new LoggedException<IndexModel>(e, errorMsg);
+                    catch (Exception e) when (e.LogException<IndexModel>()) {
+                        throw new LoggedException(e);
                     }
                 }
-                catch (Exception e) when (!(e is ILoggedException)) {
-                    var errorMsg = "THIS SHOULD NEVER BE LOGGED! An OUTER error occurred ---some details---";
-                    throw new LoggedException<IndexModel>(e, errorMsg);
+                catch (Exception e) when (e.LogException<IndexModel>()) {
+                    throw new LoggedException(ThisShouldNeverBeLogged + " An OUTER error occurred!", e);
                 }
             }
-            catch (Exception e) {
-                Logger.LogWarning(e, "Oops!");
+            catch (Exception e) when (e.LogException<IndexModel>()) {
+                if (e.ToString().Contains(ThisShouldNeverBeLogged)) Logger.LogWarning(e, "Oops!");
             }
         }
 
@@ -64,7 +76,5 @@ namespace OpenGraphTilemaker.Web.Client.Features
             WindowWidth = window.Width;
             StateHasChanged();
         }
-
-        ~IndexModel() => Dispose(false);
     }
 }

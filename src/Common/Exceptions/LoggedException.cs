@@ -3,25 +3,30 @@ using Common.Logging;
 using Microsoft.Extensions.Logging;
 
 // ReSharper disable UnusedMember.Global
-#pragma warning disable CA1032 // Implement standard exception constructors
+#pragma warning disable CA1040 // Avoid empty interfaces
 
 namespace Common.Exceptions
 {
-    public class LoggedException<T> : Exception, ILoggedException
+    public class LoggedException : Exception, ILoggedException
     {
-        public LoggedException(string message, object propertyValue0 = null, object propertyValue1 = null, object propertyValue2 = null)
-            : base(message)
-            => LogException(null, message, propertyValue0, propertyValue1, propertyValue2);
+        public LoggedException() { }
 
-        public LoggedException(Exception innerException, string message, object propertyValue0 = null, object propertyValue1 = null,
-            object propertyValue2 = null)
-            : base(message, innerException) =>
-            LogException(innerException, message, propertyValue0, propertyValue1, propertyValue2);
+        public LoggedException(string message) : base(message) { }
 
-        private void LogException<T0, T1, T2>(Exception innerException, string message,
-            T0 propertyValue0, T1 propertyValue1, T2 propertyValue2) {
+        public LoggedException(string message, Exception innerException) : base(message, innerException) { }
+
+        public LoggedException(Exception innerException) : base(null, innerException) { }
+    }
+
+    public static class LoggedExceptionExtensions
+    {
+        public static bool LogException<T>(this Exception e) {
+            if (e is ILoggedException) return false;
+
             var logger = ApplicationLogging.CreateLogger<T>();
-            logger.LogError(innerException, message, propertyValue0, propertyValue1, propertyValue2);
+            logger.LogError(e, "Exception logged with Scope: ");
+
+            return true;
         }
     }
 
