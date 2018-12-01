@@ -14,7 +14,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
 {
     public static class ElementRefExtensions
     {
-        public static Task FocusAsync(this ElementRef elementRef) => JSInteropHelpers.FocusAsync(elementRef);
+        public static async Task FocusAsync(this ElementRef elementRef) => await JSInteropHelpers.FocusAsync(elementRef);
     }
 
     [UsedImplicitly]
@@ -25,11 +25,11 @@ namespace OpenGraphTilemaker.Web.Client.Features
 
         public static Action<Window> OnWindowResized { get; set; }
 
-        public static Task<int> GetWindowWidthAsync() => Current.InvokeAsync<int>($"{BlazorDemo}getWindowWidth");
-        public static Task InitializeWindowResizeEventAsync() => Current.InvokeAsync<object>($"{BlazorDemo}initializeWindowResizeEvent");
-        public static Task FocusAsync(ElementRef elementRef) => Current.InvokeAsync<bool>($"{BlazorDemo}focusElement", elementRef);
-        public static Task AlertAsync(string value) => Current.InvokeAsync<bool>($"{BlazorDemo}showAlert", value);
-        public static Task NavigateToAsync(string url) => Current.InvokeAsync<bool>($"{BlazorDemo}navigateTo", $"{url}");
+        public static async Task<int> GetWindowWidthAsync() => await Current.InvokeAsync<int>($"{BlazorDemo}getWindowWidth");
+        public static async Task InitializeWindowResizeEventAsync() => await Current.InvokeAsync<object>($"{BlazorDemo}initializeWindowResizeEvent");
+        public static async Task FocusAsync(ElementRef elementRef) => await Current.InvokeAsync<bool>($"{BlazorDemo}focusElement", elementRef);
+        public static async Task AlertAsync(string value) => await Current.InvokeAsync<bool>($"{BlazorDemo}showAlert", value);
+        public static async Task NavigateToAsync(string url) => await Current.InvokeAsync<bool>($"{BlazorDemo}navigateTo", $"{url}");
 
         [JSInvokable]
         [UsedImplicitly]
