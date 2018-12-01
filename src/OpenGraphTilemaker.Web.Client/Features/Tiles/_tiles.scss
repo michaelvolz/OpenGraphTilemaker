@@ -1,5 +1,5 @@
-﻿@import "../../../node_modules/foundation-sites/scss/global";
-@import "../../../node_modules/foundation-sites/scss/components/callout";
+﻿@import "../../node_modules/foundation-sites/scss/global";
+@import "../../node_modules/foundation-sites/scss/components/callout";
 
 fieldset.tiles-title {
     @include callout;

@@ -18,11 +18,11 @@
 @import "components/button";
 @import "components/callout";
 
-@import "components/navigation";
+@import "../../features/navmenu/navigation";
 @import "components/validation";
 
-@import "components/tiles";
-@import "components/tabs";
+@import "../../features/tiles/tiles";
+@import "../../features/tabs/tabs";
 
 @import "pages/home";
 @import "themes/default";

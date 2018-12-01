@@ -19,6 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Features\NavMenu\_navigation.scss" />
+    <Content Include="Features\Tabs\_tabs.scss" />
+    <Content Include="Features\Tiles\_tiles.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
@@ -43,7 +49,6 @@
     <Folder Include="wwwroot\scss\abstracts\" />
     <Folder Include="wwwroot\scss\base\" />
     <Folder Include="wwwroot\scss\pages\" />
-    <Folder Include="wwwroot\scss\themes\" />
   </ItemGroup> 
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
