@@ -129,6 +129,31 @@
                 Set the Initial State.
             </summary>
         </member>
+        <member name="M:OpenGraphTilemaker.Web.Client.Features.Global.GlobalState.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:OpenGraphTilemaker.Web.Client.Features.Global.GlobalState" /> class.
+                Required Parameterless constructor for automatic creation of the State.
+            </summary>
+        </member>
+        <member name="M:OpenGraphTilemaker.Web.Client.Features.Global.GlobalState.#ctor(OpenGraphTilemaker.Web.Client.Features.Global.GlobalState)">
+            <summary>
+                Initializes a new instance of the <see cref="T:OpenGraphTilemaker.Web.Client.Features.Global.GlobalState" /> class.
+                Creates new instance based off an existing one.
+            </summary>
+            <remarks>Constructor used for Clone.</remarks>
+            <param name="state">The item we want to clone.</param>
+        </member>
+        <member name="M:OpenGraphTilemaker.Web.Client.Features.Global.GlobalState.Clone">
+            <summary>
+                Clone the existing object.
+            </summary>
+            <returns>A clone of this object.</returns>
+        </member>
+        <member name="M:OpenGraphTilemaker.Web.Client.Features.Global.GlobalState.Initialize">
+            <summary>
+                Set the Initial State.
+            </summary>
+        </member>
         <member name="M:OpenGraphTilemaker.Web.Client.Features.Tiles.SortingAndSearchModel.BuildRenderTree(Microsoft.AspNetCore.Blazor.RenderTree.RenderTreeBuilder)">
             <summary>
                 BuildRenderTree.
