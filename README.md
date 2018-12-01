@@ -2,11 +2,11 @@
 
 ## Implemented Features
 
-* State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and MediatR
+* State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and [MediatR](https://github.com/jbogard/MediatR)
 * Formvalidation:
-  * Fluent Validation
-  * ValidationError idea from https://github.com/PeterHimschoot/Blazor.Validation
-  * ValidationSummary idea from https://github.com/PeterHimschoot/Blazor.Validation
+  * [Fluent Validation](https://fluentvalidation.net/)
+  * ValidationError idea from [Blazor.Validation](https://github.com/PeterHimschoot/Blazor.Validation)
+  * ValidationSummary idea from [Blazor.Validation](https://github.com/PeterHimschoot/Blazor.Validation)
 * Tests => xUnit, Autofixture, nSubstitute
 * OpenGraph TileMaker:
   * RSS feedreader as source
@@ -19,23 +19,23 @@
   * TODO: use API call for client version (feedreader is not compatible)
 * ZURB foundation 6.5
 * Code Analysis
-  * FxCopAnalyzers
+  * FxCopAnalyzers 
   * Aspnetcore.Mvc.Analyzers
   * AspNetCore.Mvc.Api.Analyzers
   * EntityFrameworkCore.Analyzers
   * StyleCop.Analyzers
-* Switchable Blazor Modes
+* Switchable Blazor Modes adapted from [BlazorDualMode](https://github.com/Suchiman/BlazorDualMode)
   * Server side
   * Client side
 * Modified filestructure
-  * Blazor Feature Folders adapted from https://scottsauber.com/2016/04/25/feature-folder-structure-in-asp-net-core/
+  * Blazor Feature Folders adapted from [Feature Folder Structure in ASP.NET Core](https://scottsauber.com/2016/04/25/feature-folder-structure-in-asp-net-core/)
   * Removed Pages, Shared
 * Serilog for Logging
-   * Blazor client-logging by NBlumhardt https://github.com/nblumhardt/serilog-blazor
+   * Blazor client-logging by NBlumhardt [serilog-blazor](https://github.com/nblumhardt/serilog-blazor)
 * Using as less JavaScript as possible
 * JetBrains Annotations
-* Custom Guard clauses, customised from Ardalis.GuardClauses https://github.com/ardalis/GuardClauses
+* Custom Guard clauses, customised from [Ardalis.GuardClauses](https://github.com/ardalis/GuardClauses)
 * Feed Syndication = Microsoft.SyndicationFeed.ReaderWriter
 * Foundation Icons
 
-License: http://unlicense.org/
+License: [unlicense](http://unlicense.org/)
