@@ -17,11 +17,11 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- script: dotnet test tests\Common.Tests --configuration $(buildConfiguration) --logger "trx;LogFileName=TEST-results.xml"
-  displayName: 'dotnet test tests\Common.Tests $(buildConfiguration)'
+#- script: dotnet test tests\Common.Tests --configuration $(buildConfiguration) --logger "trx;LogFileName=TEST-results.xml"
+#  displayName: 'dotnet test tests\Common.Tests $(buildConfiguration)'
 
-#- powershell: .\test.ps1 -Verbose
-#  displayName: 'Test'
+- powershell: .\test.ps1 -Verbose
+  displayName: 'Test'
 
 - task: PublishTestResults@2
   inputs:
