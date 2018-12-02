@@ -4,8 +4,12 @@
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 [![Dependabot enabled](https://img.shields.io/badge/Dependabot-enabled-blue.svg)](https://dependabot.com/)
 
+## Why?
+I want to try Blazor with a set of tools and patterns and libraries I personally find useful and evaluate it's complexity, usability and performance. Over simpified examples don't give me the answers I am looking for.
 
-## Implemented Features
+At the moment I am really pleased with the state of Blazor!
+
+### Implemented Features
 
 * State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and [MediatR](https://github.com/jbogard/MediatR)
 * Formvalidation:
