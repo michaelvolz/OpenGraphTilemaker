@@ -35,10 +35,13 @@
   * Blazor Feature Folders adapted from [Feature Folder Structure in ASP.NET Core](https://scottsauber.com/2016/04/25/feature-folder-structure-in-asp-net-core/)
   * Removed Pages, Shared
 * Serilog for Logging
-   * Blazor client-logging by NBlumhardt [serilog-blazor](https://github.com/nblumhardt/serilog-blazor)
+  * Blazor client-logging by NBlumhardt [serilog-blazor](https://github.com/nblumhardt/serilog-blazor)
 * Using as less JavaScript as possible
 * JetBrains Annotations
 * Custom Guard clauses, customised from [Ardalis.GuardClauses](https://github.com/ardalis/GuardClauses)
 * Feed Syndication = Microsoft.SyndicationFeed.ReaderWriter
+* Azure Pipelines
+  * TODO: Fix release build
+  * TODO: Add tests
 
 License: [unlicense](http://unlicense.org/)
