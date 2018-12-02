@@ -14,10 +14,10 @@
   * Searching
   * Disc and memory caching
   * Loading indicator
+  * Data initialisation from parent -> best practices
   * TODO: paging
   * TODO: switch layouts
   * TODO: use API call for client version (feedreader is not client compatible)
-  * TODO: move data initialisation into parent -> best practices
 * ZURB foundation 6.5
   * Foundation Icons
 * Code Analysis
