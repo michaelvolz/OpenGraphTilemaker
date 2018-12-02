@@ -15,6 +15,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
             SortOrder = state.SortOrder;
             SortProperty = state.SortProperty;
+
             SearchText = state.SearchText;
             LastSearchText = state.LastSearchText;
         }

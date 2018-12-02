@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using Common;
 using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.Extensions.Logging;
@@ -21,7 +22,9 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         protected TilesState State => Store.GetState<TilesState>();
 
         protected override async Task OnParametersSetAsync() {
-            if (OriginalTiles != null && OriginalTiles.Any() && !State.CurrentTiles.Any()) {
+            Guard.Against.Null(() => OriginalTiles);
+
+            if (OriginalTiles.Any() && !State.CurrentTiles.Any()) {
                 Logger.LogInformation($"### {nameof(OnParametersSetAsync)} Count: " + OriginalTiles.Count);
 
                 await SearchAsync(State.SearchText);
@@ -60,7 +63,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         }
 
         private async Task SearchAsync(string searchText) {
-            if (OriginalTiles != null && OriginalTiles.Any()) {
+            if (OriginalTiles.Any()) {
                 await RequestAsync(new SearchTilesRequest { OriginalTiles = OriginalTiles, SearchText = searchText });
                 await RequestAsync(new SortTilesRequest { CurrentTiles = State.CurrentTiles });
             }
