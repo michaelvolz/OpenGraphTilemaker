@@ -26,8 +26,8 @@ steps:
     testResultsFormat: 'xUnit' # Options: JUnit, NUnit, VSTest, xUnit
     testResultsFiles: '**/*.trx'
     #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
-    #mergeTestResults: false # Optional
+    mergeTestResults: true # Optional
     #testRunTitle: # Optional
     #buildPlatform: # Optional
     #buildConfiguration: # Optional
-    publishRunAttachments: true # Optional
+    #publishRunAttachments: true # Optional
