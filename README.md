@@ -41,7 +41,8 @@
 * Custom Guard clauses, customised from [Ardalis.GuardClauses](https://github.com/ardalis/GuardClauses)
 * Feed Syndication = Microsoft.SyndicationFeed.ReaderWriter
 * Azure Pipelines
-  * TODO: Fix release build
-  * TODO: Add tests
+  * Build release, including code analysis and stylecop
+  * Run tests
+  * Status badge
 
 License: [unlicense](http://unlicense.org/)
