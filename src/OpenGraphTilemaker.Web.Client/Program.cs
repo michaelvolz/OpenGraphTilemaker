@@ -20,11 +20,18 @@ namespace OpenGraphTilemaker.Web.Client
             var levelSwitch = new LoggingLevelSwitch(LogEventLevel.Debug);
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.ControlledBy(levelSwitch)
+                .MinimumLevel.Override("System", LogEventLevel.Error)
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .MinimumLevel.Override("Microsoft.AspNetCore.Hosting", LogEventLevel.Warning)
+                .MinimumLevel.Override("Microsoft.AspNetCore.StaticFiles", LogEventLevel.Warning)
+                .MinimumLevel.Override("BlazorState", LogEventLevel.Information)
                 .WriteTo.BrowserConsole()
                 .WriteTo.BrowserHttp(controlLevelSwitch: levelSwitch)
                 .CreateLogger();
 
             Log.Information("Hello, browser!");
+            Log.Debug("Hello, browser!");
+            Log.Verbose("Hello, browser!");
 
             try {
                 CreateHostBuilder(args).Build().Run();

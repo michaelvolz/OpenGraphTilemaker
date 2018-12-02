@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 using OpenGraphTilemaker.Web.Client.ClientApp.Services;
@@ -59,8 +60,8 @@ namespace OpenGraphTilemaker.Web.Client
 
             ServiceLocator.SetServiceProvider(services.BuildServiceProvider());
 
-            // var logger = ServiceLocator.Current.GetInstance<ILogger<Startup>>();
-            // logger.LogWarning("ServiceLocator.Current.GetInstance<ILogger<Startup>>()");
+            var logger = ServiceLocator.Current.GetInstance<ILogger<Startup>>();
+            if (logger == null) throw new InvalidOperationException("ILogger<> not found!");
         }
 
         [UsedImplicitly]
