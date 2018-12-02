@@ -1,5 +1,7 @@
 # Some Blazor.Net Examples
 
+[![Build Status](https://dev.azure.com/flynn-azure/BlazorExperiments/_apis/build/status/michaelvolz.BlazorExperiments)](https://dev.azure.com/flynn-azure/BlazorExperiments/_build/latest?definitionId=2)
+
 ## Implemented Features
 
 * State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and [MediatR](https://github.com/jbogard/MediatR)
