@@ -47,5 +47,7 @@
   * Build release, including code analysis and stylecop
   * Run tests
   * Status badge
+* Dependabot 
+  * Enabled badge
 
 License: [unlicense](http://unlicense.org/)
