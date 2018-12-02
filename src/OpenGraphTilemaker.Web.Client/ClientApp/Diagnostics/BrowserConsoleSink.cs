@@ -20,19 +20,17 @@ using Serilog.Formatting;
 
 namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
 {
-    class BrowserConsoleSink : ILogEventSink
+    internal class BrowserConsoleSink : ILogEventSink
     {
-        readonly ITextFormatter _textFormatter;
-        readonly LogEventLevel? _standardErrorFromLevel;
+        private readonly LogEventLevel? _standardErrorFromLevel;
+        private readonly ITextFormatter _textFormatter;
 
-        public BrowserConsoleSink(ITextFormatter textFormatter, LogEventLevel? standardErrorFromLevel)
-        {
+        public BrowserConsoleSink(ITextFormatter textFormatter, LogEventLevel? standardErrorFromLevel) {
             _textFormatter = textFormatter ?? throw new ArgumentNullException(nameof(textFormatter));
             _standardErrorFromLevel = standardErrorFromLevel;
         }
 
-        public void Emit(LogEvent logEvent)
-        {
+        public void Emit(LogEvent logEvent) {
             if (logEvent == null) throw new ArgumentNullException(nameof(logEvent));
             var renderSpace = new StringWriter();
             var outputStream = GetOutputStream(logEvent.Level);
@@ -40,12 +38,8 @@ namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
             outputStream.Write(renderSpace.ToString());
         }
 
-        TextWriter GetOutputStream(LogEventLevel logLevel)
-        {
-            if (!_standardErrorFromLevel.HasValue)
-            {
-                return Console.Out;
-            }
+        private TextWriter GetOutputStream(LogEventLevel logLevel) {
+            if (!_standardErrorFromLevel.HasValue) return Console.Out;
             return logLevel < _standardErrorFromLevel ? Console.Out : Console.Error;
         }
     }

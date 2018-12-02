@@ -1,11 +1,11 @@
 ﻿// Copyright 2016-2018 Serilog Contributors
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,21 +30,21 @@ using Serilog.Sinks.PeriodicBatching;
 
 namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
 {
-    class BrowserHttpSink : PeriodicBatchingSink
+    internal class BrowserHttpSink : PeriodicBatchingSink
     {
         public const int DefaultBatchPostingLimit = 1000;
-        public static readonly TimeSpan DefaultPeriod = TimeSpan.FromSeconds(2);
         public const int DefaultQueueSizeLimit = 100000;
+        public static readonly TimeSpan DefaultPeriod = TimeSpan.FromSeconds(2);
+        private static readonly JsonValueFormatter JsonValueFormatter = new JsonValueFormatter();
 
-        static readonly TimeSpan RequiredLevelCheckInterval = TimeSpan.FromMinutes(2);
-        static readonly JsonValueFormatter JsonValueFormatter = new JsonValueFormatter();
+        private static readonly TimeSpan RequiredLevelCheckInterval = TimeSpan.FromMinutes(2);
+        private readonly ControlledLevelSwitch _controlledSwitch;
 
-        readonly string _endpointUrl;
-        readonly long? _eventBodyLimitBytes;
-        readonly HttpClient _httpClient;
+        private readonly string _endpointUrl;
+        private readonly long? _eventBodyLimitBytes;
+        private readonly HttpClient _httpClient;
 
-        DateTime _nextRequiredLevelCheckUtc = DateTime.UtcNow.Add(RequiredLevelCheckInterval);
-        readonly ControlledLevelSwitch _controlledSwitch;
+        private DateTime _nextRequiredLevelCheckUtc = DateTime.UtcNow.Add(RequiredLevelCheckInterval);
 
         public BrowserHttpSink(
             string endpointUrl,
@@ -53,8 +53,7 @@ namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
             long? eventBodyLimitBytes,
             LoggingLevelSwitch levelControlSwitch,
             int queueSizeLimit)
-            : base(batchPostingLimit, period, queueSizeLimit)
-        {
+            : base(batchPostingLimit, period, queueSizeLimit) {
             _endpointUrl = endpointUrl ?? throw new ArgumentNullException(nameof(endpointUrl));
             _eventBodyLimitBytes = eventBodyLimitBytes;
             _controlledSwitch = new ControlledLevelSwitch(levelControlSwitch);
@@ -62,32 +61,56 @@ namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
             _httpClient.BaseAddress = new Uri(GetBaseUri());
         }
 
-        static string GetBaseUri()
-        {
-            return new MonoWebAssemblyJSRuntime().Invoke<string>("Blazor._internal.uriHelper.getBaseURI", Array.Empty<object>());
+        internal static string FormatCompactPayload(IEnumerable<LogEvent> events, long? eventBodyLimitBytes) {
+            var payload = new StringWriter();
+
+            foreach (var logEvent in events) {
+                var buffer = new StringWriter();
+
+                try {
+                    CompactJsonFormatter.FormatEvent(logEvent, buffer, JsonValueFormatter);
+                }
+                catch (Exception ex) {
+                    LogNonFormattableEvent(logEvent, ex);
+                    continue;
+                }
+
+                var json = buffer.ToString();
+                if (CheckEventBodySize(json, eventBodyLimitBytes)) payload.WriteLine(json);
+            }
+
+            return payload.ToString();
         }
 
-        protected override void Dispose(bool disposing)
-        {
+        private static bool CheckEventBodySize(string json, long? eventBodyLimitBytes) {
+            if (eventBodyLimitBytes.HasValue &&
+                Encoding.UTF8.GetByteCount(json) > eventBodyLimitBytes.Value) {
+                SelfLog.WriteLine(
+                    "Event JSON representation exceeds the byte size limit of {0} set for this sink and will be dropped; data: {1}",
+                    eventBodyLimitBytes, json);
+                return false;
+            }
+
+            return true;
+        }
+
+        private static string GetBaseUri() => new MonoWebAssemblyJSRuntime().Invoke<string>("Blazor._internal.uriHelper.getBaseURI", Array.Empty<object>());
+
+        private static void LogNonFormattableEvent(LogEvent logEvent, Exception ex) =>
+            SelfLog.WriteLine(
+                "Event at {0} with message template {1} could not be formatted into JSON for the server and will be dropped: {2}",
+                logEvent.Timestamp.ToString("o"), logEvent.MessageTemplate.Text, ex);
+
+        protected override bool CanInclude(LogEvent evt) => _controlledSwitch.IsIncluded(evt);
+
+        protected override void Dispose(bool disposing) {
             base.Dispose(disposing);
 
             if (disposing)
                 _httpClient.Dispose();
         }
 
-        // The sink must emit at least one event on startup, and the server be
-        // configured to set a specific level, before background level checks will be performed.
-        protected override async Task OnEmptyBatchAsync()
-        {
-            if (_controlledSwitch.IsActive &&
-                _nextRequiredLevelCheckUtc < DateTime.UtcNow)
-            {
-                await EmitBatchAsync(Enumerable.Empty<LogEvent>());
-            }
-        }
-
-        protected override async Task EmitBatchAsync(IEnumerable<LogEvent> events)
-        {
+        protected override async Task EmitBatchAsync(IEnumerable<LogEvent> events) {
             _nextRequiredLevelCheckUtc = DateTime.UtcNow.Add(RequiredLevelCheckInterval);
 
             var payload = FormatCompactPayload(events, _eventBodyLimitBytes);
@@ -103,58 +126,12 @@ namespace OpenGraphTilemaker.Web.Client.ClientApp.Diagnostics
             _controlledSwitch.Update(SerilogServerApi.ReadEventInputResult(returned));
         }
 
-        internal static string FormatCompactPayload(IEnumerable<LogEvent> events, long? eventBodyLimitBytes)
-        {
-            var payload = new StringWriter();
-
-            foreach (var logEvent in events)
-            {
-                var buffer = new StringWriter();
-
-                try
-                {
-                    CompactJsonFormatter.FormatEvent(logEvent, buffer, JsonValueFormatter);
-                }
-                catch (Exception ex)
-                {
-                    LogNonFormattableEvent(logEvent, ex);
-                    continue;
-                }
-
-                var json = buffer.ToString();
-                if (CheckEventBodySize(json, eventBodyLimitBytes))
-                {
-                    payload.WriteLine(json);
-                }
-            }
-
-            return payload.ToString();
-        }
-
-        protected override bool CanInclude(LogEvent evt)
-        {
-            return _controlledSwitch.IsIncluded(evt);
-        }
-
-        static bool CheckEventBodySize(string json, long? eventBodyLimitBytes)
-        {
-            if (eventBodyLimitBytes.HasValue &&
-                Encoding.UTF8.GetByteCount(json) > eventBodyLimitBytes.Value)
-            {
-                SelfLog.WriteLine(
-                    "Event JSON representation exceeds the byte size limit of {0} set for this sink and will be dropped; data: {1}",
-                    eventBodyLimitBytes, json);
-                return false;
-            }
-
-            return true;
-        }
-
-        static void LogNonFormattableEvent(LogEvent logEvent, Exception ex)
-        {
-            SelfLog.WriteLine(
-                "Event at {0} with message template {1} could not be formatted into JSON for the server and will be dropped: {2}",
-                logEvent.Timestamp.ToString("o"), logEvent.MessageTemplate.Text, ex);
+        // The sink must emit at least one event on startup, and the server be
+        // configured to set a specific level, before background level checks will be performed.
+        protected override async Task OnEmptyBatchAsync() {
+            if (_controlledSwitch.IsActive &&
+                _nextRequiredLevelCheckUtc < DateTime.UtcNow)
+                await EmitBatchAsync(Enumerable.Empty<LogEvent>());
         }
     }
 }

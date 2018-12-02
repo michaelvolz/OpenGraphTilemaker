@@ -20,9 +20,6 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
         protected TilesState State => Store.GetState<TilesState>();
 
-        protected bool Empty() => !State.CurrentTiles.Any() && !IsLoading;
-        protected bool Any() => State.CurrentTiles.Any();
-
         protected override async Task OnParametersSetAsync() {
             if (OriginalTiles != null && OriginalTiles.Any() && !State.CurrentTiles.Any()) {
                 Logger.LogInformation($"### {nameof(OnParametersSetAsync)} Count: " + OriginalTiles.Count);
@@ -32,6 +29,9 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                 IsLoading = false;
             }
         }
+
+        protected bool Empty() => !State.CurrentTiles.Any() && !IsLoading;
+        protected bool Any() => State.CurrentTiles.Any();
 
         protected async void OnSortProperty(string sortProperty) {
             SortComponent.TextInjectedFromParent("myParentText");
@@ -54,7 +54,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         protected async void OnSearch(string searchText) {
             await SearchAsync(searchText);
 
-            //Logger.Debug("State: {@state}", State.CurrentTiles);
+            // Logger.Debug("State: {@state}", State.CurrentTiles);
 
             StateHasChanged();
         }

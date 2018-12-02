@@ -12,11 +12,6 @@ using static Microsoft.JSInterop.JSRuntime;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
-    public static class ElementRefExtensions
-    {
-        public static async Task FocusAsync(this ElementRef elementRef) => await JSInteropHelpers.FocusAsync(elementRef);
-    }
-
     [UsedImplicitly]
     public class JSInteropHelpers
     {

@@ -25,4 +25,3 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Razor/Blazor", Scope = "member", Target = "~P:OpenGraphTilemaker.Web.Client.Features.Tiles.SortTilesRequest.CurrentTiles")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Razor/Blazor", Scope = "member", Target = "~P:OpenGraphTilemaker.Web.Client.Features.Tiles.SearchTilesRequest.OriginalTiles")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Razor/Blazor", Scope = "member", Target = "~P:OpenGraphTilemaker.Web.Client.Features.Tiles.FetchTilesResponse.OriginalTiles")]
-

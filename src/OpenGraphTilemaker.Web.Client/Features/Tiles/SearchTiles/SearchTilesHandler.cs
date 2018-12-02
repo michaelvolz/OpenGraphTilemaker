@@ -35,7 +35,6 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                                  || t.Description != null && t.Description.ToUpperInvariant().Contains(search)
                                  || t.SiteName != null && t.SiteName.ToUpperInvariant().Contains(search)
                         ).ToList();
-
                 }
 
                 TilesState.LastSearchText = TilesState.SearchText;
