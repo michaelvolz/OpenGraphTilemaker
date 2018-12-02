@@ -14,15 +14,17 @@ steps:
   inputs:
     version: '2.2.100-preview3-009430'
 
-- script: |
-  dotnet build --configuration $(buildConfiguration)
+- script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- script: |
-  dotnet test tests\Common.Tests --logger trx --configuration $(buildConfiguration)
-  dotnet test tests\OpenGraphTilemaker.Tests --logger trx --configuration $(buildConfiguration)
-  dotnet test tests\CommonOpenGraphTilemaker.Web.Client.Tests --logger trx --configuration $(buildConfiguration)
-  displayName: 'dotnet test $(buildConfiguration)'
+- script: dotnet test tests\Common.Tests --logger trx --configuration $(buildConfiguration)
+  displayName: 'dotnet test tests\Common.Tests $(buildConfiguration)'
+
+- script: dotnet test tests\OpenGraphTilemaker.Tests --logger trx --configuration $(buildConfiguration)
+  displayName: 'dotnet test tests\OpenGraphTilemaker.Tests $(buildConfiguration)'
+
+- script: dotnet test tests\CommonOpenGraphTilemaker.Web.Client.Tests --logger trx --configuration $(buildConfiguration)
+  displayName: 'dotnet test tests\CommonOpenGraphTilemaker.Web.Client.Tests $(buildConfiguration)'
 
 #- powershell: .\test.ps1 -Verbose
 #  displayName: 'Test'
