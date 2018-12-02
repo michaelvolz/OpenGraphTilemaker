@@ -8,7 +8,6 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  buildPlatform: 'x64'
 
 steps:
 - task: DotNetCoreInstaller@0
@@ -18,7 +17,7 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- script: dotnet test tests\Common.Tests --configuration $(buildConfiguration) --logger "trx;LogFileName=TEST-results.xml" /property:Platform=$(buildPlatform))
+- script: dotnet test tests\Common.Tests --configuration $(buildConfiguration) --logger "trx;LogFileName=TEST-results.xml"
   displayName: 'dotnet test tests\Common.Tests $(buildConfiguration)'
 
 #- powershell: .\test.ps1 -Verbose
