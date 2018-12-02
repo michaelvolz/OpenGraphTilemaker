@@ -17,19 +17,9 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- script: dotnet test tests\Common.Tests --logger trx --configuration $(buildConfiguration)
-  displayName: 'dotnet test tests\Common.Tests $(buildConfiguration)'
+- powershell: .\test.ps1 -Verbose
+  displayName: 'Test'
 
-- script: dotnet test tests\OpenGraphTilemaker.Tests --logger trx --configuration $(buildConfiguration)
-  displayName: 'dotnet test tests\OpenGraphTilemaker.Tests $(buildConfiguration)'
-
-- script: dotnet test tests\CommonOpenGraphTilemaker.Web.Client.Tests --logger trx --configuration $(buildConfiguration)
-  displayName: 'dotnet test tests\CommonOpenGraphTilemaker.Web.Client.Tests $(buildConfiguration)'
-
-#- powershell: .\test.ps1 -Verbose
-#  displayName: 'Test'
-
-# Publish Test Results
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'xUnit' # Options: JUnit, NUnit, VSTest, xUnit
