@@ -6,9 +6,8 @@ namespace Common.Logging
     {
         public static ILogger<T> CreateLogger<T>() {
             var factory = ServiceLocator.Current.GetInstance<ILoggerFactory>();
-            var logger = factory.CreateLogger<T>();
 
-            return logger;
+            return factory.CreateLogger<T>();
         }
     }
 }
