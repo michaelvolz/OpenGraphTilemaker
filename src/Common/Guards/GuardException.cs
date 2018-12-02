@@ -31,8 +31,10 @@ namespace Ardalis.GuardClauses
 
         protected GuardException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
+        public override string StackTrace => this.RewindStackTraceMessage();
+
         public override string ToString() {
-            return this.RewindStackTraceMessage() + Environment.NewLine + base.ToString();
+            return this.RewindStackTraceMessage() + base.ToString();
         }
     }
 }
