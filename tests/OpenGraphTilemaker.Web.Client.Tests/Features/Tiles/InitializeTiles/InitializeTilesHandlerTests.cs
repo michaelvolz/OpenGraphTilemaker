@@ -15,13 +15,13 @@ namespace OpenGraphTilemaker.Web.Client.Tests.Features.Tiles
         public InitializeTilesHandlerTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
         [Fact]
-        public async Task InitializeTilesRequest() {
+        public async Task FetchTilesRequest() {
             // Arrange
-            var request = new InitializeTilesRequest();
+            var request = new FetchTilesRequest();
             var response = "<head><meta property=\"og:title\" content=\"Microsoft launches Spend iOS app that automatically tracks and matches expenses\" />";
             response += "<meta property=\"og:image\" content=\"image\" />";
             response += "<meta property=\"og:description\" content=\"description\" /></head>";
-            var handler = new InitializeTilesHandler(Pocket(), TileMakerClient(response), GetPocketIOptions());
+            var handler = new FetchTilesHandler(Pocket(), TileMakerClient(response), GetPocketIOptions());
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -38,10 +38,10 @@ namespace OpenGraphTilemaker.Web.Client.Tests.Features.Tiles
 
         [Fact]
         [XunitCategory("Integration")]
-        public async Task InitializeTilesRequest_WithRealHttpClient() {
+        public async Task FetchTilesRequest_WithRealHttpClient() {
             // Arrange
-            var request = new InitializeTilesRequest();
-            var handler = new InitializeTilesHandler(Pocket(), RealTileMakerClient(), GetPocketIOptions());
+            var request = new FetchTilesRequest();
+            var handler = new FetchTilesHandler(Pocket(), RealTileMakerClient(), GetPocketIOptions());
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);

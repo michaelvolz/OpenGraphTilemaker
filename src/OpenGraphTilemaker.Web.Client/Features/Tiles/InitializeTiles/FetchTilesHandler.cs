@@ -12,19 +12,19 @@ using OpenGraphTilemaker.OpenGraph;
 namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
     [IoC]
-    public class InitializeTilesHandler : IRequestHandler<InitializeTilesRequest, InitializeTilesResponse>
+    public class FetchTilesHandler : IRequestHandler<FetchTilesRequest, FetchTilesResponse>
     {
         private readonly IPocket _pocket;
         private readonly IPocketOptions _pocketOptions;
         private readonly ITileMakerClient _tileMakerClient;
 
-        public InitializeTilesHandler(IPocket pocket, ITileMakerClient client, IOptions<PocketOptions> options) {
+        public FetchTilesHandler(IPocket pocket, ITileMakerClient client, IOptions<PocketOptions> options) {
             _pocket = pocket;
             _tileMakerClient = client;
             _pocketOptions = options.Value;
         }
 
-        public async Task<InitializeTilesResponse> Handle(InitializeTilesRequest req, CancellationToken token) {
+        public async Task<FetchTilesResponse> Handle(FetchTilesRequest req, CancellationToken token) {
             var entries = await _pocket.GetEntriesAsync(_pocketOptions);
 
             var tasks = new List<Task<OpenGraphMetadata>>();
@@ -41,7 +41,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
             originalTiles = originalTiles.Distinct().ToList();
 
-            return new InitializeTilesResponse { OriginalTiles = originalTiles };
+            return new FetchTilesResponse { OriginalTiles = originalTiles };
         }
     }
 }

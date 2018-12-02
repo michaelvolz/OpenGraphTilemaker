@@ -3,7 +3,7 @@ using OpenGraphTilemaker.OpenGraph;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
-    public class InitializeTilesResponse
+    public class FetchTilesResponse
     {
         public List<OpenGraphMetadata> OriginalTiles { get; set; }
     }

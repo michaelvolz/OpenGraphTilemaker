@@ -4,5 +4,5 @@
 
 namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
-    public class InitializeTilesRequest : IRequest<InitializeTilesResponse> { }
+    public class FetchTilesRequest : IRequest<FetchTilesResponse> { }
 }
