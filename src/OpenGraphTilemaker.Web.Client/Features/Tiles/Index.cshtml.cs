@@ -10,7 +10,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
     {
         private const int OneSecondInMilliseconds = 1000;
 
-        protected List<OpenGraphMetadata> OriginalTiles { get; set; }
+        protected List<OpenGraphMetadata> OriginalTiles { get; private set; }
 
         protected bool Loading() => !(OriginalTiles != null && OriginalTiles.Any()) && IsLoading;
 
@@ -19,9 +19,9 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                 Logger.LogInformation($"### {nameof(OnInitAsync)} loading data...");
 
                 // for testing purposes only!
-                await Task.Delay(5 * OneSecondInMilliseconds);
+                await Task.Delay(1 * OneSecondInMilliseconds);
 
-                var response = await RequestAsync(new InitializeTilesRequest());
+                var response = await RequestAsync(new FetchTilesRequest());
                 OriginalTiles = response.OriginalTiles;
                 IsLoading = false;
 
