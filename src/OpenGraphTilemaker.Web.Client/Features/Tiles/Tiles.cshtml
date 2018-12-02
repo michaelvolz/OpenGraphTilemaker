@@ -4,9 +4,9 @@
 <div class="@ShowIf(() => OriginalTiles != null && OriginalTiles.Any())">
     <SortingAndSearch ref="SortComponent"
                       Count="@State.CurrentTiles.Count"
-                      OnSearch="@((Action<string>)OnSearch)"
-                      OnSortOrder="@((Action<SortOrder>)OnSortOrder)"
-                      OnSortProperty="@((Action<string>)OnSortProperty)"
+                      OnSearch="@((Func<string, Task>)OnSearch)"
+                      OnSortOrder="@((Func<SortOrder, Task>)OnSortOrder)"
+                      OnSortProperty="@((Func<string, Task>)OnSortProperty)"
                       SearchText="@State.SearchText"
                       SortOrder="@State.SortOrder"
                       SortProperty="@State.SortProperty"/>

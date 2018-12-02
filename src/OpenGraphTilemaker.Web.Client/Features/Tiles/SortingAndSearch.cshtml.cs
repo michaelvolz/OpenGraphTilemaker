@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.AspNetCore.Blazor.RenderTree;
 using Microsoft.Extensions.Logging;
 
+// ReSharper disable UnusedMethodReturnValue.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Local
 // ReSharper disable EventNeverSubscribedTo.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -15,9 +16,9 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
     public class SortingAndSearchModel : BlazorComponentStateful<SortingAndSearchModel>
     {
-        [Parameter] private Action<string> OnSortProperty { get; set; }
-        [Parameter] private Action<SortOrder> OnSortOrder { get; set; }
-        [Parameter] private Action<string> OnSearch { get; set; }
+        [Parameter] private Func<string, Task> OnSortProperty { get; set; }
+        [Parameter] private Func<SortOrder, Task> OnSortOrder { get; set; }
+        [Parameter] private Func<string, Task> OnSearch { get; set; }
 
         [Parameter] protected string SortProperty { get; set; }
         [Parameter] protected SortOrder SortOrder { get; set; }
@@ -27,14 +28,16 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         private string LastSearchText { get; set; }
         protected ElementRef SearchInput { get; set; }
 
-        protected void OnSortPropertyButtonClicked() => OnSortProperty(SortProperty);
-        protected void OnSortOrderButtonClicked() => OnSortOrder(SortOrder);
+        protected Task OnSortPropertyButtonClicked() => OnSortProperty(SortProperty);
+        protected Task OnSortOrderButtonClicked() => OnSortOrder(SortOrder);
 
-        protected void OnSearchButtonClicked() {
-            if (LastSearchText == SearchText) return;
+        protected Task OnSearchButtonClicked() {
+            if (LastSearchText == SearchText) return Task.CompletedTask;
 
             OnSearch(SearchText);
             LastSearchText = SearchText;
+
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -48,8 +51,6 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         }
 
         protected override async Task OnAfterRenderAsync() {
-            await base.OnAfterRenderAsync();
-
             await SearchInput.FocusAsync();
         }
 

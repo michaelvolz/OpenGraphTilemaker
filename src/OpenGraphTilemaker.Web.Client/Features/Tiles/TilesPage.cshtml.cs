@@ -10,9 +10,9 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
     {
         private const int OneSecondInMilliseconds = 1000;
 
-        protected List<OpenGraphMetadata> OriginalTiles { get; private set; } = new List<OpenGraphMetadata>();
+        protected List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
 
-        protected bool Loading() => !(OriginalTiles != null && OriginalTiles.Any()) && IsLoading;
+        protected bool Loading() => !OriginalTiles.Any() && IsLoading;
 
         protected override async Task OnInitAsync()
         {
