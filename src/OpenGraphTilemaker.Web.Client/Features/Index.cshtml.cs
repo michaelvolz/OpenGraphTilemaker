@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Exceptions;
-using Microsoft.AspNetCore.Blazor.RenderTree;
 using Microsoft.Extensions.Logging;
-using OpenGraphTilemaker.Web.Client.Features.Global;
+using OpenGraphTilemaker.Web.Client.Features.Globals;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 #pragma warning disable CA1063 // Modify IndexModel.Finalize so that it calls Dispose(false) and then returns.
 #pragma warning disable CA1821 // Remove empty Finalizers
 #pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
@@ -16,7 +16,7 @@ namespace OpenGraphTilemaker.Web.Client.Features
     {
         private const string ThisShouldNeverBeLogged = "THIS SHOULD NEVER BE LOGGED!";
 
-        public Globals MyGlobals { get; set; }
+        protected Globals.Globals MyGlobals { get; set; }
 
         protected GlobalState GlobalState => Store.GetState<GlobalState>();
 

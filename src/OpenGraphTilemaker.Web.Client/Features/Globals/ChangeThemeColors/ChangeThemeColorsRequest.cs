@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace OpenGraphTilemaker.Web.Client.Features.Global
+namespace OpenGraphTilemaker.Web.Client.Features.Globals
 {
     public class ChangeThemeColorsRequest : IRequest<GlobalState>
     {

@@ -1,4 +1,4 @@
-﻿namespace OpenGraphTilemaker.Web.Client.Features.Global
+﻿namespace OpenGraphTilemaker.Web.Client.Features.Globals
 {
     public partial class GlobalState
     {
