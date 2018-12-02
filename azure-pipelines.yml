@@ -19,3 +19,15 @@ steps:
 
 - powershell: .\test.ps1 -Verbose
   displayName: 'Test'
+
+# Publish Test Results
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'xUnit' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFiles: '**/*.trx'
+    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
+    #mergeTestResults: false # Optional
+    #testRunTitle: # Optional
+    #buildPlatform: # Optional
+    #buildConfiguration: # Optional
+    publishRunAttachments: true # Optional
