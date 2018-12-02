@@ -8,6 +8,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  buildPlatform: 'x64'
 
 steps:
 - task: DotNetCoreInstaller@0
@@ -17,18 +18,21 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-- powershell: .\test.ps1 -Verbose
-  displayName: 'Test'
+- script: dotnet test tests\Common.Tests --configuration $(buildConfiguration) --logger "trx;LogFileName=TEST-results.xml" /property:Platform=$(buildPlatform))
+  displayName: 'dotnet test tests\Common.Tests $(buildConfiguration)'
+
+#- powershell: .\test.ps1 -Verbose
+#  displayName: 'Test'
 
 - task: PublishTestResults@2
   inputs:
-    testResultsFormat: 'xUnit' # Options: JUnit, NUnit, VSTest, xUnit
-    testResultsFiles: '**/*.trx'
-    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
-    mergeTestResults: true # Optional
+    testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFiles: '**/TEST-*.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)\TestResult' # Optional
+    #mergeTestResults: true # Optional
     #testRunTitle: # Optional
     #buildPlatform: # Optional
     #buildConfiguration: # Optional
     #publishRunAttachments: true # Optional
 
-- task: PublishBuildArtifacts@1
+# - task: PublishBuildArtifacts@1
