@@ -1,5 +1,5 @@
-<!-- 
-    https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2017 
+<!--
+    https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2017
 -->
 <!--EXTERNAL_PROPERTIES: MSBuildThisFileDirectory-->
 <Project>
@@ -37,7 +37,7 @@
 
   <PropertyGroup>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetDebug)</CodeAnalysisRuleSet>
   </PropertyGroup>
 
