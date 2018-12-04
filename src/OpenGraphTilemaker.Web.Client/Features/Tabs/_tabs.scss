@@ -3,6 +3,9 @@
 @import "../../wwwroot/scss/abstracts/variables";
 
 ul.tabs {
+    border: 0;
+    border-bottom: 1px solid lightgrey;
+
     .tabs-title {
         @include border-radius();
         background-color: #f9f9f9;
@@ -19,7 +22,8 @@ ul.tabs {
     }
 
     li {
-        margin-bottom: -5px;
+        border: 1px solid silver;
+        margin-bottom: -2px;
     }
 }
 
