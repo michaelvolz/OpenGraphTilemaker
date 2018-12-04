@@ -42,7 +42,7 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Aspnetcore.Mvc.Analyzers" Version="2.2.0-preview3-35497" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers" Version="2.2.0-preview3-35497" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers" Version="3.0.0-preview-18579-0056" PrivateAssets="all" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.0-preview3-35497" PrivateAssets="all" />
     <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
