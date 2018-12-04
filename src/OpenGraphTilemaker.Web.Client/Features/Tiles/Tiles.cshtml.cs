@@ -40,7 +40,6 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
         protected async Task OnSortOrder(SortOrder sortOrder) => await SortByOrder(sortOrder);
         protected async Task OnSearch(string searchText) => await SearchAsync(searchText);
 
-
         private async Task SortByOrder(SortOrder sortOrder) {
             sortOrder = sortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
             await RequestAsync(new SortTilesRequest { CurrentTiles = State.CurrentTiles, SortOrder = sortOrder });
