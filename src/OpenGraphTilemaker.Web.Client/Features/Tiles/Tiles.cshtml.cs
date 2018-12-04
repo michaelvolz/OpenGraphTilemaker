@@ -15,6 +15,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
     public class TilesModel : BlazorComponentStateful<TilesModel>
     {
+        [Parameter] private protected string Class { get; set; }
         [Parameter] private protected List<OpenGraphMetadata> OriginalTiles { get; set; }
 
         protected SortingAndSearch SortComponent { get; set; }
@@ -31,12 +32,14 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
             }
         }
 
+        protected bool Loaded() => !IsLoading && OriginalTiles.Any();
         protected bool Empty() => !State.CurrentTiles.Any() && !IsLoading;
         protected bool Any() => State.CurrentTiles.Any();
 
         protected async Task OnSortProperty(string sortProperty) => await SortByProperty(sortProperty);
         protected async Task OnSortOrder(SortOrder sortOrder) => await SortByOrder(sortOrder);
         protected async Task OnSearch(string searchText) => await SearchAsync(searchText);
+
 
         private async Task SortByOrder(SortOrder sortOrder) {
             sortOrder = sortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;

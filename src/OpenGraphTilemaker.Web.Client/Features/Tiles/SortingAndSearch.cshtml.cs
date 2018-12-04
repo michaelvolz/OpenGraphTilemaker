@@ -16,6 +16,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
     public class SortingAndSearchModel : BlazorComponentStateful<SortingAndSearchModel>
     {
+        [Parameter] protected string Class { get; set; }
         [Parameter] private Func<string, Task> OnSortProperty { get; set; }
         [Parameter] private Func<SortOrder, Task> OnSortOrder { get; set; }
         [Parameter] private Func<string, Task> OnSearch { get; set; }

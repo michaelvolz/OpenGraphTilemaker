@@ -1,8 +1,8 @@
 ﻿@using Common
 @inherits TilesModel;
 
-<div class="@ShowIf(() => OriginalTiles != null && OriginalTiles.Any())">
-    <SortingAndSearch ref="SortComponent"
+<section class="@Class">
+    <SortingAndSearch Class="@ShowIf(Loaded)" Ref="SortComponent"
                       Count="@State.CurrentTiles.Count"
                       OnSearch="@((Func<string, Task>)OnSearch)"
                       OnSortOrder="@((Func<SortOrder, Task>)OnSortOrder)"
@@ -10,18 +10,18 @@
                       SearchText="@State.SearchText"
                       SortOrder="@State.SortOrder"
                       SortProperty="@State.SortProperty"/>
-</div>
 
-<p></p>
+    <p></p>
 
-<div class="callout warning emphasize radius @ShowIf(Empty)">Empty!</div>
+    <div class="callout warning emphasize radius @ShowIf(Empty)">Empty!</div>
 
-<div class="masonry-css @ShowIf(Any)">
+    <div class="masonry-css @ShowIf(Any)">
 
-    @foreach (var item in State.CurrentTiles) {
-        <div class="masonry-css-item auto">
-            <Tile OpenGraphMetadata="@item"></Tile>
-        </div>
-    }
+        @foreach (var item in State.CurrentTiles) {
+            <div class="masonry-css-item auto">
+                <Tile OpenGraphMetadata="@item"></Tile>
+            </div>
+        }
 
-</div>
+    </div>
+</section>
