@@ -7,13 +7,10 @@
 
 @import "abstracts/functions";
 @import "abstracts/mixins";
-@import "base/base";
 @import "base/fonts";
 @import "base/typography";
 @import "base/helpers";
 @import "layout/layout";
-@import "layout/header";
-@import "layout/footer";
 
 @import "components/button";
 @import "components/callout";
@@ -23,7 +20,3 @@
 
 @import "../../features/tiles/tiles";
 @import "../../features/tabs/tabs";
-
-@import "pages/home";
-@import "themes/default";
-
