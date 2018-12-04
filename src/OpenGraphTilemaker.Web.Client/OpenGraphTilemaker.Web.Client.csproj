@@ -10,8 +10,6 @@
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <AssemblyName>OpenGraphTilemaker.Web.Client</AssemblyName>
     <RootNamespace>OpenGraphTilemaker.Web.Client</RootNamespace>
-    <TypeScriptExperimentalDecorators>true</TypeScriptExperimentalDecorators>
-    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,31 +42,5 @@
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\OpenGraphTilemaker\OpenGraphTilemaker.csproj" />
   </ItemGroup> 
-
-  <ItemGroup>
-    <Folder Include="wwwroot\scss\abstracts\" />
-    <Folder Include="wwwroot\scss\base\" />
-    <Folder Include="wwwroot\scss\pages\" />
-  </ItemGroup> 
-
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptTarget>ES5</TypeScriptTarget>
-    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
-    <TypeScriptModuleKind />
-    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
-    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
-    <TypeScriptOutFile />
-    <TypeScriptOutDir />
-    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
-    <TypeScriptSourceMap>False</TypeScriptSourceMap>
-    <TypeScriptMapRoot />
-    <TypeScriptSourceRoot />
-  </PropertyGroup> 
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;CS1591;CA1801;SA0001;TS1146</NoWarn>
-  </PropertyGroup>
 
 </Project>

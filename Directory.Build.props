@@ -13,19 +13,11 @@
     <FileVersion>$(Version)</FileVersion>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <Product>OpenGraphTileMaker</Product>
-    <Copyright>Copyright © 2018, Michael A. Volz</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
-  <!-- We always want a good debugging experience in tests -->
   <PropertyGroup>
     <NoWarn>1701;1702;CS1591;CA1801;SA0001</NoWarn>
-    <Optimize>false</Optimize>
-    <DebugType>embedded</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-    <EmbedAllSources>true</EmbedAllSources>
-    <Deterministic>true</Deterministic>
-    <PreserveCompilationContext>true</PreserveCompilationContext>
     <DocumentationFile>_$(MSBuildProjectName).xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
