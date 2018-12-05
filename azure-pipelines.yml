@@ -9,10 +9,10 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- task: DotNetCoreInstaller@0
-  inputs:
-    version: '2.2.100-preview3-009430'
+#steps:
+#- task: DotNetCoreInstaller@0
+#  inputs:
+#    version: '2.2.100-preview3-009430'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
@@ -22,7 +22,7 @@ steps:
 
 - task: PublishTestResults@2
   inputs:
-    testResultsFormat: 'xUnit' # Options: JUnit, NUnit, VSTest, xUnit
+    #testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit
     testResultsFiles: '**/TEST-*.xml'
     #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
     #mergeTestResults: true # Optional
@@ -31,4 +31,4 @@ steps:
     #buildConfiguration: # Optional
     #publishRunAttachments: true # Optional
 
-# - task: PublishBuildArtifacts@1
+#- task: PublishBuildArtifacts@1
