@@ -15,6 +15,8 @@ namespace BaseTestCode
 {
     public class BaseTest<T>
     {
+        public ServiceCollection Services { get; } = new ServiceCollection();
+
         protected BaseTest(ITestOutputHelper output) {
             ConfigureSerilog(output);
             ConfigureServiceLocator();
@@ -30,11 +32,10 @@ namespace BaseTestCode
             return HttpClient(new FakeHttpMessageHandler(message));
         }
 
-        private static void ConfigureServiceLocator() {
-            var services = new ServiceCollection();
-            services.AddSingleton(provider => (ILoggerFactory)new SerilogLoggerFactory(null, false));
-            services.TryAdd(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(Logger<>)));
-            ServiceLocator.SetServiceProvider(services.BuildServiceProvider());
+        private void ConfigureServiceLocator() {
+            Services.AddSingleton(provider => (ILoggerFactory)new SerilogLoggerFactory(null, false));
+            Services.TryAdd(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(Logger<>)));
+            ServiceLocator.SetServiceProvider(Services.BuildServiceProvider());
         }
 
         private static void ConfigureSerilog(ITestOutputHelper output) =>
