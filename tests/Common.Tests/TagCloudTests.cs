@@ -18,7 +18,7 @@ namespace Common.Tests
         public TagCloudTestsTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
         [Fact]
-        public async Task Method_Scenario_Behavior() {
+        public async Task TagCloud_InsertText_ReturnsValidCloud() {
             var tagCloud = new TagCloud();
 
             var text = "Earthly of he parasites at so and for call shrine of old pomp to could that fondly one did hight Earthly";
