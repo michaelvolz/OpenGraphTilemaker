@@ -20,7 +20,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
 
         [Theory]
         [InlineData("http://localhost:50709")]
-        public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url) {
+        public async Task Get_EndpointReturnsSuccess(string url) {
             // Arrange
             var client = _factory.CreateClient();
 
