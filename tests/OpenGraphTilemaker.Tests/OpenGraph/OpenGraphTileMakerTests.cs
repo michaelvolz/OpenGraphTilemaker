@@ -16,7 +16,7 @@ using Xunit.Abstractions;
 
 namespace OpenGraphTilemaker.Tests.OpenGraph
 {
-    public class OpenGraphTileMakerTests : BaseTest
+    public class OpenGraphTileMakerTests : BaseTest<OpenGraphTileMakerTests>
     {
         public OpenGraphTileMakerTests(ITestOutputHelper testConsole) : base(testConsole) {
             var options = Options.Create(new DiscCacheOptions(@"C:\WINDOWS\Temp\", CacheState.Disabled));

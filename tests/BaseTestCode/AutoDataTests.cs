@@ -8,7 +8,7 @@ namespace BaseTestCode
     /// <summary>
     ///     AutoFixture CheatSheet https://github.com/AutoFixture/AutoFixture/wiki/Cheat-Sheet.
     /// </summary>
-    public class AutoDataTests : BaseTest
+    public class AutoDataTests : BaseTest<AutoDataTests>
     {
         public AutoDataTests(ITestOutputHelper testConsole) : base(testConsole) { }
 

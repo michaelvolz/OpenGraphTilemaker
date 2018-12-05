@@ -11,7 +11,7 @@ using Xunit.Abstractions;
 
 namespace OpenGraphTilemaker.Tests.GetPocket
 {
-    public class PocketTests : BaseTest
+    public class PocketTests : BaseTest<PocketTests>
     {
         public PocketTests(ITestOutputHelper testConsole) : base(testConsole) {
             // Arrange

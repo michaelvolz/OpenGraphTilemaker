@@ -11,7 +11,7 @@ using Xunit.Abstractions;
 
 namespace Common.Tests.Extensions
 {
-    public class DateTimeExtensionsTests : BaseTest
+    public class DateTimeExtensionsTests : BaseTest<DateTimeExtensionsTests>
     {
         public DateTimeExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
 

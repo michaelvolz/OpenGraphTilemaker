@@ -17,7 +17,7 @@ using Options = Microsoft.Extensions.Options.Options;
 
 namespace OpenGraphTilemaker.Tests
 {
-    public class ClientBaseTest : BaseTest, IDisposable
+    public class ClientBaseTest : BaseTest<ClientBaseTest>, IDisposable
     {
         private const string CachingFolder = @"C:\WINDOWS\Temp\";
 

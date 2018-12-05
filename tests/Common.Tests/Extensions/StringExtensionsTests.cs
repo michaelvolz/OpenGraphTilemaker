@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace Common.Tests.Extensions
 {
-    public partial class StringExtensionsTests : BaseTest
+    public partial class StringExtensionsTests : BaseTest<StringExtensionsTests>
     {
         public StringExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
 

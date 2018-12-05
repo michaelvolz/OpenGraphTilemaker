@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace Common.Tests.Guards
 {
-    public class GuardExtensionsTests : BaseTest
+    public class GuardExtensionsTests : BaseTest<GuardExtensionsTests>
     {
         public GuardExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
