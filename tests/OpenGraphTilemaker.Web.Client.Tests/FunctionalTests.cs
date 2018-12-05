@@ -19,7 +19,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
         protected ITestOutputHelper TestConsole { get; }
 
         [Theory]
-        [InlineData("http://localhost:50709/#")]
+        [InlineData("http://localhost:50709")]
         public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url) {
             // Arrange
             var client = _factory.CreateClient();
@@ -28,8 +28,8 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             var response = await client.GetAsync(new Uri(url));
 
             // Assert
-            response.EnsureSuccessStatusCode(); // Status Code 200-299
             response.Should().NotBeNull();
+            response.EnsureSuccessStatusCode(); // Status Code 200-299
 
             TestConsole.WriteLine(response.Content.Headers.ToString());
 
