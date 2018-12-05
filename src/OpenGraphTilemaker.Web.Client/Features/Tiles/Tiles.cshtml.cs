@@ -32,7 +32,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
             }
         }
 
-        protected bool Loaded() => !IsLoading && OriginalTiles.Any();
+        protected bool Loaded() => OriginalTiles.Any();
         protected bool Empty() => !State.CurrentTiles.Any() && !IsLoading;
         protected bool Any() => State.CurrentTiles.Any();
 
