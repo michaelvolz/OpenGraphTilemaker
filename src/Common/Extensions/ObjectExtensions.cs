@@ -6,6 +6,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+// ReSharper disable UnusedMember.Local
 // ReSharper disable UnusedMember.Global
 
 namespace Common.Extensions
@@ -78,7 +79,7 @@ namespace Common.Extensions
             if (!iIsList)
                 return unserialize;
 
-            //_log.Warn("JSON Object was not deserialized as 'List', now trying special algorithm!");
+            // _log.Warn("JSON Object was not deserialized as 'List', now trying special algorithm!");
 
             return (T)JsonConvert.DeserializeObject(stringObj, typeof(T), new FlexibleCollectionConverter());
         }
@@ -105,7 +106,6 @@ namespace Common.Extensions
         /// <summary>
         ///     GenericListCreationJsonConverter
         /// </summary>
-        // ReSharper disable once UnusedMember.Local
         private class GenericListCreationJsonConverter<T> : JsonConverter
         {
             public override bool CanRead => true;

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using OpenGraphTilemaker.Web.Client.Tests.TestServer.Helpers;
 using Xunit;
 using Xunit.Abstractions;
-using AngleSharp.Dom.Html;
 
 namespace OpenGraphTilemaker.Web.Client.Tests
 {

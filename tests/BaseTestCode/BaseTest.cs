@@ -15,13 +15,13 @@ namespace BaseTestCode
 {
     public class BaseTest<T>
     {
-        public ServiceCollection Services { get; } = new ServiceCollection();
-
         protected BaseTest(ITestOutputHelper output) {
             ConfigureSerilog(output);
             ConfigureServiceLocator();
             TestConsole = ApplicationLogging.CreateLogger<T>();
         }
+
+        public ServiceCollection Services { get; } = new ServiceCollection();
 
         protected ILogger<T> TestConsole { get; }
 
@@ -32,22 +32,17 @@ namespace BaseTestCode
             return HttpClient(new FakeHttpMessageHandler(message));
         }
 
-        private void ConfigureServiceLocator() {
-            Services.AddSingleton(provider => (ILoggerFactory)new SerilogLoggerFactory(null, false));
-            Services.TryAdd(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(Logger<>)));
-            ServiceLocator.SetServiceProvider(Services.BuildServiceProvider());
-        }
-
         private static void ConfigureSerilog(ITestOutputHelper output) =>
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.TestOutput(output, outputTemplate: "{Timestamp:HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}\t{Exception}")
                 .CreateLogger()
                 .ForContext<T>();
-    }
 
-    public static class Extensions
-    {
-        public static void WriteLine<T>(this ILogger<T> logger, string message, params object[] args) => logger.LogDebug(message, args);
+        private void ConfigureServiceLocator() {
+            Services.AddSingleton(provider => (ILoggerFactory)new SerilogLoggerFactory(null, false));
+            Services.TryAdd(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(Logger<>)));
+            ServiceLocator.SetServiceProvider(Services.BuildServiceProvider());
+        }
     }
 }
