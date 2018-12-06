@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Common.Extensions;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
+using OpenGraphTilemaker.Web.Client.Tests.TestServer.Helpers;
 using Xunit;
 using Xunit.Abstractions;
+using AngleSharp.Dom.Html;
 
 namespace OpenGraphTilemaker.Web.Client.Tests
 {
@@ -37,6 +40,14 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             TestConsole.WriteLine(content);
 
             content.Should().Contain("_framework/blazor.server.js");
+
+            var doc = await HtmlHelpers.GetDocumentAsync(response);
+            TestConsole.WriteLine(doc.ReturnDumpFlat());
+
+            var element = doc.QuerySelector("#myApp");
+            element.Should().NotBeNull();
+            element.InnerHtml.Should().NotBeNullOrWhiteSpace();
+            element.InnerHtml.Should().BeEquivalentTo("loading...");
         }
     }
 }
