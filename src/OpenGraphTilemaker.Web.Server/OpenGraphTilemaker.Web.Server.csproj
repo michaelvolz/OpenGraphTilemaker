@@ -13,6 +13,7 @@
     <RootNamespace>OpenGraphTilemaker.Web.Server</RootNamespace>
     <AssemblyName>OpenGraphTilemaker.Web.Server</AssemblyName>
     <ServerGarbageCollection>true</ServerGarbageCollection>
+    <UserSecretsId>15ea9d85-0125-491c-bbf6-6e4acc1703a6</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

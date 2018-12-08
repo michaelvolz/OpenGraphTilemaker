@@ -6583,3 +6583,11 @@ ul.tabs {
 
 .tabs-panel {
   border-top-width: 0; }
+
+.currency-widget {
+  margin: 0;
+  padding: 0 0 0 0.5em; }
+  .currency-widget legend {
+    margin: 0;
+    padding: 0;
+    padding: 0.5em; }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
+using OpenGraphTilemaker.Web.Client.Features.CryptoWatch;
 using OpenGraphTilemaker.Web.Server.ServerApp.Diagnostics;
 
 namespace OpenGraphTilemaker.Web.Server
@@ -12,6 +13,8 @@ namespace OpenGraphTilemaker.Web.Server
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services) {
+            services.Configure<CryptoWatchOptions>(Program.Configuration.GetSection("CryptoWatch"));
+
             services.AddServerSideBlazor<Client.Startup>();
 
             services.AddResponseCompression(options => {
@@ -25,9 +28,7 @@ namespace OpenGraphTilemaker.Web.Server
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
             app.UseResponseCompression();
 
-            if (env.IsDevelopment()) {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseSerilogClient();
 

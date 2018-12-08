@@ -17,6 +17,10 @@ At the moment I am really pleased with the state of Blazor!
   * ValidationError idea from [Blazor.Validation](https://github.com/PeterHimschoot/Blazor.Validation)
   * ValidationSummary idea from [Blazor.Validation](https://github.com/PeterHimschoot/Blazor.Validation)
 * Tests => xUnit, Autofixture, nSubstitute
+* CryptoWatch DashBoard:
+  * TODO: Create websocket source with fake data
+  * TODO: Consume live websocket stream
+  * TODO: Update in realtime
 * OpenGraph TileMaker:
   * RSS feedreader as source
   * Sorting 

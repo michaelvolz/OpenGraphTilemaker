@@ -3,14 +3,18 @@ using System.Linq;
 using System.Net.Http;
 using BlazorState;
 using Common;
+using Common.AspNetCore.Blazor;
+using Common.Extensions;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 using OpenGraphTilemaker.Web.Client.ClientApp.Services;
+using OpenGraphTilemaker.Web.Client.Features.CryptoWatch;
 
 namespace OpenGraphTilemaker.Web.Client
 {
@@ -19,6 +23,23 @@ namespace OpenGraphTilemaker.Web.Client
     /// </summary>
     public class Startup
     {
+        private static void VerifyCryptoWatchApiKey(ILogger<Startup> logger) {
+            var cryptoWatchOptions = ServiceLocator.Current.GetInstance<IOptions<CryptoWatchOptions>>();
+
+            if (cryptoWatchOptions == null || cryptoWatchOptions.Value.ApiKey == "n/a")
+                throw new InvalidOperationException("CryptoWatchOptions ApiKey not configured!");
+
+            logger.LogInformation("CryptoWatch ApiKey: " + cryptoWatchOptions.Value.ApiKey.TruncateAtWord(5, "..."));
+        }
+
+        private static ILogger<Startup> VerifyLogger() {
+            var logger = ServiceLocator.Current.GetInstance<ILogger<Startup>>();
+
+            if (logger == null) throw new InvalidOperationException("ILogger<> not found!");
+
+            return logger;
+        }
+
         public void ConfigureServices(IServiceCollection services) {
             // Server Side Blazor doesn't register HttpClient by default
             if (services.All(x => x.ServiceType != typeof(HttpClient)))
@@ -60,8 +81,10 @@ namespace OpenGraphTilemaker.Web.Client
 
             ServiceLocator.SetServiceProvider(services.BuildServiceProvider());
 
-            var logger = ServiceLocator.Current.GetInstance<ILogger<Startup>>();
-            if (logger == null) throw new InvalidOperationException("ILogger<> not found!");
+            var logger = VerifyLogger();
+            VerifyCryptoWatchApiKey(logger);
+
+            logger.LogWarning("Runtime has Mono: " + JsRuntimeLocation.HasMono);
         }
 
         [UsedImplicitly]

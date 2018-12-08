@@ -17,6 +17,7 @@ namespace OpenGraphTilemaker.Web.Server
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", false, true)
             .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
+            .AddUserSecrets("15ea9d85-0125-491c-bbf6-6e4acc1703a6")
             .AddEnvironmentVariables()
             .Build();
 
