@@ -13,9 +13,12 @@ namespace OpenGraphTilemaker.Web.Server
 {
     public class Program
     {
+        private const string AppSettingsJSON = "appsettings.json";
+        private const string FixedPathExtensionForTesting = @"..\..\..\..\..\..\src\OpenGraphTilemaker.Web.Server";
+
         public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", false, true)
+            .SetBasePath(FindAppSettings())
+            .AddJsonFile(AppSettingsJSON, false, true)
             .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
             .AddUserSecrets("15ea9d85-0125-491c-bbf6-6e4acc1703a6")
             .AddEnvironmentVariables()
@@ -56,5 +59,13 @@ namespace OpenGraphTilemaker.Web.Server
 
         public static IWebHost BuildWebHost(string[] args) =>
             CreateWebHostBuilder(args).Build();
+
+        private static string FindAppSettings() {
+            var currentDirectory = Directory.GetCurrentDirectory();
+
+            if (File.Exists(currentDirectory + @"\" + AppSettingsJSON)) return currentDirectory;
+
+            return currentDirectory + FixedPathExtensionForTesting;
+        }
     }
 }
