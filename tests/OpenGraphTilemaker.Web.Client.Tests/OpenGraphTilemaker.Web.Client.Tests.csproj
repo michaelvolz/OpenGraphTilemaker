@@ -9,7 +9,7 @@
     <PackageReference Include="AngleSharp" Version="0.9.11" />
     <PackageReference Include="AutoFixture" Version="4.6.0" />
     <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.5.1" />
-    <PackageReference Include="AutoFixture.Xunit2" Version="4.5.1" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.6.0" />
     <PackageReference Include="FluentAssertions" Version="5.5.3" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="2.2.0" />
