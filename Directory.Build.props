@@ -46,6 +46,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.0" PrivateAssets="all" />
     <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
-    <None Include="$(CodeAnalysisRuleSet)" Condition="'$(CodeAnalysisRuleSet)' != ''" Link="%(Filename)%(Extension)" />
+    <None Include="$(CodeAnalysisRuleSet)" Condition="'$(CodeAnalysisRuleSet)' != ''" Link="Current%(Extension)" />
   </ItemGroup>
 </Project>
