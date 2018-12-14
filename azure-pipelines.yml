@@ -29,6 +29,6 @@ steps:
     #testRunTitle: # Optional
     #buildPlatform: # Optional
     #buildConfiguration: # Optional
-    #publishRunAttachments: true # Optional
+    publishRunAttachments: false # Optional
 
 #- task: PublishBuildArtifacts@1
