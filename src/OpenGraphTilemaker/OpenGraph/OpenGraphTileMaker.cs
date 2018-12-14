@@ -9,8 +9,8 @@ namespace OpenGraphTilemaker.OpenGraph
 {
     public class OpenGraphTileMaker
     {
-        public IList<HtmlNode> HtmlMetaTags { get; set; }
-        public OpenGraphMetadata GraphMetadata { get; set; }
+        public IList<HtmlNode> HtmlMetaTags { get; private set; }
+        public OpenGraphMetadata GraphMetadata { get; private set; }
 
         public Exception Error { get; private set; }
 
