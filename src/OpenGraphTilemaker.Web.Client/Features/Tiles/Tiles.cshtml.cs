@@ -15,8 +15,8 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 {
     public class TilesModel : BlazorComponentStateful<TilesModel>
     {
-        [Parameter] private protected string Class { get; set; }
-        [Parameter] private protected List<OpenGraphMetadata> OriginalTiles { get; set; }
+        [Parameter] protected string Class { get; set; }
+        [Parameter] protected List<OpenGraphMetadata> OriginalTiles { get; set; }
 
         protected SortingAndSearch SortComponent { get; set; }
         protected TilesState State => Store.GetState<TilesState>();
