@@ -26,20 +26,15 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
         public async Task<FetchTilesResponse> Handle(FetchTilesRequest req, CancellationToken token) {
             var entries = await _pocket.GetEntriesAsync(_pocketOptions);
-
             var tasks = new List<Task<OpenGraphMetadata>>();
 
-            foreach (var entry in entries) tasks.Add(_tileMakerClient.OpenGraphMetadataAsync(new Uri(entry.Link), entry));
+            foreach (var entry in entries)
+                tasks.Add(_tileMakerClient.OpenGraphMetadataAsync(new Uri(entry.Link), entry)
+                    .TimeoutAfter(_pocketOptions.TimeOutTimeSpan));
 
             var taskResults = await Task.WhenAll(tasks);
-            var originalTiles = new List<OpenGraphMetadata>();
 
-            foreach (var entry in taskResults) {
-                if (entry == null || !entry.IsValid) continue;
-                originalTiles.Add(entry);
-            }
-
-            originalTiles = originalTiles.Distinct().ToList();
+            var originalTiles = taskResults.Where(entry => entry != null && entry.IsValid).Distinct().ToList();
 
             return new FetchTilesResponse { OriginalTiles = originalTiles };
         }

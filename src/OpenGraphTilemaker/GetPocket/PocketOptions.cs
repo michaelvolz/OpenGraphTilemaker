@@ -15,5 +15,6 @@ namespace OpenGraphTilemaker.GetPocket
 
         public Uri Uri { get; set; }
         public TimeSpan CachingTimeSpan { get; set; }
+        public TimeSpan TimeOutTimeSpan { get; set; }
     }
 }
