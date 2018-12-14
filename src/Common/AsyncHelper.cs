@@ -24,7 +24,6 @@ namespace Common
         public static void RunSync(Func<Task> func)
             => _taskFactory.StartNew(func).Unwrap().GetAwaiter().GetResult();
 
-
         /// <summary>
         ///     WithCancellation.
         ///     See <a href="link">https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md</a>
