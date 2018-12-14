@@ -22,7 +22,8 @@ namespace OpenGraphTilemaker.Tests
         private const string CachingFolder = @"C:\WINDOWS\Temp\";
 
         private static readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
-        private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(120);
+        protected static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(120);
+        protected static readonly TimeSpan TimeoutTimeSpan = TimeSpan.FromSeconds(15);
 
         private readonly HttpClient _realHttpClient;
 
@@ -56,7 +57,7 @@ namespace OpenGraphTilemaker.Tests
         }
 
         protected static IOptions<PocketOptions> GetPocketIOptions() {
-            return Options.Create(new PocketOptions(Uri, CachingTimeSpan));
+            return Options.Create(new PocketOptions(Uri, CachingTimeSpan, TimeoutTimeSpan));
         }
 
         protected static Pocket Pocket() {

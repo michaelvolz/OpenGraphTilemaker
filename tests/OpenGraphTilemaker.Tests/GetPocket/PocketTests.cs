@@ -17,11 +17,12 @@ namespace OpenGraphTilemaker.Tests.GetPocket
             // Arrange
             var feedService = new Feed<PocketEntry>();
             _pocket = new Pocket(new MemoryCache(new MemoryCacheOptions()), feedService);
-            _options = new PocketOptions(Uri, CachingTimeSpan);
+            _options = new PocketOptions(Uri, CachingTimeSpan, TimeoutTimeSpan);
         }
 
         private static readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
         private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(1);
+        private static readonly TimeSpan TimeoutTimeSpan = TimeSpan.FromSeconds(10);
 
         private readonly Pocket _pocket;
         private readonly PocketOptions _options;
