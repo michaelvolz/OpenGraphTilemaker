@@ -10,6 +10,7 @@
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <AssemblyName>OpenGraphTilemaker.Web.Client</AssemblyName>
     <RootNamespace>OpenGraphTilemaker.Web.Client</RootNamespace>
+    <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
