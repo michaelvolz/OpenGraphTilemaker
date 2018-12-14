@@ -56,6 +56,6 @@ At the moment I am really pleased with the state of Blazor!
   * Run tests
   * Status badge
 * Dependabot 
-  * Enabled badge
+  * Include badge
 
 License: [unlicense](http://unlicense.org/)
