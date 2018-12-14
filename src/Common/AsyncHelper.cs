@@ -58,5 +58,14 @@ namespace Common
                 return await task;
             }
         }
+
+        /// <summary>
+        ///     AsyncLazy.
+        ///     See <a href="link">https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md</a>
+        /// </summary>
+        private class AsyncLazy<T> : Lazy<Task<T>>
+        {
+            public AsyncLazy(Func<Task<T>> valueFactory) : base(valueFactory) { }
+        }
     }
 }
