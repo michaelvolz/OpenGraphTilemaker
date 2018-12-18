@@ -6,6 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TagCloud\mysql_myisam.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TagCloud\mysql_myisam.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.8.11" />
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0-preview3-35497" />

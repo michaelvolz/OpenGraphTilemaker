@@ -7,13 +7,13 @@ using Xunit.Abstractions;
 
 namespace Common.Tests
 {
-    public class TagCloudTestsTests : BaseTest<TagCloudTestsTests>
+    public class TagCloudTests : BaseTest<TagCloudTests>
     {
-        public TagCloudTestsTests(ITestOutputHelper testConsole) : base(testConsole) { }
+        public TagCloudTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
         [Fact]
         public async Task TagCloud_InsertText_ReturnsValidCloud() {
-            var tagCloud = new TagCloud();
+            var tagCloud = new TagCloud.TagCloud();
 
             var text = "Earthly of he parasites at so and for call shrine of old pomp to could that fondly one did hight Earthly";
             await tagCloud.InsertAsync(text);
@@ -48,5 +48,26 @@ namespace Common.Tests
 
             TestConsole.WriteLine("{@cloud}", cloud);
         }
+        [Fact]
+        public async Task TagCloud_InsertTextTwice_ReturnsValidCloud() {
+            var tagCloud = new TagCloud.TagCloud();
+
+            var text = "Earthly of he parasites at so and for call shrine of old pomp to could that fondly one did hight Earthly";
+            await tagCloud.InsertAsync(text);
+            await tagCloud.InsertAsync(text);
+
+            var cloud = tagCloud.Cloud;
+
+            cloud.Should().NotBeNull();
+            cloud.Should().ContainKey("Earthly".ToUpperInvariant());
+            cloud.Should().ContainKey("hight".ToUpperInvariant());
+
+            var (key, value) = cloud.First();
+            key.Should().BeEquivalentTo("earthly");
+            value.Should().Be(4);
+
+            TestConsole.WriteLine("{@cloud}", cloud);
+        }
+
     }
 }

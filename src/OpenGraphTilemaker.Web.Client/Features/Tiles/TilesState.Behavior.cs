@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BlazorState;
 using Common;
+using Common.TagCloud;
 using OpenGraphTilemaker.OpenGraph;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Tiles
@@ -12,6 +13,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
         protected TilesState(TilesState state) {
             CurrentTiles = state.CurrentTiles;
+            TagCloud = state.TagCloud;
 
             SortOrder = state.SortOrder;
             SortProperty = state.SortProperty;
@@ -24,6 +26,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
         protected override void Initialize() {
             CurrentTiles = new List<OpenGraphMetadata>();
+            TagCloud = default;
 
             SortOrder = SortOrder.Descending;
             SortProperty = nameof(OpenGraphMetadata.BookmarkTime);

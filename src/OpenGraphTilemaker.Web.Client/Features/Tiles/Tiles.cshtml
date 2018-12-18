@@ -1,6 +1,8 @@
 ﻿@using Common
 @inherits TilesModel;
-
+<style>
+    
+</style>
 <section class="@Class">
     <SortingAndSearch Class="@ShowIf(Loaded)" Ref="SortComponent"
                       Count="@State.CurrentTiles.Count"
@@ -12,6 +14,18 @@
                       SortProperty="@State.SortProperty"/>
 
     <p></p>
+
+    @if (State?.TagCloud != null && State.TagCloud.Any()) {
+        <div class="tagCloud callout clearfix">
+            <ul>
+                @foreach (var word in State.TagCloud.Where(pair => pair.Value > 1)) {
+                    <li>
+                        <a class="@("size" + (word.Value <= 6 ? word.Value : 6) )" onclick="@(async () => await OnSearch(word.Key))">@word.Key.ToLower()</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
 
     <div class="callout warning emphasize radius @ShowIf(Empty)">Empty!</div>
 

@@ -6,6 +6,7 @@ using Common;
 using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
+using OpenGraphTilemaker.Web.Client.Features.Counter;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -27,6 +28,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
             if (OriginalTiles.Any() && !State.CurrentTiles.Any()) {
                 Logger.LogInformation($"### {nameof(OnParametersSetAsync)} Count: " + OriginalTiles.Count);
                 await SearchAsync(State.SearchText);
+                await RequestAsync(new CreateTagCloudRequest { OriginalTiles = OriginalTiles });
 
                 IsLoading = false;
             }

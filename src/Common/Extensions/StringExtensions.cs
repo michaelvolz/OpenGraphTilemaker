@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using Ardalis.GuardClauses;
 using JetBrains.Annotations;
 
@@ -10,37 +11,28 @@ namespace Common.Extensions
 {
     public static class StringExtensions
     {
-        public static bool NotNullNorEmpty([CanBeNull] this object value) {
-            return value is string str && str.NotNullNorEmpty();
+        public static string RemoveNumbers([NotNull] this string text) {
+            Guard.Against.Null(() => text);
+
+            return text.Where(c => !c.IsNumeric())
+                .Aggregate(new StringBuilder(), (current, next) => current.Append(next), sb => sb.ToString());
         }
 
-        public static bool NotNullNorEmpty([CanBeNull] this string value) {
-            return !value.IsNullOrEmpty();
-        }
+        public static bool NotNullNorEmpty([CanBeNull] this object value) => value is string str && str.NotNullNorEmpty();
 
-        public static bool IsNullOrEmpty([CanBeNull] this object value) {
-            return !(value is string str) || str.IsNullOrEmpty();
-        }
+        public static bool NotNullNorEmpty([CanBeNull] this string value) => !value.IsNullOrEmpty();
 
-        public static bool IsNullOrEmpty([CanBeNull] this string value) {
-            return string.IsNullOrEmpty(value);
-        }
+        public static bool IsNullOrEmpty([CanBeNull] this object value) => !(value is string str) || str.IsNullOrEmpty();
 
-        public static bool NotNullNorWhiteSpace([CanBeNull] this object value) {
-            return value is string str && str.NotNullNorWhiteSpace();
-        }
+        public static bool IsNullOrEmpty([CanBeNull] this string value) => string.IsNullOrEmpty(value);
 
-        public static bool NotNullNorWhiteSpace([CanBeNull] this string value) {
-            return !value.IsNullOrWhiteSpace();
-        }
+        public static bool NotNullNorWhiteSpace([CanBeNull] this object value) => value is string str && str.NotNullNorWhiteSpace();
 
-        public static bool IsNullOrWhiteSpace([CanBeNull] this object value) {
-            return !(value is string str) || str.IsNullOrWhiteSpace();
-        }
+        public static bool NotNullNorWhiteSpace([CanBeNull] this string value) => !value.IsNullOrWhiteSpace();
 
-        public static bool IsNullOrWhiteSpace([CanBeNull] this string value) {
-            return string.IsNullOrWhiteSpace(value);
-        }
+        public static bool IsNullOrWhiteSpace([CanBeNull] this object value) => !(value is string str) || str.IsNullOrWhiteSpace();
+
+        public static bool IsNullOrWhiteSpace([CanBeNull] this string value) => string.IsNullOrWhiteSpace(value);
 
         public static string TruncateAtWord([CanBeNull] this string value, int length, [NotNull] string ellipsis = "…", [NotNull] string truncateAtChar = " ") {
             Guard.Against.OutOfRange(() => length, 1, int.MaxValue);
@@ -62,9 +54,7 @@ namespace Common.Extensions
 
             var substring = text.Substring(0, text.Length - 1);
 
-            while (substring.Length > 0 && !substring.Last().ToString().IsPureAlphaNumeric()) {
-                substring = substring.Substring(0, substring.Length - 1);
-            }
+            while (substring.Length > 0 && !substring.Last().ToString().IsPureAlphaNumeric()) substring = substring.Substring(0, substring.Length - 1);
 
             return substring;
         }

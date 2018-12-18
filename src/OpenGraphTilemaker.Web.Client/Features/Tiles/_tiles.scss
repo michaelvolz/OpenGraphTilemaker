@@ -53,3 +53,72 @@
         margin-bottom: 1em;
     }
 }
+
+.tagCloud {
+    $cloud-margin: $global-margin;
+
+    ul {
+        list-style-type: none;
+    }
+
+    li {
+        float: left;
+    }
+
+    ul li a {
+        text-decoration: none;
+        line-height: 2.3em;
+        margin: 0;
+        padding: $cloud-margin / 2;
+    }
+
+    ul li a.size2 {
+        color: #912600;
+        font-weight: 300;
+    }
+
+    ul li a.size2:hover {
+        background-color: #cc3500;
+        color: white;
+    }
+
+    ul li a.size3 {
+        color: #877900;
+        font-weight: 500;
+    }
+
+    ul li a.size3:hover {
+        background-color: #d8c100;
+        color: white;
+    }
+
+    ul li a.size4 {
+        color: #1d6c01;
+        font-weight: 600;
+    }
+
+    ul li a.size4:hover {
+        background-color: #2daf00;
+        color: white;
+    }
+
+    ul li a.size5 {
+        color: #004e6b;
+        font-weight: 700;
+    }
+
+    ul li a.size5:hover {
+        background-color: #007ead;
+        color: white;
+    }
+
+    ul li a.size6 {
+        color: #430069;
+        font-weight: 900;
+    }
+
+    ul li a.size6:hover {
+        background-color: #7600b9;
+        color: white;
+    }
+}
