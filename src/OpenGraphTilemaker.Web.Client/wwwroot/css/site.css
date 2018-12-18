@@ -6562,6 +6562,58 @@ label.is-invalid {
 .tilesContainer .tile-invalid {
   margin-bottom: 1em; }
 
+.tagCloud ul {
+  list-style-type: none; }
+
+.tagCloud li {
+  float: left; }
+
+.tagCloud ul li a {
+  text-decoration: none;
+  line-height: 2.3em;
+  margin: 0;
+  padding: 0.5rem; }
+
+.tagCloud ul li a.size2 {
+  color: #912600;
+  font-weight: 300; }
+
+.tagCloud ul li a.size2:hover {
+  background-color: #cc3500;
+  color: white; }
+
+.tagCloud ul li a.size3 {
+  color: #877900;
+  font-weight: 500; }
+
+.tagCloud ul li a.size3:hover {
+  background-color: #d8c100;
+  color: white; }
+
+.tagCloud ul li a.size4 {
+  color: #1d6c01;
+  font-weight: 600; }
+
+.tagCloud ul li a.size4:hover {
+  background-color: #2daf00;
+  color: white; }
+
+.tagCloud ul li a.size5 {
+  color: #004e6b;
+  font-weight: 700; }
+
+.tagCloud ul li a.size5:hover {
+  background-color: #007ead;
+  color: white; }
+
+.tagCloud ul li a.size6 {
+  color: #430069;
+  font-weight: 900; }
+
+.tagCloud ul li a.size6:hover {
+  background-color: #7600b9;
+  color: white; }
+
 /*$foundation-palette: ( primary: hsla(246%, 46%, 33%, 1), secondary: hsla(239%, 100%, 83%, 1), success: hsla(153%, 100%, 59%, 1), warning: #F95113, alert: hsla(340%, 97%, 48%, 1) );*/
 ul.tabs {
   border: 0;
