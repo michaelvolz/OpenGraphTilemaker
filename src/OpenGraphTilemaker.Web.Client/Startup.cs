@@ -77,7 +77,7 @@ namespace OpenGraphTilemaker.Web.Client
             services.Configure<PocketOptions>(options => {
                 options.Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/");
                 options.CachingTimeSpan = TimeSpan.FromSeconds(15);
-                options.TimeOutTimeSpan = TimeSpan.FromSeconds(5);
+                options.TimeOutTimeSpan = TimeSpan.FromSeconds(10);
             });
 
             ServiceLocator.SetServiceProvider(services.BuildServiceProvider());
