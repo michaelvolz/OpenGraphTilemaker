@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Common.Extensions;
 using Common.Logging;
-using Microsoft.Extensions.Logging;
 
 #pragma warning disable CA1308 // Normalize strings to uppercase
 
@@ -28,6 +27,7 @@ namespace Common.TagCloud
 
             foreach (var word in words) {
                 var logger = ApplicationLogging.CreateLogger<TagCloud>();
+
                 // logger.LogInformation($"Word: {word}");
 
                 var normalizedWord = word.TrimEnd('.').Replace("’", "'");

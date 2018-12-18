@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Blazor.Components;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 using OpenGraphTilemaker.Web.Client.Features.Counter;
+using OpenGraphTilemaker.Web.Client.Features.Tiles.CreateTagCloud;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global

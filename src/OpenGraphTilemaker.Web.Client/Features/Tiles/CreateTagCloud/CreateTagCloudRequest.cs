@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using MediatR;
 using OpenGraphTilemaker.OpenGraph;
-using OpenGraphTilemaker.Web.Client.Features.Tiles;
 
-namespace OpenGraphTilemaker.Web.Client.Features.Counter
+namespace OpenGraphTilemaker.Web.Client.Features.Tiles.CreateTagCloud
 {
     public class CreateTagCloudRequest : IRequest<TilesState>
     {

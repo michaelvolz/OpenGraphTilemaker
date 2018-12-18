@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using BlazorState;
 using Common;
 using Common.TagCloud;
-using OpenGraphTilemaker.Web.Client.Features.Counter;
+using OpenGraphTilemaker.Web.Client.Features.Tiles.CreateTagCloud;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -26,7 +26,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                     await tagCloud.InsertAsync(tile.Description);
                 }
 
-                TilesState.TagCloud = from entry in tagCloud.Cloud orderby entry.Key ascending select entry;
+                TilesState.TagCloud = from entry in tagCloud.Cloud orderby entry.Key select entry;
 
                 return TilesState;
             }
