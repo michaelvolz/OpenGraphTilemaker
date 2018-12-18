@@ -1,21 +1,32 @@
 ﻿using System;
 using Ardalis.GuardClauses;
+using Common;
 using JetBrains.Annotations;
 
 namespace OpenGraphTilemaker.GetPocket
 {
-    public class PocketOptions : IPocketOptions
+    public class PocketOptions : IPocketOptions, IVerifiableOptions
     {
         public PocketOptions() { }
 
         public PocketOptions([NotNull] Uri uri, TimeSpan caching, TimeSpan timeout) {
-            Uri = Guard.Against.Null(() => uri);
-            CachingTimeSpan = Guard.Against.Default(() => caching);
-            TimeOutTimeSpan = Guard.Against.Default(() => timeout);
+            Uri = uri;
+            CachingTimeSpan = caching;
+            TimeOutTimeSpan = timeout;
+
+            Verify();
         }
 
         public Uri Uri { get; set; }
         public TimeSpan CachingTimeSpan { get; set; }
         public TimeSpan TimeOutTimeSpan { get; set; }
+
+        public bool Verify() {
+            Guard.Against.Null(() => Uri);
+            Guard.Against.Default(() => CachingTimeSpan);
+            Guard.Against.Default(() => TimeOutTimeSpan);
+
+            return true;
+        }
     }
 }
