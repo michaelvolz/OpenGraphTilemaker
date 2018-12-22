@@ -17,20 +17,27 @@ At the moment I am really pleased with the state of Blazor!
   * ValidationError idea from [Blazor.Validation](https://github.com/PeterHimschoot/Blazor.Validation)
   * ValidationSummary idea from [Blazor.Validation](https://github.com/PeterHimschoot/Blazor.Validation)
 * Tests => xUnit, Autofixture, nSubstitute
-* CryptoWatch DashBoard:
-  * TODO: Create websocket source with fake data
-  * TODO: Consume live websocket stream
-  * TODO: Update in realtime
 * OpenGraph TileMaker:
   * RSS feedreader as source
   * Sorting 
   * Searching
   * Disc and memory caching
-  * Loading indicator
+  * Simple loading indicator
   * Data initialisation from parent -> best practices
   * TODO: paging
-  * TODO: switch layouts
+  * TODO: switch grid-layout
   * TODO: use API call for client version (feedreader is not client compatible)
+* Miscellaneous Utility Components
+  * TODO: Html debug border/outline
+  * TODO: Stopwatch
+  * TODO: Caching / memoization
+  * TODO: Data loading
+  * TODO: Enable / disable
+  * TODO: Logging
+* CryptoWatch DashBoard:
+  * TODO: Create websocket source with fake data
+  * TODO: Consume live websocket stream
+  * TODO: Update in realtime
 * ZURB foundation 6.5
   * Foundation Icons
 * Code Analysis
