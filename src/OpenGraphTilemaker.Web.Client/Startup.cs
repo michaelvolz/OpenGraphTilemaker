@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using BlazorState;
 using Common;
-using Common.AspNetCore.Blazor;
+using Common.Blazor;
 using Common.Extensions;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Blazor.Builder;

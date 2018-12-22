@@ -1,8 +1,9 @@
 ﻿using System;
 
+// ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Common.AspNetCore.Blazor
+namespace Common.Blazor
 {
     public static class JsRuntimeLocation
     {
