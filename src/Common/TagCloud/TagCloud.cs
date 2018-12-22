@@ -5,9 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Common.Extensions;
-using Common.Logging;
-
-#pragma warning disable CA1308 // Normalize strings to uppercase
 
 namespace Common.TagCloud
 {
@@ -18,30 +15,28 @@ namespace Common.TagCloud
         private readonly string _location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public Dictionary<string, int> Cloud { get; } = new Dictionary<string, int>();
 
+        private static string NormalizedWord(string word) => word.TrimEnd('.').Replace("’", "'");
+
         public async Task InsertAsync(string text) {
-            await Task.FromResult(0);
+            await Task.FromResult(0); // async placeholder
 
             if (_stopWords == null) _stopWords = File.ReadAllLines($@"{_location}\{MySQLMyISAMText}");
 
-            var words = text.RemoveNumbers().Split();
+            foreach (var word in text.RemoveNumbers().Split())
+                InsertWord(word);
+        }
 
-            foreach (var word in words) {
-                var logger = ApplicationLogging.CreateLogger<TagCloud>();
+        private void InsertWord(string word) {
+            var normalizedWord = NormalizedWord(word);
 
-                // logger.LogInformation($"Word: {word}");
+            if (normalizedWord.Length < 2) return;
+            if (_stopWords.Contains(normalizedWord, StringComparer.InvariantCultureIgnoreCase)) return;
 
-                var normalizedWord = word.TrimEnd('.').Replace("’", "'");
-
-                if (normalizedWord.Length < 2) continue;
-
-                if (_stopWords.Contains(normalizedWord, StringComparer.InvariantCultureIgnoreCase)) continue;
-
-                var lowerCaseWord = normalizedWord.ToLowerInvariant();
-                if (Cloud.ContainsKey(lowerCaseWord))
-                    Cloud[lowerCaseWord] += 1;
-                else
-                    Cloud.Add(lowerCaseWord, 1);
-            }
+            var lowerCaseWord = normalizedWord.ToLowerInvariant();
+            if (Cloud.ContainsKey(lowerCaseWord))
+                Cloud[lowerCaseWord] += 1;
+            else
+                Cloud.Add(lowerCaseWord, 1);
         }
     }
 }
