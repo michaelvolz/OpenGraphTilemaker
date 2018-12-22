@@ -2,21 +2,21 @@
 using System.Threading;
 using System.Threading.Tasks;
 
+// ReSharper disable UnusedMember.Global
 #pragma warning disable CA2008 // Do not create tasks without passing a TaskScheduler
 
 namespace Common
 {
+    /// <summary>
+    ///     AsyncHelper
+    /// </summary>
     /// <example>
     ///     AsyncHelper.RunSync(() => DoAsyncStuff());
     /// </example>
     public static class AsyncHelper
     {
-        private static readonly TaskFactory _taskFactory = new
-            TaskFactory(
-                CancellationToken.None,
-                TaskCreationOptions.None,
-                TaskContinuationOptions.None,
-                TaskScheduler.Default);
+        private static readonly TaskFactory _taskFactory =
+            new TaskFactory(CancellationToken.None, TaskCreationOptions.None, TaskContinuationOptions.None, TaskScheduler.Default);
 
         public static TResult RunSync<TResult>(Func<Task<TResult>> func)
             => _taskFactory.StartNew(func).Unwrap().GetAwaiter().GetResult();
@@ -39,33 +39,6 @@ namespace Common
 
                 return await task;
             }
-        }
-
-        /// <summary>
-        ///     TimeoutAfter.
-        ///     See <a href="link">https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md</a>
-        /// </summary>
-        public static async Task<T> TimeoutAfter<T>(this Task<T> task, TimeSpan timeout) {
-            using (var cts = new CancellationTokenSource()) {
-                var delayTask = Task.Delay(timeout, cts.Token);
-                var resultTask = await Task.WhenAny(task, delayTask);
-
-                if (resultTask == delayTask)
-                    throw new OperationCanceledException();
-
-                cts.Cancel();
-
-                return await task;
-            }
-        }
-
-        /// <summary>
-        ///     AsyncLazy.
-        ///     See <a href="link">https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md</a>
-        /// </summary>
-        private class AsyncLazy<T> : Lazy<Task<T>>
-        {
-            public AsyncLazy(Func<Task<T>> valueFactory) : base(valueFactory) { }
         }
     }
 }
