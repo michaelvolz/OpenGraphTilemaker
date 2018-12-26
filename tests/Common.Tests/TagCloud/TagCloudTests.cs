@@ -5,18 +5,18 @@ using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Common.Tests
+namespace Common.Tests.TagCloud
 {
     public class TagCloudTests : BaseTest<TagCloudTests>
     {
         public TagCloudTests(ITestOutputHelper testConsole) : base(testConsole) { }
+        private const string DummyText = "Earthly of he parasites at so and for call shrine of old pomp to could that fondly one did hight Earthly";
 
         [Fact]
         public async Task TagCloud_InsertText_ReturnsValidCloud() {
-            var tagCloud = new TagCloud.TagCloud();
+            var tagCloud = new Common.TagCloud.TagCloud();
 
-            var text = "Earthly of he parasites at so and for call shrine of old pomp to could that fondly one did hight Earthly";
-            await tagCloud.InsertAsync(text);
+            await tagCloud.InsertAsync(DummyText, DummyText, DummyText);
 
             var cloud = tagCloud.Cloud;
 
@@ -44,18 +44,17 @@ namespace Common.Tests
 
             var (key, value) = cloud.First();
             key.Should().BeEquivalentTo("earthly");
-            value.Should().Be(2);
+            value.Should().Be(1);
 
             TestConsole.WriteLine("{@cloud}", cloud);
         }
 
         [Fact]
         public async Task TagCloud_InsertTextTwice_ReturnsValidCloud() {
-            var tagCloud = new TagCloud.TagCloud();
+            var tagCloud = new Common.TagCloud.TagCloud();
 
-            var text = "Earthly of he parasites at so and for call shrine of old pomp to could that fondly one did hight Earthly";
-            await tagCloud.InsertAsync(text);
-            await tagCloud.InsertAsync(text);
+            await tagCloud.InsertAsync(DummyText);
+            await tagCloud.InsertAsync(DummyText);
 
             var cloud = tagCloud.Cloud;
 
@@ -65,7 +64,7 @@ namespace Common.Tests
 
             var (key, value) = cloud.First();
             key.Should().BeEquivalentTo("earthly");
-            value.Should().Be(4);
+            value.Should().Be(2);
 
             TestConsole.WriteLine("{@cloud}", cloud);
         }
