@@ -21,10 +21,9 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
 
             public override async Task<TilesState> Handle(CreateTagCloudRequest req, CancellationToken token) {
                 var tagCloud = new TagCloud();
-                foreach (var tile in req.OriginalTiles) {
-                    await tagCloud.InsertAsync(tile.Title);
-                    await tagCloud.InsertAsync(tile.Description);
-                }
+
+                foreach (var tile in req.OriginalTiles)
+                    await tagCloud.InsertAsync(tile.Title, tile.Description);
 
                 TilesState.TagCloud = from entry in tagCloud.Cloud orderby entry.Key select entry;
 
