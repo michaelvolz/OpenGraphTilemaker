@@ -24,6 +24,7 @@ At the moment I am really pleased with the state of Blazor!
   * Disc and memory caching
   * Simple loading indicator
   * Data initialisation from parent -> best practices
+  * Basic TagCloud
   * TODO: paging
   * TODO: switch grid-layout
   * TODO: use API call for client version (feedreader is not client compatible)
