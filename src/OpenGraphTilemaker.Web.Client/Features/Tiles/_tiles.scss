@@ -56,13 +56,20 @@
 
 .tagCloud {
     $cloud-margin: $global-margin;
+    padding: 0;
+    margin-bottom: 1em;
 
     ul {
         list-style-type: none;
+        padding: 0;
+        margin: 0;
     }
 
     li {
-        float: left;
+        //float: left;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
     }
 
     ul li a {
