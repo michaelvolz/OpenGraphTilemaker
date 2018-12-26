@@ -1,0 +1,6 @@
+﻿@using OpenGraphTilemaker.Web.Client.Features.ToggleVisibility
+@inherits VisibilityModel
+
+@if ( State != VisibilityState.Hide ) {
+    @ChildContent
+}
