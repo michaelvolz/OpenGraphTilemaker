@@ -28,12 +28,13 @@ At the moment I am really pleased with the state of Blazor!
   * TODO: switch grid-layout
   * TODO: use API call for client version (feedreader is not client compatible)
 * Miscellaneous Utility Components
-  * TODO: Html debug border/outline
+  * TODO: FeatureFlag
+  * TODO: Enable / disable
   * TODO: Stopwatch
   * TODO: Caching / memoization
   * TODO: Data loading
-  * TODO: Enable / disable
   * TODO: Logging
+  * TODO: Html debug border/outline
 * CryptoWatch DashBoard:
   * TODO: Create websocket source with fake data
   * TODO: Consume live websocket stream
