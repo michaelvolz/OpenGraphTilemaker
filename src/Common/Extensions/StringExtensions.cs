@@ -11,6 +11,26 @@ namespace Common.Extensions
 {
     public static class StringExtensions
     {
+        private const string Space = " ";
+
+        public static string CombineAll(this string[] texts, string combineWith = Space)
+            => texts
+                .Aggregate(string.Empty, (current, next) => $"{current}{combineWith}{next}");
+
+        public static string RemoveTrailingPunctuation([CanBeNull] this string word) {
+            if (string.IsNullOrEmpty(word)) return word;
+
+            var result = new StringBuilder(word);
+
+            for (var index = word.Length - 1; index >= 0; index--) {
+                if (!char.IsPunctuation(word[index])) break;
+
+                result.Remove(index, 1);
+            }
+
+            return result.ToString();
+        }
+
         public static string RemoveNumbers([NotNull] this string text) {
             Guard.Against.Null(() => text);
 
