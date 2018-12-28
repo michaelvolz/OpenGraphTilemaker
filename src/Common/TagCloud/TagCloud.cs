@@ -11,18 +11,20 @@ namespace Common.TagCloud
     public class TagCloud
     {
         private const string MySQLMyISAMText = @"TagCloud\mysql_myisam.txt";
-        private const string Space = " ";
         private static string[] _stopWords;
 
         public Dictionary<string, int> Cloud { get; } = new Dictionary<string, int>();
 
-        private static string CombineTexts(string[] texts) => texts.Aggregate(string.Empty, (current, next) => $"{current}{Space}{next}");
-
-        private static IEnumerable<string> ExtractWords(string text) => text.ToLowerInvariant().RemoveNumbers().Split().Distinct();
-
-        private static string NormalizeWord(string word) => word.TrimEnd('.').Replace("’", "'");
+        private static IEnumerable<string> ExtractWords(string text)
+            => text
+                .ToLowerInvariant()
+                .RemoveNumbers()
+                .Split()
+                .Select(word => word.RemoveTrailingPunctuation())
+                .Distinct();
 
         /// <summary>
+        ///     Insert text(s) to create or append cloud.
         ///     Multiple texts inserted at the same time will only add each word once.
         /// </summary>
         /// <param name="texts">Text to use.</param>
@@ -34,20 +36,18 @@ namespace Common.TagCloud
 
             if (_stopWords == null) _stopWords = File.ReadAllLines($@"{AssemblyLocation}\{MySQLMyISAMText}");
 
-            foreach (var word in ExtractWords(CombineTexts(texts)))
+            foreach (var word in ExtractWords(texts.CombineAll()))
                 InsertWord(word);
         }
 
         private void InsertWord(string word) {
-            var normalizedWord = NormalizeWord(word);
+            if (word.Length < 2) return;
+            if (_stopWords.Contains(word.Replace("’", "'"), StringComparer.InvariantCultureIgnoreCase)) return;
 
-            if (normalizedWord.Length < 2) return;
-            if (_stopWords.Contains(normalizedWord, StringComparer.InvariantCultureIgnoreCase)) return;
-
-            if (Cloud.ContainsKey(normalizedWord))
-                Cloud[normalizedWord] += 1;
+            if (Cloud.ContainsKey(word))
+                Cloud[word] += 1;
             else
-                Cloud.Add(normalizedWord, 1);
+                Cloud.Add(word, 1);
         }
     }
 }

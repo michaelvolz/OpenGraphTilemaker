@@ -10,7 +10,7 @@ namespace Common.Tests.TagCloud
     public class TagCloudTests : BaseTest<TagCloudTests>
     {
         public TagCloudTests(ITestOutputHelper testConsole) : base(testConsole) { }
-        private const string DummyText = "Earthly of he parasites at so and for call shrine of old pomp to could that fondly one did hight Earthly";
+        private const string DummyText = "Earthly, of he. parasites! at? so and; for call asp.net of old pomp!!!!!!!! to could that fondly one did hight Earthly .net";
 
         [Fact]
         public async Task TagCloud_InsertText_ReturnsValidCloud() {
@@ -30,7 +30,7 @@ namespace Common.Tests.TagCloud
             cloud.Should().NotContainKey("and".ToLowerInvariant());
             cloud.Should().NotContainKey("for".ToLowerInvariant());
             cloud.Should().ContainKey("call".ToLowerInvariant());
-            cloud.Should().ContainKey("shrine".ToLowerInvariant());
+            cloud.Should().ContainKey("asp.net".ToLowerInvariant());
             cloud.Should().NotContainKey("of".ToLowerInvariant());
             cloud.Should().NotContainKey("old".ToLowerInvariant());
             cloud.Should().ContainKey("pomp".ToLowerInvariant());
@@ -41,6 +41,7 @@ namespace Common.Tests.TagCloud
             cloud.Should().NotContainKey("one".ToLowerInvariant());
             cloud.Should().NotContainKey("did".ToLowerInvariant());
             cloud.Should().ContainKey("hight".ToLowerInvariant());
+            cloud.Should().ContainKey(".net".ToLowerInvariant());
 
             var (key, value) = cloud.First();
             key.Should().BeEquivalentTo("earthly");
