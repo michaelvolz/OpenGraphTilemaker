@@ -23,7 +23,7 @@ namespace OpenGraphTilemaker.Web.Client.Features.Tiles
                 var tagCloud = new TagCloud();
 
                 foreach (var tile in req.OriginalTiles)
-                    await tagCloud.InsertAsync(tile.Title, tile.Description);
+                    await tagCloud.InsertAsync(tile.Title, tile.Description, tile.SiteName);
 
                 TilesState.TagCloud = from entry in tagCloud.Cloud orderby entry.Key select entry;
 
