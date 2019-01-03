@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazor-State" Version="0.3.2" />
+    <PackageReference Include="Blazor-State" Version="0.3.4" />
     <PackageReference Include="FluentValidation" Version="8.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0" PrivateAssets="all" />
