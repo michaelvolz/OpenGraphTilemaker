@@ -1,5 +1,4 @@
 ﻿@page "/"
-@using OpenGraphTilemaker.Web.Client.Features.ToggleVisibility
 @inherits IndexModel
 
 <div class="grid-x grid-margin-x">
@@ -19,11 +18,11 @@
             
             <p></p>
             
-            <Visibility State="@VisibilityState.Show">
+            <Visibility Show="true">
                 <h6 class="text success">This text is visible</h6>
             </Visibility>
 
-            <Visibility State="@VisibilityState.Hide">
+            <Visibility Show="false">
                 <h6 class="text alert">This text is invisible</h6>
             </Visibility>
         </section>
