@@ -16,7 +16,11 @@ At the moment I am really pleased with the state of Blazor!
   * [Fluent Validation](https://fluentvalidation.net/)
   * ValidationError idea from [Blazor.Validation](https://github.com/PeterHimschoot/Blazor.Validation)
   * ValidationSummary idea from [Blazor.Validation](https://github.com/PeterHimschoot/Blazor.Validation)
-* Tests => xUnit, Autofixture, nSubstitute
+* Tests
+  * xUnit
+  * Autofixture
+  * nSubstitute
+  * Selenium
 * OpenGraph TileMaker:
   * RSS feedreader as source
   * Sorting 
