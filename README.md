@@ -40,6 +40,7 @@ At the moment I am really pleased with the state of Blazor!
   * TODO: Create websocket source with fake data
   * TODO: Consume live websocket stream
   * TODO: Update in realtime
+  * TODO: Use Reactive Extensions (Rx)
 * ZURB foundation 6.5
   * Foundation Icons
 * Code Analysis
