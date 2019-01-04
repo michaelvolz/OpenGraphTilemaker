@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using Common.Extensions;
 using FluentAssertions;
@@ -7,34 +9,41 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using Xunit;
+using Xunit.Abstractions;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
+
+#pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
 
 namespace OpenGraphTilemaker.Web.Client.Tests
 {
     public class SeleniumTests : IClassFixture<SeleniumServerFactory<Server.Startup>>, IDisposable
     {
-        public SeleniumTests(SeleniumServerFactory<Server.Startup> server) {
+        public SeleniumTests(SeleniumServerFactory<Server.Startup> server, ITestOutputHelper testConsole) {
+            _testConsole = testConsole;
+
             Server = server;
             Client = server.CreateClient();
-
-            var chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--headless");
-            chromeOptions.SetLoggingPreference(LogType.Browser, LogLevel.All);
-
-            var driver = new ChromeDriver(AssemblyExtensions.AssemblyLocation, chromeOptions);
-            Browser = driver;
-            Logs = new RemoteLogs(driver); //TODO: Still not bringing the logs over yet
+            Browser = server.Driver;
+            Logs = new RemoteLogs((RemoteWebDriver)Browser);
         }
 
         public void Dispose() => Browser.Dispose();
+
+        private readonly ITestOutputHelper _testConsole;
 
         public SeleniumServerFactory<Server.Startup> Server { get; }
         public IWebDriver Browser { get; }
         public HttpClient Client { get; }
         public ILogs Logs { get; }
 
+        private void WriteLogs() {
+            Logs.Should().NotBeNull();
+            var result = Logs.GetLog(LogType.Browser).Aggregate(string.Empty, (current, next) => current += next + Environment.NewLine);
+            _testConsole.WriteLine(result);
+        }
+
         [Fact]
-        public void AppTitle_Found() {
+        public void Blazor_AppTitle_Found() {
             Browser.Navigate().GoToUrl(Server.RootUri);
 
             var wait = new WebDriverWait(Browser, TimeSpan.FromSeconds(15));
@@ -42,7 +51,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
 
             tag.Text.Should().BeEquivalentTo("OpenGraph TileMaker");
 
-            Logs.Should().NotBeNull();
+            WriteLogs();
         }
 
         [Fact(Skip = "Example")]
