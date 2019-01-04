@@ -25,7 +25,7 @@
     },
     "Watch": {
       "executablePath": "dotnet.exe",
-      "commandLineArgs": "watch --project ..\\..\\..\\..\\OpenGraphTilemaker.Web.Server\\OpenGraphTilemaker.Web.Server.csproj run -c Debug",
+      "commandLineArgs": "watch --project ..\\..\\..\\OpenGraphTilemaker.Web.Server.csproj run -c Debug",
       "launchBrowser": true,
       "launchUrl": "http://localhost:50709/",
       "environmentVariables": {
