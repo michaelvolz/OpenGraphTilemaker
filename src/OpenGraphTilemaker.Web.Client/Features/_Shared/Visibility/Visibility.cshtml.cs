@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 
-namespace OpenGraphTilemaker.Web.Client.Features._Shared.Visibility
+// ReSharper disable CheckNamespace
+
+namespace OpenGraphTilemaker.Web.Client.Features
 {
     public class VisibilityModel : BlazorComponent
     {
