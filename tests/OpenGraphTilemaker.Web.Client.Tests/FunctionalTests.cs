@@ -7,6 +7,8 @@ using OpenGraphTilemaker.Web.Client.Tests.TestServer.Helpers;
 using Xunit;
 using Xunit.Abstractions;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace OpenGraphTilemaker.Web.Client.Tests
 {
     public class FunctionalTests : IClassFixture<WebApplicationFactory<Server.Startup>>

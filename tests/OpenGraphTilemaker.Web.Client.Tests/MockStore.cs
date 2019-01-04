@@ -2,6 +2,7 @@
 using BlazorState;
 
 // ReSharper disable CheckNamespace
+#pragma warning disable CA1720 // Identifier contains type name
 
 namespace OpenGraphTilemaker.Tests
 {
@@ -9,9 +10,7 @@ namespace OpenGraphTilemaker.Tests
     {
         private IState _state;
 
-#pragma warning disable CA1720 // Identifier contains type name
         public Guid Guid { get; } = Guid.NewGuid();
-#pragma warning restore CA1720 // Identifier contains type name
 
         public TState GetState<TState>() {
             return (TState)_state;
