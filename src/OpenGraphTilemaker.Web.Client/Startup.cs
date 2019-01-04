@@ -26,10 +26,10 @@ namespace OpenGraphTilemaker.Web.Client
         private static void VerifyCryptoWatchApiKey(ILogger<Startup> logger) {
             var cryptoWatchOptions = ServiceLocator.Current.GetInstance<IOptions<CryptoWatchOptions>>();
 
-            if (cryptoWatchOptions == null || cryptoWatchOptions.Value.ApiKey == "n/a")
-                throw new InvalidOperationException("CryptoWatchOptions ApiKey not configured!");
-
-            logger.LogInformation("CryptoWatch ApiKey: " + cryptoWatchOptions.Value.ApiKey.TruncateAtWord(5, "..."));
+//            if (cryptoWatchOptions == null || cryptoWatchOptions.Value.ApiKey == "n/a")
+//                throw new InvalidOperationException("CryptoWatchOptions ApiKey not configured!");
+//
+//            logger.LogInformation("CryptoWatch ApiKey: " + cryptoWatchOptions.Value.ApiKey.TruncateAtWord(5, "..."));
         }
 
         private static ILogger<Startup> VerifyLogger() {
