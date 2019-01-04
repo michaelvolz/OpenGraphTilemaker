@@ -10,9 +10,9 @@ using Xunit.Abstractions;
 
 namespace OpenGraphTilemaker.Web.Client.Tests.Features.Tiles
 {
-    public class InitializeTilesHandlerTests : ClientBaseTest
+    public class FetchTilesHandlerTests : ClientBaseTest<FetchTilesHandlerTests>
     {
-        public InitializeTilesHandlerTests(ITestOutputHelper testConsole) : base(testConsole) { }
+        public FetchTilesHandlerTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
         [Fact]
         public async Task FetchTilesRequest_FakeHttpClient() {
