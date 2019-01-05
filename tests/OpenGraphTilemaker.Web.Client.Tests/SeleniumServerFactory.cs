@@ -12,7 +12,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
     {
         private IWebHost _host;
 
-        public SeleniumServerFactory() => ClientOptions.BaseAddress = new Uri("https://localhost");
+        public SeleniumServerFactory() => ClientOptions.BaseAddress = new Uri("http://localhost");
 
         public Uri RootUri { get; private set; }
 
