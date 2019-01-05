@@ -1,3 +1,5 @@
+Get-ChildItem Env:
+
 Push-Location -Path ".\tests\Common.Tests\"
 dotnet test --configuration "Release" --logger "trx;LogFileName=TEST-results.xml"
 Pop-Location
