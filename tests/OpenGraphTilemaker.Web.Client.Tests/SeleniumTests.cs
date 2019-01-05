@@ -41,6 +41,15 @@ namespace OpenGraphTilemaker.Web.Client.Tests
         }
 
         [Fact]
+        public void Blazor_BrowserTitle_Correct() {
+            Browser.Navigate().GoToUrl(Server.RootUri);
+
+            Browser.Title.Should().BeEquivalentTo("OpenGraphTilemaker Blazor ServerSide Sample App");
+
+            WriteLogs();
+        }
+
+        [Fact]
         public void Blazor_AppTitle_Found() {
             Browser.Navigate().GoToUrl(Server.RootUri);
 
