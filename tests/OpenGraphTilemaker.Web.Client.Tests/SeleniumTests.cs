@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using BaseTestCode;
 using Common.Extensions;
 using FluentAssertions;
 using OpenQA.Selenium;
@@ -40,7 +41,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             _testConsole.WriteLine(result);
         }
 
-        [Fact]
+        [IgnoreOnAzurePipelinesFact]
         public void Blazor_BrowserTitle_Correct() {
             Browser.Navigate().GoToUrl(Server.RootUri);
 
@@ -49,7 +50,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             WriteLogs();
         }
 
-        [Fact]
+        [IgnoreOnAzurePipelinesFact]
         public void Blazor_AppTitle_Found() {
             Browser.Navigate().GoToUrl(Server.RootUri);
 
