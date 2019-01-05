@@ -36,7 +36,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
 
             RootUri = new Uri(_host.ServerFeatures.Get<IServerAddressesFeature>().Addresses.LastOrDefault());
 
-            //Fake Server we won't use...this is lame. Should be cleaner, or a utility class
+            // Fake Server we won't use...this is lame. Should be cleaner, or a utility class
             return new Microsoft.AspNetCore.TestHost.TestServer(new WebHostBuilder().UseStartup<TStartup>());
         }
 

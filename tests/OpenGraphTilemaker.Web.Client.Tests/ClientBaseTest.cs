@@ -20,9 +20,9 @@ namespace OpenGraphTilemaker.Tests
     {
         private const string CachingFolder = @"C:\WINDOWS\Temp\";
         private readonly HttpClient _realHttpClient;
-        private readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(120);
-        private readonly TimeSpan TimeoutTimeSpan = TimeSpan.FromSeconds(15);
-        private readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
+        private readonly TimeSpan cachingTimeSpan = TimeSpan.FromSeconds(120);
+        private readonly TimeSpan timeoutTimeSpan = TimeSpan.FromSeconds(15);
+        private readonly Uri uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
 
         protected ClientBaseTest(ITestOutputHelper testConsole) : base(testConsole) => _realHttpClient = new HttpClient();
 
@@ -47,7 +47,7 @@ namespace OpenGraphTilemaker.Tests
         protected IOptions<DiscCacheOptions> DiscCacheIOptions() =>
             Options.Create(new DiscCacheOptions { CacheFolder = CachingFolder, CacheState = CacheState.Disabled });
 
-        protected IOptions<PocketOptions> GetPocketIOptions() => Options.Create(new PocketOptions(Uri, CachingTimeSpan, TimeoutTimeSpan));
+        protected IOptions<PocketOptions> GetPocketIOptions() => Options.Create(new PocketOptions(uri, cachingTimeSpan, timeoutTimeSpan));
 
         protected Pocket Pocket() => new Pocket(MemoryCache(), FeedService());
 
