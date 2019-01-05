@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using BaseTestCode;
@@ -22,8 +21,16 @@ namespace OpenGraphTilemaker.Web.Client.Tests
 
             Server = server;
             Client = server.CreateClient();
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--headless");
+            chromeOptions.AddArgument("disable-gpu");
+            chromeOptions.SetLoggingPreference(LogType.Browser, LogLevel.All);
+            server.Driver = new ChromeDriver(AssemblyExtensions.AssemblyLocation, chromeOptions);
+
             Browser = server.Driver;
             Logs = new RemoteLogs((RemoteWebDriver)Browser);
+
+            _testConsole.WriteLine(server.RootUri.ToString());
         }
 
         public void Dispose() => Browser.Dispose();
@@ -62,7 +69,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             WriteLogs();
         }
 
-        [Fact(Skip = "Example")]
+        [Fact(Skip = "Example Test")]
         public void TestWithChromeDriver() {
             using (var driver = new ChromeDriver(AssemblyExtensions.AssemblyLocation)) {
                 driver.Navigate().GoToUrl(new Uri(@"https://automatetheplanet.com/multiple-files-page-objects-item-templates/"));
