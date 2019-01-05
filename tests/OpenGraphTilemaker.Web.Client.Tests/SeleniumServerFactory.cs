@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Mvc.Testing;
-using OpenQA.Selenium.Chrome;
 
 // ReSharper disable ClassNeverInstantiated.Global
 
@@ -15,7 +14,6 @@ namespace OpenGraphTilemaker.Web.Client.Tests
 
         public SeleniumServerFactory() => ClientOptions.BaseAddress = new Uri("https://localhost");
 
-        public ChromeDriver Driver { get; set; }
         public Uri RootUri { get; private set; }
 
         protected override Microsoft.AspNetCore.TestHost.TestServer CreateServer(IWebHostBuilder builder) {

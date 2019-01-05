@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
-using BaseTestCode;
 using Common.Extensions;
 using FluentAssertions;
 using OpenQA.Selenium;
@@ -21,13 +20,12 @@ namespace OpenGraphTilemaker.Web.Client.Tests
 
             Server = server;
             Client = server.CreateClient();
+
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("--headless");
             chromeOptions.AddArgument("disable-gpu");
             chromeOptions.SetLoggingPreference(LogType.Browser, LogLevel.All);
-            server.Driver = new ChromeDriver(AssemblyExtensions.AssemblyLocation, chromeOptions);
-
-            Browser = server.Driver;
+            Browser = new ChromeDriver(AssemblyExtensions.AssemblyLocation, chromeOptions);
             Logs = new RemoteLogs((RemoteWebDriver)Browser);
 
             _testConsole.WriteLine(server.RootUri.ToString());
@@ -49,15 +47,6 @@ namespace OpenGraphTilemaker.Web.Client.Tests
         }
 
         [Fact]
-        public void Blazor_BrowserTitle_Correct() {
-            Browser.Navigate().GoToUrl(Server.RootUri);
-
-            Browser.Title.Should().BeEquivalentTo("OpenGraphTilemaker Blazor ServerSide Sample App");
-
-            WriteLogs();
-        }
-
-        [Fact]
         public void Blazor_AppTitle_Found() {
             Browser.Navigate().GoToUrl(Server.RootUri);
 
@@ -65,6 +54,15 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             var tag = wait.Until(ExpectedConditions.ElementExists(By.ClassName("app-title")));
 
             tag.Text.Should().BeEquivalentTo("OpenGraph TileMaker");
+
+            WriteLogs();
+        }
+
+        [Fact]
+        public void Blazor_BrowserTitle_Correct() {
+            Browser.Navigate().GoToUrl(Server.RootUri);
+
+            Browser.Title.Should().BeEquivalentTo("OpenGraphTilemaker Blazor ServerSide Sample App");
 
             WriteLogs();
         }
