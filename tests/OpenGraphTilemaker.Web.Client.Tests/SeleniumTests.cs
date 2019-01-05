@@ -48,7 +48,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             _testConsole.WriteLine(result);
         }
 
-        [IgnoreOnAzurePipelinesFact]
+        [Fact]
         public void Blazor_BrowserTitle_Correct() {
             Browser.Navigate().GoToUrl(Server.RootUri);
 
@@ -57,7 +57,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
             WriteLogs();
         }
 
-        [IgnoreOnAzurePipelinesFact]
+        [Fact]
         public void Blazor_AppTitle_Found() {
             Browser.Navigate().GoToUrl(Server.RootUri);
 
