@@ -44,7 +44,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
         public void Blazor_AppTitle_Found() {
             Browser.Navigate().GoToUrl(Server.RootUri);
 
-            var wait = new WebDriverWait(Browser, TimeSpan.FromSeconds(15));
+            var wait = new WebDriverWait(Browser, TimeSpan.FromSeconds(60));
             var tag = wait.Until(ExpectedConditions.ElementExists(By.ClassName("app-title")));
 
             tag.Text.Should().BeEquivalentTo("OpenGraph TileMaker");
