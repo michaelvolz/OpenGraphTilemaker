@@ -13,6 +13,6 @@ namespace BaseTestCode
             if (IsAzurePipelines()) Skip = "Ignore when run via AzurePipelines";
         }
 
-        private static bool IsAzurePipelines() => Environment.GetEnvironmentVariable("System.TeamFoundationServerUri") != null;
+        private static bool IsAzurePipelines() => Environment.GetEnvironmentVariable("TF_BUILD") != null;
     }
 }
