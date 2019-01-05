@@ -3,8 +3,8 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp;
-using AngleSharp.Dom.Html;
-using AngleSharp.Network;
+using AngleSharp.Html.Dom;
+using AngleSharp.Io;
 
 namespace OpenGraphTilemaker.Web.Client.Tests.TestServer.Helpers
 {
