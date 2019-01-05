@@ -9,6 +9,7 @@ namespace BaseTestCode
     public sealed class IgnoreOnAppVeyorLinuxFactAttribute : FactAttribute
     {
         /// <summary>
+        ///     Initializes a new instance of the <see cref="IgnoreOnAppVeyorLinuxFactAttribute" /> class.
         ///     Ignore on Linux when run via AppVeyor
         /// </summary>
         public IgnoreOnAppVeyorLinuxFactAttribute() {
