@@ -25,17 +25,17 @@
   <PropertyGroup>
     <RuleSetDebug Condition="$(RuleSetDebug) == ''">Solution.debug.ruleset</RuleSetDebug>
     <RuleSetRelease Condition="$(RuleSetRelease) == ''">Solution.ruleset</RuleSetRelease>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetDebug)</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetDebug)</CodeAnalysisRuleSet> -->
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -46,6 +46,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.0" PrivateAssets="all" />
     <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
-    <None Include="$(CodeAnalysisRuleSet)" Condition="'$(CodeAnalysisRuleSet)' != ''" Link="Current%(Extension)" />
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)$(RuleSetRelease)" Link="StyleCop.ruleset" />
+    <!-- <None Include="$(RuleSetRelease)" Condition="'$(RuleSetRelease)' != ''" Link="Current%(Extension)" /> -->
   </ItemGroup>
 </Project>
