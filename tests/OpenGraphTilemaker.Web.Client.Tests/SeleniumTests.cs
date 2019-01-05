@@ -12,8 +12,6 @@ using Xunit;
 using Xunit.Abstractions;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-#pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
-
 namespace OpenGraphTilemaker.Web.Client.Tests
 {
     public sealed class SeleniumTests : IClassFixture<SeleniumServerFactory<Server.Startup>>, IDisposable
