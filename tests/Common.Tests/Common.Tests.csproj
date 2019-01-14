@@ -10,7 +10,7 @@
     <PackageReference Include="AutoFixture" Version="4.6.0" />
     <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.6.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.6.0" />
-    <PackageReference Include="FluentAssertions" Version="5.5.3" />
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.0-preview-20181205-02" />
     <PackageReference Include="NSubstitute" Version="4.0.0-rc1" />
