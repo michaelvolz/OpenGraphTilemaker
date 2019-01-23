@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.8.14" />
-    <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
+    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
