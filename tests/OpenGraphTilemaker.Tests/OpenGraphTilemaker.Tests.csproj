@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
@@ -12,8 +12,9 @@
     <PackageReference Include="AutoFixture.Xunit2" Version="4.8.0" />
     <PackageReference Include="Blazor-State" Version="0.3.6" />
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="3.0.0-preview-19075-0444" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.0.0-preview.19074.2" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0-preview.19074.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.0-preview-20190203-03" />
     <PackageReference Include="NSubstitute" Version="4.0.0" />
     <PackageReference Include="xunit" Version="2.4.1" />

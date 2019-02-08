@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Blazor;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace OpenGraphTilemaker.Web.Client.Features.Tabs
 {
     public interface ITab
     {
-        RenderFragment ChildContent { get; }
+        RenderFragment ChildContent { get; set; }
     }
 }

@@ -49,7 +49,7 @@ namespace OpenGraphTilemaker.Web.Server
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseConfiguration(new ConfigurationBuilder()
                     .AddCommandLine(args)
@@ -58,7 +58,7 @@ namespace OpenGraphTilemaker.Web.Server
                 .UseSerilog();
 
         public static IWebHost BuildWebHost(string[] args) =>
-            CreateWebHostBuilder(args).Build();
+            CreateHostBuilder(args).Build();
 
         private static string FindAppSettings() {
             var currentDirectory = Directory.GetCurrentDirectory();

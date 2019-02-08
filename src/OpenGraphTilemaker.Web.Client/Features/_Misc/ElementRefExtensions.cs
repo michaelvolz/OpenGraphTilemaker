@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Blazor;
+using Microsoft.AspNetCore.Components;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {

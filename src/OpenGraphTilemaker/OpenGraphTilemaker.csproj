@@ -7,8 +7,8 @@
 
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.8.14" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0-preview3-35497" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="3.0.0-preview.19074.2" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0-preview.19074.2" />
     <PackageReference Include="Microsoft.SyndicationFeed.ReaderWriter" Version="1.0.2" />
   </ItemGroup>
 

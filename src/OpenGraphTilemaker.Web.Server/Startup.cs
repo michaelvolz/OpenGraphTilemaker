@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Net.Mime;
-using Microsoft.AspNetCore.Blazor.Server;
+using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -15,14 +15,9 @@ namespace OpenGraphTilemaker.Web.Server
         public void ConfigureServices(IServiceCollection services) {
             services.Configure<CryptoWatchOptions>(Program.Configuration.GetSection("CryptoWatch"));
 
-            services.AddServerSideBlazor<Client.Startup>();
+            services.AddRazorComponents<Client.Startup>();
 
-            services.AddResponseCompression(options => {
-                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] {
-                    MediaTypeNames.Application.Octet,
-                    WasmMediaTypeNames.Application.Wasm
-                });
-            });
+            services.AddResponseCompression();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
@@ -32,7 +27,10 @@ namespace OpenGraphTilemaker.Web.Server
 
             app.UseSerilogClient();
 
-            app.UseServerSideBlazor<Client.Startup>();
+            app.UseStaticFiles();
+            
+            app.UseRazorComponents<Client.Startup>();
+            app.UseBlazorDebugging();
         }
     }
 }
