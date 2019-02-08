@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.10.1" />
     <PackageReference Include="AutoFixture" Version="4.8.0" />
-    <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.6.0" />
+    <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.8.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.8.0" />
     <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
