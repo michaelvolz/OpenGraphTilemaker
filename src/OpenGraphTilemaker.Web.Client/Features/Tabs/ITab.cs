@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
-
-namespace OpenGraphTilemaker.Web.Client.Features.Tabs
+﻿namespace OpenGraphTilemaker.Web.Client.Features.Tabs
 {
     public interface ITab
     {
-        RenderFragment ChildContent { get; set; }
+        Microsoft.AspNetCore.Components.RenderFragment ChildContent { get; set; }
     }
 }
