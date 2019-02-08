@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace OpenGraphTilemaker.Web.Client.Features.Form
 {
-    public class ValidationSummaryModel<TItem> : BlazorComponent
+    public class ValidationSummaryModel<TItem> : ComponentBase
     {
         [Parameter] protected TItem Subject { get; set; }
         [Parameter] protected string Class { get; set; }

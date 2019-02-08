@@ -6,8 +6,8 @@ using Common;
 using Common.Blazor;
 using Common.Extensions;
 using JetBrains.Annotations;
-using Microsoft.AspNetCore.Blazor.Builder;
-using Microsoft.AspNetCore.Blazor.Services;
+using Microsoft.AspNetCore.Components.Builder;
+using Microsoft.AspNetCore.Components.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -87,6 +87,6 @@ namespace OpenGraphTilemaker.Web.Client
         }
 
         [UsedImplicitly]
-        public void Configure(IBlazorApplicationBuilder app) => app.AddComponent<App>("app");
+        public void Configure(IComponentsApplicationBuilder app) => app.AddComponent<App>("app");
     }
 }

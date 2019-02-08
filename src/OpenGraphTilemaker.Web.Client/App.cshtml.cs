@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using BlazorState.Behaviors.ReduxDevTools;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 
 namespace OpenGraphTilemaker.Web.Client
 {
 #pragma warning disable SA1649 // File name should match first type name
-    public class AppModel : BlazorComponent, IComponent
+    public class AppModel : ComponentBase, IComponent
 #pragma warning restore SA1649 // File name should match first type name
     {
         // [Inject] private JsonRequestHandler JsonRequestHandler { get; set; }

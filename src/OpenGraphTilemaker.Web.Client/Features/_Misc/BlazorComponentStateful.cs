@@ -4,8 +4,8 @@ using BlazorState;
 using Common;
 using Common.Logging;
 using MediatR;
-using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.Services;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Services;
 using Microsoft.Extensions.Logging;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 
 namespace OpenGraphTilemaker.Web.Client.Features
 {
-    public class BlazorComponentStateful<TComponent> : BlazorComponent
+    public class BlazorComponentStateful<TComponent> : ComponentBase
     {
         [Inject] private IMediator Mediator { get; set; }
 

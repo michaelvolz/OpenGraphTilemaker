@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using Common;
 using JetBrains.Annotations;
-using Microsoft.AspNetCore.Blazor;
-using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.AspNetCore.Blazor.RenderTree;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.Extensions.Logging;
 
 // ReSharper disable UnusedMethodReturnValue.Global

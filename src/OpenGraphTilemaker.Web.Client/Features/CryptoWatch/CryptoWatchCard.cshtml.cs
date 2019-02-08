@@ -1,5 +1,5 @@
 ﻿using Common;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 
 namespace OpenGraphTilemaker.Web.Client.Features.CryptoWatch
 {

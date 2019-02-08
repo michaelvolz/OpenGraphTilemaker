@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace OpenGraphTilemaker.Web.Client.Features.Form
 {
-    public class ValidationErrorModel<TItem> : BlazorComponent
+    public class ValidationErrorModel<TItem> : ComponentBase
     {
         [Parameter] protected string Class { get; set; }
 

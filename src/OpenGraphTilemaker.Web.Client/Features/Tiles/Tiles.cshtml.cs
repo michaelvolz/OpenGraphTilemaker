@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 using OpenGraphTilemaker.Web.Client.Features.Counter;
