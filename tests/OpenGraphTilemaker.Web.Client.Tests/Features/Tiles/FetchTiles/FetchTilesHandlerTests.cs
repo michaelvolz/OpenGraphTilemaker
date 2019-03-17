@@ -14,7 +14,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests.Features.Tiles
     {
         public FetchTilesHandlerTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
-        [Fact]
+        //[Fact]
         public async Task FetchTilesRequest_FakeHttpClient() {
             // Arrange
             var request = new FetchTilesRequest();
@@ -36,8 +36,8 @@ namespace OpenGraphTilemaker.Web.Client.Tests.Features.Tiles
             TestConsole.WriteLine(first.Title);
         }
 
-        [Fact]
-        [XunitCategory("Integration")]
+        //[Fact]
+        //[XunitCategory("Integration")]
         public async Task FetchTilesRequest_RealHttpClient() {
             // Arrange
             var request = new FetchTilesRequest();
