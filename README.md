@@ -7,7 +7,7 @@
 ## Why?
 I want to try Blazor with a set of tools and patterns and libraries I personally find useful and evaluate it's complexity, usability and performance. Over simpified examples don't give me the answers I am looking for.
 
-At the moment I am really pleased with the state of Blazor!
+On hold: Waiting for Blazor to stabilize.
 
 ### Implemented Features
 
