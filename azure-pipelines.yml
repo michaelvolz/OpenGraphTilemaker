@@ -17,6 +17,10 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
+- task: WhiteSource Bolt@19
+  inputs:
+    advance: true
+
 - powershell: .\test.ps1 -Verbose
   displayName: 'Tests'
 
