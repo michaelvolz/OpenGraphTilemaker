@@ -3,47 +3,36 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-jobs:
-- job: 'ParallelTesting'
-    pool:
-    vmImage: 'vs2017-win2016'
-    strategy:
-        parallel: 5
-    variables:
-        buildConfiguration: 'Release'
+pool:
+  vmImage: 'vs2017-win2016'
 
-    steps:
-    - task: DotNetCoreInstaller@0
-    inputs:
-        version: '3.0.100-preview-010184'
+variables:
+  buildConfiguration: 'Release'
 
-    - script: dotnet build --configuration $(buildConfiguration)
-    displayName: 'dotnet build $(buildConfiguration)'
+steps:
+- task: DotNetCoreInstaller@0
+  inputs:
+    version: '3.0.100-preview-010184'
 
-    - task: WhiteSource Bolt@19
-    inputs:
-        advance: true
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
 
-    #- powershell: .\test.ps1 -Verbose
-    #displayName: 'Tests'
+- task: WhiteSource Bolt@19
+  inputs:
+    advance: true
 
-    - task: DotNetCoreCLI@2
-    displayName: Test
-    inputs:
-      command: test
-      projects: '**/*Tests/*Tests.csproj'
-      arguments: '--no-build --filter "$(targetTestsFilter)"'
+- powershell: .\test.ps1 -Verbose
+  displayName: 'Tests'
 
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFiles: '**/TEST-*.xml'
+    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
+    #mergeTestResults: true # Optional
+    #testRunTitle: # Optional
+    #buildPlatform: # Optional
+    #buildConfiguration: # Optional
+    publishRunAttachments: false # Optional
 
-    #- task: PublishTestResults@2
-    #inputs:
-        #testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit
-        #testResultsFiles: '**/TEST-*.xml'
-        #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
-        #mergeTestResults: true # Optional
-        #testRunTitle: # Optional
-        #buildPlatform: # Optional
-        #buildConfiguration: # Optional
-        #publishRunAttachments: false # Optional
-
-    #- task: PublishBuildArtifacts@1
+#- task: PublishBuildArtifacts@1
