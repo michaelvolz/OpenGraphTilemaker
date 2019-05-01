@@ -29,7 +29,7 @@ steps:
     inputs:
       command: test
       projects: '**/*Tests/*Tests.csproj'
-      arguments: '--no-build --filter "$(targetTestsFilter)"'
+      arguments: '--no-build --configuration "Release" --logger "trx;LogFileName=TEST-results.xml"'
 
 #- task: PublishTestResults@2
   #inputs:
