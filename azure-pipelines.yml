@@ -5,13 +5,10 @@
 
 jobs:
 - job: 'ParallelTesting'
-
     pool:
     vmImage: 'vs2017-win2016'
-
     strategy:
         parallel: 5
-    
     variables:
         buildConfiguration: 'Release'
 
@@ -50,4 +47,3 @@ jobs:
         #publishRunAttachments: false # Optional
 
     #- task: PublishBuildArtifacts@1
-    
