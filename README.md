@@ -1,4 +1,4 @@
-# Some Blazor.Net Examples
+# Some Blazor.Net Experiments
 
 [![Build Status](https://dev.azure.com/flynn-azure/BlazorExperiments/_apis/build/status/michaelvolz.BlazorExperiments)](https://dev.azure.com/flynn-azure/BlazorExperiments/_build/latest?definitionId=2)
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
