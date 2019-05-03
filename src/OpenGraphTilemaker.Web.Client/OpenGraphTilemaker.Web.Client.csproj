@@ -36,7 +36,7 @@
     <PackageReference Include="Serilog" Version="2.8.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.2-dev-00028" />
     <PackageReference Include="Serilog.Formatting.Compact" Version="1.0.1-dev-00925" />
-    <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="2.2.0-dev-00740" />
+    <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
