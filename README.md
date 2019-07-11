@@ -7,7 +7,7 @@
 ## Why?
 I want to try Blazor with a set of tools and patterns and libraries I personally find useful and evaluate it's complexity, usability and performance. Over simpified examples don't give me the answers I am looking for.
 
-On hold: Waiting for Blazor to stabilize.
+__On hold: Waiting for Blazor to stabilize.__
 
 ### Implemented Features
 
