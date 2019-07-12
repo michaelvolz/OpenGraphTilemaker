@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using AutoFixture.Xunit2;
 using BaseTestCode;
 using Common.Extensions;
@@ -17,18 +18,20 @@ namespace Common.Tests.Extensions
 
         private const string SingularPlural = "singular;plural";
 
-        public static object[][] TestData { [UsedImplicitly] get; } = {
-            new object[] { DateTime.UtcNow, "just now" },
-            new object[] { DateTime.UtcNow.AddMinutes(-1), "1 minute ago" },
-            new object[] { DateTime.UtcNow.AddMinutes(-2), "2 minutes ago" },
-            new object[] { DateTime.UtcNow.AddMinutes(-60), "1 hour ago" },
-            new object[] { DateTime.UtcNow.AddMinutes(-120), "2 hours ago" },
-            new object[] { DateTime.UtcNow.AddDays(-1), "yesterday" },
-            new object[] { DateTime.UtcNow.AddDays(-2), "2 days ago" },
-            new object[] { DateTime.UtcNow.AddDays(-7), "1 week ago" },
-            new object[] { DateTime.UtcNow.AddDays(-30), "5 weeks ago" }
-        };
-
+        public static IEnumerable<object[]> TestData =>
+            new List<object[]>
+            {
+                new object[] { DateTime.UtcNow, "just now" },
+                new object[] { DateTime.UtcNow.AddMinutes(-1), "1 minute ago" },
+                new object[] { DateTime.UtcNow.AddMinutes(-2), "2 minutes ago" },
+                new object[] { DateTime.UtcNow.AddMinutes(-60), "1 hour ago" },
+                new object[] { DateTime.UtcNow.AddMinutes(-120), "2 hours ago" },
+                new object[] { DateTime.UtcNow.AddDays(-1), "yesterday" },
+                new object[] { DateTime.UtcNow.AddDays(-2), "2 days ago" },
+                new object[] { DateTime.UtcNow.AddDays(-7), "1 week ago" },
+                new object[] { DateTime.UtcNow.AddDays(-30), "5 weeks ago" }
+            };
+        
         [Theory]
         [MemberData(nameof(TestData))]
         public void ToFriendlyDate_ValidDates(DateTime date, string expected) {

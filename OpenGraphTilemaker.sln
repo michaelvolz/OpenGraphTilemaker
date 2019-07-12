@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28306.52
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "src\Common\Common.csproj", "{5656AF6F-0CA8-4C6F-AB23-A51895EB5B50}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker", "src\OpenGraphTilemaker\OpenGraphTilemaker.csproj", "{9AC61145-C7BC-4A25-A802-633BC81C60F0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Client", "src\OpenGraphTilemaker.Web.Client\OpenGraphTilemaker.Web.Client.csproj", "{FC428C8F-8B58-47D9-8808-10E4C70B53B5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Web.Server", "src\OpenGraphTilemaker.Web.Server\OpenGraphTilemaker.Web.Server.csproj", "{C5389BCF-2303-42E0-A7D4-988815AC5933}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{09FEECE9-ED4E-4157-8D74-2523495CC60F}"
 EndProject
@@ -36,6 +32,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		Test.ps1 = Test.ps1
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiment.Web.Server", "Experiment.Web.Server\Experiment.Web.Server.csproj", "{C81A9070-5942-4FB2-A1E1-C8646B9601A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiment.Web.Client", "Experiment.Web.Client\Experiment.Web.Client.csproj", "{6B26D3C5-99E4-4F45-BB43-EE68F0005A2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiment.Web.Shared", "Experiment.Web.Shared\Experiment.Web.Shared.csproj", "{DD453FC2-6405-4BDE-8512-561A1889C88F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,14 +52,6 @@ Global
 		{9AC61145-C7BC-4A25-A802-633BC81C60F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AC61145-C7BC-4A25-A802-633BC81C60F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AC61145-C7BC-4A25-A802-633BC81C60F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC428C8F-8B58-47D9-8808-10E4C70B53B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC428C8F-8B58-47D9-8808-10E4C70B53B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC428C8F-8B58-47D9-8808-10E4C70B53B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC428C8F-8B58-47D9-8808-10E4C70B53B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5389BCF-2303-42E0-A7D4-988815AC5933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5389BCF-2303-42E0-A7D4-988815AC5933}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5389BCF-2303-42E0-A7D4-988815AC5933}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5389BCF-2303-42E0-A7D4-988815AC5933}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB4AB1E5-58B6-400E-88D6-3C84027DCE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB4AB1E5-58B6-400E-88D6-3C84027DCE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB4AB1E5-58B6-400E-88D6-3C84027DCE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -74,6 +68,18 @@ Global
 		{794944BE-577B-4AF1-A706-C3916CB7C65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{794944BE-577B-4AF1-A706-C3916CB7C65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{794944BE-577B-4AF1-A706-C3916CB7C65C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C81A9070-5942-4FB2-A1E1-C8646B9601A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C81A9070-5942-4FB2-A1E1-C8646B9601A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C81A9070-5942-4FB2-A1E1-C8646B9601A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C81A9070-5942-4FB2-A1E1-C8646B9601A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B26D3C5-99E4-4F45-BB43-EE68F0005A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B26D3C5-99E4-4F45-BB43-EE68F0005A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B26D3C5-99E4-4F45-BB43-EE68F0005A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B26D3C5-99E4-4F45-BB43-EE68F0005A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD453FC2-6405-4BDE-8512-561A1889C88F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD453FC2-6405-4BDE-8512-561A1889C88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD453FC2-6405-4BDE-8512-561A1889C88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD453FC2-6405-4BDE-8512-561A1889C88F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

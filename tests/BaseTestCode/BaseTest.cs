@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Serilog.AspNetCore;
+using Serilog.Extensions.Logging;
 using Xunit.Abstractions;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -15,7 +15,8 @@ namespace BaseTestCode
 {
     public class BaseTest<T>
     {
-        protected BaseTest(ITestOutputHelper output) {
+        protected BaseTest(ITestOutputHelper output)
+        {
             ConfigureSerilog(output);
             ConfigureDefaultServices();
             UpdateServiceLocator();
@@ -27,10 +28,12 @@ namespace BaseTestCode
 
         protected ILogger<T> TestConsole { get; }
 
-        protected HttpClient HttpClient(FakeHttpMessageHandler fakeHttpMessageHandler) => new HttpClient(fakeHttpMessageHandler);
+        protected HttpClient HttpClient(FakeHttpMessageHandler fakeHttpMessageHandler) =>
+            new HttpClient(fakeHttpMessageHandler);
 
-        protected HttpClient HttpClient(string fakeResponse, HttpStatusCode httpStatusCode = HttpStatusCode.OK) {
-            var message = new HttpResponseMessage(httpStatusCode) { Content = new StringContent(fakeResponse) };
+        protected HttpClient HttpClient(string fakeResponse, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
+        {
+            var message = new HttpResponseMessage(httpStatusCode) {Content = new StringContent(fakeResponse)};
 
             return HttpClient(new FakeHttpMessageHandler(message));
         }
@@ -40,12 +43,14 @@ namespace BaseTestCode
         private void ConfigureSerilog(ITestOutputHelper output) =>
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                .WriteTo.TestOutput(output, outputTemplate: "{Timestamp:HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}\t{Exception}")
+                .WriteTo.TestOutput(output,
+                    outputTemplate: "{Timestamp:HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}\t{Exception}")
                 .CreateLogger()
                 .ForContext<T>();
 
-        private void ConfigureDefaultServices() {
-            Services.AddSingleton(provider => (ILoggerFactory)new SerilogLoggerFactory(null, false));
+        private void ConfigureDefaultServices()
+        {
+            Services.AddSingleton(provider => (ILoggerFactory)new SerilogLoggerFactory());
             Services.TryAdd(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(Logger<>)));
         }
     }

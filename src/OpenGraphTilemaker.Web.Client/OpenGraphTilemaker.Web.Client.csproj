@@ -11,6 +11,8 @@
     <AssemblyName>OpenGraphTilemaker.Web.Client</AssemblyName>
     <RootNamespace>OpenGraphTilemaker.Web.Client</RootNamespace>
     <IsTestProject>false</IsTestProject>
+    <LangVersion>8.0</LangVersion>
+    <NullableContextOptions>disable</NullableContextOptions>
   </PropertyGroup>
 
   <ItemGroup>

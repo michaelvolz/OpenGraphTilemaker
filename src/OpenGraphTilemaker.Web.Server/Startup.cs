@@ -15,7 +15,7 @@ namespace OpenGraphTilemaker.Web.Server
         public void ConfigureServices(IServiceCollection services) {
             services.Configure<CryptoWatchOptions>(Program.Configuration.GetSection("CryptoWatch"));
 
-            services.AddRazorComponents<Client.Startup>();
+            services.AddServerSideBlazor();
 
             services.AddResponseCompression();
         }
@@ -29,7 +29,7 @@ namespace OpenGraphTilemaker.Web.Server
 
             app.UseStaticFiles();
             
-            app.UseRazorComponents<Client.Startup>();
+            //app.UseRazorComponents<Client.Startup>();
             app.UseBlazorDebugging();
         }
     }

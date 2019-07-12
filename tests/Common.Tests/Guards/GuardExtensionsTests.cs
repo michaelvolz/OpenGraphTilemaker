@@ -159,7 +159,7 @@ namespace Common.Tests.Guards
                 message.Should().Contain(parameterName);
                 message.Should().Contain("Value cannot be default.");
                 message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardException_ToString)}*");
-                message.Should().Contain("GuardClauseExtensions");
+                //message.Should().Contain("GuardClauseExtensions");
                 return;
             }
 
