@@ -4,7 +4,6 @@ using AutoFixture.Xunit2;
 using BaseTestCode;
 using Common.Extensions;
 using FluentAssertions;
-using JetBrains.Annotations;
 using Xunit;
 using Xunit.Abstractions;
 
