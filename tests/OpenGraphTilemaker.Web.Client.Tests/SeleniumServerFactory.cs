@@ -6,7 +6,7 @@
 //
 //// ReSharper disable ClassNeverInstantiated.Global
 //
-//namespace OpenGraphTilemaker.Web.Client.Tests
+//namespace Experiment.Web.Client.Tests
 //{
 //    public class SeleniumServerFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 //    {

@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Xunit;
 
-namespace OpenGraphTilemaker.Web.Client.Tests
+namespace Experiment.Web.Client.Tests
 {
     public class DummyTest
     {

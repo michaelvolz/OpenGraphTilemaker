@@ -4,11 +4,11 @@
 //using BaseTestCode;
 //using FluentAssertions;
 //using OpenGraphTilemaker.Tests;
-//using OpenGraphTilemaker.Web.Client.Features.Tiles;
+//using Experiment.Web.Client.Features.Tiles;
 //using Xunit;
 //using Xunit.Abstractions;
 
-//namespace OpenGraphTilemaker.Web.Client.Tests.Features.Tiles
+//namespace Experiment.Web.Client.Tests.Features.Tiles
 //{
 //    public class FetchTilesHandlerTests : ClientBaseTest<FetchTilesHandlerTests>
 //    {

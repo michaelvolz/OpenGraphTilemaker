@@ -3,13 +3,13 @@
 //using Common.Extensions;
 //using FluentAssertions;
 //using Microsoft.AspNetCore.Mvc.Testing;
-//using OpenGraphTilemaker.Web.Client.Tests.TestServer.Helpers;
+//using Experiment.Web.Client.Tests.TestServer.Helpers;
 //using Xunit;
 //using Xunit.Abstractions;
 //
 //// ReSharper disable MemberCanBePrivate.Global
 //
-//namespace OpenGraphTilemaker.Web.Client.Tests
+//namespace Experiment.Web.Client.Tests
 //{
 //    public class FunctionalTests : IClassFixture<WebApplicationFactory<Server.Startup>>
 //    {

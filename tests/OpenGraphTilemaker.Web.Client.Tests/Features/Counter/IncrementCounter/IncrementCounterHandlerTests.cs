@@ -2,11 +2,11 @@
 //using System.Threading.Tasks;
 //using FluentAssertions;
 //using OpenGraphTilemaker.Tests;
-//using OpenGraphTilemaker.Web.Client.Features.Counter;
+//using Experiment.Web.Client.Features.Counter;
 //using Xunit;
 //using Xunit.Abstractions;
 
-//namespace OpenGraphTilemaker.Web.Client.Tests.Features.Counter
+//namespace Experiment.Web.Client.Tests.Features.Counter
 //{
 //    public class IncrementCounterHandlerTests : ClientBaseTest<IncrementCounterHandlerTests>
 //    {

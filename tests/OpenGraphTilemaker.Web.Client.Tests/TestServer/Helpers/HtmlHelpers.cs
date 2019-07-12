@@ -6,7 +6,7 @@ using AngleSharp;
 using AngleSharp.Html.Dom;
 using AngleSharp.Io;
 
-namespace OpenGraphTilemaker.Web.Client.Tests.TestServer.Helpers
+namespace Experiment.Web.Client.Tests.TestServer.Helpers
 {
     public class HtmlHelpers
     {

@@ -12,7 +12,7 @@
 //using Xunit.Abstractions;
 //using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 //
-//namespace OpenGraphTilemaker.Web.Client.Tests
+//namespace Experiment.Web.Client.Tests
 //{
 //    public sealed class SeleniumTests : IClassFixture<SeleniumServerFactory<Server.Startup>>, IDisposable
 //    {
