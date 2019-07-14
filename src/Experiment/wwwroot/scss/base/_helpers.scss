@@ -1,0 +1,53 @@
+@import "../abstracts/variables";
+
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+.collapsed {
+    display: none;
+}
+
+.debug-b {
+    &.primary {
+        border: 3px solid $primary-color;
+    }
+
+    &.secondary {
+        border: 3px solid $secondary-color;
+    }
+
+    &.success {
+        border: 3px solid $success-color;
+    }
+
+    &.warning {
+        border: 3px solid $warning-color;
+    }
+
+    &, &.alert {
+        border: 3px solid $alert-color;
+    }
+}
+
+.debug {
+    &.primary {
+        outline: 3px solid $primary-color;
+    }
+
+    &.secondary {
+        outline: 3px solid $secondary-color;
+    }
+
+    &.success {
+        outline: 3px solid $success-color;
+    }
+
+    &.warning {
+        outline: 3px solid $warning-color;
+    }
+
+    &, &.alert {
+        outline: 3px solid $alert-color;
+    }
+}

@@ -1,0 +1,62 @@
+﻿@page "/"
+@inherits IndexModel
+@using Experiment.Features._Misc.Visibility
+
+<div class="grid-x grid-margin-x">
+    <div class="medium-6 cell">
+        <section>
+            <h1 class="debug text primary">Hello, world!</h1>
+            <h2 class="debug text secondary">Hello, world!</h2>
+            <h3 class="debug text success">Hello, world!</h3>
+            <h4 class="debug text warning">Hello, world!</h4>
+            <h5 class="debug text alert">Hello, world!</h5>
+        </section>
+
+        <section>
+            <p>Welcome to your new app.</p>
+
+            <div>WindowWidth: @WindowWidth</div>
+
+            <p></p>
+
+            <Visibility Show="true">
+                <h6 class="text success">This text is visible</h6>
+            </Visibility>
+
+            <Visibility Show="false">
+                <h6 class="text alert">This text is invisible</h6>
+            </Visibility>
+        </section>
+    </div>
+    <div class="medium-6 cell">
+        <section>
+            <button class="button primary">Primary</button>
+            <button class="button secondary">Secondary</button>
+            <button class="button success">Success</button>
+            <button class="button warning">Warning</button>
+            <button class="button alert">Alert</button>
+        </section>
+
+        <section>
+            <h3>GlobalState1</h3>
+            <div class="callout" style="background-color: @GlobalState.ThemeColor1; border: 2px solid @GlobalState.ThemeColor2; height: 200px; width: 300px;">
+                <div>@GlobalState.ThemeColor1</div>
+                <div>@GlobalState.ThemeColor2</div>
+                <div>@GlobalState.ThemeColor3</div>
+                <p></p>
+                <button type="button" class="button primary" onclick="@ChangeThemeColors">Cycle ThemeColors</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>GlobalState2</h3>
+            @(MyGlobals?.State.ThemeColor1 ?? "not yet bound"), @(MyGlobals?.State.ThemeColor2 ?? "not yet bound"), @(MyGlobals?.State.ThemeColor3 ?? "not yet bound")
+
+            <Globals ref="@MyGlobals"></Globals>
+        </section>
+    </div>
+</div>
+
+<p></p>
+
+<SurveyPrompt Title="How is Blazor working for you?" />

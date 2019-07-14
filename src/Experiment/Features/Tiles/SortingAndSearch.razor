@@ -1,0 +1,25 @@
+﻿@inherits SortingAndSearchModel
+<fieldset class="tiles-title @Class">
+    <legend>
+        <small>@SortProperty @SortOrder, Count @Count</small>
+    </legend>
+
+    <div class="grid-x">
+        <div class="cell large-6">
+            <button class="button primary" onclick="@OnSortPropertyButtonClicked">Sort Property</button>
+            <button class="button primary" onclick="@OnSortOrderButtonClicked">Sort Order</button>
+        </div>
+        <div class="cell large-6">
+            <div class="input-group">
+                <span class="input-group-label">
+                    <i class="fi-page-search"></i>
+                </span>
+                <input class="input-group-field" type="text" bind="@SearchText" @ref="@SearchInput"/>
+                <div class="input-group-button">
+                    <input type="submit" class="button" value="Search" placeholder="search value" onclick="@OnSearchButtonClicked"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</fieldset>

@@ -1,0 +1,32 @@
+﻿@import "../../node_modules/foundation-sites/scss/prototype/shadow";
+@import "../../node_modules/foundation-sites/scss/prototype/rounded";
+@import "../../wwwroot/scss/abstracts/variables";
+
+ul.tabs {
+    border: 0;
+    border-bottom: 1px solid lightgrey;
+
+    .tabs-title {
+        @include border-radius();
+        background-color: #f9f9f9;
+        border-bottom-color: #dee2e6;
+        border-color: #dee2e6 #dee2e6 #fff;
+    }
+
+    .tabs-title.is-active {
+        @include shadow();
+        background-color: white;
+        border-bottom: 1px solid transparent;
+        border-top: 4px solid $misc-red-color !important;
+        margin-top: -5px;
+    }
+
+    li {
+        border: 1px solid silver;
+        margin-bottom: -2px;
+    }
+}
+
+.tabs-panel {
+    border-top-width: 0;
+}

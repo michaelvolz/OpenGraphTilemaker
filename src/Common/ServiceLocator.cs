@@ -18,6 +18,6 @@ namespace Common
 
         public object GetInstance(Type serviceType) => _currentServiceProvider.GetService(serviceType);
 
-        public TService GetInstance<TService>() => _currentServiceProvider.GetService<TService>();
+        public TService GetInstance<TService>() => _currentServiceProvider.GetRequiredService<TService>();
     }
 }

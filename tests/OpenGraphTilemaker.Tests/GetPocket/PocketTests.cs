@@ -22,7 +22,7 @@ namespace OpenGraphTilemaker.Tests.GetPocket
 
         private static readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
         private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(1);
-        private static readonly TimeSpan TimeoutTimeSpan = TimeSpan.FromSeconds(10);
+        private static readonly TimeSpan TimeoutTimeSpan = TimeSpan.FromSeconds(15);
 
         private readonly Pocket _pocket;
         private readonly PocketOptions _options;

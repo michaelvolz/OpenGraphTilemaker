@@ -1,25 +1,44 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using BlazorState;
+using Common;
+using Common.Blazor;
+using Experiment.Data;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Experiment.Data;
+using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
+using OpenGraphTilemaker.GetPocket;
+using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
+
+        private static void VerifyCryptoWatchApiKey(ILogger<Startup> logger)
+        {
+            // var cryptoWatchOptions = ServiceLocator.Current.GetInstance<IOptions<CryptoWatchOptions>>();
+            // if (cryptoWatchOptions == null || cryptoWatchOptions.Value.ApiKey == "n/a")
+            // throw new InvalidOperationException("CryptoWatchOptions ApiKey not configured!");
+            // logger.LogInformation("CryptoWatch ApiKey: " + cryptoWatchOptions.Value.ApiKey.TruncateAtWord(5, "..."));
+        }
+
+        private static ILogger<Startup> VerifyLogger()
+        {
+            var logger = ServiceLocator.Current.GetInstance<ILogger<Startup>>();
+
+            if (logger == null) throw new InvalidOperationException("ILogger<> not found!");
+
+            return logger;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -28,6 +47,67 @@ namespace Experiment
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            services.AddBlazorState
+            (
+                aOptions => aOptions.Assemblies =
+                    new[]
+                    {
+                        typeof(Startup).GetTypeInfo().Assembly
+                    }
+            );
+
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+            services.Scan
+            (
+                aTypeSourceSelector => aTypeSourceSelector
+                    .FromAssemblyOf<Startup>()
+                    .AddClasses()
+                    .AsSelf()
+                    .WithScopedLifetime()
+            );
+
+            services.AddMemoryCache();
+
+            services.AddTransient<Time>();
+
+            services.AddHttpClient<ITileMakerClient, TileMakerClient>();
+
+            services.AddTransient<OpenGraphTileMaker>();
+
+            services.AddSingleton<WeatherForecastService>();
+
+            services.AddTransient<Feed<PocketEntry>>();
+
+            services.AddTransient<DiscCache>();
+            services.Configure<DiscCacheOptions>(options =>
+            {
+                options.CacheState = CacheState.Enabled;
+                options.CacheFolder = @"C:\WINDOWS\Temp\";
+            });
+
+            services.AddTransient<HttpLoader>();
+
+            services.AddTransient<IPocket, Pocket>();
+            services.Configure<PocketOptions>(options =>
+            {
+                options.Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/");
+                options.CachingTimeSpan = TimeSpan.FromSeconds(15);
+                options.TimeOutTimeSpan = TimeSpan.FromSeconds(10);
+            });
+
+            ServiceLocator.SetServiceProvider(services.BuildServiceProvider());
+
+            var logger = VerifyLogger();
+            VerifyCryptoWatchApiKey(logger);
+
+            logger.LogWarning("Runtime has Mono: " + JsRuntimeLocation.HasMono);
+
+            var jsRuntime = ServiceLocator.Current.GetInstance<IJSRuntime>() ??
+                            throw new ArgumentNullException("ServiceLocator.Current.GetInstance<IJSRuntime>()");
+
+            logger.LogWarning("jsRuntime found: " + jsRuntime);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
