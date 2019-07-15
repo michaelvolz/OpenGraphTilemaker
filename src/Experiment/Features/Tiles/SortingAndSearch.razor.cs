@@ -5,7 +5,6 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 
 // ReSharper disable UnusedMethodReturnValue.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Local
@@ -25,9 +24,6 @@ namespace Experiment.Features.Tiles
         [Parameter] protected SortOrder SortOrder { get; set; }
         [Parameter] protected string SearchText { get; set; }
         [Parameter] protected int Count { get; set; }
-
-        [Inject] protected IJSRuntime JSRuntime { get; set; }
-        [Inject] protected IComponentContext ComponentContext { get; set; }
 
         private string LastSearchText { get; set; }
         protected ElementRef SearchInput { get; set; }
@@ -58,7 +54,6 @@ namespace Experiment.Features.Tiles
 
         protected override async Task OnAfterRenderAsync() => await SearchInput.FocusAsync(ComponentContext, JSRuntime);
 
-        [UsedImplicitly]
         public void TextInjectedFromParent(string text) =>
             Logger.LogInformation($"Received from parent control: '{text}'");
     }

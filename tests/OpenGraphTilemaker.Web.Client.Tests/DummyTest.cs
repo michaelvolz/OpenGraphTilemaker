@@ -10,6 +10,7 @@ namespace OpenGraphTilemaker.Web.Client.Tests
         {
             var condition = true;
 
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             condition.Should().BeTrue();
         }
     }

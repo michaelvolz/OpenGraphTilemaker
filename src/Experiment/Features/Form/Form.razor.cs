@@ -3,13 +3,14 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 
 namespace Experiment.Features.Form
 {
     public class FormModel : BlazorComponentStateful<FormModel>
     {
-        [Inject] public IJSRuntime JsRuntime { get; set; }
+        private const string ThereIsStillSomethingWrong = "There is still something wrong!";
+        private const string Revealed = "";
+        private const string Hidden = "hide";
 
         protected Person Person => State.Person;
 
@@ -19,17 +20,16 @@ namespace Experiment.Features.Form
 
         private FormState State => Store.GetState<FormState>();
 
-        private const string ThereIsStillSomethingWrong = "There is still something wrong!";
-        private const string Revealed = "";
-        private const string Hidden = "hide";
-
-        protected async Task SubmitAsync() {
-            if (HasError(Person)) {
+        protected async Task SubmitAsync()
+        {
+            if (HasError(Person))
+            {
                 Error = Revealed;
-                await JsRuntime.InvokeAsync<bool>("blazorDemo.showAlert", ThereIsStillSomethingWrong);
+                await JSRuntime.InvokeAsync<bool>("blazorDemo.showAlert", ThereIsStillSomethingWrong);
                 Logger.LogInformation($"### {ThereIsStillSomethingWrong}");
             }
-            else {
+            else
+            {
                 Form = Hidden;
                 Error = Hidden;
                 Success = Revealed;
@@ -38,7 +38,8 @@ namespace Experiment.Features.Form
 
         protected string IsValid(Expression<Func<object>> property) => Person.IsValid<Person>(property, "is-invalid");
 
-        protected void KeyPress(UIKeyboardEventArgs ev) => Logger.LogInformation($"KeyPress: {ev.Key + ", " + ev.Code}");
+        protected void KeyPress(UIKeyboardEventArgs ev) =>
+            Logger.LogInformation($"KeyPress: {ev.Key + ", " + ev.Code}");
 
         private bool HasError<T>(T obj) where T : class, IValidate => obj.HasError<T>();
     }
