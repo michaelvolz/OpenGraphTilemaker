@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Exceptions;
 using Experiment.Features.Globals;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
@@ -23,10 +24,10 @@ namespace Experiment.Features
 
         protected GlobalState GlobalState => Store.GetState<GlobalState>();
 
-        protected int WindowWidth { get; private set; }
+        protected int WindowWidth { get; private set; } = -1;
 
-        [Inject] protected IJSRuntime JSRuntime { get; set; }
-        [Inject] protected IComponentContext ComponentContext { get; set; }
+        [Inject] private IJSRuntime JSRuntime { get; [UsedImplicitly] set; }
+        [Inject] private IComponentContext ComponentContext { get; [UsedImplicitly] set; }
 
         public void Dispose()
         {
@@ -51,26 +52,33 @@ namespace Experiment.Features
 
         protected override async Task OnAfterRenderAsync()
         {
-            WindowWidth = await JSInteropHelpers.GetWindowWidthAsync(ComponentContext, JSRuntime);
+            await base.OnAfterRenderAsync();
 
-            if(!_initialized)
+            await InitializeJavaScriptEvents();
+        }
+
+        private async Task InitializeJavaScriptEvents()
+        {
+            if (!_initialized)
             {
                 await JSInteropHelpers.InitializeWindowResizeEventAsync(ComponentContext, JSRuntime);
 
                 JSInteropHelpers.OnWindowResized += WindowResized;
                 Logger.LogInformation("OnWindowResized event added!");
 
-                _initialized = true;
-            }
+                WindowWidth = await JSInteropHelpers.GetWindowWidthAsync(ComponentContext, JSRuntime);
 
-            await base.OnAfterRenderAsync();
+                _initialized = true;
+
+                StateHasChanged();
+            }
         }
 
         protected override async Task OnParametersSetAsync()
         {
-            await base.OnParametersSetAsync();
-
             NestedExceptionLoggingTest();
+
+            await base.OnParametersSetAsync();
         }
 
         private void NestedExceptionLoggingTest()

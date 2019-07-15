@@ -19,7 +19,7 @@
         return window.innerWidth;
     },
 
-    focusElement: function(element) {
+    focusElement: function (element) {
         element.focus();
 
         return true;
@@ -29,20 +29,20 @@
         console.info("JS initializeWindowResizeEvent!");
 
         var onResize = "resize";
-        var resizer = function() {
+        var resizer = function () {
             if (typeof window.resizeTimer !== "undefined") {
                 clearTimeout(window.resizeTimer);
             }
 
-            window.resizeTimer = setTimeout(function() {
-                    console.info("JS resizeTimer timeout!");
+            window.resizeTimer = setTimeout(function () {
+                console.info("JS resizeTimer timeout!");
 
-                    var win = { Width: window.innerWidth, Height: window.innerHeight };
-                    window.DotNet.invokeMethodAsync("Experiment", "FromJSWindowResizedAsync", win)
-                        .then(data => { console.log(data); })
-                        .catch(err => { console.error(err); });
-                },
-                250);
+                var win = { width: window.innerWidth, height: window.innerHeight };
+
+                window.DotNet.invokeMethodAsync("Experiment", "FromJSWindowResizedAsync", win)
+                    .then(data => { console.log(data); })
+                    .catch(err => { console.error(err); });
+            }, 250);
         };
 
         window.removeEventListener(onResize, resizer, true);

@@ -10,7 +10,7 @@
         <p>Rougeoyant m'ont sidéraux pourrit entonnoirs cibles et cerveaux avaient aux t'exiles enlever des noirs est trombes des exaltée enfants de m'a flot des soleil que a lâche sanglot dormir lâche ont et et sentant a torpeurs soleil crevant lunules le horribles sur avec un fini d'incroyables ainsi pas sont les jeté savez-vous ainsi guidé de ma blés un des qu'aux les triques pieds je sures de perdu ne hippocampes drapeaux des montrer de et flamands fortes par les j'ai mers descendais a trouais de plus rouleurs mais les poetes sanglot est-ce frele voiliers dont les lactescent les mers faisaient des</p>
     </Tab>
 
-    @if (showSecondTab) {
+    @if (_showSecondTab) {
         <Tab Title="Second">
             <h4>Second tab</h4>
             <p>You can toggle me. Consetetur amet sadipscing duis quod te invidunt laoreet dolore sed takimata lorem facilisis magna est nonumy dolore diam sit stet kasd at labore eleifend sed consequat eirmod accumsan justo amet justo et mazim ea sanctus rebum iriure dolor magna sit</p>
@@ -23,7 +23,7 @@
         <h4>Third tab</h4>
 
         <label>
-            <input type="checkbox" bind="@showSecondTab"/>
+            <input type="checkbox" @bind="@_showSecondTab"/>
             Toggle second tab
         </label>
 
@@ -35,5 +35,7 @@
 
 @functions
 {
-    bool showSecondTab;
+#pragma warning disable 649
+    private bool _showSecondTab;
+#pragma warning restore 649
 }
