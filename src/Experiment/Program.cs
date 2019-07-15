@@ -11,10 +11,10 @@ namespace Experiment
     public class Program
     {
         private const string AppSettingsJSON = "appsettings.json";
-        private const string FixedPathExtensionForTesting = @"..\..\..\..\..\..\src\OpenGraphTilemaker.Web.Server";
+        private const string FixedPathExtensionForTesting = @"..\..\..\..\..\..\src\Experiment";
 
         public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
-            .SetBasePath(FindAppSettings())
+            .SetBasePath(LocateAppSettings())
             .AddJsonFile(AppSettingsJSON, false, true)
             .AddJsonFile(
                 $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
@@ -54,13 +54,13 @@ namespace Experiment
             }
         }
 
-        private static string FindAppSettings()
+        private static string LocateAppSettings()
         {
             var currentDirectory = Directory.GetCurrentDirectory();
 
-            if (File.Exists(currentDirectory + @"\" + AppSettingsJSON)) return currentDirectory;
-
-            return currentDirectory + FixedPathExtensionForTesting;
+            return File.Exists($@"{currentDirectory}\{AppSettingsJSON}")
+                ? currentDirectory
+                : currentDirectory + FixedPathExtensionForTesting;
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

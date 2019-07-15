@@ -45,8 +45,6 @@ namespace Experiment
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CryptoWatchOptions>(Program.Configuration.GetSection("CryptoWatch"));
-
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
@@ -74,14 +72,11 @@ namespace Experiment
 
             services.AddTransient<Time>();
 
+            services.Configure<CryptoWatchOptions>(Program.Configuration.GetSection("CryptoWatch"));
             services.AddHttpClient<ITileMakerClient, TileMakerClient>();
-
             services.AddTransient<OpenGraphTileMaker>();
-
             services.AddSingleton<WeatherForecastService>();
-
             services.AddTransient<Feed<PocketEntry>>();
-
             services.AddTransient<DiscCache>();
             services.Configure<DiscCacheOptions>(options =>
             {
@@ -90,7 +85,6 @@ namespace Experiment
             });
 
             services.AddTransient<HttpLoader>();
-
             services.AddTransient<IPocket, Pocket>();
             services.Configure<PocketOptions>(options =>
             {
@@ -105,12 +99,6 @@ namespace Experiment
             VerifyCryptoWatchApiKey(logger);
 
             logger.LogWarning("Runtime has Mono: " + JsRuntimeLocation.HasMono);
-
-            var jsRuntime = ServiceLocator.Current.GetInstance<IJSRuntime>() ??
-                            throw new ArgumentNullException("ServiceLocator.Current.GetInstance<IJSRuntime>()");
-
-            logger.LogWarning("jsRuntime found: " + jsRuntime);
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
