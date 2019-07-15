@@ -15,7 +15,7 @@
 
     <p></p>
 
-    @if (State?.TagCloud != null && State.TagCloud.Any()) {
+    @*@if (State?.TagCloud != null && State.TagCloud.Any()) {
         <div class="tagCloud callout text-center">
             <ul>
                 @foreach (var word in State.TagCloud.Where(pair => pair.Value > 1)) {
@@ -25,7 +25,7 @@
                 }
             </ul>
         </div>
-    }
+    }*@
 
     <div class="callout warning emphasize radius @ShowIf(Empty)">Empty!</div>
 
