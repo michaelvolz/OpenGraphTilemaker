@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Exceptions;
 using Experiment.Features.Globals;
-using JetBrains.Annotations;
-using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 #pragma warning disable CA1063 // Modify TilesPageModel.Finalize so that it calls Dispose(false) and then returns.
@@ -17,17 +14,14 @@ namespace Experiment.Features
 {
     public class IndexModel : BlazorComponentStateful<IndexModel>, IDisposable
     {
-        private bool _initialized = false;
         private const string ThisShouldNeverBeLogged = "THIS SHOULD NEVER BE LOGGED!";
+        private bool _initialized;
 
         protected Globals.Globals MyGlobals { get; set; }
 
         protected GlobalState GlobalState => Store.GetState<GlobalState>();
 
         protected int WindowWidth { get; private set; } = -1;
-
-        [Inject] private IJSRuntime JSRuntime { get; [UsedImplicitly] set; }
-        [Inject] private IComponentContext ComponentContext { get; [UsedImplicitly] set; }
 
         public void Dispose()
         {
