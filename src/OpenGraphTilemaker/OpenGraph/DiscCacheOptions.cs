@@ -7,7 +7,7 @@ namespace OpenGraphTilemaker.OpenGraph
     {
         public DiscCacheOptions() { }
 
-        public DiscCacheOptions([NotNull] string cacheFolder, CacheState cacheState) {
+        public DiscCacheOptions( string cacheFolder, CacheState cacheState) {
             Guard.Against.Enum(() => cacheState, typeof(CacheState));
 
             CacheFolder = Guard.Against.NullOrWhiteSpace(() => cacheFolder);

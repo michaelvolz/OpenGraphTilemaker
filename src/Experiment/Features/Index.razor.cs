@@ -17,8 +17,6 @@ namespace Experiment.Features
         private const string ThisShouldNeverBeLogged = "THIS SHOULD NEVER BE LOGGED!";
         private bool _initialized;
 
-        protected Globals.Globals MyGlobals { get; set; }
-
         protected GlobalState GlobalState => Store.GetState<GlobalState>();
 
         protected int WindowWidth { get; private set; } = -1;

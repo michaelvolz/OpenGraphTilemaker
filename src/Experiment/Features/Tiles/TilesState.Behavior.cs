@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using BlazorState;
 using Common;
-using Common.TagCloud;
 using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.Tiles
@@ -11,9 +10,10 @@ namespace Experiment.Features.Tiles
         [IoC]
         public TilesState() { }
 
-        protected TilesState(TilesState state) {
+        protected TilesState(TilesState state)
+        {
             CurrentTiles = state.CurrentTiles;
-            //TagCloud = state.TagCloud;
+            TagCloud = state.TagCloud;
 
             SortOrder = state.SortOrder;
             SortProperty = state.SortProperty;
@@ -22,11 +22,12 @@ namespace Experiment.Features.Tiles
             LastSearchText = state.LastSearchText;
         }
 
-        //public override object Clone() => new TilesState(this);
+        // public override object Clone() => new TilesState(this);
 
-        protected override void Initialize() {
+        protected override void Initialize()
+        {
             CurrentTiles = new List<OpenGraphMetadata>();
-            //TagCloud = default;
+            TagCloud = default;
 
             SortOrder = SortOrder.Descending;
             SortProperty = nameof(OpenGraphMetadata.BookmarkTime);

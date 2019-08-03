@@ -13,14 +13,14 @@ namespace OpenGraphTilemaker.OpenGraph
 {
     public class DiscCache
     {
-        public DiscCache([NotNull] IOptions<DiscCacheOptions> options) {
+        public DiscCache(IOptions<DiscCacheOptions> options) {
             Guard.Against.Null(() => options);
             Options = Guard.Against.Null(() => options.Value);
         }
 
         public DiscCacheOptions Options { get; }
 
-        public bool TryLoadFromDisc([NotNull] Uri uri, out string result) {
+        public bool TryLoadFromDisc(Uri uri, out string? result) {
             Guard.Against.Null(() => uri);
 
             result = null;
@@ -32,13 +32,13 @@ namespace OpenGraphTilemaker.OpenGraph
             return result != null;
         }
 
-        public string FullPath([NotNull] Uri uri) {
+        public string FullPath( Uri uri) {
             Guard.Against.Null(() => uri);
 
             return Options.CacheFolder + uri.ToValidFileName();
         }
 
-        public void WriteToDisc([NotNull] Uri uri, [NotNull] string html) {
+        public void WriteToDisc( Uri uri,  string html) {
             Guard.Against.Null(() => uri);
             Guard.Against.NullOrWhiteSpace(() => html);
 

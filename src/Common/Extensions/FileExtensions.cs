@@ -10,13 +10,13 @@ namespace Common.Extensions
 {
     public static class FileExtensions
     {
-        public static string ToValidFileName([NotNull] this Uri uri) {
+        public static string ToValidFileName( this Uri uri) {
             Guard.Against.Null(() => uri);
 
             return uri.OriginalString.ToValidFileName();
         }
 
-        public static string ToValidFileName([NotNull] this string name) {
+        public static string ToValidFileName( this string name) {
             Guard.Against.NullOrWhiteSpace(() => name);
 
             var invalidChars = new string(Path.GetInvalidFileNameChars());

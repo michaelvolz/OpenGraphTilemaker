@@ -2,7 +2,7 @@
 using MediatR;
 using OpenGraphTilemaker.OpenGraph;
 
-namespace Experiment.Features.Tiles.CreateTagCloud
+namespace Experiment.Features.Tiles
 {
     public class CreateTagCloudRequest : IRequest<TilesState>
     {

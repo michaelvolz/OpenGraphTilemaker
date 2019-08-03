@@ -40,8 +40,10 @@ namespace Ardalis.GuardClauses
         /// <param name="enumClass"></param>
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="InvalidEnumArgumentException"></exception>
-        public static void Enum<T>(this IGuardClause guardClause, [NotNull] Expression<Func<T>> input, Type enumClass) {
-            Guard.Against.Enum(input.Compile()(), enumClass, input.MemberExpressionName());
+        public static void Enum<T>(this IGuardClause guardClause,  Expression<Func<T>> input, Type enumClass)
+        {
+            Guard.Against.Null(() => input);
+            Guard.Against.Enum(input.Compile()()!, enumClass, input.MemberExpressionName());
         }
     }
 }

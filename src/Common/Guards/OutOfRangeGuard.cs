@@ -51,7 +51,7 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static int OutOfRange(this IGuardClause guardClause, [NotNull] Expression<Func<int>> input, int rangeFrom, int rangeTo) {
+        public static int OutOfRange(this IGuardClause guardClause,  Expression<Func<int>> input, int rangeFrom, int rangeTo) {
             return OutOfRange<int>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
         }
 
@@ -85,7 +85,7 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static DateTime OutOfRange(this IGuardClause guardClause, [NotNull] Expression<Func<DateTime>> input, DateTime rangeFrom, DateTime rangeTo) {
+        public static DateTime OutOfRange(this IGuardClause guardClause,  Expression<Func<DateTime>> input, DateTime rangeFrom, DateTime rangeTo) {
             return OutOfRange<DateTime>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
         }
 

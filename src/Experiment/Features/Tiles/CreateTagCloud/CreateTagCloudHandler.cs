@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using BlazorState;
 using Common;
 using Common.TagCloud;
-using Experiment.Features.Tiles.CreateTagCloud;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -25,7 +24,7 @@ namespace Experiment.Features.Tiles
                 foreach (var tile in req.OriginalTiles)
                     await tagCloud.InsertAsync(tile.Title, tile.Description, tile.SiteName);
 
-                //TilesState.TagCloud = from entry in tagCloud.Cloud orderby entry.Key select entry;
+                TilesState.TagCloud = from entry in tagCloud.Cloud orderby entry.Key select entry;
 
                 return TilesState;
             }

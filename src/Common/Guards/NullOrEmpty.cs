@@ -42,7 +42,7 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static string NullOrEmpty(this IGuardClause guardClause, [NotNull] Expression<Func<string>> input) {
+        public static string NullOrEmpty(this IGuardClause guardClause,  Expression<Func<string>> input) {
             return Guard.Against.NullOrEmpty(input.Compile()(), input.MemberExpressionName());
         }
     }

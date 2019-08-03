@@ -15,7 +15,7 @@ namespace OpenGraphTilemaker.GetPocket
         private readonly Feed<PocketEntry> _feed;
         private readonly IMemoryCache _memoryCache;
 
-        public Pocket([NotNull] IMemoryCache memoryCache, [NotNull] Feed<PocketEntry> feed) {
+        public Pocket( IMemoryCache memoryCache,  Feed<PocketEntry> feed) {
             _memoryCache = Guard.Against.Null(() => memoryCache);
             _feed = Guard.Against.Null(() => feed);
         }
@@ -27,7 +27,7 @@ namespace OpenGraphTilemaker.GetPocket
             return await
                 _memoryCache.GetOrCreateAsync(CacheKeys.GetPocketFeed, async entry => {
                     entry.AbsoluteExpirationRelativeToNow = options.CachingTimeSpan;
-                    return await _feed.GetFeedAsync(options.Uri, item => item.ToPocketEntry(), p => p.PubDate);
+                    return await _feed.GetFeedAsync(options.Uri!, item => item.ToPocketEntry(), p => p.PubDate);
                 });
         }
     }

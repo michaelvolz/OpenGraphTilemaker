@@ -122,7 +122,7 @@ namespace Common.Tests.Guards
         [AutoData]
         public void RewindCallStackMessage_GuardAgainstNull(string parameterName) {
             try {
-                Guard.Against.Null<object>(null, parameterName);
+                Guard.Against.Null<object>(null!, parameterName);
             }
             catch (Exception e) {
                 var message = e.RewindStackTraceMessage();
@@ -168,7 +168,7 @@ namespace Common.Tests.Guards
 
         [Fact]
         public void GuardNull() {
-            var parameter = (object)null;
+            var parameter = (object?)null;
             var parameterName = nameof(parameter);
 
             try {

@@ -5,5 +5,5 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "test code", Scope = "member", Target = "~P:Common.Tests.Extensions.StringExtensionsTests.TestData")]
-[assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "test code", Scope = "member", Target = "~P:Common.Tests.Extensions.DateTimeExtensionsTests.TestData")]
+[assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "test code", Scope = "member", Target = "~P:Common.Tests.Extensions.StringExtensionsTests.StringExtensionsTestData")]
+[assembly: SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "test code", Scope = "member", Target = "~P:Common.Tests.Extensions.DateTimeExtensionsTests.StringExtensionsTestData")]

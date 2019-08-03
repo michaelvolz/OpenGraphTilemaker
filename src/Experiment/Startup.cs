@@ -1,78 +1,40 @@
 using System;
-using System.Reflection;
-using BlazorState;
+using System.IO;
 using Common;
-using Common.Blazor;
 using Experiment.Data;
 using Experiment.Features.CryptoWatch;
-using MediatR;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
-        public IConfiguration Configuration { get; }
+        public static IConfiguration Configuration { get; private set; }
 
-        private static void VerifyCryptoWatchApiKey(ILogger<Startup> logger)
-        {
-            // var cryptoWatchOptions = ServiceLocator.Current.GetInstance<IOptions<CryptoWatchOptions>>();
-            // if (cryptoWatchOptions == null || cryptoWatchOptions.Value.ApiKey == "n/a")
-            // throw new InvalidOperationException("CryptoWatchOptions ApiKey not configured!");
-            // logger.LogInformation("CryptoWatch ApiKey: " + cryptoWatchOptions.Value.ApiKey.TruncateAtWord(5, "..."));
-        }
-
-        private static ILogger<Startup> VerifyLogger()
-        {
-            var logger = ServiceLocator.Current.GetInstance<ILogger<Startup>>();
-
-            if (logger == null) throw new InvalidOperationException("ILogger<> not found!");
-
-            return logger;
-        }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
-            services.AddBlazorState
-            (
-                aOptions => aOptions.Assemblies =
-                    new[]
-                    {
-                        typeof(Startup).GetTypeInfo().Assembly
-                    }
-            );
+            AppServices(services);
+        }
 
-            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
-            services.Scan
-            (
-                aTypeSourceSelector => aTypeSourceSelector
-                    .FromAssemblyOf<Startup>()
-                    .AddClasses()
-                    .AsSelf()
-                    .WithScopedLifetime()
-            );
-
+        private static void AppServices(IServiceCollection services)
+        {
             services.AddMemoryCache();
 
-            services.AddTransient<Time>();
+            Extensions.BlazorState(services);
 
-            services.Configure<CryptoWatchOptions>(Program.Configuration.GetSection("CryptoWatch"));
+            services.AddTransient<Time>();
             services.AddHttpClient<ITileMakerClient, TileMakerClient>();
             services.AddTransient<OpenGraphTileMaker>();
             services.AddSingleton<WeatherForecastService>();
@@ -81,7 +43,7 @@ namespace Experiment
             services.Configure<DiscCacheOptions>(options =>
             {
                 options.CacheState = CacheState.Enabled;
-                options.CacheFolder = @"C:\WINDOWS\Temp\";
+                options.CacheFolder = Path.GetTempPath();
             });
 
             services.AddTransient<HttpLoader>();
@@ -93,27 +55,24 @@ namespace Experiment
                 options.TimeOutTimeSpan = TimeSpan.FromSeconds(10);
             });
 
+            services.Configure<CryptoWatchOptions>(Configuration.GetSection("CryptoWatch"));
+
             ServiceLocator.SetServiceProvider(services.BuildServiceProvider());
 
-            var logger = VerifyLogger();
-            VerifyCryptoWatchApiKey(logger);
-
-            logger.LogWarning("Runtime has Mono: " + JsRuntimeLocation.HasMono);
+            var logger = Extensions.VerifyLogger();
+            Extensions.VerifyCryptoWatchApiKey(logger);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        [UsedImplicitly]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                // app.UseHsts();
-            }
+
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            // app.UseHsts();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

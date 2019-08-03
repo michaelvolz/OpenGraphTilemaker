@@ -9,12 +9,12 @@ namespace OpenGraphTilemaker.OpenGraph
 {
     public class OpenGraphTileMaker
     {
-        public IList<HtmlNode> HtmlMetaTags { get; private set; }
-        public OpenGraphMetadata GraphMetadata { get; private set; }
+        public IList<HtmlNode>? HtmlMetaTags { get; private set; }
+        public OpenGraphMetadata? GraphMetadata { get; private set; }
 
-        public Exception Error { get; private set; }
+        public Exception? Error { get; private set; }
 
-        public async Task ScrapeAsync([NotNull] string source, [NotNull] Func<Task<HtmlDocument>> loadDocument) {
+        public async Task ScrapeAsync( string source,  Func<Task<HtmlDocument>> loadDocument) {
             Guard.Against.NullOrWhiteSpace(() => source);
             Guard.Against.Null(() => loadDocument);
 

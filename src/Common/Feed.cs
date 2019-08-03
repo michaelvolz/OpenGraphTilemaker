@@ -15,9 +15,9 @@ namespace Common
     public class Feed<TEntry>
     {
         public async Task<List<TEntry>> GetFeedAsync(
-            [NotNull] Uri uri,
-            [NotNull] Func<ISyndicationItem, TEntry> convert,
-            [NotNull] Func<TEntry, object> property,
+             Uri uri,
+             Func<ISyndicationItem, TEntry> convert,
+             Func<TEntry, object> property,
             SortOrder order = SortOrder.Descending) {
             Guard.Against.Null(() => uri);
             Guard.Against.Null(() => convert);

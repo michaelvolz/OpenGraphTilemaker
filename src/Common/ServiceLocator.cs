@@ -10,7 +10,7 @@ namespace Common
         private static ServiceProvider _serviceProvider;
         private readonly ServiceProvider _currentServiceProvider;
 
-        private ServiceLocator([NotNull] ServiceProvider currentServiceProvider) => _currentServiceProvider = Guard.Against.Null(() => currentServiceProvider);
+        private ServiceLocator( ServiceProvider currentServiceProvider) => _currentServiceProvider = Guard.Against.Null(() => currentServiceProvider);
 
         public static ServiceLocator Current => new ServiceLocator(_serviceProvider);
 

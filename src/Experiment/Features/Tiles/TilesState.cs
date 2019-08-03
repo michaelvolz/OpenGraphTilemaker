@@ -12,7 +12,7 @@ namespace Experiment.Features.Tiles
     public partial class TilesState
     {
         public List<OpenGraphMetadata> CurrentTiles { get; private set; }
-        //public IOrderedEnumerable<KeyValuePair<string, int>> TagCloud { get; private set; }
+        public IOrderedEnumerable<KeyValuePair<string, int>> TagCloud { get; private set; }
 
         public string SortProperty { get; private set; }
         public SortOrder SortOrder { get; private set; }

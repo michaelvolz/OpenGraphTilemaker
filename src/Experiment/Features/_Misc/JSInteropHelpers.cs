@@ -57,7 +57,7 @@ namespace Experiment.Features
 
         [JSInvokable]
         [UsedImplicitly]
-        public static Task<string> FromJSWindowResizedAsync([NotNull] Window window)
+        public static Task<string> FromJSWindowResizedAsync( Window window)
         {
             Guard.Against.Null(() => window);
 

@@ -15,7 +15,7 @@ namespace Experiment.Features.CryptoWatch
             var dataSource = new DataSource();
             dataSource.OnUpdate += DataSourceOnUpdate;
             await dataSource.GoAsync();
-            dataSource.OnUpdate -= DataSourceOnUpdate;
+            //dataSource.OnUpdate -= DataSourceOnUpdate;
         }
 
         private void DataSourceOnUpdate(int v) {

@@ -14,31 +14,37 @@
 
 
 <div class="tabs-panel">
-    
+
 </div>
 
 @functions {
 
 #pragma warning disable BL9993 // Component parameter is marked public
-    [Parameter] public Microsoft.AspNetCore.Components.RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
 #pragma warning restore BL9993 // Component parameter is marked public
 
     public ITab ActiveTab { get; private set; }
 
-    public void AddTab(ITab tab) {
-        if (ActiveTab == null) {
+    public void AddTab(ITab tab)
+    {
+        if (ActiveTab == null)
+        {
             SetActivateTab(tab);
         }
     }
 
-    public void RemoveTab(ITab tab) {
-        if (ActiveTab == tab) {
+    public void RemoveTab(ITab tab)
+    {
+        if (ActiveTab == tab)
+        {
             SetActivateTab(null);
         }
     }
 
-    public void SetActivateTab(ITab tab) {
-        if (ActiveTab != tab) {
+    public void SetActivateTab(ITab tab)
+    {
+        if (ActiveTab != tab)
+        {
             ActiveTab = tab;
             StateHasChanged();
         }

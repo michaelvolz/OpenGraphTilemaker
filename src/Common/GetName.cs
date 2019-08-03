@@ -11,8 +11,8 @@ namespace Common
             return typeof(T).Name;
         }
 
-        // GetName.Of( () => variablename)
-        // GetName.Of( () => class.Propertyname)
+        // GetName.Of( () => variable-name)
+        // GetName.Of( () => class.Property-name)
 
         /// <remarks>
         ///     http://blogs.msdn.com/csharpfaq/archive/2010/01/06/getting-information-about-objects-types-and-members-with-expression-trees.aspx.
@@ -26,7 +26,7 @@ namespace Common
             throw new ArgumentException($"\'{e}\': is not a valid expression for this method");
         }
 
-        // GetName.Of<T>( x => x.Propertyname)
+        // GetName.Of<T>( x => x.Property-name)
         public static string Of<T>(Expression<Func<T, object>> expression) {
             return FindMemberOrNull(expression).Name;
         }
