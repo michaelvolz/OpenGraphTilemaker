@@ -11,7 +11,7 @@ namespace Ardalis.GuardClauses
     /// </summary>
     public static partial class GuardClauseExtensions
     {
-        public static string MemberExpressionName<T>(this Expression<Func<T>> func) =>
+        public static string MemberExpressionName<T>(this Expression<Func<T>> func) => 
             func.MemberExpression()?.Member.Name ?? "MemberExpression-ERROR";
 
         public static MemberExpression? MemberExpression<T>(this Expression<Func<T>> func) =>

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace OpenGraphTilemaker.GetPocket
@@ -15,17 +14,20 @@ namespace OpenGraphTilemaker.GetPocket
         private readonly Feed<PocketEntry> _feed;
         private readonly IMemoryCache _memoryCache;
 
-        public Pocket( IMemoryCache memoryCache,  Feed<PocketEntry> feed) {
+        public Pocket(IMemoryCache memoryCache, Feed<PocketEntry> feed)
+        {
             _memoryCache = Guard.Against.Null(() => memoryCache);
             _feed = Guard.Against.Null(() => feed);
         }
 
-        public async Task<List<PocketEntry>> GetEntriesAsync(IPocketOptions options) {
+        public async Task<List<PocketEntry>> GetEntriesAsync(IPocketOptions options)
+        {
             Guard.Against.Null(() => options.Uri);
             Guard.Against.Default(() => options.CachingTimeSpan);
 
             return await
-                _memoryCache.GetOrCreateAsync(CacheKeys.GetPocketFeed, async entry => {
+                _memoryCache.GetOrCreateAsync(CacheKeys.GetPocketFeed, async entry =>
+                {
                     entry.AbsoluteExpirationRelativeToNow = options.CachingTimeSpan;
                     return await _feed.GetFeedAsync(options.Uri!, item => item.ToPocketEntry(), p => p.PubDate);
                 });

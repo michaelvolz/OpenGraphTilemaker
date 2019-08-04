@@ -7,6 +7,8 @@ namespace Experiment.Features.Tiles
 {
     public class TileModel : ComponentBase
     {
+#nullable disable
         [Parameter] protected OpenGraphMetadata OpenGraphMetadata { get; set; }
+#nullable enable
     }
 }

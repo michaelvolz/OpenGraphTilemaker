@@ -6,6 +6,6 @@ namespace OpenGraphTilemaker.OpenGraph
 {
     public interface ITileMakerClient
     {
-        Task<OpenGraphMetadata?> OpenGraphMetadataAsync(Uri uri, PocketEntry entry);
+        Task<OpenGraphMetadata> OpenGraphMetadataAsync(Uri uri, PocketEntry entry);
     }
 }

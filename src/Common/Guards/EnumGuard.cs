@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
-using JetBrains.Annotations;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
@@ -25,7 +24,8 @@ namespace Ardalis.GuardClauses
         /// <param name="enumClass"></param>
         /// <param name="parameterName"></param>
         /// <exception cref="InvalidEnumArgumentException"></exception>
-        public static void Enum(this IGuardClause guardClause, object input, Type enumClass, string parameterName) {
+        public static void Enum(this IGuardClause guardClause, object input, Type enumClass, string parameterName)
+        {
             if (!System.Enum.IsDefined(enumClass, input))
                 throw new GuardException(new InvalidEnumArgumentException(parameterName, (int)input, enumClass));
         }
@@ -40,7 +40,7 @@ namespace Ardalis.GuardClauses
         /// <param name="enumClass"></param>
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="InvalidEnumArgumentException"></exception>
-        public static void Enum<T>(this IGuardClause guardClause,  Expression<Func<T>> input, Type enumClass)
+        public static void Enum<T>(this IGuardClause guardClause, Expression<Func<T>> input, Type enumClass)
         {
             Guard.Against.Null(() => input);
             Guard.Against.Enum(input.Compile()()!, enumClass, input.MemberExpressionName());

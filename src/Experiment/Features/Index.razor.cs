@@ -24,7 +24,9 @@ namespace Experiment.Features
         public void Dispose()
         {
             // ReSharper disable once DelegateSubtraction
+#nullable disable
             JSInteropHelpers.OnWindowResized -= WindowResized;
+#nullable enable
             Logger.LogInformation("OnWindowResized event removed!");
         }
 
@@ -82,7 +84,7 @@ namespace Experiment.Features
                     try
                     {
                         using (Logger.BeginScope(new Dictionary<string, object>
-                            {["CustomerId"] = 12345, ["OrderId"] = 54}))
+                        { ["CustomerId"] = 12345, ["OrderId"] = 54 }))
                         {
                             Logger.LogInformation("Processing credit card payment...");
 
@@ -101,7 +103,7 @@ namespace Experiment.Features
             }
             catch (Exception e)
             {
-                if (e.ToString().Contains(ThisShouldNeverBeLogged)) Logger.LogWarning(e, "Oops!");
+                if (e.ToString().Contains(ThisShouldNeverBeLogged, StringComparison.InvariantCulture)) Logger.LogWarning(e, "Oops!");
             }
         }
 

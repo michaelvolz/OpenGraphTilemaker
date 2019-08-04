@@ -8,16 +8,15 @@
 </li>
 
 @functions {
+#nullable disable
 
     [CascadingParameter] private TabSet ContainerTabSet { get; set; }
-
     [Parameter] private string Title { get; set; }
-
-#pragma warning disable BL9993 // Component parameter has public setter
     [Parameter] public Microsoft.AspNetCore.Components.RenderFragment ChildContent { get; set; }
-#pragma warning restore BL9993 // Component parameter has public setter
 
-    string TitleCssClass => ContainerTabSet.ActiveTab == this ? "is-active" : null;
+#nullable enable
+
+    string? TitleCssClass => ContainerTabSet.ActiveTab == this ? "is-active" : null;
 
     protected override void OnInit()
     {

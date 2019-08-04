@@ -12,7 +12,8 @@ namespace Ardalis.GuardClauses
     /// </summary>
     public static partial class GuardClauseExtensions
     {
-        public static void Foo(this IGuardClause guardClause, string input, string parameterName) {
+        public static void Foo(this IGuardClause guardClause, string input, string parameterName)
+        {
             if (input?.ToUpperInvariant() == "FOO")
                 throw new ArgumentException("Should not have been foo!", parameterName);
         }

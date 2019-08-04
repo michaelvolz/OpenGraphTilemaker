@@ -20,9 +20,7 @@ namespace Experiment.Features.Form
         /// </summary>
         /// <remarks>Constructor used for Clone.</remarks>
         /// <param name="state">The item we want to clone.</param>
-        protected FormState(FormState state) {
-            Person = state.Person;
-        }
+        protected FormState(FormState state) => Person = state.Person;
 
         /// <summary>
         ///     Clone the existing object.
@@ -33,6 +31,6 @@ namespace Experiment.Features.Form
         /// <summary>
         ///     Set the Initial State.
         /// </summary>
-        protected override void Initialize() => Person = new Person { FirstName = "John", LastName = "Doe", Age = 32 };
+        protected override void Initialize() => Person = new Person {FirstName = "John", LastName = "Doe", Age = 32};
     }
 }

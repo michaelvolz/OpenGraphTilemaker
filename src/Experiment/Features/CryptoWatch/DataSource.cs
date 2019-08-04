@@ -9,7 +9,9 @@ namespace Experiment.Features.CryptoWatch
 {
     public class DataSource
     {
+#nullable disable
         public Action<int> OnUpdate { get; set; }
+#nullable enable
 
         [MethodImpl(MethodImplOptions.NoOptimization)]
         public async Task GoAsync() {
@@ -18,7 +20,7 @@ namespace Experiment.Features.CryptoWatch
             logger.LogDebug("DataSource start");
             for (var i = 0; i < 10000; i++) {
                 logger.LogDebug(i.ToString());
-                OnUpdate(i);
+                OnUpdate?.Invoke(i);
 
                 var x = 0;
                 for (var j = 0; j < 25000; j++) x += 1;

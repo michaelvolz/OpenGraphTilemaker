@@ -6,6 +6,6 @@ namespace Experiment.Features.Tiles
 {
     public class CreateTagCloudRequest : IRequest<TilesState>
     {
-        public List<OpenGraphMetadata> OriginalTiles { get; set; }
+        public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
     }
 }

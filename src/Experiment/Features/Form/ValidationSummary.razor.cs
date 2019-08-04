@@ -11,14 +11,14 @@ namespace Experiment.Features.Form
 {
     public class ValidationSummaryModel<TItem> : ComponentBase
     {
+#nullable disable
         [Parameter] protected TItem Subject { get; set; }
         [Parameter] protected string Class { get; set; }
+#nullable enable
 
-        protected IList<ValidationFailure> ValidationFailures { get; set; }
+        protected IList<ValidationFailure> ValidationFailures { get; set; } = new List<ValidationFailure>();
         protected bool HasValidationFailures => ValidationFailures.Any();
 
-        protected override async Task OnParametersSetAsync() {
-            ValidationFailures = await ((IValidate)Subject).ValidateAsync(Subject);
-        }
+        protected override async Task OnParametersSetAsync() => ValidationFailures = await ((IValidate)Subject).ValidateAsync(Subject);
     }
 }

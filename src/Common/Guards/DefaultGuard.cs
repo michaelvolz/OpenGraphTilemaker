@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Common.Exceptions;
-using JetBrains.Annotations;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
@@ -14,7 +13,7 @@ using JetBrains.Annotations;
 namespace Ardalis.GuardClauses
 {
     /// <summary>
-    /// Default Guard.
+    ///     Default Guard.
     /// </summary>
     public static partial class GuardClauseExtensions
     {
@@ -26,10 +25,9 @@ namespace Ardalis.GuardClauses
         /// <param name="parameterName"></param>
         /// <returns>The input for variable initialization.</returns>
         /// <exception cref="ArgumentDefaultException"></exception>
-        public static T Default<T>(this IGuardClause guardClause, T input, string parameterName) {
-            if (EqualityComparer<T>.Default.Equals(input, default!)) {
-                throw new GuardException(new ArgumentDefaultException(parameterName));
-            }
+        public static T Default<T>(this IGuardClause guardClause, T input, string parameterName)
+        {
+            if (EqualityComparer<T>.Default.Equals(input, default!)) throw new GuardException(new ArgumentDefaultException(parameterName));
 
             return input;
         }
@@ -42,9 +40,8 @@ namespace Ardalis.GuardClauses
         /// <returns>The input for variable initialization.</returns>
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="ArgumentDefaultException"></exception>
-        public static T Default<T>(this IGuardClause guardClause,  Expression<Func<T>> input) {
-            return Guard.Against.Default(input.Compile()(), input.MemberExpressionName());
-        }
+        public static T Default<T>(this IGuardClause guardClause, Expression<Func<T>> input) =>
+            Guard.Against.Default(input.Compile()(), input.MemberExpressionName());
     }
 }
 

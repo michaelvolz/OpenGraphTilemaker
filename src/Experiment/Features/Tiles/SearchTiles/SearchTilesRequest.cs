@@ -6,8 +6,8 @@ namespace Experiment.Features.Tiles
 {
     public class SearchTilesRequest : IRequest<TilesState>
     {
-        public List<OpenGraphMetadata> OriginalTiles { get; set; }
+        public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
 
-        public string SearchText { get; set; }
+        public string SearchText { get; set; } = string.Empty;
     }
 }

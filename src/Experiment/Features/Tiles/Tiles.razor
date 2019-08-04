@@ -31,7 +31,7 @@
 
     <div class="masonry-css @ShowIf(Any)">
 
-        @foreach (var item in State.CurrentTiles) {
+        @foreach (var item in State!.CurrentTiles) {
             <div class="masonry-css-item auto">
                 <Tile OpenGraphMetadata="@item"></Tile>
             </div>

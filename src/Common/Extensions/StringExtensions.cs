@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text;
 using Ardalis.GuardClauses;
-using JetBrains.Annotations;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
@@ -13,16 +12,17 @@ namespace Common.Extensions
     {
         private const string Space = " ";
 
-        public static string CombineAll(this string[] texts, string combineWith = Space)
-            => texts
-                .Aggregate(string.Empty, (current, next) => $"{current}{combineWith}{next}");
+        public static string CombineAll(this string[] texts, string combineWith = Space) =>
+            texts.Aggregate(string.Empty, (current, next) => $"{current}{combineWith}{next}");
 
-        public static string RemoveTrailingPunctuation(this string? word) {
+        public static string RemoveTrailingPunctuation(this string? word)
+        {
             if (string.IsNullOrEmpty(word)) return string.Empty;
 
             var result = new StringBuilder(word);
 
-            for (var index = word.Length - 1; index >= 0; index--) {
+            for (var index = word.Length - 1; index >= 0; index--)
+            {
                 if (!char.IsPunctuation(word[index])) break;
 
                 result.Remove(index, 1);
@@ -31,11 +31,11 @@ namespace Common.Extensions
             return result.ToString();
         }
 
-        public static string RemoveNumbers(this string text) {
+        public static string RemoveNumbers(this string text)
+        {
             Guard.Against.Null(() => text);
 
-            return text.Where(c => !c.IsNumeric())
-                .Aggregate(new StringBuilder(), (current, next) => current.Append(next), sb => sb.ToString());
+            return text.Where(c => !c.IsNumeric()).Aggregate(new StringBuilder(), (current, next) => current.Append(next), sb => sb.ToString());
         }
 
         public static bool NotNullNorEmpty(this object? value) => value is string str && str.NotNullNorEmpty();
@@ -54,7 +54,8 @@ namespace Common.Extensions
 
         public static bool IsNullOrWhiteSpace(this string? value) => string.IsNullOrWhiteSpace(value);
 
-        public static string? TruncateAtWord(this string? value, int length, string ellipsis = "…", string truncateAtChar = " ") {
+        public static string? TruncateAtWord(this string? value, int length, string ellipsis = "…", string truncateAtChar = " ")
+        {
             Guard.Against.OutOfRange(() => length, 1, int.MaxValue);
             Guard.Against.Null(() => ellipsis);
             Guard.Against.Null(() => truncateAtChar);
@@ -63,18 +64,20 @@ namespace Common.Extensions
                 return value;
 
             var nextSpaceIndex = value.LastIndexOf(truncateAtChar, length, StringComparison.Ordinal);
-            var substring = $"{value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length)}".Trim();
+            var substring = value.Substring(0, nextSpaceIndex > 0 ? nextSpaceIndex : length).Trim();
             substring = RemoveNonAlphaNumericTrailingCharacters(substring);
 
             return $"{substring}{ellipsis}";
         }
 
-        private static string RemoveNonAlphaNumericTrailingCharacters(string text) {
+        private static string RemoveNonAlphaNumericTrailingCharacters(string text)
+        {
             if (text.Length < 1 || text.LastOrDefault().ToString().IsPureAlphaNumeric()) return text;
 
             var substring = text.Substring(0, text.Length - 1);
 
-            while (substring.Length > 0 && !substring.Last().ToString().IsPureAlphaNumeric()) substring = substring.Substring(0, substring.Length - 1);
+            while (substring.Length > 0 && !substring.Last().ToString().IsPureAlphaNumeric())
+                substring = substring.Substring(0, substring.Length - 1);
 
             return substring;
         }

@@ -2,7 +2,6 @@
 using System.IO;
 using Ardalis.GuardClauses;
 using Common.Extensions;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Options;
 using static OpenGraphTilemaker.OpenGraph.CacheState;
 
@@ -13,38 +12,40 @@ namespace OpenGraphTilemaker.OpenGraph
 {
     public class DiscCache
     {
-        public DiscCache(IOptions<DiscCacheOptions> options) {
+        public DiscCache(IOptions<DiscCacheOptions> options)
+        {
             Guard.Against.Null(() => options);
-            Options = Guard.Against.Null(() => options.Value);
+            DiscCacheOptions = Guard.Against.Null(() => options.Value);
         }
 
-        public DiscCacheOptions Options { get; }
+        public DiscCacheOptions DiscCacheOptions { get; }
 
-        public bool TryLoadFromDisc(Uri uri, out string? result) {
+        public bool TryLoadFromDisc(Uri uri, out string? result)
+        {
             Guard.Against.Null(() => uri);
 
             result = null;
 
-            if (Options.CacheState != Enabled) return false;
+            if (DiscCacheOptions.CacheState != Enabled) return false;
 
             result = File.Exists(FullPath(uri)) ? File.ReadAllText(FullPath(uri)) : null;
 
             return result != null;
         }
 
-        public string FullPath( Uri uri) {
+        public string FullPath(Uri uri)
+        {
             Guard.Against.Null(() => uri);
 
-            return Options.CacheFolder + uri.ToValidFileName();
+            return DiscCacheOptions.CacheFolder + uri.ToValidFileName();
         }
 
-        public void WriteToDisc( Uri uri,  string html) {
+        public void WriteToDisc(Uri uri, string html)
+        {
             Guard.Against.Null(() => uri);
             Guard.Against.NullOrWhiteSpace(() => html);
 
-            if (Options.CacheState == Enabled && html.NotNullNorWhiteSpace()) {
-                File.WriteAllText(FullPath(uri), html);
-            }
+            if (DiscCacheOptions.CacheState == Enabled) File.WriteAllText(FullPath(uri), html);
         }
     }
 }

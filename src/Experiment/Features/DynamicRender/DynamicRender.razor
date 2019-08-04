@@ -11,21 +11,23 @@
 <p>@DynamicFragment</p>
 
 @functions {
-    private string dynamicContent = "This is a long text...";
+    private string _dynamicContent = "This is a long text...";
 
     protected override void OnInit() {
         DynamicFragment = builder => {
-            if (dynamicContent.LastIndexOf("long", StringComparison.Ordinal) > 5000) {
-                dynamicContent = "This is a long text...";
+            if (_dynamicContent.LastIndexOf("long", StringComparison.Ordinal) > 5000) {
+                _dynamicContent = "This is a long text...";
             }
 
-            dynamicContent = dynamicContent.Replace("long", "long long");
+            _dynamicContent = _dynamicContent.Replace("long", "long long");
 
             builder.OpenElement(1, "p");
-            builder.AddContent(2, dynamicContent);
+            builder.AddContent(2, _dynamicContent);
             builder.CloseElement();
         };
     }
 
+#nullable disable
     private RenderFragment DynamicFragment { get; set; }
+#nullable enable
 }

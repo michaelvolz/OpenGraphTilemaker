@@ -5,6 +5,6 @@ namespace Experiment.Features.Tiles
 {
     public class FetchTilesResponse
     {
-        public List<OpenGraphMetadata> OriginalTiles { get; set; }
+        public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
     }
 }

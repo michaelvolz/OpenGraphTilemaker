@@ -1,11 +1,14 @@
 using System;
 using System.IO;
+using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 
 namespace Experiment
 {
+    [UsedImplicitly]
     public partial class Program
     {
+        [UsedImplicitly]
         private class ApplicationSettings
         {
             private const string AppSettingsJSON = "appsettings.json";

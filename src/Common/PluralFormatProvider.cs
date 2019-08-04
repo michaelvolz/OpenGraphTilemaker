@@ -10,7 +10,8 @@ namespace Common
         private const int PluralIndex = 1;
         private const string Space = " ";
 
-        public string Format(string format, object argument, IFormatProvider? formatProvider) {
+        public string Format(string format, object argument, IFormatProvider? formatProvider)
+        {
             Guard.Against.Null(() => argument);
             Guard.Against.Assert(() => argument.IsNumeric(), nameof(argument));
 

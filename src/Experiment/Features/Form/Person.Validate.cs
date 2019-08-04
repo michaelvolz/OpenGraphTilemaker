@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -15,18 +16,24 @@ namespace Experiment.Features.Form
 {
     public class ValidationBase<TValidator> : IValidate
     {
-        public IList<ValidationFailure> Validate<T>(string propertyName = null) where T : class {
-            var validator = (IValidator<T>)Activator.CreateInstance<TValidator>();
+        public IList<ValidationFailure> Validate<T>(string? propertyName = null) where T : class
+        {
+            var validator = Activator.CreateInstance<TValidator>() as IValidator<T>;
+
+            if (validator == null) throw new InvalidOperationException("Couldn't initialize validator!");
 
             var result = string.IsNullOrWhiteSpace(propertyName)
-                ? validator.Validate(this as T)
-                : validator.Validate(this as T, propertyName);
+                ? validator.Validate((this as T)!)
+                : validator!.Validate(this as T, propertyName);
 
             return result.Errors;
         }
 
-        public async Task<IList<ValidationFailure>> ValidateAsync<T>(T subject, string propertyName = null, CancellationToken token = default) {
-            var validator = (IValidator<T>)Activator.CreateInstance<TValidator>();
+        public async Task<IList<ValidationFailure>> ValidateAsync<T>(T subject, string? propertyName = null, CancellationToken token = default)
+        {
+            var validator = Activator.CreateInstance<TValidator>() as IValidator<T>;
+
+            if (validator == null) throw new InvalidOperationException("Couldn't initialize validator!");
 
             var result = string.IsNullOrWhiteSpace(propertyName)
                 ? await validator.ValidateAsync(subject, token)
@@ -35,16 +42,11 @@ namespace Experiment.Features.Form
             return result.Errors;
         }
 
-        public IList<ValidationFailure> Validate<T>(Expression<Func<object>> property) where T : class {
-            return property != null ? Validate<T>(property.MemberExpressionName()) : Validate<T>();
-        }
+        public bool HasError<T>(Expression<Func<object>>? propertyExpression = null) where T : class => Validate<T>(propertyExpression).Any();
 
-        public string IsValid<T>(Expression<Func<object>> property, string failureClass) where T : class {
-            return HasError<T>(property) ? failureClass : string.Empty;
-        }
+        public IList<ValidationFailure> Validate<T>(Expression<Func<object>>? property) where T : class =>
+            property != null ? Validate<T>(property.MemberExpressionName()) : Validate<T>();
 
-        public bool HasError<T>(Expression<Func<object>> propertyExpression = null) where T : class {
-            return Validate<T>(propertyExpression).Any();
-        }
+        public string IsValid<T>(Expression<Func<object>> property, string failureClass) where T : class => HasError<T>(property) ? failureClass : string.Empty;
     }
 }

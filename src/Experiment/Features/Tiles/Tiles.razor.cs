@@ -15,10 +15,12 @@ namespace Experiment.Features.Tiles
 {
     public class TilesModel : BlazorComponentStateful<TilesModel>
     {
+#nullable disable
         [Parameter] protected string Class { get; set; }
         [Parameter] protected List<OpenGraphMetadata> OriginalTiles { get; set; }
+#nullable enable
 
-        protected SortingAndSearch SortComponent { get; set; }
+        protected SortingAndSearch? SortComponent { get; set; }
         protected TilesState State => Store.GetState<TilesState>();
 
         protected override async Task OnParametersSetAsync()
@@ -29,7 +31,7 @@ namespace Experiment.Features.Tiles
             {
                 Logger.LogInformation($"### {nameof(OnParametersSetAsync)} Count: " + OriginalTiles.Count);
                 await SearchAsync(State.SearchText);
-                await RequestAsync(new CreateTagCloudRequest {OriginalTiles = OriginalTiles});
+                await RequestAsync(new CreateTagCloudRequest { OriginalTiles = OriginalTiles });
 
                 IsLoading = false;
             }
@@ -46,19 +48,19 @@ namespace Experiment.Features.Tiles
         private async Task SortByOrder(SortOrder sortOrder)
         {
             sortOrder = sortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-            await RequestAsync(new SortTilesRequest {CurrentTiles = State.CurrentTiles, SortOrder = sortOrder});
+            await RequestAsync(new SortTilesRequest { CurrentTiles = State.CurrentTiles, SortOrder = sortOrder });
 
             StateHasChanged();
         }
 
         private async Task SortByProperty(string sortProperty)
         {
-            SortComponent.TextInjectedFromParent("myParentText testExample");
+            SortComponent!.TextInjectedFromParent("myParentText testExample");
 
             sortProperty = sortProperty != nameof(OpenGraphMetadata.Title)
                 ? nameof(OpenGraphMetadata.Title)
                 : nameof(OpenGraphMetadata.BookmarkTime);
-            await RequestAsync(new SortTilesRequest {CurrentTiles = State.CurrentTiles, SortProperty = sortProperty});
+            await RequestAsync(new SortTilesRequest { CurrentTiles = State.CurrentTiles, SortProperty = sortProperty });
 
             StateHasChanged();
         }
@@ -67,8 +69,8 @@ namespace Experiment.Features.Tiles
         {
             if (OriginalTiles.Any())
             {
-                await RequestAsync(new SearchTilesRequest {OriginalTiles = OriginalTiles, SearchText = searchText});
-                await RequestAsync(new SortTilesRequest {CurrentTiles = State.CurrentTiles});
+                await RequestAsync(new SearchTilesRequest { OriginalTiles = OriginalTiles, SearchText = searchText });
+                await RequestAsync(new SortTilesRequest { CurrentTiles = State.CurrentTiles });
 
                 StateHasChanged();
             }

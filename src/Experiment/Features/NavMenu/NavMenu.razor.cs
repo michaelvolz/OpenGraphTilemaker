@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿#nullable enable
 
-/**/
+using System.Threading.Tasks;
+
 namespace Experiment.Features.NavMenu
 {
     public class NavMenuModel : BlazorComponentStateful<NavMenuModel>
     {
-        protected string NavMenuCSS { get; private set; }
+        protected string? NavMenuCSS { get; private set; }
 
         protected void ToggleNavMenu() => NavMenuCSS = NavMenuCSS == null ? "collapsed" : null;
 

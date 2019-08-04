@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorState;
@@ -31,9 +32,9 @@ namespace Experiment.Features.Tiles
 
                     TilesState.CurrentTiles = req.OriginalTiles
                         .Where(
-                            t => t.Title != null && t.Title.ToUpperInvariant().Contains(search)
-                                 || t.Description != null && t.Description.ToUpperInvariant().Contains(search)
-                                 || t.SiteName != null && t.SiteName.ToUpperInvariant().Contains(search)
+                            t => t.Title != null && t.Title.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
+                                 || t.Description != null && t.Description.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
+                                 || t.SiteName != null && t.SiteName.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
                         ).ToList();
                 }
 

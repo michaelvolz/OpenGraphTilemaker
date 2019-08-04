@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using Common.Logging;
@@ -21,14 +22,17 @@ namespace Experiment.Features.Tiles
 
             private TilesState TilesState => Store.GetState<TilesState>();
 
-            public override Task<TilesState> Handle(SortTilesRequest req, CancellationToken token) {
+            public override Task<TilesState> Handle(SortTilesRequest req, CancellationToken token)
+            {
+                Guard.Against.Null(() => req.CurrentTiles);
+
                 if (req.SortProperty != null)
                     TilesState.SortProperty = req.SortProperty;
 
                 if (req.SortOrder != SortOrder.Undefined)
                     TilesState.SortOrder = req.SortOrder;
 
-                SortTiles(req.CurrentTiles);
+                SortTiles(req.CurrentTiles!);
 
                 _logger.LogInformation($"SortTilesHandler for: '{TilesState.SortProperty}, {TilesState.SortOrder}'");
 

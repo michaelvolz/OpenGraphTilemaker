@@ -2,7 +2,6 @@
 using System.IO;
 using System.Text.RegularExpressions;
 using Ardalis.GuardClauses;
-using JetBrains.Annotations;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -10,20 +9,23 @@ namespace Common.Extensions
 {
     public static class FileExtensions
     {
-        public static string ToValidFileName( this Uri uri) {
+        private static readonly string InvalidChars = new string(Path.GetInvalidFileNameChars());
+
+        public static string ToValidFileName(this Uri uri)
+        {
             Guard.Against.Null(() => uri);
 
             return uri.OriginalString.ToValidFileName();
         }
 
-        public static string ToValidFileName( this string name) {
-            Guard.Against.NullOrWhiteSpace(() => name);
+        public static string ToValidFileName(this string str)
+        {
+            Guard.Against.NullOrWhiteSpace(() => str);
 
-            var invalidChars = new string(Path.GetInvalidFileNameChars());
-            var escapedInvalidChars = Regex.Escape(invalidChars);
-            var invalidRegex = string.Format(@"([{0}]*\.+$)|([{0}]+)", escapedInvalidChars);
+            var escapedInvalidChars = Regex.Escape(InvalidChars);
+            var invalidCharsRegex = string.Format(@"([{0}]*\.+$)|([{0}]+)", escapedInvalidChars);
 
-            return Regex.Replace(name, invalidRegex, "_");
+            return Regex.Replace(str, invalidCharsRegex, "_");
         }
     }
 }

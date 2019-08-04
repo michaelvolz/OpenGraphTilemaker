@@ -1,9 +1,11 @@
+using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Exceptions;
 
 namespace Experiment.AppServer
 {
+    [UsedImplicitly]
     public class Serilogger
     {
         public static void Configure(IConfiguration configuration) =>

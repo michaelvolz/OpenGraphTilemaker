@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
-using Common;
 using Common.Logging;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
@@ -23,7 +22,7 @@ namespace Experiment.Features
         public static async Task<int> GetWindowWidthAsync(IComponentContext componentContext, IJSRuntime jsRuntime)
         {
             if (!componentContext.IsConnected) throw new InvalidOperationException("!componentContext.IsConnected");
-            
+
             return await jsRuntime.InvokeAsync<int>($"{BlazorDemo}getWindowWidth");
         }
 
@@ -37,14 +36,14 @@ namespace Experiment.Features
         public static async Task FocusAsync(IComponentContext componentContext, IJSRuntime jsRuntime, ElementRef elementRef)
         {
             if (!componentContext.IsConnected) throw new InvalidOperationException("!componentContext.IsConnected");
-            
+
             await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}focusElement", elementRef);
         }
 
         public static async Task AlertAsync(IComponentContext componentContext, IJSRuntime jsRuntime, string value)
         {
             if (!componentContext.IsConnected) throw new InvalidOperationException("!componentContext.IsConnected");
-            
+
             await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}showAlert", value);
         }
 
@@ -57,7 +56,7 @@ namespace Experiment.Features
 
         [JSInvokable]
         [UsedImplicitly]
-        public static Task<string> FromJSWindowResizedAsync( Window window)
+        public static Task<string> FromJSWindowResizedAsync(Window window)
         {
             Guard.Against.Null(() => window);
 
