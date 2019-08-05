@@ -14,6 +14,7 @@ namespace Experiment.Features.Tiles
 {
     public class SortingAndSearchModel : BlazorComponentStateful<SortingAndSearchModel>
     {
+#nullable disable
         [Parameter] protected string Class { get; set; }
         [Parameter] private Func<string, Task> OnSortProperty { get; set; }
         [Parameter] private Func<SortOrder, Task> OnSortOrder { get; set; }
@@ -22,6 +23,7 @@ namespace Experiment.Features.Tiles
         [Parameter] protected SortOrder SortOrder { get; set; }
         [Parameter] protected string SearchText { get; set; }
         [Parameter] protected int Count { get; set; }
+#nullable enable
 
         private string? LastSearchText { get; set; }
         protected ElementRef SearchInput { get; set; }
