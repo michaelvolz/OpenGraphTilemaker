@@ -26,7 +26,7 @@ namespace Experiment.Features.Tiles
             {
                 Guard.Against.Null(() => req.CurrentTiles);
 
-                if (req.SortProperty != null)
+                if (!string.IsNullOrWhiteSpace(req.SortProperty))
                     TilesState.SortProperty = req.SortProperty;
 
                 if (req.SortOrder != SortOrder.Undefined)

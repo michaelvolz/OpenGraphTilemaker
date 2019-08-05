@@ -11,6 +11,6 @@ namespace Experiment.Features.Tiles
         public List<OpenGraphMetadata>? CurrentTiles { get; set; }
 
         public string SortProperty { get; set; } = string.Empty;
-        public SortOrder SortOrder { get; set; } = SortOrder.Ascending;
+        public SortOrder SortOrder { get; set; } = SortOrder.Undefined;
     }
 }

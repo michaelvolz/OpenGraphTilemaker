@@ -1,7 +1,6 @@
 ﻿@using Common
 @inherits TilesModel;
 <style>
-    
 </style>
 <section class="@Class">
     <SortingAndSearch Class="@ShowIf(Loaded)" @ref="SortComponent"
@@ -11,16 +10,20 @@
                       OnSortProperty="@((Func<string, Task>)OnSortProperty)"
                       SearchText="@State.SearchText"
                       SortOrder="@State.SortOrder"
-                      SortProperty="@State.SortProperty"/>
+                      SortProperty="@State.SortProperty" />
 
     <p></p>
 
-    @if (State?.TagCloud != null && State.TagCloud.Any()) {
+    @if (State?.TagCloud != null && State.TagCloud.Any())
+    {
         <div class="tagCloud callout text-center">
             <ul>
-                @foreach (var word in State.TagCloud.Where(pair => pair.Value > 1)) {
+                @{ var sortedTagCloud = from entry in State.TagCloud orderby entry.Key select entry; }
+
+                @foreach (var word in sortedTagCloud.Where(pair => pair.Value > 1))
+                {
                     <li>
-                        <a class="@("size" + (word.Value <= 6 ? word.Value : 6) )" onclick="@(async () => await OnSearch(word.Key))">@word.Key.ToLower()</a>
+                        <a class="@("size" + (word.Value <= 6 ? word.Value : 6) )" @onclick="(async () => await OnSearch(word.Key))">@word.Key.ToLower()</a>
                     </li>
                 }
             </ul>
@@ -31,7 +34,8 @@
 
     <div class="masonry-css @ShowIf(Any)">
 
-        @foreach (var item in State!.CurrentTiles) {
+        @foreach (var item in State!.CurrentTiles)
+        {
             <div class="masonry-css-item auto">
                 <Tile OpenGraphMetadata="@item"></Tile>
             </div>

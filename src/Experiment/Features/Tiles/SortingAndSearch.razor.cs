@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Common;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.Extensions.Logging;
@@ -15,7 +14,6 @@ namespace Experiment.Features.Tiles
 {
     public class SortingAndSearchModel : BlazorComponentStateful<SortingAndSearchModel>
     {
-#nullable disable
         [Parameter] protected string Class { get; set; }
         [Parameter] private Func<string, Task> OnSortProperty { get; set; }
         [Parameter] private Func<SortOrder, Task> OnSortOrder { get; set; }
@@ -24,7 +22,6 @@ namespace Experiment.Features.Tiles
         [Parameter] protected SortOrder SortOrder { get; set; }
         [Parameter] protected string SearchText { get; set; }
         [Parameter] protected int Count { get; set; }
-#nullable enable
 
         private string? LastSearchText { get; set; }
         protected ElementRef SearchInput { get; set; }
@@ -32,8 +29,17 @@ namespace Experiment.Features.Tiles
         protected Task OnSortPropertyButtonClicked() => OnSortProperty(SortProperty);
         protected Task OnSortOrderButtonClicked() => OnSortOrder(SortOrder);
 
+        protected async Task OnSearchTextChanged(UIKeyboardEventArgs args)
+        {
+            Logger.LogInformation($"OnSearchTextChanged() '{args.Key}'");
+
+            if (args.Key == "Enter") await OnSearchButtonClicked();
+        }
+
         protected Task OnSearchButtonClicked()
         {
+            Logger.LogInformation("OnSearchButtonClicked()");
+
             if (LastSearchText == SearchText) return Task.CompletedTask;
 
             OnSearch(SearchText);

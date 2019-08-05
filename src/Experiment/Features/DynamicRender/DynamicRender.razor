@@ -3,7 +3,7 @@
 <h1>Dynamic Render</h1>
 
 <p>
-    <button type="button" class="button primary" onclick="@(() => ShouldRender())">
+    <button type="button" class="button primary" @onclick="(() => ShouldRender())">
         Trigger rendering (i.e. makes text longer)
     </button>
 </p>

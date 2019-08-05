@@ -2,7 +2,7 @@
 
 <div class="mobile-nav-bar title-bar">
     <div class="title-bar-left">
-        <a class="menu-icon show-for-small-only" onclick="@ToggleNavMenu"></a>
+        <a class="menu-icon show-for-small-only" @onclick="ToggleNavMenu"></a>
     </div>
     <div class="">
         <div>
@@ -71,13 +71,13 @@
 
     <ul class="vertical menu">
         <li>
-            <a class="@ClientModeCSS()" onclick="@ActivateClientMode">
+            <a class="@ClientModeCSS()" @onclick="ActivateClientMode">
                 Client Mode
             </a>
         </li>
 
         <li>
-            <a class="@ServerModeCSS()" onclick="@ActivateServerMode">
+            <a class="@ServerModeCSS()" @onclick="ActivateServerMode">
                 Server Mode
             </a>
         </li>
