@@ -23,14 +23,14 @@ namespace Common.Tests.Extensions
 
         [Fact]
         public void IsNullOrEmpty_NullObject() {
-            var result = ((object)null).IsNullOrEmpty();
+            var result = ((object?)null).IsNullOrEmpty();
 
             result.Should().BeTrue();
         }
 
         [Fact]
         public void IsNullOrEmpty_NullString() {
-            var result = ((string)null).IsNullOrEmpty();
+            var result = ((string?)null).IsNullOrEmpty();
 
             result.Should().BeTrue();
         }
@@ -47,14 +47,14 @@ namespace Common.Tests.Extensions
 
         [Fact]
         public void IsNullOrWhiteSpace_NullObject() {
-            var result = ((object)null).IsNullOrWhiteSpace();
+            var result = ((object?)null).IsNullOrWhiteSpace();
 
             result.Should().BeTrue();
         }
 
         [Fact]
         public void IsNullOrWhiteSpace_NullString() {
-            var result = ((string)null).IsNullOrWhiteSpace();
+            var result = ((string?)null).IsNullOrWhiteSpace();
 
             result.Should().BeTrue();
         }
@@ -71,14 +71,14 @@ namespace Common.Tests.Extensions
 
         [Fact]
         public void NotNullNorEmpty_NullObject() {
-            var result = ((object)null).NotNullNorEmpty();
+            var result = ((object?)null).NotNullNorEmpty();
 
             result.Should().BeFalse();
         }
 
         [Fact]
         public void NotNullNorEmpty_NullString() {
-            var result = ((string)null).NotNullNorEmpty();
+            var result = ((string?)null).NotNullNorEmpty();
 
             result.Should().BeFalse();
         }
@@ -95,14 +95,14 @@ namespace Common.Tests.Extensions
 
         [Fact]
         public void NotNullNorWhiteSpace_NullObject() {
-            var result = ((object)null).NotNullNorWhiteSpace();
+            var result = ((object?)null).NotNullNorWhiteSpace();
 
             result.Should().BeFalse();
         }
 
         [Fact]
         public void NotNullNorWhiteSpace_NullString() {
-            var result = ((string)null).NotNullNorWhiteSpace();
+            var result = ((string?)null).NotNullNorWhiteSpace();
 
             result.Should().BeFalse();
         }

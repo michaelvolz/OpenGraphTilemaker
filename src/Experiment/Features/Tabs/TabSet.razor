@@ -1,0 +1,54 @@
+﻿<!-- Display the tab headers -->
+<CascadingValue Value="this">
+    <ul class="tabs">
+        @ChildContent
+    </ul>
+</CascadingValue>
+
+<!-- Display body for only the active tab -->
+<div class="tabs-content">
+    <div class="tabs-panel is-active">
+        @ActiveTab?.ChildContent
+    </div>
+</div>
+
+
+<div class="tabs-panel">
+
+</div>
+
+@functions {
+#nullable disable
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+#nullable enable
+
+    public ITab? ActiveTab { get; private set; }
+
+    public void AddTab(ITab tab)
+    {
+        if (ActiveTab == null)
+        {
+            SetActivateTab(tab);
+        }
+    }
+
+    public void RemoveTab(ITab tab)
+    {
+        if (ActiveTab == tab)
+        {
+            SetActivateTab(null);
+        }
+    }
+
+    public void SetActivateTab(ITab? tab)
+    {
+        if (ActiveTab != tab)
+        {
+            ActiveTab = tab;
+            StateHasChanged();
+        }
+    }
+
+}

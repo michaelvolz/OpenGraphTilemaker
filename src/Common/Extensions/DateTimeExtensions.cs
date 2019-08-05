@@ -15,36 +15,32 @@ namespace Common.Extensions
         private const int HourInSeconds = 3600;
         private const int DayInSeconds = 86400;
 
-        public static string ToFriendlyDate(this DateTime? date) {
-            return date.HasValue ? date.Value.ToFriendlyDate() : string.Empty;
-        }
+        public static string ToFriendlyDate(this DateTime? date) => date.HasValue ? date.Value.ToFriendlyDate() : string.Empty;
 
-        public static string ToFriendlyDate(this DateTime date) {
+        public static string ToFriendlyDate(this DateTime date)
+        {
             var elapsedTime = DateTime.UtcNow.Subtract(date);
             var totalDaysElapsed = (int)elapsedTime.TotalDays;
             var totalSecondsElapsed = (int)elapsedTime.TotalSeconds;
 
-            switch (totalDaysElapsed) {
-                case int _ when totalSecondsElapsed < 0: return "n/a";
+            return totalDaysElapsed switch
+            {
+                int _ when totalSecondsElapsed < 0 => "n/a",
 
-                case Today when totalSecondsElapsed < MinuteInSeconds: return "just now";
+                Today when totalSecondsElapsed < MinuteInSeconds => "just now",
+                Today when totalSecondsElapsed < HourInSeconds => string.Format(new PluralFormatProvider(), "{0:minute;minutes} ago",
+                    totalSecondsElapsed.FloorBy(MinuteInSeconds)),
+                Today when totalSecondsElapsed < DayInSeconds => string.Format(new PluralFormatProvider(), "{0:hour;hours} ago",
+                    totalSecondsElapsed.FloorBy(HourInSeconds)),
 
-                case Today when totalSecondsElapsed < HourInSeconds:
-                    return string.Format(new PluralFormatProvider(), "{0:minute;minutes} ago", totalSecondsElapsed.FloorBy(MinuteInSeconds));
+                Yesterday => "yesterday",
 
-                case Today when totalSecondsElapsed < DayInSeconds:
-                    return string.Format(new PluralFormatProvider(), "{0:hour;hours} ago", totalSecondsElapsed.FloorBy(HourInSeconds));
+                int days when days < WeekInDays => $"{totalDaysElapsed} days ago",
+                int days when days < MonthInDays => string.Format(new PluralFormatProvider(), "{0:week;weeks} ago",
+                    totalDaysElapsed.CeilingBy(WeekInDays)),
 
-                case Yesterday: return "yesterday";
-
-                case int days when days < WeekInDays: return $"{totalDaysElapsed} days ago";
-
-                case int days when days < MonthInDays:
-                    return string.Format(new PluralFormatProvider(), "{0:week;weeks} ago", totalDaysElapsed.CeilingBy(WeekInDays));
-
-                default:
-                    return date.ToLongDateString();
-            }
+                _ => date.ToLongDateString()
+            };
         }
     }
 }

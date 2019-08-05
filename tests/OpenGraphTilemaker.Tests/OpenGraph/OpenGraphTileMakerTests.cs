@@ -65,14 +65,14 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             // Assert
             _tileMaker.Error.Should().BeNull();
             _tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
-            foreach (var node in _tileMaker.HtmlMetaTags) {
+            foreach (var node in _tileMaker.HtmlMetaTags!) {
                 TestConsole.WriteLine(node.Attributes.Aggregate(
                     "\t", (s, attribute) => s + $"{attribute.Name} = {attribute.Value} ## "));
             }
 
             var md = _tileMaker.GraphMetadata;
             md.Should().NotBeNull();
-            md.Type.Should().NotBeNull();
+            md!.Type.Should().NotBeNull();
             md.Type.Should().BeEquivalentTo("Article");
             md.Title.Should()
                 .BeEquivalentTo("Elon Musk: The Recode interview");
@@ -111,14 +111,14 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             // Assert
             _tileMaker.Error.Should().BeNull();
             _tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
-            foreach (var node in _tileMaker.HtmlMetaTags) {
+            foreach (var node in _tileMaker.HtmlMetaTags!) {
                 TestConsole.WriteLine(node.Attributes.Aggregate(
                     "\t", (s, attribute) => s + $"{attribute.Name} = {attribute.Value} ## "));
             }
 
             var md = _tileMaker.GraphMetadata;
             md.Should().NotBeNull();
-            md.Type.Should().NotBeNull();
+            md!.Type.Should().NotBeNull();
             md.Type.Should().BeEquivalentTo("Article");
             md.Title.Should()
                 .BeEquivalentTo("Microsoft launches Spend iOS app that automatically tracks and matches expenses");

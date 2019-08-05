@@ -6,7 +6,8 @@ namespace Common.Exceptions
 {
     public static class LoggedExceptionExtensions
     {
-        public static bool LogException<T>(this Exception e) {
+        public static bool LogException<T>(this Exception e)
+        {
             if (e is ILoggedException) return false;
 
             var logger = ApplicationLogging.CreateLogger<T>();

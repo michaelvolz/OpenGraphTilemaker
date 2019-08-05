@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 namespace Ardalis.GuardClauses
 {
     /// <summary>
-    /// Assertion Guard.
+    ///     Assertion Guard.
     /// </summary>
     public static partial class GuardClauseExtensions
     {
@@ -20,10 +20,9 @@ namespace Ardalis.GuardClauses
         /// <param name="input"></param>
         /// <param name="parameterName"></param>
         /// <exception cref="ArgumentException"></exception>
-        public static void Assert(this IGuardClause guardClause, Expression<Func<bool>> input, string parameterName) {
-            if (input.Compile().Invoke() == false) {
-                throw new GuardException(new ArgumentException($"Assertion failed:  {input}.", parameterName));
-            }
+        public static void Assert(this IGuardClause guardClause, Expression<Func<bool>> input, string parameterName)
+        {
+            if (input.Compile().Invoke() == false) throw new GuardException(new ArgumentException($"Assertion failed:  {input}.", parameterName));
         }
     }
 }

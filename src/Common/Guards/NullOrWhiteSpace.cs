@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JetBrains.Annotations;
 
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable CheckNamespace
@@ -22,11 +21,10 @@ namespace Ardalis.GuardClauses
         /// <returns>The input for variable initialization.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static string NullOrWhiteSpace(this IGuardClause guardClause, string input, string parameterName) {
+        public static string NullOrWhiteSpace(this IGuardClause guardClause, string input, string parameterName)
+        {
             Guard.Against.NullOrEmpty(input, parameterName);
-            if (string.IsNullOrWhiteSpace(input)) {
-                throw new GuardException(new ArgumentException("Value cannot be whitespace.", parameterName));
-            }
+            if (string.IsNullOrWhiteSpace(input)) throw new GuardException(new ArgumentException("Value cannot be whitespace.", parameterName));
 
             return input;
         }
@@ -41,8 +39,7 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static string NullOrWhiteSpace(this IGuardClause guardClause, [NotNull] Expression<Func<string>> input) {
-            return Guard.Against.NullOrWhiteSpace(input.Compile()(), input.MemberExpressionName());
-        }
+        public static string NullOrWhiteSpace(this IGuardClause guardClause, Expression<Func<string>> input) =>
+            Guard.Against.NullOrWhiteSpace(input.Compile()(), input.MemberExpressionName());
     }
 }

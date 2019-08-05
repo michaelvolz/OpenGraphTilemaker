@@ -28,10 +28,8 @@ namespace Common.TagCloud
         ///     Multiple texts inserted at the same time will only add each word once.
         /// </summary>
         /// <param name="texts">Text to use.</param>
-        /// <returns>
-        ///     <see cref="Task" />
-        /// </returns>
-        public async Task InsertAsync(params string[] texts) {
+        public async Task InsertAsync(params string[] texts)
+        {
             await Task.FromResult(0); // async placeholder, File.ReadAllLines has no async in netstandard2.0
 
             if (_stopWords == null) _stopWords = File.ReadAllLines($@"{AssemblyLocation}\{MySQLMyISAMText}");
@@ -40,7 +38,8 @@ namespace Common.TagCloud
                 InsertWord(word);
         }
 
-        private void InsertWord(string word) {
+        private void InsertWord(string word)
+        {
             if (word.Length < 2) return;
             if (_stopWords.Contains(word.Replace("’", "'"), StringComparer.InvariantCultureIgnoreCase)) return;
 

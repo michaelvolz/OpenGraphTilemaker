@@ -1,0 +1,24 @@
+﻿@using Common.Extensions
+@inherits TileModel;
+
+@if (OpenGraphMetadata?.Image != null) {
+    <div class="tile card shadow">
+        <img src="@OpenGraphMetadata.Image" alt="" title="@OpenGraphMetadata.Source">
+        <div class="card-section">
+            <div>
+                <small>
+                    <i>@OpenGraphMetadata.BookmarkTime.ToFriendlyDate()</i>
+                </small>
+            </div>
+            <h4>@OpenGraphMetadata.Title</h4>
+            <p>@OpenGraphMetadata.Description</p>
+            <a href="@OpenGraphMetadata.Url" class="button secondary" target="_new">
+                <span>
+                    @(OpenGraphMetadata.SiteName.TruncateAtWord(25) ?? "Link")
+                </span>
+            </a>
+        </div>
+    </div>
+} else {
+    <div class="tile-invalid text alert">@OpenGraphMetadata?.Source</div>
+}

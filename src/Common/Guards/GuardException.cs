@@ -33,8 +33,6 @@ namespace Ardalis.GuardClauses
 
         public override string StackTrace => this.RewindStackTraceMessage();
 
-        public override string ToString() {
-            return this.RewindStackTraceMessage() + base.ToString();
-        }
+        public override string ToString() => this.RewindStackTraceMessage() + base.ToString();
     }
 }

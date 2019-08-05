@@ -1,7 +1,10 @@
 ﻿using AutoFixture.Xunit2;
 using FluentAssertions;
+using JetBrains.Annotations;
 using Xunit;
 using Xunit.Abstractions;
+
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace BaseTestCode
 {
@@ -14,25 +17,26 @@ namespace BaseTestCode
 
         [Theory]
         [AutoData]
-        public void IntroductoryTest(int expectedNumber, Peter sut) {
-            var result = Peter.Echo(expectedNumber);
+        public void IntroductoryTest(int expectedNumber, SomeTestClass sut)
+        {
+            var result = SomeTestClass.Echo(expectedNumber);
 
             result.Should().Be(expectedNumber);
             sut.AnotherClass.Should().NotBeNull();
-            sut.AnotherClass.Currency.Should().BeGreaterThan(0);
+            sut.AnotherClass!.Currency.Should().BeGreaterThan(0);
         }
 
-        public class Peter
+        [UsedImplicitly]
+        public class SomeTestClass
         {
-            public string Text { get; set; }
-            public int Number { get; set; }
-            public AnotherClass AnotherClass { get; set; }
+            [UsedImplicitly] public string? Text { get; set; }
+            [UsedImplicitly] public int Number { get; set; }
+            public AnotherClass? AnotherClass { get; set; }
 
-            public static int Echo(int expectedNumber) {
-                return expectedNumber;
-            }
+            public static int Echo(int expectedNumber) => expectedNumber;
         }
 
+        [UsedImplicitly]
         public class AnotherClass
         {
             public decimal Currency { get; set; }

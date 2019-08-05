@@ -4,19 +4,21 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.11.0" />
-    <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.8.0" />
-    <PackageReference Include="AutoFixture.Xunit2" Version="4.8.0" />
-    <PackageReference Include="Blazor-State" Version="0.3.6" />
+    <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.11.0" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.11.0" />
+    <PackageReference Include="Blazor-State" Version="1.0.0-preview6.19307.2-20190710-124031" />
     <PackageReference Include="FluentAssertions" Version="5.7.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="3.0.0-preview-19075-0444" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="NSubstitute" Version="4.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="3.0.0-preview3-19153-02" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.0.0-preview7.19362.4" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0-preview7.19362.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0-preview-20190715-02" />
+    <PackageReference Include="NSubstitute" Version="4.2.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>

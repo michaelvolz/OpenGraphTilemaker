@@ -1,0 +1,11 @@
+﻿@typeparam TItem
+@inherits ValidationErrorModel<TItem>
+@if (HasValidationFailures) {
+    <div class="validationError @Class">
+        <ul>
+            @foreach (var failure in ValidationFailures) {
+                <li>@failure</li>
+            }
+        </ul>
+    </div>
+}

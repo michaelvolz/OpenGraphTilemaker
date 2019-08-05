@@ -39,14 +39,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61" PrivateAssets="all" /> -->
-    <!-- <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3" PrivateAssets="all" /> -->
+    <!--<PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="all" />-->
+    <!--<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4" PrivateAssets="all" />-->
     <!-- <PackageReference Include="Microsoft.Aspnetcore.Mvc.Analyzers" Version="2.2.0" PrivateAssets="all" /> -->
     <!-- <PackageReference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers" Version="2.2.0" PrivateAssets="all" /> -->
     <!-- <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.1" PrivateAssets="all" /> -->
-    <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" />
+    <!--<CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
-    <AdditionalFiles Include="$(MSBuildThisFileDirectory)$(RuleSetRelease)" Link="StyleCop.ruleset" />
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)$(RuleSetRelease)" Link="StyleCop.ruleset" />-->
     <!-- <None Include="$(RuleSetRelease)" Condition="'$(RuleSetRelease)' != ''" Link="Current%(Extension)" /> -->
   </ItemGroup>
 </Project>

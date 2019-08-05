@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 namespace Ardalis.GuardClauses
 {
     /// <summary>
-    ///  Condition Guard.
+    ///     Condition Guard.
     /// </summary>
     public static partial class GuardClauseExtensions
     {
@@ -20,10 +20,9 @@ namespace Ardalis.GuardClauses
         /// <param name="input"></param>
         /// <param name="parameterName"></param>
         /// <exception cref="ArgumentException"></exception>
-        public static void Condition(this IGuardClause guardClause, Expression<Func<bool>> input, string parameterName) {
-            if (input.Compile().Invoke()) {
-                throw new GuardException(new ArgumentException($"Condition reached:  {input}.", parameterName));
-            }
+        public static void Condition(this IGuardClause guardClause, Expression<Func<bool>> input, string parameterName)
+        {
+            if (input.Compile().Invoke()) throw new GuardException(new ArgumentException($"Condition reached:  {input}.", parameterName));
         }
     }
 }

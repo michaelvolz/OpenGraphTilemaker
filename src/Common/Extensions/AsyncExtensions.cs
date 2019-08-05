@@ -12,18 +12,18 @@ namespace Common.Extensions
         ///     TimeoutAfter.
         ///     See <a href="link">https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md</a>
         /// </summary>
-        public static async Task<T> TimeoutAfter<T>(this Task<T> task, TimeSpan timeout) {
-            using (var cts = new CancellationTokenSource()) {
-                var delayTask = Task.Delay(timeout, cts.Token);
-                var resultTask = await Task.WhenAny(task, delayTask);
+        public static async Task<T> TimeoutAfter<T>(this Task<T> task, TimeSpan timeout)
+        {
+            using var cts = new CancellationTokenSource();
+            var delayTask = Task.Delay(timeout, cts.Token);
+            var resultTask = await Task.WhenAny(task, delayTask);
 
-                if (resultTask == delayTask)
-                    throw new OperationCanceledException();
+            if (resultTask == delayTask)
+                throw new OperationCanceledException();
 
-                cts.Cancel();
+            cts.Cancel();
 
-                return await task;
-            }
+            return await task;
         }
 
         /// <summary>

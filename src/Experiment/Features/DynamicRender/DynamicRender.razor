@@ -1,0 +1,33 @@
+﻿@page "/dynamicrender"
+
+<h1>Dynamic Render</h1>
+
+<p>
+    <button type="button" class="button primary" @onclick="(() => ShouldRender())">
+        Trigger rendering (i.e. makes text longer)
+    </button>
+</p>
+
+<p>@DynamicFragment</p>
+
+@functions {
+    private string _dynamicContent = "This is a long text...";
+
+    protected override void OnInit() {
+        DynamicFragment = builder => {
+            if (_dynamicContent.LastIndexOf("long", StringComparison.Ordinal) > 5000) {
+                _dynamicContent = "This is a long text...";
+            }
+
+            _dynamicContent = _dynamicContent.Replace("long", "long long");
+
+            builder.OpenElement(1, "p");
+            builder.AddContent(2, _dynamicContent);
+            builder.CloseElement();
+        };
+    }
+
+#nullable disable
+    private RenderFragment DynamicFragment { get; set; }
+#nullable enable
+}

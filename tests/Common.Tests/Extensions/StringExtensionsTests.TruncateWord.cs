@@ -9,7 +9,8 @@ namespace Common.Tests.Extensions
 {
     public partial class StringExtensionsTests
     {
-        public static object[][] TestData { [UsedImplicitly] get; } = {
+#nullable disable
+        public static object[][] StringExtensionsTestData { [UsedImplicitly] get; } = {
             new object[] { "Text1_Text2_Text3", 15, "Text1_Text2_Tex" + Ellipsis },
             new object[] { "Text1 Text2 Text3", 15, "Text1 Text2" + Ellipsis },
             new object[] { "Text1 - Text2 - Text3", 15, "Text1 - Text2" + Ellipsis },
@@ -18,14 +19,17 @@ namespace Common.Tests.Extensions
             new object[] { "Gunnar Peipman - Programming Blog", 25, "Gunnar Peipman" + Ellipsis },
             new object[] { "Gunnar Peipman - Programming Blog", 30, "Gunnar Peipman - Programming" + Ellipsis }
         };
+#nullable enable
 
         [Theory]
-        [MemberData(nameof(TestData))]
-        public void TruncateAtWord(string text, int index, string expected) {
+        [MemberData(nameof(StringExtensionsTestData))]
+        public void TruncateAtWord(string text, int index, string expected)
+        {
             var result = text.TruncateAtWord(index);
 
             result.Should().BeEquivalentTo(expected);
-            result.Trim().Length.Should().BeLessOrEqualTo(index + Ellipsis.Length);
+            result.Should().NotBeNullOrEmpty();
+            result!.Trim().Length.Should().BeLessOrEqualTo(index + Ellipsis.Length);
         }
     }
 }

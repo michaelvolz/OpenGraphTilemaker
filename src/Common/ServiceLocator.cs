@@ -1,6 +1,5 @@
 ﻿using System;
 using Ardalis.GuardClauses;
-using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Common
@@ -10,14 +9,15 @@ namespace Common
         private static ServiceProvider _serviceProvider;
         private readonly ServiceProvider _currentServiceProvider;
 
-        private ServiceLocator([NotNull] ServiceProvider currentServiceProvider) => _currentServiceProvider = Guard.Against.Null(() => currentServiceProvider);
+        private ServiceLocator(ServiceProvider currentServiceProvider) =>
+            _currentServiceProvider = Guard.Against.Null(() => currentServiceProvider);
 
         public static ServiceLocator Current => new ServiceLocator(_serviceProvider);
 
         public static void SetServiceProvider(ServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
-        public object GetInstance(Type serviceType) => _currentServiceProvider.GetService(serviceType);
+        public object GetInstance(Type serviceType) => _currentServiceProvider.GetRequiredService(serviceType);
 
-        public TService GetInstance<TService>() => _currentServiceProvider.GetService<TService>();
+        public TService GetInstance<TService>() => _currentServiceProvider.GetRequiredService<TService>();
     }
 }

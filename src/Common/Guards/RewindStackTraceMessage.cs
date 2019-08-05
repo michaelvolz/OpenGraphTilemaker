@@ -15,35 +15,29 @@ namespace Ardalis.GuardClauses
         /// </summary>
         /// <param name="exception"></param>
         /// <returns>Trimmed <see cref="StackTrace" />.</returns>
-        public static string RewindStackTraceMessage(this Exception exception) {
-            StackTrace StackTrace() {
+        public static string RewindStackTraceMessage(this Exception exception)
+        {
+            StackTrace StackTrace()
+            {
                 var skipFrames = 0;
+                StackTrace stackTrace;
 
-                if (exception.Message.StartsWith(GuardException.GuardPrefix, StringComparison.InvariantCultureIgnoreCase)) {
-                    skipFrames = 1;
-                }
-
-                var stackTrace = new StackTrace(exception, skipFrames, true);
-
-                stackTrace = ExcludeGuardFrames(stackTrace, skipFrames);
-
-                return stackTrace;
-            }
-
-            StackTrace ExcludeGuardFrames(StackTrace stackTrace, int skipFrames) {
-                while (stackTrace.ToString().Contains(nameof(GuardClauseExtensions))) {
-                    skipFrames += 1;
+                do
+                {
                     stackTrace = new StackTrace(exception, skipFrames, true);
-                }
+                    skipFrames += 1;
+                } while (stackTrace.ToString().Contains(nameof(GuardClauseExtensions)));
 
                 return stackTrace;
             }
 
-            string Message() {
+            string Message()
+            {
                 var message = exception.Message + Environment.NewLine;
                 var inner = exception.InnerException;
 
-                while (inner != null) {
+                while (inner != null)
+                {
                     message += inner.Message + Environment.NewLine;
                     inner = inner.InnerException;
                 }

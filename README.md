@@ -7,8 +7,6 @@
 ## Why?
 I want to try Blazor with a set of tools and patterns and libraries I personally find useful and evaluate it's complexity, usability and performance. Over simpified examples don't give me the answers I am looking for.
 
-__On hold: Waiting for Blazor to stabilize.__
-
 ### Implemented Features
 
 * State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and [MediatR](https://github.com/jbogard/MediatR)
@@ -71,5 +69,7 @@ __On hold: Waiting for Blazor to stabilize.__
   * Status badge
 * Dependabot 
   * Include badge
-
+* ASP.NET Core 3.0 preview 7
+* C# nullable reference types
+ 
 License: [unlicense](http://unlicense.org/)

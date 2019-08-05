@@ -1,15 +1,15 @@
 ﻿using Ardalis.GuardClauses;
 using HtmlAgilityPack;
-using JetBrains.Annotations;
 
 namespace Common.Extensions
 {
     public static class HtmlExtensions
     {
-        public static string DeEntitize([NotNull] this string value) {
-            Guard.Against.NullOrWhiteSpace(() => value);
+        public static string DeEntitize(this string str)
+        {
+            Guard.Against.NullOrWhiteSpace(() => str);
 
-            return HtmlEntity.DeEntitize(value);
+            return HtmlEntity.DeEntitize(str);
         }
     }
 }

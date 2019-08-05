@@ -1,0 +1,87 @@
+﻿@inherits Experiment.Features.NavMenu.NavMenuModel
+
+<div class="mobile-nav-bar title-bar">
+    <div class="title-bar-left">
+        <a class="menu-icon show-for-small-only" @onclick="ToggleNavMenu"></a>
+    </div>
+    <div class="">
+        <div>
+            <a href="/" class="app-title">OpenGraph Tilemaker</a>
+        </div>
+    </div>
+    <div class="title-bar-right">
+        <div class="show-for-small-only">
+            <span class="">Actions</span>&nbsp;
+            <span class="">
+                <a href="/">
+                    <i class="fi-home"></i>
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="navbar-spacer"></div>
+
+<div class="nav-menu @NavMenuCSS">
+    <ul class="vertical menu">
+        <li>
+            <NavLink href="/" Match="NavLinkMatch.All">
+                <i class="fi-home"></i> Home
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="cryptowatch">
+                <i class="fi-bitcoin"></i> CryptoWatch
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="tiles">
+                <i class="fi-thumbnails"></i> Tiles
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="form">
+                <i class="fi-results"></i> Form
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="tabs">
+                <i class="fi-comments"></i> Tabs
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="dynamicrender">
+                <i class="fi-graph-trend"></i> Dynamic Render
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="counter">
+                <i class="fi-database"></i> Counter
+            </NavLink>
+        </li>
+        <li>
+            <NavLink href="fetchdata">
+                <i class="fi-list-thumbnails"></i> Fetch data
+            </NavLink>
+        </li>
+    </ul>
+
+    <hr/>
+
+    <ul class="vertical menu">
+        <li>
+            <a class="@ClientModeCSS()" @onclick="ActivateClientMode">
+                Client Mode
+            </a>
+        </li>
+
+        <li>
+            <a class="@ServerModeCSS()" @onclick="ActivateServerMode">
+                Server Mode
+            </a>
+        </li>
+    </ul>
+
+    <hr class="show-for-small-only"/>
+</div>
