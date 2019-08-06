@@ -19,21 +19,16 @@ namespace OpenGraphTilemaker.Tests
     public class ClientBaseTest<T> : BaseTest<T>, IDisposable
     {
         private const string CachingFolder = @"C:\WINDOWS\Temp\";
+        
         private readonly HttpClient _realHttpClient;
-        private readonly TimeSpan cachingTimeSpan = TimeSpan.FromSeconds(120);
-        private readonly TimeSpan timeoutTimeSpan = TimeSpan.FromSeconds(15);
-        private readonly Uri uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
+        private readonly Uri _uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
+
+        private readonly TimeSpan _cachingTimeSpan = TimeSpan.FromSeconds(120);
+        private readonly TimeSpan _timeoutTimeSpan = TimeSpan.FromSeconds(15);
 
         protected ClientBaseTest(ITestOutputHelper testConsole) : base(testConsole) => _realHttpClient = new HttpClient();
 
-        public void Dispose() {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing) {
-            if (disposing) _realHttpClient?.Dispose();
-        }
+        public void Dispose() => _realHttpClient?.Dispose();
 
         protected TileMakerClient TileMakerClient(string fakeResponse) =>
             new TileMakerClient(HttpClient(fakeResponse, HttpStatusCode.OK), TileMaker(), HttpLoader());
@@ -45,9 +40,9 @@ namespace OpenGraphTilemaker.Tests
         protected DiscCache DiscCache() => new DiscCache(DiscCacheIOptions());
 
         protected IOptions<DiscCacheOptions> DiscCacheIOptions() =>
-            Options.Create(new DiscCacheOptions { CacheFolder = CachingFolder, CacheState = CacheState.Disabled });
+            Options.Create(new DiscCacheOptions {CacheFolder = CachingFolder, CacheState = CacheState.Disabled});
 
-        protected IOptions<PocketOptions> GetPocketIOptions() => Options.Create(new PocketOptions(uri, cachingTimeSpan, timeoutTimeSpan));
+        protected IOptions<PocketOptions> GetPocketIOptions() => Options.Create(new PocketOptions(_uri, _cachingTimeSpan, _timeoutTimeSpan));
 
         protected Pocket Pocket() => new Pocket(MemoryCache(), FeedService());
 

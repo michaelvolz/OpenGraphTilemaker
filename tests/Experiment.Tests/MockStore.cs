@@ -1,23 +1,23 @@
-﻿//using System;
-//using BlazorState;
+﻿using System;
+using BlazorState;
 
-//// ReSharper disable CheckNamespace
-//#pragma warning disable CA1720 // Identifier contains type name
+namespace Experiment.Tests
+{
+    public class MockStore : IStore
+    {
+        private IState? _state;
 
-//namespace OpenGraphTilemaker.Tests
-//{
-//    public class MockStore : IStore
-//    {
-//        private IState _state;
+        public void Reset() => throw new NotImplementedException();
 
-//        public Guid Guid { get; } = Guid.NewGuid();
+        public Guid Guid { get; } = Guid.NewGuid();
 
-//        public TState GetState<TState>() {
-//            return (TState)_state;
-//        }
+        public TState GetState<TState>()
+        {
+            if (_state == null) throw new InvalidOperationException("State not set!");
 
-//        public void SetState(IState aState) {
-//            _state = aState;
-//        }
-//    }
-//}
+            return (TState)_state;
+        }
+
+        public void SetState(IState aState) => _state = aState;
+    }
+}
