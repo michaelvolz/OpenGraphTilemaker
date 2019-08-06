@@ -22,8 +22,6 @@ namespace Experiment.Features.Tiles
             LastSearchText = state.LastSearchText;
         }
 
-        // public override object Clone() => new TilesState(this);
-
         protected override void Initialize()
         {
             CurrentTiles = new List<OpenGraphMetadata>();

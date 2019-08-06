@@ -1,29 +1,27 @@
-﻿@using Common
-@inherits TilesModel;
-<style>
-</style>
+﻿@inherits TilesModel;
+
 <section class="@Class">
-    <SortingAndSearch Class="@ShowIf(Loaded)" @ref="SortComponent"
+    <SortingAndSearch Class="@ShowIf(Loaded)"
                       Count="@State.CurrentTiles.Count"
-                      OnSearch="@((Func<string, Task>)OnSearch)"
-                      OnSortOrder="@((Func<SortOrder, Task>)OnSortOrder)"
-                      OnSortProperty="@((Func<string, Task>)OnSortProperty)"
+                      OnSearch="@OnSearch"
+                      OnSortOrder="@OnSortOrder"
+                      OnSortProperty="@OnSortProperty"
                       SearchText="@State.SearchText"
                       SortOrder="@State.SortOrder"
                       SortProperty="@State.SortProperty" />
 
     <p></p>
 
-    @if (State?.TagCloud != null && State.TagCloud.Any())
+    @if (TagCloudExists())
     {
         <div class="tagCloud callout text-center">
             <ul>
                 @{ var sortedTagCloud = from entry in State.TagCloud orderby entry.Key select entry; }
 
-                @foreach (var word in sortedTagCloud.Where(pair => pair.Value > 1))
+                @foreach (var tag in sortedTagCloud.Where(pair => pair.Value > 1))
                 {
                     <li>
-                        <a class="@("size" + (word.Value <= 6 ? word.Value : 6) )" @onclick="(() => OnSearch(word.Key))">@word.Key.ToLower()</a>
+                        <a class="@("size" + (tag.Value <= 6 ? tag.Value : 6))" @onclick="() => OnSearch(tag.Key)">@tag.Key.ToLower()</a>
                     </li>
                 }
             </ul>
@@ -33,13 +31,11 @@
     <div class="callout warning emphasize radius @ShowIf(Empty)">Empty!</div>
 
     <div class="masonry-css @ShowIf(Any)">
-
         @foreach (var item in State!.CurrentTiles)
         {
             <div class="masonry-css-item auto">
                 <Tile OpenGraphMetadata="@item"></Tile>
             </div>
         }
-
     </div>
 </section>

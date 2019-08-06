@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 
@@ -8,9 +9,9 @@ namespace Experiment.Features.Tiles
 {
     public class TilesPageModel : BlazorComponentStateful<TilesPageModel>
     {
-        private const int OneSecondInMilliseconds = 1000;
+        [UsedImplicitly] private const int OneSecondInMilliseconds = 1000;
 
-        protected List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
+        protected List<OpenGraphMetadata> OriginalTiles { get; private set; } = new List<OpenGraphMetadata>();
 
         protected bool Loading() => !OriginalTiles.Any() && IsLoading;
 

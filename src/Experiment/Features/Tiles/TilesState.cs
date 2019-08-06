@@ -1,6 +1,5 @@
 ﻿#nullable enable
 using System.Collections.Generic;
-using System.Linq;
 using Common;
 using OpenGraphTilemaker.OpenGraph;
 
@@ -13,6 +12,7 @@ namespace Experiment.Features.Tiles
     public partial class TilesState
     {
         public List<OpenGraphMetadata> CurrentTiles { get; private set; } = new List<OpenGraphMetadata>();
+
         //public IOrderedEnumerable<KeyValuePair<string, int>>? TagCloud { get; private set; }
         public Dictionary<string, int>? TagCloud { get; private set; }
 

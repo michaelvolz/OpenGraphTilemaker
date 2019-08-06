@@ -1,7 +1,7 @@
 ﻿@using Common.Extensions
 @inherits TileModel;
 
-@if (OpenGraphMetadata?.Image != null) {
+@if (!string.IsNullOrWhiteSpace(OpenGraphMetadata?.Image)) {
     <div class="tile card shadow">
         <img src="@OpenGraphMetadata.Image" alt="" title="@OpenGraphMetadata.Source">
         <div class="card-section">
@@ -20,5 +20,5 @@
         </div>
     </div>
 } else {
-    <div class="tile-invalid text alert">@OpenGraphMetadata?.Source</div>
+    <div class="tile-invalid text alert">@(OpenGraphMetadata?.Source ?? "---")</div>
 }

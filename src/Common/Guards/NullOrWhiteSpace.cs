@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable CheckNamespace
 
