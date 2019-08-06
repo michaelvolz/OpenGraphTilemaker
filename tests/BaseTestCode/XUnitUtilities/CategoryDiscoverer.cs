@@ -4,7 +4,7 @@ using Xunit.Sdk;
 
 // ReSharper disable ClassNeverInstantiated.Global
 
-namespace BaseTestCode
+namespace BaseTestCode.XUnitUtilities
 {
     public class CategoryDiscoverer : ITraitDiscoverer
     {

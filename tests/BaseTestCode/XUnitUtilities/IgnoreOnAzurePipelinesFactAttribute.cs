@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace BaseTestCode
+namespace BaseTestCode.XUnitUtilities
 {
     public sealed class IgnoreOnAzurePipelinesFactAttribute : FactAttribute
     {
@@ -9,7 +9,8 @@ namespace BaseTestCode
         ///     Initializes a new instance of the <see cref="IgnoreOnAzurePipelinesFactAttribute" /> class.
         ///     Ignore on Linux when run via AppVeyor
         /// </summary>
-        public IgnoreOnAzurePipelinesFactAttribute() {
+        public IgnoreOnAzurePipelinesFactAttribute()
+        {
             if (IsAzurePipelines()) Skip = "Ignore when run via AzurePipelines";
         }
 

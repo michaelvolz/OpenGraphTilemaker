@@ -4,7 +4,7 @@ using Xunit;
 
 // ReSharper disable UnusedMember.Global
 
-namespace BaseTestCode
+namespace BaseTestCode.XUnitUtilities
 {
     public sealed class IgnoreOnAppVeyorLinuxFactAttribute : FactAttribute
     {
@@ -12,7 +12,8 @@ namespace BaseTestCode
         ///     Initializes a new instance of the <see cref="IgnoreOnAppVeyorLinuxFactAttribute" /> class.
         ///     Ignore on Linux when run via AppVeyor
         /// </summary>
-        public IgnoreOnAppVeyorLinuxFactAttribute() {
+        public IgnoreOnAppVeyorLinuxFactAttribute()
+        {
             if (IsLinux() && IsAppVeyor()) Skip = "Ignore on Linux when run via AppVeyor";
         }
 
