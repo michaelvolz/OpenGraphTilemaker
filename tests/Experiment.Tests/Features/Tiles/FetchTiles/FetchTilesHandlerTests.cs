@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using BaseTestCode;
+using BaseTestCode.XUnitUtilities;
 using FluentAssertions;
 using OpenGraphTilemaker.Tests;
 using Experiment.Features.Tiles;

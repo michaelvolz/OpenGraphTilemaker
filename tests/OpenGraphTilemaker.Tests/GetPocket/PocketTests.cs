@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BaseTestCode;
+using BaseTestCode.XUnitUtilities;
 using Common;
 using FluentAssertions;
 using Microsoft.Extensions.Caching.Memory;

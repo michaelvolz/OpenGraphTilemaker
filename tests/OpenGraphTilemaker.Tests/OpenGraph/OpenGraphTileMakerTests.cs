@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using AutoFixture.Xunit2;
 using BaseTestCode;
+using BaseTestCode.XUnitUtilities;
 using FluentAssertions;
 using Microsoft.Extensions.Options;
 using OpenGraphTilemaker.OpenGraph;
