@@ -46,15 +46,6 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * TODO: Use Reactive Extensions (Rx)
 * ZURB foundation 6.5
   * Foundation Icons
-* Code Analysis
-  * FxCopAnalyzers 
-  * Aspnetcore.Mvc.Analyzers
-  * AspNetCore.Mvc.Api.Analyzers
-  * EntityFrameworkCore.Analyzers
-  * StyleCop.Analyzers
-* Switchable Blazor Modes adapted from [BlazorDualMode](https://github.com/Suchiman/BlazorDualMode)
-  * Server side
-  * Client side
 * Modified filestructure
   * Blazor Feature Folders adapted from [Feature Folder Structure in ASP.NET Core](https://scottsauber.com/2016/04/25/feature-folder-structure-in-asp-net-core/)
   * Removed Pages, Shared
