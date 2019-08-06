@@ -8,29 +8,27 @@
 </li>
 
 @functions {
-#nullable disable
-
-    [CascadingParameter] private TabSet ContainerTabSet { get; set; }
-    [Parameter] private string Title { get; set; }
-    [Parameter] public RenderFragment ChildContent { get; set; }
-
 #nullable enable
 
-    string? TitleCssClass => ContainerTabSet.ActiveTab == this ? "is-active" : null;
+    [CascadingParameter] private TabSet? ContainerTabSet { get; set; }
+    [Parameter] private string? Title { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    string? TitleCssClass => ContainerTabSet?.ActiveTab == this ? "is-active" : null;
 
     protected override void OnInit()
     {
-        ContainerTabSet.AddTab(this);
+        ContainerTabSet?.AddTab(this);
     }
 
     public void Dispose()
     {
-        ContainerTabSet.RemoveTab(this);
+        ContainerTabSet?.RemoveTab(this);
     }
 
     void Activate()
     {
-        ContainerTabSet.SetActivateTab(this);
+        ContainerTabSet?.SetActivateTab(this);
     }
 
 }
