@@ -21,7 +21,6 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * xUnit
   * Autofixture
   * nSubstitute
-  * Selenium
 * OpenGraph TileMaker:
   * RSS feedreader as source
   * Sorting 
