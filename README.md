@@ -9,6 +9,9 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
 
 ### Implemented Features
 
+* ASP.NET Core 3.0 preview 7
+* C# nullable reference types
+* Blazor server-side only for now
 * State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and [MediatR](https://github.com/jbogard/MediatR)
 * Formvalidation:
   * [Fluent Validation](https://fluentvalidation.net/)
@@ -25,11 +28,10 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * Searching
   * Disc and memory caching
   * Simple loading indicator
-  * Data initialisation from parent -> best practices
-  * Basic TagCloud
+  * Data initialisation from parent
+  * Automatically generated basic TagCloud
   * TODO: paging
   * TODO: switch grid-layout
-  * TODO: use API call for client version (feedreader is not client compatible)
 * Miscellaneous Utility Components
   * Visibility
   * TODO: FeatureFlag
@@ -58,7 +60,6 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * Blazor Feature Folders adapted from [Feature Folder Structure in ASP.NET Core](https://scottsauber.com/2016/04/25/feature-folder-structure-in-asp-net-core/)
   * Removed Pages, Shared
 * Serilog for Logging
-  * Blazor client-logging by NBlumhardt [serilog-blazor](https://github.com/nblumhardt/serilog-blazor)
 * Using as less JavaScript as possible
 * JetBrains Annotations
 * Custom Guard clauses, customised from [Ardalis.GuardClauses](https://github.com/ardalis/GuardClauses)
@@ -69,7 +70,5 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * Status badge
 * Dependabot 
   * Include badge
-* ASP.NET Core 3.0 preview 7
-* C# nullable reference types
  
 License: [unlicense](http://unlicense.org/)
