@@ -1,10 +1,12 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using Common;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.Extensions.Logging;
 
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 // ReSharper disable UnusedMethodReturnValue.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Local
 // ReSharper disable EventNeverSubscribedTo.Global
@@ -14,22 +16,33 @@ namespace Experiment.Features.Tiles
 {
     public class SortingAndSearchModel : BlazorComponentStateful<SortingAndSearchModel>
     {
-#nullable disable
-        [Parameter] protected string Class { get; set; }
-        [Parameter] private Func<string, Task> OnSortProperty { get; set; }
-        [Parameter] private Func<SortOrder, Task> OnSortOrder { get; set; }
-        [Parameter] private Func<string, Task> OnSearch { get; set; }
-        [Parameter] protected string SortProperty { get; set; }
-        [Parameter] protected SortOrder SortOrder { get; set; }
-        [Parameter] protected string SearchText { get; set; }
-        [Parameter] protected int Count { get; set; }
-#nullable enable
+        [Parameter] private Func<string, Task>? OnSortProperty { get; set; }
+        [Parameter] private Func<SortOrder, Task>? OnSortOrder { get; set; }
+        [Parameter] private Func<string, Task>? OnSearch { get; set; }
 
-        private string? LastSearchText { get; set; }
+        [Parameter] protected string Class { get; set; } = string.Empty;
+        [Parameter] protected string SortProperty { get; set; } = string.Empty;
+        [Parameter] protected SortOrder SortOrder { get; set; }
+        [Parameter] protected string SearchText { get; set; } = string.Empty;
+        [Parameter] protected int Count { get; set; }
+
         protected ElementRef SearchInput { get; set; }
 
-        protected Task OnSortPropertyButtonClicked() => OnSortProperty(SortProperty);
-        protected Task OnSortOrderButtonClicked() => OnSortOrder(SortOrder);
+        protected Task OnSortPropertyButtonClicked()
+        {
+            Guard.Against.Null(() => OnSortProperty);
+            Guard.Against.NullOrWhiteSpace(() => SortProperty);
+
+            return OnSortProperty!(SortProperty!);
+        }
+
+        protected Task OnSortOrderButtonClicked()
+        {
+            Guard.Against.Null(() => OnSortOrder);
+            Guard.Against.Default(() => SortOrder);
+
+            return OnSortOrder!(SortOrder);
+        }
 
         protected async Task OnSearchTextChanged(UIKeyboardEventArgs args)
         {
@@ -40,25 +53,12 @@ namespace Experiment.Features.Tiles
 
         protected Task OnSearchButtonClicked()
         {
-            Logger.LogInformation("OnSearchButtonClicked()");
+            Guard.Against.Null(() => OnSearch);
+            Guard.Against.Null(() => SearchText);
 
-            if (LastSearchText == SearchText) return Task.CompletedTask;
-
-            OnSearch(SearchText);
-            LastSearchText = SearchText;
+            OnSearch!(SearchText);
 
             return Task.CompletedTask;
-        }
-
-        /// <summary>
-        ///     BuildRenderTree.
-        /// </summary>
-        protected override void BuildRenderTree(RenderTreeBuilder builder)
-        {
-            // Fires when 'enter' was pressed in the searchBox  or  searchBox -> blur
-            OnSearchButtonClicked();
-
-            base.BuildRenderTree(builder);
         }
 
         protected override async Task OnAfterRenderAsync() => await SearchInput.FocusAsync(ComponentContext, JSRuntime);

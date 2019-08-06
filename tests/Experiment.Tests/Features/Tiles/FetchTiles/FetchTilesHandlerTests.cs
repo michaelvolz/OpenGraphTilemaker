@@ -10,7 +10,7 @@ using Xunit.Abstractions;
 
 namespace Experiment.Tests.Features.Tiles
 {
-    public class FetchTilesHandlerTests : ClientBaseTest<FetchTilesHandlerTests>
+    public class FetchTilesHandlerTests : IntegrationTests<FetchTilesHandlerTests>
     {
         public FetchTilesHandlerTests(ITestOutputHelper testConsole) : base(testConsole) { }
 

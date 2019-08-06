@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace Experiment.Tests.Features.Counter
 {
-    public class IncrementCounterHandlerTests : ClientBaseTest<IncrementCounterHandlerTests>
+    public class IncrementCounterHandlerTests : IntegrationTests<IncrementCounterHandlerTests>
     {
         public IncrementCounterHandlerTests(ITestOutputHelper testConsole) : base(testConsole)
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#nullable enable
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
@@ -15,10 +16,8 @@ namespace Experiment.Features.Tiles
 {
     public class TilesModel : BlazorComponentStateful<TilesModel>
     {
-#nullable disable
-        [Parameter] protected string Class { get; set; }
-        [Parameter] protected List<OpenGraphMetadata> OriginalTiles { get; set; }
-#nullable enable
+        [Parameter] protected string? Class { get; set; }
+        [Parameter] protected List<OpenGraphMetadata>? OriginalTiles { get; set; }
 
         protected SortingAndSearch? SortComponent { get; set; }
         protected TilesState State => Store.GetState<TilesState>();
@@ -29,9 +28,9 @@ namespace Experiment.Features.Tiles
 
             if (OriginalTiles.Any() && !State.CurrentTiles.Any())
             {
-                Logger.LogInformation($"### {nameof(OnParametersSetAsync)} Count: " + OriginalTiles.Count);
+                Logger.LogInformation($"### {nameof(OnParametersSetAsync)} Count: " + OriginalTiles!.Count);
                 await SearchAsync(State.SearchText);
-                await RequestAsync(new CreateTagCloudRequest { OriginalTiles = OriginalTiles });
+                await RequestAsync(new CreateTagCloudRequest {OriginalTiles = OriginalTiles});
 
                 IsLoading = false;
             }
@@ -48,7 +47,7 @@ namespace Experiment.Features.Tiles
         private async Task SortByOrder(SortOrder sortOrder)
         {
             sortOrder = sortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-            await RequestAsync(new SortTilesRequest { CurrentTiles = State.CurrentTiles, SortOrder = sortOrder });
+            await RequestAsync(new SortTilesRequest {CurrentTiles = State.CurrentTiles, SortOrder = sortOrder});
 
             StateHasChanged();
         }
@@ -60,20 +59,19 @@ namespace Experiment.Features.Tiles
             sortProperty = sortProperty != nameof(OpenGraphMetadata.Title)
                 ? nameof(OpenGraphMetadata.Title)
                 : nameof(OpenGraphMetadata.BookmarkTime);
-            await RequestAsync(new SortTilesRequest { CurrentTiles = State.CurrentTiles, SortProperty = sortProperty });
+            await RequestAsync(new SortTilesRequest {CurrentTiles = State.CurrentTiles, SortProperty = sortProperty});
 
             StateHasChanged();
         }
 
         private async Task SearchAsync(string searchText)
         {
-            if (OriginalTiles.Any())
-            {
-                await RequestAsync(new SearchTilesRequest { OriginalTiles = OriginalTiles, SearchText = searchText });
-                await RequestAsync(new SortTilesRequest { CurrentTiles = State.CurrentTiles });
+            if (!OriginalTiles.Any()) return;
 
-                StateHasChanged();
-            }
+            await RequestAsync(new SearchTilesRequest {OriginalTiles = OriginalTiles, SearchText = searchText});
+            await RequestAsync(new SortTilesRequest {CurrentTiles = State.CurrentTiles});
+
+            StateHasChanged();
         }
     }
 }

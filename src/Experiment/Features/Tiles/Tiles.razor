@@ -23,7 +23,7 @@
                 @foreach (var word in sortedTagCloud.Where(pair => pair.Value > 1))
                 {
                     <li>
-                        <a class="@("size" + (word.Value <= 6 ? word.Value : 6) )" @onclick="(async () => await OnSearch(word.Key))">@word.Key.ToLower()</a>
+                        <a class="@("size" + (word.Value <= 6 ? word.Value : 6) )" @onclick="(() => OnSearch(word.Key))">@word.Key.ToLower()</a>
                     </li>
                 }
             </ul>
