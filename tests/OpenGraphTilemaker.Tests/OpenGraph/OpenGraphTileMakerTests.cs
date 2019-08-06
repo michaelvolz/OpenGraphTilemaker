@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using OpenGraphTilemaker.OpenGraph;
 using Xunit;
 using Xunit.Abstractions;
+using Xunit.Categories;
 
 // ReSharper disable StringLiteralTypo
 // ReSharper disable ArgumentsStyleLiteral
@@ -42,7 +43,7 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
         }
 
         [Fact]
-        [XunitCategory("Integration")]
+        [IntegrationTest]
         public async Task Scrape_ErroneousUrl_Error() {
             // Arrange
             var uri = new Uri("http://brokenurl");

@@ -8,6 +8,7 @@ using OpenGraphTilemaker.Tests;
 using Experiment.Features.Tiles;
 using Xunit;
 using Xunit.Abstractions;
+using Xunit.Categories;
 
 namespace Experiment.Tests.Features.Tiles
 {
@@ -39,7 +40,7 @@ namespace Experiment.Tests.Features.Tiles
         }
 
         [Fact(Skip = "Manual testing only")]
-        [XunitCategory("Integration")]
+        [IntegrationTest]
         public async Task FetchTilesRequest_RealHttpClient()
         {
             // Arrange

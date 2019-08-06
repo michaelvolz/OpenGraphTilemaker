@@ -9,6 +9,7 @@ using Microsoft.Extensions.Caching.Memory;
 using OpenGraphTilemaker.GetPocket;
 using Xunit;
 using Xunit.Abstractions;
+using Xunit.Categories;
 
 namespace OpenGraphTilemaker.Tests.GetPocket
 {
@@ -34,7 +35,7 @@ namespace OpenGraphTilemaker.Tests.GetPocket
         private readonly MemoryCache _memoryCache;
 
         [Fact]
-        [XunitCategory("Integration")]
+        [IntegrationTest]
         public async Task GetEntries()
         {
             // Act
