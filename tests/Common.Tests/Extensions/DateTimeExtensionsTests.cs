@@ -4,6 +4,7 @@ using AutoFixture.Xunit2;
 using BaseTestCode;
 using Common.Extensions;
 using FluentAssertions;
+using VirtualTimeLib;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -16,27 +17,28 @@ namespace Common.Tests.Extensions
         public DateTimeExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
         private const string SingularPlural = "singular;plural";
+        private const int FreezeTime = 0;
 
 #nullable disable
         public static IEnumerable<object[]> DateTimeExtensionsTestData => new List<object[]>
-        {
-            new object[] {DateTime.UtcNow, "just now"},
-            new object[] {DateTime.UtcNow.AddMinutes(-1), "1 minute ago"},
-            new object[] {DateTime.UtcNow.AddMinutes(-2), "2 minutes ago"},
-            new object[] {DateTime.UtcNow.AddMinutes(-60), "1 hour ago"},
-            new object[] {DateTime.UtcNow.AddMinutes(-120), "2 hours ago"},
-            new object[] {DateTime.UtcNow.AddDays(-1), "yesterday"},
-            new object[] {DateTime.UtcNow.AddDays(-2), "2 days ago"},
-            new object[] {DateTime.UtcNow.AddDays(-7), "1 week ago"},
-            new object[] {DateTime.UtcNow.AddDays(-30), "5 weeks ago"}
-        };
 #nullable enable
+        {
+            new object[] {DateTime.UtcNow.ToVirtualTime(FreezeTime), "just now"},
+            new object[] {DateTime.UtcNow.AddMinutes(-1).ToVirtualTime(FreezeTime), "1 minute ago"},
+            new object[] {DateTime.UtcNow.AddMinutes(-2).ToVirtualTime(FreezeTime), "2 minutes ago"},
+            new object[] {DateTime.UtcNow.AddMinutes(-60).ToVirtualTime(FreezeTime), "1 hour ago"},
+            new object[] {DateTime.UtcNow.AddMinutes(-120).ToVirtualTime(FreezeTime), "2 hours ago"},
+            new object[] {DateTime.UtcNow.AddDays(-1).ToVirtualTime(FreezeTime), "yesterday"},
+            new object[] {DateTime.UtcNow.AddDays(-2).ToVirtualTime(FreezeTime), "2 days ago"},
+            new object[] {DateTime.UtcNow.AddDays(-7).ToVirtualTime(FreezeTime), "1 week ago"},
+            new object[] {DateTime.UtcNow.AddDays(-30).ToVirtualTime(FreezeTime), "5 weeks ago"}
+        };
 
         [Theory]
         [MemberData(nameof(DateTimeExtensionsTestData))]
-        public void ToFriendlyDate_ValidDates(DateTime date, string expected)
+        public void ToFriendlyDate_ValidDates(ITime date, string expected)
         {
-            var result = date.ToFriendlyDate();
+            var result = date.Now.ToFriendlyDate();
 
             result.Should().Be(expected);
         }
