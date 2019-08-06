@@ -1,7 +1,11 @@
-﻿namespace Experiment.Features.Tabs
+﻿// ReSharper disable UnusedMember.Global
+
+using Microsoft.AspNetCore.Components;
+
+namespace Experiment.Features.Tabs
 {
     public interface ITab
     {
-        Microsoft.AspNetCore.Components.RenderFragment ChildContent { get; set; }
+        RenderFragment? ChildContent { get; set; }
     }
 }

@@ -10,9 +10,14 @@
 @functions {
 #nullable enable
 
-    [CascadingParameter] private TabSet? ContainerTabSet { get; set; }
-    [Parameter] private string? Title { get; set; }
-    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [CascadingParameter]
+    private TabSet? ContainerTabSet { get; set; }
+
+    [Parameter]
+    private string? Title { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
 
     string? TitleCssClass => ContainerTabSet?.ActiveTab == this ? "is-active" : null;
 

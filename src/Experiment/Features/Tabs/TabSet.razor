@@ -18,11 +18,10 @@
 </div>
 
 @functions {
-#nullable disable
-
-    [Parameter] public RenderFragment ChildContent { get; set; }
-
 #nullable enable
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
 
     public ITab? ActiveTab { get; private set; }
 
