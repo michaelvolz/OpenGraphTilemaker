@@ -12,9 +12,9 @@ namespace OpenGraphTilemaker.GetPocket
 
             return new PocketEntry(
                 item.Title,
-                item.Categories.First().Name,
+                item.Categories.FirstOrDefault()?.Name,
                 pubDate: item.Published.UtcDateTime,
-                link: item.Links.First().Uri.OriginalString);
+                link: item.Links.FirstOrDefault()?.Uri.OriginalString);
         }
     }
 }

@@ -1,15 +1,16 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using Ardalis.GuardClauses;
 
 namespace OpenGraphTilemaker.GetPocket
 {
     public class PocketEntry
     {
-        public PocketEntry(string title, string category, string link, DateTime pubDate)
+        public PocketEntry(string title, string? category, string? link, DateTime pubDate)
         {
             Title = Guard.Against.NullOrWhiteSpace(() => title);
             Category = category ?? string.Empty;
-            Link = Guard.Against.NullOrWhiteSpace(() => link);
+            Link = link ?? string.Empty;
             PubDate = Guard.Against.Default(() => pubDate);
         }
 
