@@ -4,28 +4,24 @@ using Common;
 
 namespace OpenGraphTilemaker.GetPocket
 {
-    public class PocketOptions : IPocketOptions, IVerifiableOptions
+    public class PocketOptions : IPocketOptions
     {
+        [IoC]
         public PocketOptions() { }
 
-        public PocketOptions( Uri uri, TimeSpan caching, TimeSpan timeout) {
+        public PocketOptions(Uri uri, TimeSpan caching, TimeSpan timeout)
+        {
+            Guard.Against.Null(() => uri);
+            Guard.Against.Default(() => caching);
+            Guard.Against.Default(() => timeout);
+
             Uri = uri;
             CachingTimeSpan = caching;
             TimeOutTimeSpan = timeout;
-
-            Verify();
         }
 
         public Uri? Uri { get; set; }
         public TimeSpan CachingTimeSpan { get; set; }
         public TimeSpan TimeOutTimeSpan { get; set; }
-
-        public bool Verify() {
-            Guard.Against.Null(() => Uri);
-            Guard.Against.Default(() => CachingTimeSpan);
-            Guard.Against.Default(() => TimeOutTimeSpan);
-
-            return true;
-        }
     }
 }
