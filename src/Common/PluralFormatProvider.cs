@@ -15,7 +15,7 @@ namespace Common
             Guard.Against.Null(() => argument);
             Guard.Against.Assert(() => argument.IsNumeric(), nameof(argument));
 
-            if (format == null) format = string.Empty;
+            format ??= string.Empty;
 
             var strings = format.Split(';');
             var hasStrings = strings.Length >= 2;

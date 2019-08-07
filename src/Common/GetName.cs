@@ -2,6 +2,8 @@ using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
+// ReSharper disable UnusedMember.Global
+
 namespace Common
 {
     public static class GetName
@@ -28,21 +30,14 @@ namespace Common
         // GetName.Of<T>( x => x.Property-name)
         public static string Of<T>(Expression<Func<T, object>> expression) => FindMemberOrNull(expression).Name;
 
-        public static MemberInfo FindMemberOrNull(Expression expression)
-        {
-            switch (expression.NodeType)
+        private static MemberInfo FindMemberOrNull(Expression expression) =>
+            expression.NodeType switch
             {
-                case ExpressionType.Convert:
-                    return FindMemberOrNull(((UnaryExpression)expression).Operand);
-                case ExpressionType.Lambda:
-                    return FindMemberOrNull(((LambdaExpression)expression).Body);
-                case ExpressionType.Call:
-                    return ((MethodCallExpression)expression).Method;
-                case ExpressionType.MemberAccess:
-                    return ((MemberExpression)expression).Member;
-                default:
-                    throw new ArgumentException($"\'{expression}\': is not a valid expression for this method");
-            }
-        }
+                ExpressionType.Convert => FindMemberOrNull(((UnaryExpression)expression).Operand),
+                ExpressionType.Lambda => FindMemberOrNull(((LambdaExpression)expression).Body),
+                ExpressionType.Call => ((MethodCallExpression)expression).Method,
+                ExpressionType.MemberAccess => ((MemberExpression)expression).Member,
+                _ => throw new ArgumentException($"\'{expression}\': is not a valid expression for this method")
+            };
     }
 }
