@@ -31,13 +31,13 @@
             </NavLink>
         </li>
         <li>
-            <NavLink href="cryptowatch">
-                <i class="fi-bitcoin"></i> CryptoWatch
+            <NavLink href="tiles">
+                <i class="fi-thumbnails"></i> Tiles
             </NavLink>
         </li>
         <li>
-            <NavLink href="tiles">
-                <i class="fi-thumbnails"></i> Tiles
+            <NavLink href="cryptowatch">
+                <i class="fi-bitcoin"></i> CryptoWatch
             </NavLink>
         </li>
         <li>
@@ -71,15 +71,15 @@
 
     <ul class="vertical menu">
         <li>
-            <a class="@ClientModeCSS()" @onclick="ActivateClientMode">
+            <button disabled class="@ClientModeCSS()" @onclick="ActivateClientMode">
                 Client Mode
-            </a>
+            </button>
         </li>
 
         <li>
-            <a class="@ServerModeCSS()" @onclick="ActivateServerMode">
+            <button disabled class="@ServerModeCSS()" @onclick="ActivateServerMode">
                 Server Mode
-            </a>
+            </button>
         </li>
     </ul>
 
