@@ -2,6 +2,6 @@
 {
     public static class CacheKeys
     {
-        public static string GetPocketFeed => "_" + nameof(GetPocketFeed);
+        public static string GetPocketFeedKey => "__" + nameof(GetPocketFeedKey);
     }
 }
