@@ -26,7 +26,7 @@ namespace OpenGraphTilemaker.GetPocket
             Guard.Against.Default(() => options.CachingTimeSpan);
 
             return await
-                _memoryCache.GetOrCreateAsync(CacheKeys.GetPocketFeed, async entry =>
+                _memoryCache.GetOrCreateAsync(CacheKeys.GetPocketFeedKey, async entry =>
                 {
                     entry.AbsoluteExpirationRelativeToNow = options.CachingTimeSpan;
                     return await _feed.GetFeedAsync(options.Uri!, item => item.ToPocketEntry(), p => p.PubDate);

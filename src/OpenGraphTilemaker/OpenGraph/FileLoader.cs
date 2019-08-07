@@ -13,7 +13,9 @@ namespace OpenGraphTilemaker.OpenGraph
             var doc = new HtmlDocument();
             doc.Load(filePath);
 
-            return Task.FromResult(doc);
+            return MethodNeedsToReturnTask(doc);
         }
+
+        private static Task<HtmlDocument> MethodNeedsToReturnTask(HtmlDocument doc) => Task.FromResult(doc);
     }
 }

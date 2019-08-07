@@ -1,5 +1,7 @@
 ﻿using System;
 
+// ReSharper disable UnusedMemberInSuper.Global
+
 namespace OpenGraphTilemaker.GetPocket
 {
     public interface IPocketOptions
