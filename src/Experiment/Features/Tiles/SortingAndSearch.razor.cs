@@ -46,7 +46,7 @@ namespace Experiment.Features.Tiles
 
         protected async Task OnSearchTextChanged(UIKeyboardEventArgs args)
         {
-            Logger.LogInformation($"OnSearchTextChanged() '{args.Key}'");
+            Logger.LogInformation("OnSearchTextChanged() '{Key}'", args.Key);
 
             if (args.Key == "Enter") await OnSearchButtonClicked();
         }
@@ -64,6 +64,6 @@ namespace Experiment.Features.Tiles
         protected override async Task OnAfterRenderAsync() => await SearchInput.FocusAsync(ComponentContext, JSRuntime);
 
         public void TextInjectedFromParent(string text) =>
-            Logger.LogInformation($"Received from parent control: '{text}'");
+            Logger.LogInformation("Received from parent control: '{Text}'", text);
     }
 }

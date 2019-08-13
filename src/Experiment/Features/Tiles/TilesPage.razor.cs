@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -17,7 +18,7 @@ namespace Experiment.Features.Tiles
 
         protected override async Task OnInitAsync()
         {
-            Logger.LogInformation($"### {nameof(OnInitAsync)} loading data...");
+            Logger.LogInformation("### {MethodName} loading data...", nameof(OnInitAsync));
 
             // for testing purposes only!
             //await Task.Delay(1 * OneSecondInMilliseconds);
@@ -26,7 +27,7 @@ namespace Experiment.Features.Tiles
             OriginalTiles = response.OriginalTiles;
             IsLoading = false;
 
-            Logger.LogInformation($"### {nameof(OnInitAsync)} loading data finished! " + OriginalTiles?.Count);
+            Logger.LogInformation("### {MethodName} loading data finished! {Count}", nameof(OnInitAsync), OriginalTiles?.Count);
 
             StateHasChanged();
         }

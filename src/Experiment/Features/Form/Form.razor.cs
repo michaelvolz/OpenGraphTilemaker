@@ -26,7 +26,7 @@ namespace Experiment.Features.Form
             {
                 Error = Revealed;
                 await JSRuntime.InvokeAsync<bool>("blazorDemo.showAlert", ThereIsStillSomethingWrong);
-                Logger.LogInformation($"### {ThereIsStillSomethingWrong}");
+                Logger.LogInformation("### {ThereIsStillSomethingWrong}", ThereIsStillSomethingWrong);
             }
             else
             {
@@ -39,7 +39,7 @@ namespace Experiment.Features.Form
         protected string IsValid(Expression<Func<object>> property) => Person.IsValid<Person>(property, "is-invalid");
 
         protected void KeyPress(UIKeyboardEventArgs ev) =>
-            Logger.LogInformation($"KeyPress: {ev.Key + ", " + ev.Code}");
+            Logger.LogInformation("KeyPress: {KeyAndCode}", ev.Key + ", " + ev.Code);
 
         private bool HasError<T>(T obj) where T : class, IValidate => obj.HasError<T>();
     }

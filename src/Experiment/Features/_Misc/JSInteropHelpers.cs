@@ -60,9 +60,9 @@ namespace Experiment.Features
         {
             Guard.Against.Null(() => window);
 
-            Logger.LogInformation($"Window resized! Width: '{window.Width}', Height: '{window.Height}'!");
+            Logger.LogInformation("Window resized! Width: '{Width}', Height: '{Height}'!", window.Width, window.Height);
 
-            Logger.LogInformation($"SubscriberCount: {OnWindowResized.GetInvocationList().Length}");
+            Logger.LogInformation("SubscriberCount: {SubscriberCount}", OnWindowResized.GetInvocationList().Length);
 
             OnWindowResized?.Invoke(window);
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace Experiment.Features.Tiles
 
                 SortTiles(req.CurrentTiles!);
 
-                _logger.LogInformation($"SortTilesHandler for: '{TilesState.SortProperty}, {TilesState.SortOrder}'");
+                _logger.LogInformation("SortTilesHandler for: '{SortProperty}, {SortOrder}'", TilesState.SortProperty, TilesState.SortOrder);
 
                 return Task.FromResult(TilesState);
             }
