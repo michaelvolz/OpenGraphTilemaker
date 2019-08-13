@@ -19,7 +19,8 @@
   <PropertyGroup>
     <NoWarn>1701;1702;CS1591;CA1801;SA0001</NoWarn>
     <DocumentationFile>_$(MSBuildProjectName).xml</DocumentationFile>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
