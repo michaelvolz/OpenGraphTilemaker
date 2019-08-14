@@ -33,12 +33,12 @@ namespace Common.Extensions
             return JsonConvert.SerializeObject(subject, settings);
         }
 
-        public static Dictionary<string, dynamic> PropertiesToDictionary(this object subject) =>
+        public static Dictionary<string, object?> PropertiesToDictionary(this object subject) =>
             subject.GetType()
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .ToDictionary(prop => prop.Name, prop => prop.GetValue(subject, null));
 
-        public static PropertyInfo PublicProperty(this object subject, string propertyName) =>
+        public static PropertyInfo? PublicProperty(this object subject, string propertyName) =>
             subject.GetType().GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
 
         public static IEnumerable<PropertyInfo> PublicProperties(this object subject) =>
@@ -73,7 +73,7 @@ namespace Common.Extensions
             if (uIsList)
                 return unserialize;
 
-            var item = (T)Activator.CreateInstance(typeof(T));
+            var item = (T)Activator.CreateInstance(typeof(T))!;
             var iIsList = item.GetType().IsGenericType && item is IEnumerable;
 
             if (!iIsList)

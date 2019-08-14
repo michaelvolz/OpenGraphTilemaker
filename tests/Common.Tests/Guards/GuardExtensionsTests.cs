@@ -12,6 +12,20 @@ namespace Common.Tests.Guards
     {
         public GuardExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
+        private void CheckExceptionResult(string errorMessageFragment, Exception e, string parameterName, string methodNameWildCardPattern)
+        {
+            var message = e.RewindStackTraceMessage();
+            message.Should().NotBeNullOrWhiteSpace();
+
+            TestConsole.WriteLine(message);
+
+            message.Should().StartWithEquivalent(GuardException.GuardPrefix);
+            message.Should().Contain(parameterName);
+            message.Should().Contain(errorMessageFragment);
+            message.Should().MatchEquivalentOf(methodNameWildCardPattern);
+            message.Should().NotContain("GuardClauseExtensions");
+        }
+
         [Theory]
         [InlineData(null, "Value cannot be null.")]
         [InlineData("", "Value cannot be empty.")]
@@ -24,17 +38,7 @@ namespace Common.Tests.Guards
             }
             catch (Exception e)
             {
-                var message = e.RewindStackTraceMessage();
-                message.Should().NotBeNullOrWhiteSpace();
-
-                TestConsole.WriteLine(message);
-
-                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-                message.Should().Contain(nameof(testParameter));
-                message.Should().Contain(expected);
-                message.Should()
-                    .MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNullOrWhiteSpace)}*");
-                message.Should().NotContain("GuardClauseExtensions");
+                CheckExceptionResult(expected, e, nameof(testParameter), $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNullOrWhiteSpace)}*");
 
                 return;
             }
@@ -52,16 +56,7 @@ namespace Common.Tests.Guards
             }
             catch (Exception e)
             {
-                var message = e.RewindStackTraceMessage();
-                message.Should().NotBeNullOrWhiteSpace();
-
-                TestConsole.WriteLine(message);
-
-                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-                message.Should().Contain(parameterName);
-                message.Should().Contain("Condition");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardCondition)}*");
-                message.Should().NotContain("GuardClauseExtensions");
+                CheckExceptionResult("Condition", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardCondition)}*");
 
                 return;
             }
@@ -79,16 +74,7 @@ namespace Common.Tests.Guards
             }
             catch (Exception e)
             {
-                var message = e.RewindStackTraceMessage();
-                message.Should().NotBeNullOrWhiteSpace();
-
-                TestConsole.WriteLine(message);
-
-                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-                message.Should().Contain(parameterName);
-                message.Should().Contain("Assertion");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardAssert)}*");
-                message.Should().NotContain("GuardClauseExtensions");
+                CheckExceptionResult("Assertion", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardAssert)}*");
 
                 return;
             }
@@ -96,7 +82,7 @@ namespace Common.Tests.Guards
             "No exception thrown!".Should().Be("This should never execute!");
         }
 
-        public enum TestEnum
+        private enum TestEnum
         {
             Undefined = 0,
             TestOn = 1,
@@ -114,18 +100,9 @@ namespace Common.Tests.Guards
             }
             catch (Exception e)
             {
-                var message = e.RewindStackTraceMessage();
-                message.Should().NotBeNullOrWhiteSpace();
-
-                TestConsole.WriteLine(message);
-
-                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-                message.Should().Contain(parameterName);
-                message.Should()
-                    .Contain(
-                        $"The value of argument '{parameterName}' ({invalidValue}) is invalid for Enum type '{nameof(TestEnum)}'.");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardEnum)}*");
-                message.Should().NotContain("GuardClauseExtensions");
+                CheckExceptionResult($"The value of argument '{parameterName}' ({invalidValue}) is invalid for Enum type '{nameof(TestEnum)}'.", e,
+                    parameterName,
+                    $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardEnum)}*");
 
                 return;
             }
@@ -135,7 +112,7 @@ namespace Common.Tests.Guards
 
         [Theory]
         [AutoData]
-        public void RewindCallStackMessage_GuardAgainstNull(string parameterName)
+        public void GuardNullGeneric(string parameterName)
         {
             try
             {
@@ -143,18 +120,8 @@ namespace Common.Tests.Guards
             }
             catch (Exception e)
             {
-                var message = e.RewindStackTraceMessage();
-                message.Should().NotBeNullOrWhiteSpace();
+                CheckExceptionResult("Value cannot be null.", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNullGeneric)}*");
 
-                TestConsole.WriteLine(message);
-
-                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-                message.Should().Contain(parameterName);
-                message.Should().Contain("Value cannot be null.");
-                message.Should()
-                    .MatchEquivalentOf(
-                        $"*at*{nameof(GuardExtensionsTests)}.{nameof(RewindCallStackMessage_GuardAgainstNull)}*");
-                message.Should().NotContain("GuardClauseExtensions");
                 return;
             }
 
@@ -162,7 +129,7 @@ namespace Common.Tests.Guards
         }
 
         [Fact]
-        public void GuardException_ToString()
+        public void GuardDefault()
         {
             var parameter = default(TimeSpan);
             var parameterName = nameof(parameter);
@@ -173,17 +140,8 @@ namespace Common.Tests.Guards
             }
             catch (Exception e)
             {
-                var message = e.ToString();
-                message.Should().NotBeNullOrWhiteSpace();
+                CheckExceptionResult("Value cannot be default.", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardDefault)}*");
 
-                TestConsole.WriteLine(message);
-
-                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-                message.Should().Contain(parameterName);
-                message.Should().Contain("Value cannot be default.");
-                message.Should()
-                    .MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardException_ToString)}*");
-                //message.Should().Contain("GuardClauseExtensions");
                 return;
             }
 
@@ -202,46 +160,8 @@ namespace Common.Tests.Guards
             }
             catch (Exception e)
             {
-                var message = e.RewindStackTraceMessage();
-                message.Should().NotBeNullOrWhiteSpace();
+                CheckExceptionResult("Value cannot be null.", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNull)}*");
 
-                TestConsole.WriteLine(message);
-
-                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-                message.Should().Contain(parameterName);
-                message.Should().Contain("Value cannot be null.");
-                message.Should().MatchEquivalentOf($"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNull)}*");
-                message.Should().NotContain("GuardClauseExtensions");
-                return;
-            }
-
-            "No exception thrown!".Should().Be("This should never execute!");
-        }
-
-        [Fact]
-        public void RewindCallStackMessage_GuardAgainstDefault()
-        {
-            var parameter = default(TimeSpan);
-            var parameterName = nameof(parameter);
-
-            try
-            {
-                Guard.Against.Default(() => parameter);
-            }
-            catch (Exception e)
-            {
-                var message = e.RewindStackTraceMessage();
-                message.Should().NotBeNullOrWhiteSpace();
-
-                TestConsole.WriteLine(message);
-
-                message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-                message.Should().Contain(parameterName);
-                message.Should().Contain("Value cannot be default.");
-                message.Should()
-                    .MatchEquivalentOf(
-                        $"*at*{nameof(GuardExtensionsTests)}.{nameof(RewindCallStackMessage_GuardAgainstDefault)}*");
-                message.Should().NotContain("GuardClauseExtensions");
                 return;
             }
 

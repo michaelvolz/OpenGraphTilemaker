@@ -5,6 +5,6 @@ namespace Common.Extensions
 {
     public static class AssemblyExtensions
     {
-        public static readonly string AssemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static readonly string AssemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty;
     }
 }

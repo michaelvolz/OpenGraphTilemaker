@@ -13,7 +13,7 @@ namespace Common.TagCloud
     public class TagCloud
     {
         private const string MySQL_MyISAM_Text = @"TagCloud\mysql_myisam.txt";
-        private static string[] _stopWords;
+        private static string[]? _stopWords;
 
         public Dictionary<string, int> Cloud { get; } = new Dictionary<string, int>();
 
