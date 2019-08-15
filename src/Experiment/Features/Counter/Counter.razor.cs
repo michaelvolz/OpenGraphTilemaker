@@ -1,6 +1,7 @@
-﻿// ReSharper disable MemberCanBeProtected.Global
+﻿using System.Threading.Tasks;
+using Common;
 
-using System.Threading.Tasks;
+// ReSharper disable MemberCanBeProtected.Global
 
 namespace Experiment.Features.Counter
 {
@@ -8,8 +9,7 @@ namespace Experiment.Features.Counter
     {
         public CounterState CounterState => Store.GetState<CounterState>();
 
-        public async Task ButtonClickAsync() {
-            await RequestAsync(new IncrementCounterRequest { Amount = 2 });
-        }
+        [BlazorEvent]
+        public async Task ButtonClick() => await RequestAsync(new IncrementCounterRequest {Amount = 2});
     }
 }
