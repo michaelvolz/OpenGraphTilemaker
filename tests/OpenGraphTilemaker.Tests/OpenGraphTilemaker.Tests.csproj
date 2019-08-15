@@ -10,12 +10,12 @@
     <PackageReference Include="AutoFixture" Version="4.11.0" />
     <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.11.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.11.0" />
-    <PackageReference Include="Blazor-State" Version="1.0.0-preview6.19307.2-20190710-124031" />
+    <PackageReference Include="Blazor-State" Version="1.0.0-preview7.19365.7-20190731-164341" />
     <PackageReference Include="FluentAssertions" Version="5.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="3.0.0-preview3-19153-02" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.0.0-preview7.19362.4" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0-preview7.19362.4" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0-preview-20190715-02" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.0.0-preview8.19405.4" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0-preview8.19405.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0-preview-20190808-03" />
     <PackageReference Include="NSubstitute" Version="4.2.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">

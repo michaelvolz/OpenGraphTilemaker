@@ -9,20 +9,13 @@
 </li>
 
 @functions {
-#nullable enable
-
-    [CascadingParameter]
-    private TabSet? ContainerTabSet { get; set; }
-
-    [Parameter]
-    private string? Title { get; set; }
-
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [CascadingParameter] public TabSet? ContainerTabSet { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
     string? TitleCssClass => ContainerTabSet?.ActiveTab == this ? "is-active" : null;
 
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
         ContainerTabSet?.AddTab(this);
     }

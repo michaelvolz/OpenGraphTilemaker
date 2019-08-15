@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-// ReSharper disable UnusedMember.Global
+﻿// ReSharper disable UnusedMember.Global
 
 using Microsoft.AspNetCore.Components;
 

@@ -14,7 +14,7 @@
                 <span class="input-group-label">
                     <i class="fi-page-search"></i>
                 </span>
-                <input class="input-group-field" type="text" @bind="@SearchText" @ref="@SearchInput" @onkeyup="OnSearchTextChanged" />
+                <input class="input-group-field" type="text" @bind="@SearchText" @ref="@SearchInput" @ref:suppressField @onkeyup="OnSearchTextChanged" />
                 <div class="input-group-button">
                     <input type="submit" class="button" value="Search" placeholder="search value" @onclick="OnSearchButtonClicked" />
                 </div>

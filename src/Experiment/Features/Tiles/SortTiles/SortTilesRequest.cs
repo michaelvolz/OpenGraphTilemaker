@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Common;
 using MediatR;
 using OpenGraphTilemaker.OpenGraph;

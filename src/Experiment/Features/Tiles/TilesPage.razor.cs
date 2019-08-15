@@ -16,9 +16,9 @@ namespace Experiment.Features.Tiles
 
         protected bool Loading() => !OriginalTiles.Any() && IsLoading;
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            Logger.LogInformation("### {MethodName} loading data...", nameof(OnInitAsync));
+            Logger.LogInformation("### {MethodName} loading data...", nameof(OnInitializedAsync));
 
             // for testing purposes only!
             //await Task.Delay(1 * OneSecondInMilliseconds);
@@ -27,7 +27,7 @@ namespace Experiment.Features.Tiles
             OriginalTiles = response.OriginalTiles;
             IsLoading = false;
 
-            Logger.LogInformation("### {MethodName} loading data finished! {Count}", nameof(OnInitAsync), OriginalTiles?.Count);
+            Logger.LogInformation("### {MethodName} loading data finished! {Count}", nameof(OnInitializedAsync), OriginalTiles?.Count);
 
             StateHasChanged();
         }

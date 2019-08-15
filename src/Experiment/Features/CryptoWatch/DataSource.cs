@@ -9,9 +9,7 @@ namespace Experiment.Features.CryptoWatch
 {
     public class DataSource
     {
-#nullable disable
-        public Action<int> OnUpdate { get; set; }
-#nullable enable
+        public Action<int>? OnUpdate { get; set; }
 
         [MethodImpl(MethodImplOptions.NoOptimization)]
         public async Task GoAsync() {

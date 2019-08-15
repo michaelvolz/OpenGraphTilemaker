@@ -11,6 +11,7 @@ namespace Common.Tests.Extensions
     {
 #nullable disable
         public static object[][] StringExtensionsTestData { [UsedImplicitly] get; } = {
+#nullable enable
             new object[] { "Text1_Text2_Text3", 15, "Text1_Text2_Tex" + Ellipsis },
             new object[] { "Text1 Text2 Text3", 15, "Text1 Text2" + Ellipsis },
             new object[] { "Text1 - Text2 - Text3", 15, "Text1 - Text2" + Ellipsis },
@@ -19,7 +20,6 @@ namespace Common.Tests.Extensions
             new object[] { "Gunnar Peipman - Programming Blog", 25, "Gunnar Peipman" + Ellipsis },
             new object[] { "Gunnar Peipman - Programming Blog", 30, "Gunnar Peipman - Programming" + Ellipsis }
         };
-#nullable enable
 
         [Theory]
         [MemberData(nameof(StringExtensionsTestData))]

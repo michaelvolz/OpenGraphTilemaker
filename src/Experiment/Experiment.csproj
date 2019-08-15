@@ -6,7 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazor-State" Version="1.0.0-preview6.19307.2-20190710-124031" />
+    <Compile Remove="Features\_Shared\**" />
+    <Content Remove="Features\_Shared\**" />
+    <EmbeddedResource Remove="Features\_Shared\**" />
+    <None Remove="Features\_Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazor-State" Version="1.0.0-preview7.19365.7-20190731-164341" />
     <PackageReference Include="FluentValidation" Version="8.5.0-preview4" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
@@ -23,10 +30,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\OpenGraphTilemaker\OpenGraphTilemaker.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\_Shared\" />
   </ItemGroup>
 
 </Project>

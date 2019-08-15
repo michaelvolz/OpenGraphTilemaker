@@ -11,10 +11,10 @@ namespace Experiment.Features.Form
 {
     public class ValidationErrorModel<TItem> : ComponentBase
     {
+        [Parameter] public string Class { get; set; } = string.Empty;
+        [Parameter] public string Property { get; set; } = string.Empty;
 #nullable disable
-        [Parameter] protected string Class { get; set; }
-        [Parameter] protected string Property { get; set; }
-        [Parameter] protected TItem Subject { get; set; }
+        [Parameter] public TItem Subject { get; set; }
 #nullable enable
 
         protected bool HasValidationFailures => ValidationFailures.Any();

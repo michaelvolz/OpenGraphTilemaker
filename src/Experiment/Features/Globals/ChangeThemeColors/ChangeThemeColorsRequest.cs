@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using MediatR;
+﻿using MediatR;
 
 namespace Experiment.Features.Globals
 {

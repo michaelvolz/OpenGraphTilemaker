@@ -24,9 +24,7 @@ namespace Experiment.Features
         public void Dispose()
         {
             // ReSharper disable once DelegateSubtraction
-#nullable disable
             JSInteropHelpers.OnWindowResized -= WindowResized;
-#nullable enable
             Logger.LogInformation("OnWindowResized event removed!");
         }
 
@@ -41,8 +39,6 @@ namespace Experiment.Features
 
             await RequestAsync(request);
         }
-
-        protected override async Task OnInitAsync() => await base.OnInitAsync();
 
         protected override async Task OnAfterRenderAsync()
         {

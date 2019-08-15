@@ -19,7 +19,7 @@ namespace Experiment
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
-        public static IConfiguration Configuration { get; private set; }
+        public static IConfiguration? Configuration { get; private set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -56,7 +56,7 @@ namespace Experiment
                 options.TimeOutTimeSpan = TimeSpan.FromSeconds(10);
             });
 
-            services.Configure<CryptoWatchOptions>(Configuration.GetSection("CryptoWatch"));
+            services.Configure<CryptoWatchOptions>(Configuration?.GetSection("CryptoWatch"));
 
             ServiceLocator.SetServiceProvider(services.BuildServiceProvider());
 

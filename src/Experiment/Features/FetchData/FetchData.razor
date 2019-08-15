@@ -37,7 +37,7 @@
 @functions {
     WeatherForecast[] _forecasts = new WeatherForecast[0];
 
-    protected override async Task OnInitAsync() {
+    protected override async Task OnInitializedAsync() {
         _forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
 

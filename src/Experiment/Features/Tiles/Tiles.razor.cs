@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
@@ -17,8 +16,8 @@ namespace Experiment.Features.Tiles
 {
     public class TilesModel : BlazorComponentStateful<TilesModel>
     {
-        [Parameter] protected string Class { get; set; } = string.Empty;
-        [Parameter] protected List<OpenGraphMetadata>? OriginalTiles { get; set; }
+        [Parameter] public string Class { get; set; } = string.Empty;
+        [Parameter] public List<OpenGraphMetadata>? OriginalTiles { get; set; }
 
         protected TilesState State => Store.GetState<TilesState>();
 

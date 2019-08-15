@@ -17,7 +17,7 @@ namespace Experiment.Features
         private const string BlazorDemo = "blazorDemo.";
         private static readonly ILogger Logger = ApplicationLogging.CreateLogger<JSInteropHelpers>();
 
-        public static Action<Window> OnWindowResized { get; set; }
+        public static Action<Window>? OnWindowResized { get; set; }
 
         public static async Task<int> GetWindowWidthAsync(IComponentContext componentContext, IJSRuntime jsRuntime)
         {
@@ -33,7 +33,7 @@ namespace Experiment.Features
             await jsRuntime.InvokeAsync<object>($"{BlazorDemo}initializeWindowResizeEvent");
         }
 
-        public static async Task FocusAsync(IComponentContext componentContext, IJSRuntime jsRuntime, ElementRef elementRef)
+        public static async Task FocusAsync(IComponentContext componentContext, IJSRuntime jsRuntime, ElementReference elementRef)
         {
             if (!componentContext.IsConnected) throw new InvalidOperationException("!componentContext.IsConnected");
 
@@ -62,9 +62,9 @@ namespace Experiment.Features
 
             Logger.LogInformation("Window resized! Width: '{Width}', Height: '{Height}'!", window.Width, window.Height);
 
-            Logger.LogInformation("SubscriberCount: {SubscriberCount}", OnWindowResized.GetInvocationList().Length);
+            Logger.LogInformation("SubscriberCount: {SubscriberCount}", OnWindowResized!.GetInvocationList().Length);
 
-            OnWindowResized?.Invoke(window);
+            OnWindowResized.Invoke(window);
 
             return Task.FromResult("Resize noticed!");
         }

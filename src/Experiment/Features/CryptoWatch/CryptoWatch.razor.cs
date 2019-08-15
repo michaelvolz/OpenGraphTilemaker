@@ -9,7 +9,7 @@ namespace Experiment.Features.CryptoWatch
         public CryptoWatchCardData Card3 { get; set; } = new CryptoWatchCardData();
         public CryptoWatchCardData Card4 { get; set; } = new CryptoWatchCardData();
 
-        protected override void OnInit() => Task.Run(BackgroundTask);
+        protected override void OnInitialized() => Task.Run(BackgroundTask);
 
         private async Task BackgroundTask() {
             var dataSource = new DataSource();

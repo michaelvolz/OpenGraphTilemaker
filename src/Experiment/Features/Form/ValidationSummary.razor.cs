@@ -12,9 +12,10 @@ namespace Experiment.Features.Form
     public class ValidationSummaryModel<TItem> : ComponentBase
     {
 #nullable disable
-        [Parameter] protected TItem Subject { get; set; }
-        [Parameter] protected string Class { get; set; }
+        [Parameter] public TItem Subject { get; set; }
 #nullable enable
+
+        [Parameter] public string Class { get; set; } = string.Empty;
 
         protected IList<ValidationFailure> ValidationFailures { get; set; } = new List<ValidationFailure>();
         protected bool HasValidationFailures => ValidationFailures.Any();

@@ -1,4 +1,6 @@
-﻿<div class="callout emphasize warning radius">
+﻿@namespace Experiment.Features.SurveyPrompt
+
+<div class="callout emphasize warning radius">
     <span class="fi-pencil" aria-hidden="true"></span>
     <strong>@Title</strong>
 
@@ -10,9 +12,7 @@
 </div>
 
 @functions {
-#nullable enable
 
-    [Parameter]
-    string? Title { get; set; }
+    [Parameter] public string Title { get; set; } = string.Empty;
 
 }

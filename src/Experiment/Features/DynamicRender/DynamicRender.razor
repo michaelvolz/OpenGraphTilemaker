@@ -13,7 +13,7 @@
 @functions {
     private string _dynamicContent = "This is a long text...";
 
-    protected override void OnInit() {
+    protected override void OnInitialized() {
         DynamicFragment = builder => {
             if (_dynamicContent.LastIndexOf("long", StringComparison.Ordinal) > 5000) {
                 _dynamicContent = "This is a long text...";
