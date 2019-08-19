@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Experiment.Data
+namespace Experiment.Features.App
 {
     public class WeatherForecastService
     {

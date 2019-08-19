@@ -1,6 +1,6 @@
 using System;
 
-namespace Experiment.Data
+namespace Experiment.Features.App
 {
     public class WeatherForecast
     {
