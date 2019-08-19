@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Exceptions;
 
-namespace Experiment.AppServer
+namespace Experiment.Features.App
 {
     [UsedImplicitly]
     public class Serilogger

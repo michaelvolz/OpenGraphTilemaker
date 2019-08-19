@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Experiment.Features
+namespace Experiment.Features.App
 {
     public static class ElementRefExtensions
     {

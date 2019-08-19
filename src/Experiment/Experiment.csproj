@@ -6,13 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Features\_Shared\**" />
-    <Content Remove="Features\_Shared\**" />
-    <EmbeddedResource Remove="Features\_Shared\**" />
-    <None Remove="Features\_Shared\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Blazor-State" Version="1.0.0-preview7.19365.7-20190731-164341" />
     <PackageReference Include="FluentValidation" Version="8.5.0-preview4" />
     <PackageReference Include="MediatR" Version="7.0.0" />

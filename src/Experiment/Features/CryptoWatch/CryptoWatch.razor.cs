@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Experiment.Features.App;
 
 namespace Experiment.Features.CryptoWatch
 {

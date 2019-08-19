@@ -1,5 +1,5 @@
 using System;
-using Experiment.AppServer;
+using Experiment.Features.App;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;

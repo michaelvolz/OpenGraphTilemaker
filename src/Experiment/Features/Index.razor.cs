@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Exceptions;
-using Experiment.Features.Globals;
+using Experiment.Features.App;
+using Experiment.Features.App.Globals;
 using Microsoft.Extensions.Logging;
+using GlobalState = Experiment.Features.App.Globals.GlobalState;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 #pragma warning disable CA1063 // Modify TilesPageModel.Finalize so that it calls Dispose(false) and then returns.

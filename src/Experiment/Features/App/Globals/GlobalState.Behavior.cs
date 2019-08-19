@@ -3,7 +3,7 @@ using Common;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Experiment.Features.Globals
+namespace Experiment.Features.App.Globals
 {
     public partial class GlobalState : State<GlobalState>
     {

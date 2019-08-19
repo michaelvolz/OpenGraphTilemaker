@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-// ReSharper disable CheckNamespace
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-
-namespace Experiment.Features._Misc.Visibility
+namespace Experiment.Features.App.Visibility
 {
     public class VisibilityModel : ComponentBase
     {

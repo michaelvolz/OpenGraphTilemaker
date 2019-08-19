@@ -7,6 +7,7 @@ using Experiment.Features.CryptoWatch;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,6 +32,8 @@ namespace Experiment
 
         private static void AppServices(IServiceCollection services)
         {
+            services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Features");
+            
             services.AddMemoryCache();
 
             Extensions.BlazorState(services);

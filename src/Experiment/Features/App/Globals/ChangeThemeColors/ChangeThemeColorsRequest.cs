@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Experiment.Features.Globals
+namespace Experiment.Features.App.Globals
 {
     public class ChangeThemeColorsRequest : IRequest<GlobalState>
     {

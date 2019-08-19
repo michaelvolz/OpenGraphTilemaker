@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Experiment.Features.App;
+using Microsoft.AspNetCore.Components;
 
 namespace Experiment.Features.CryptoWatch
 {

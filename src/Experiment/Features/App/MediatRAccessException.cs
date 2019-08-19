@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Experiment.Features
+namespace Experiment.Features.App
 {
     [Serializable]
     public class MediatRAccessException : Exception

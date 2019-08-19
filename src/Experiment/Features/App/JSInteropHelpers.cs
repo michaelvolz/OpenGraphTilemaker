@@ -9,7 +9,7 @@ using Microsoft.JSInterop;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Experiment.Features
+namespace Experiment.Features.App
 {
     [UsedImplicitly]
     public class JSInteropHelpers

@@ -1,4 +1,4 @@
-﻿namespace Experiment.Features.Globals
+﻿namespace Experiment.Features.App.Globals
 {
     public class GlobalModel : BlazorComponentStateful<GlobalModel>
     {

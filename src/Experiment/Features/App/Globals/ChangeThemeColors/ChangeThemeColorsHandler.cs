@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace Experiment.Features.Globals
+namespace Experiment.Features.App.Globals
 {
     public partial class GlobalState
     {
@@ -20,7 +20,8 @@ namespace Experiment.Features.Globals
 
             public GlobalState GlobalState => Store.GetState<GlobalState>();
 
-            public override Task<GlobalState> Handle(ChangeThemeColorsRequest req, CancellationToken token) {
+            public override Task<GlobalState> Handle(ChangeThemeColorsRequest req, CancellationToken token)
+            {
                 GlobalState.ThemeColor1 = req.ThemeColor1;
                 GlobalState.ThemeColor2 = req.ThemeColor2;
                 GlobalState.ThemeColor3 = req.ThemeColor3;

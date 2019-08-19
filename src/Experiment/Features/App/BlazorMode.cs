@@ -1,4 +1,4 @@
-﻿namespace Experiment.Features
+﻿namespace Experiment.Features.App
 {
     public enum BlazorMode
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Experiment.Features.NavMenu
+namespace Experiment.Features.App.NavMenu
 {
     public class NavMenuModel : BlazorComponentStateful<NavMenuModel>
     {

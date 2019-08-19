@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace Experiment.Features
+namespace Experiment.Features.App
 {
     public class Window
     {

@@ -12,7 +12,7 @@ using Microsoft.JSInterop;
 // ReSharper disable UnusedAutoPropertyAccessor.Local
 // ReSharper disable UnusedMember.Global
 
-namespace Experiment.Features
+namespace Experiment.Features.App
 {
     public class BlazorComponentStateful<TComponent> : ComponentBase
     {
