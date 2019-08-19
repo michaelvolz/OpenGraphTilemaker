@@ -15,6 +15,9 @@ namespace Common.Extensions
         public static string CombineAll(this string[] texts, string combineWith = Space) =>
             texts.Aggregate(string.Empty, (current, next) => $"{current}{combineWith}{next}");
 
+        public static string RemoveHashFromHashTag(this string? word) =>
+            string.IsNullOrEmpty(word) ? string.Empty : word.TrimStart('#');
+
         public static string RemoveTrailingPunctuation(this string? word)
         {
             if (string.IsNullOrEmpty(word)) return string.Empty;
