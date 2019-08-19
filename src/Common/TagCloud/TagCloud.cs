@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using Common.Extensions;
 using static Common.Extensions.AssemblyExtensions;
@@ -23,6 +24,7 @@ namespace Common.TagCloud
                 .RemoveNumbers()
                 .Split()
                 .Select(word => word.RemoveTrailingPunctuation())
+                .Select(word => word.RemoveHashFromHashTag())
                 .Distinct();
 
         /// <summary>
