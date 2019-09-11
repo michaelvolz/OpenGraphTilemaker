@@ -91,3 +91,7 @@ dotnet_style_qualification_for_method = false:suggestion
 dotnet_style_qualification_for_property = false:suggestion
 
 csharp_prefer_simple_default_expression = true:suggestion
+
+# https://www.jetbrains.com/help/resharper/EditorConfig_CSHARP_BracesPageSchema.html#Braces_Layout
+resharper_csharp_empty_block_style = together_same_line
+resharper_empty_block_style = together_same_line
