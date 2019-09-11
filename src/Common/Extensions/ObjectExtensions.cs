@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -13,9 +14,11 @@ namespace Common.Extensions
 {
     public static class ObjectExtensions
     {
-        public static string ReturnDump(this object subject) {
+        public static string ReturnDump(this object subject)
+        {
             var settings =
-                new JsonSerializerSettings {
+                new JsonSerializerSettings
+                {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                     Formatting = Formatting.Indented
                 };
@@ -23,9 +26,11 @@ namespace Common.Extensions
             return JsonConvert.SerializeObject(subject, settings);
         }
 
-        public static string ReturnDumpFlat(this object subject) {
+        public static string ReturnDumpFlat(this object subject)
+        {
             var settings =
-                new JsonSerializerSettings {
+                new JsonSerializerSettings
+                {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                     Formatting = Formatting.None
                 };
@@ -44,9 +49,11 @@ namespace Common.Extensions
         public static IEnumerable<PropertyInfo> PublicProperties(this object subject) =>
             subject.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
 
-        public static string JSONSerialize(this object subject) {
+        public static string JSONSerialize(this object subject)
+        {
             var settings =
-                new JsonSerializerSettings {
+                new JsonSerializerSettings
+                {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                     Formatting = Formatting.None,
                     TypeNameHandling = TypeNameHandling.Arrays
@@ -54,10 +61,12 @@ namespace Common.Extensions
 
             string serializeObject;
 
-            try {
+            try
+            {
                 serializeObject = JsonConvert.SerializeObject(subject, settings);
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 throw new InvalidOperationException(
                     $"JSON serialization failed for object of type: {subject.GetType()}.\r\n{e.Message}", e);
             }
@@ -65,23 +74,34 @@ namespace Common.Extensions
             return serializeObject;
         }
 
-        public static T JSONUnserialize<T>(this string stringObj) {
-            var unserialize = (T)JsonConvert.DeserializeObject(stringObj, typeof(T));
-            var uIsList = unserialize.GetType().IsGenericType && unserialize is IEnumerable;
+        public static T JSONUnSerialize<T>([NotNull] this string stringObj)
+        {
+            if (stringObj == null) throw new ArgumentNullException(nameof(stringObj));
+
+            // ReSharper disable once NotResolvedInText
+            var deserializeObject = JsonConvert.DeserializeObject(stringObj, typeof(T))
+                                    ?? throw new ArgumentNullException("JsonConvert.DeserializeObject(stringObj, typeof(T))");
+
+            var unSerialize = (T)deserializeObject;
+            var uIsList = unSerialize.GetType().IsGenericType && unSerialize is IEnumerable;
 
             // -- performance optimization
             if (uIsList)
-                return unserialize;
+                return unSerialize;
 
             var item = (T)Activator.CreateInstance(typeof(T))!;
             var iIsList = item.GetType().IsGenericType && item is IEnumerable;
 
             if (!iIsList)
-                return unserialize;
+                return unSerialize;
 
             // _log.Warn("JSON Object was not deserialized as 'List', now trying special algorithm!");
 
-            return (T)JsonConvert.DeserializeObject(stringObj, typeof(T), new FlexibleCollectionConverter());
+            // ReSharper disable once NotResolvedInText
+            var result = JsonConvert.DeserializeObject(stringObj, typeof(T), new FlexibleCollectionConverter())
+                         ?? throw new ArgumentNullException("JsonConvert.DeserializeObject(stringObj, typeof(T), new FlexibleCollectionConverter())");
+
+            return (T)result;
         }
 
         /// <summary>
@@ -89,10 +109,11 @@ namespace Common.Extensions
         /// </summary>
         private class FlexibleCollectionConverter : JsonConverter
         {
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) => serializer.Serialize(writer, value);
+            public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer) => serializer.Serialize(writer, value);
 
-            public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-                JsonSerializer serializer) {
+            public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
+                JsonSerializer serializer)
+            {
                 if (reader.TokenType == JsonToken.StartArray)
                     return serializer.Deserialize(reader, objectType);
 
@@ -112,15 +133,16 @@ namespace Common.Extensions
             public override bool CanWrite => false;
             public override bool CanConvert(Type objectType) => true;
 
-            public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-                JsonSerializer serializer) {
+            public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
+                JsonSerializer serializer)
+            {
                 if (reader.TokenType == JsonToken.StartArray)
                     return serializer.Deserialize<List<T>>(reader);
                 var t = serializer.Deserialize<T>(reader);
-                return new List<T>(new[] { t });
+                return new List<T>(new[] {t});
             }
 
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) => throw new NotImplementedException();
+            public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer) => throw new NotImplementedException();
         }
     }
 }

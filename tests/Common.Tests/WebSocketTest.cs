@@ -64,7 +64,7 @@ namespace Common.Tests
             if (msg.MessageType != WebSocketMessageType.Text) return;
             if (!msg.Text.StartsWith("{\"exchange\"")) return;
 
-            var bbo = msg.Text.JSONUnserialize<Shrimpy.BestBidOffer>();
+            var bbo = msg.Text.JSONUnSerialize<Shrimpy.BestBidOffer>();
 
             if (bbo.channel == "bbo")
             {
