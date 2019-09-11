@@ -9,7 +9,7 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
 
 ### Implemented Features
 
-* ASP.NET Core 3.0 preview 8
+* ASP.NET Core 3.0 preview 9
 * C# nullable reference types
 * Blazor server-side only for now
 * State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and [MediatR](https://github.com/jbogard/MediatR)

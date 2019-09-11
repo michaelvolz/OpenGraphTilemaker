@@ -7,6 +7,7 @@ using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using Common.Logging;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 
@@ -15,7 +16,7 @@ namespace Experiment.Features.Tiles
     public partial class TilesState
     {
         [IoC]
-        public class SortTilesHandler : RequestHandler<SortTilesRequest, TilesState>
+        public class SortTilesHandler : ActionHandler<SortTilesRequest>
         {
             private readonly ILogger<SortTilesHandler> _logger = ApplicationLogging.CreateLogger<SortTilesHandler>();
 
@@ -23,7 +24,7 @@ namespace Experiment.Features.Tiles
 
             private TilesState TilesState => Store.GetState<TilesState>();
 
-            public override Task<TilesState> Handle(SortTilesRequest req, CancellationToken token)
+            public override Task<Unit> Handle(SortTilesRequest req, CancellationToken token)
             {
                 Guard.Against.Null(() => req.CurrentTiles);
 
@@ -37,7 +38,7 @@ namespace Experiment.Features.Tiles
 
                 _logger.LogInformation("SortTilesHandler for: '{SortProperty}, {SortOrder}'", TilesState.SortProperty, TilesState.SortOrder);
 
-                return Task.FromResult(TilesState);
+                return Unit.Task;
             }
 
             private void SortTiles(List<OpenGraphMetadata> tiles) {

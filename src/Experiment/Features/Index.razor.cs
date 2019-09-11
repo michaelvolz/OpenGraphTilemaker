@@ -42,9 +42,9 @@ namespace Experiment.Features
             await RequestAsync(request);
         }
 
-        protected override async Task OnAfterRenderAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await base.OnAfterRenderAsync();
+            await base.OnAfterRenderAsync(firstRender);
 
             await InitializeJavaScriptEvents();
         }
@@ -53,12 +53,12 @@ namespace Experiment.Features
         {
             if (!_initialized)
             {
-                await JSInteropHelpers.InitializeWindowResizeEventAsync(ComponentContext, JSRuntime);
+                await JSInteropHelpers.InitializeWindowResizeEventAsync(JSRuntime);
 
                 JSInteropHelpers.OnWindowResized += WindowResized;
                 Logger.LogInformation("OnWindowResized event added!");
 
-                WindowWidth = await JSInteropHelpers.GetWindowWidthAsync(ComponentContext, JSRuntime);
+                WindowWidth = await JSInteropHelpers.GetWindowWidthAsync(JSRuntime);
 
                 _initialized = true;
 

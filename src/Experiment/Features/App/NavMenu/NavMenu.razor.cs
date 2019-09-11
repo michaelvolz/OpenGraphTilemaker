@@ -12,12 +12,12 @@ namespace Experiment.Features.App.NavMenu
         protected string ClientModeCSS() => IsClientMode() ? "active" : string.Empty;
 
         protected async Task ActivateClientMode() =>
-            await JSInteropHelpers.NavigateToAsync(ComponentContext, JSRuntime,
-                $"{UriHelper.GetBaseUri()}?mode=client");
+            await JSInteropHelpers.NavigateToAsync(JSRuntime,
+                $"{UriHelper.BaseUri}?mode=client");
 
         protected async Task ActivateServerMode() =>
-            await JSInteropHelpers.NavigateToAsync(ComponentContext, JSRuntime,
-                $"{UriHelper.GetBaseUri()}?mode=server");
+            await JSInteropHelpers.NavigateToAsync(JSRuntime,
+                $"{UriHelper.BaseUri}?mode=server");
 
         private bool IsClientMode() => false; //JSRuntime.Current is MonoWebAssemblyJSRuntime;
     }

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using MediatR;
+using BlazorState;
 using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.Tiles
 {
-    public class CreateTagCloudRequest : IRequest<TilesState>
+    public class CreateTagCloudRequest : IAction
     {
         public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
     }

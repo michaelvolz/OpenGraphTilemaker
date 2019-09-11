@@ -25,7 +25,7 @@ namespace Experiment.Features.Tiles
             //await Task.Delay(1 * OneSecondInMilliseconds);
 
             var response = await RequestAsync(new FetchTilesRequest());
-            OriginalTiles = response.OriginalTiles;
+            OriginalTiles = Store.GetState<TilesState>().OriginalTiles;
             IsLoading = false;
 
             Logger.LogInformation("### {MethodName} loading data finished! {Count}", nameof(OnInitializedAsync), OriginalTiles?.Count);

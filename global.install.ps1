@@ -1,1 +1,1 @@
-choco install dotnetcore-sdk --version 3.0.100-preview8-013656 --pre --force /y
+choco install dotnetcore-sdk --version 3.0.100-preview9-014004 --pre --force /y

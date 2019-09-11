@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BlazorState;
 using Common;
 using Common.TagCloud;
+using MediatR;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -12,13 +13,13 @@ namespace Experiment.Features.Tiles
     public partial class TilesState
     {
         [IoC]
-        public class CreateTagCloudHandler : RequestHandler<CreateTagCloudRequest, TilesState>
+        public class CreateTagCloudHandler : ActionHandler<CreateTagCloudRequest>
         {
             public CreateTagCloudHandler(IStore store) : base(store) { }
 
             public TilesState TilesState => Store.GetState<TilesState>();
 
-            public override async Task<TilesState> Handle(CreateTagCloudRequest req, CancellationToken token) {
+            public override async Task<Unit> Handle(CreateTagCloudRequest req, CancellationToken token) {
                 var tagCloud = new TagCloud();
 
                 foreach (var tile in req.OriginalTiles)
@@ -27,7 +28,7 @@ namespace Experiment.Features.Tiles
                 //TilesState.TagCloud = from entry in tagCloud.Cloud orderby entry.Key select entry;
                 TilesState.TagCloud = tagCloud.Cloud;
 
-                return TilesState;
+                return await Unit.Task;
             }
         }
     }

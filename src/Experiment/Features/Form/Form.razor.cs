@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Experiment.Features.App;
-using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
 
 namespace Experiment.Features.Form
@@ -26,7 +26,7 @@ namespace Experiment.Features.Form
             if (HasError(Person))
             {
                 Error = Revealed;
-                await JSRuntime.InvokeAsync<bool>("blazorDemo.showAlert", ThereIsStillSomethingWrong);
+                await JSRuntime.InvokeAsync<bool>("blazorDemo.showAlert", new object[] {ThereIsStillSomethingWrong});
                 Logger.LogInformation("### {ThereIsStillSomethingWrong}", ThereIsStillSomethingWrong);
             }
             else
@@ -39,7 +39,7 @@ namespace Experiment.Features.Form
 
         protected string IsValid(Expression<Func<object>> property) => Person.IsValid<Person>(property, "is-invalid");
 
-        protected void KeyPress(UIKeyboardEventArgs ev) =>
+        protected void KeyPress(KeyboardEventArgs ev) =>
             Logger.LogInformation("KeyPress: {KeyAndCode}", ev.Key + ", " + ev.Code);
 
         private bool HasError<T>(T obj) where T : class, IValidate => obj.HasError<T>();

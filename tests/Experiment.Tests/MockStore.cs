@@ -18,6 +18,13 @@ namespace Experiment.Tests
             return (TState)_state;
         }
 
+        public object GetState(Type aType)
+        {
+            if (_state == null) throw new InvalidOperationException("State not set!");
+
+            return _state;
+        }
+
         public void SetState(IState aState) => _state = aState;
     }
 }

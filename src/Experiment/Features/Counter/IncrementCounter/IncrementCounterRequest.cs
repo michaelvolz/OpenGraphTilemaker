@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using BlazorState;
 
 namespace Experiment.Features.Counter
 {
-    public class IncrementCounterRequest : IRequest<CounterState>
+    public class IncrementCounterRequest : IAction
     {
         public int Amount { get; set; }
     }

@@ -27,7 +27,7 @@ namespace Common.Tests
             "{ \"type\": \"subscribe\", \"exchange\": \"coinbasepro\", \"pair\": \"eth-btc\", \"channel\": \"bbo\" }";
 
 
-        [Fact]
+        //[Fact]
         public async Task WebSocket_Connection_Successful()
         {
             using var client = new WebsocketClient(Url) {ReconnectTimeoutMs = ThirtySeconds};

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using BlazorState;
 using Common;
 using MediatR;
 using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.Tiles
 {
-    public class SortTilesRequest : IRequest<TilesState>
+    public class SortTilesRequest : IAction
     {
         public List<OpenGraphMetadata>? CurrentTiles { get; set; }
 

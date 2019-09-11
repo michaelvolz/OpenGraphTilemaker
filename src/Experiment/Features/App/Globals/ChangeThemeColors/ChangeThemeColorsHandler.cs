@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BlazorState;
 using Common;
 using Common.Logging;
+using MediatR;
 using Microsoft.Extensions.Logging;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -12,7 +13,7 @@ namespace Experiment.Features.App.Globals
     public partial class GlobalState
     {
         [IoC]
-        public class ChangeThemeColorsHandler : RequestHandler<ChangeThemeColorsRequest, GlobalState>
+        public class ChangeThemeColorsHandler : ActionHandler<ChangeThemeColorsRequest>
         {
             private readonly ILogger<ChangeThemeColorsHandler> _logger = ApplicationLogging.CreateLogger<ChangeThemeColorsHandler>();
 
@@ -20,7 +21,7 @@ namespace Experiment.Features.App.Globals
 
             public GlobalState GlobalState => Store.GetState<GlobalState>();
 
-            public override Task<GlobalState> Handle(ChangeThemeColorsRequest req, CancellationToken token)
+            public override Task<Unit> Handle(ChangeThemeColorsRequest req, CancellationToken token)
             {
                 GlobalState.ThemeColor1 = req.ThemeColor1;
                 GlobalState.ThemeColor2 = req.ThemeColor2;
@@ -28,7 +29,7 @@ namespace Experiment.Features.App.Globals
 
                 _logger.LogWarning("{@state}", GlobalState);
 
-                return Task.FromResult(GlobalState);
+                return Unit.Task;
             }
         }
     }

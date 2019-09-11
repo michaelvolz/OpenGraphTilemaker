@@ -21,10 +21,10 @@ namespace Experiment.Features.App
 
         [Inject] protected Time Time { get; set; }
         [Inject] protected IStore Store { get; set; }
-        [Inject] protected IUriHelper UriHelper { get; set; }
+        [Inject] protected NavigationManager UriHelper { get; set; }
 
         [Inject] protected IJSRuntime JSRuntime { get; set; }
-        [Inject] protected IComponentContext ComponentContext { get; set; }
+        // [Inject] protected IComponentContext ComponentContext { get; set; }
 #nullable enable
 
         protected ILogger<TComponent> Logger { get; } = ApplicationLogging.CreateLogger<TComponent>();

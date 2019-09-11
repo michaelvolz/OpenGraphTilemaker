@@ -19,40 +19,17 @@ namespace Experiment.Features.App
 
         public static Action<Window>? OnWindowResized { get; set; }
 
-        public static async Task<int> GetWindowWidthAsync(IComponentContext componentContext, IJSRuntime jsRuntime)
-        {
-            if (!componentContext.IsConnected) throw new InvalidOperationException("!componentContext.IsConnected");
+        public static async Task<int> GetWindowWidthAsync(IJSRuntime jsRuntime) => await jsRuntime.InvokeAsync<int>($"{BlazorDemo}getWindowWidth");
 
-            return await jsRuntime.InvokeAsync<int>($"{BlazorDemo}getWindowWidth");
-        }
-
-        public static async Task InitializeWindowResizeEventAsync(IComponentContext componentContext, IJSRuntime jsRuntime)
-        {
-            if (!componentContext.IsConnected) throw new InvalidOperationException("!componentContext.IsConnected");
-
+        public static async Task InitializeWindowResizeEventAsync(IJSRuntime jsRuntime) =>
             await jsRuntime.InvokeAsync<object>($"{BlazorDemo}initializeWindowResizeEvent");
-        }
 
-        public static async Task FocusAsync(IComponentContext componentContext, IJSRuntime jsRuntime, ElementReference elementRef)
-        {
-            if (!componentContext.IsConnected) throw new InvalidOperationException("!componentContext.IsConnected");
-
+        public static async Task FocusAsync(IJSRuntime jsRuntime, ElementReference elementRef) =>
             await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}focusElement", elementRef);
-        }
 
-        public static async Task AlertAsync(IComponentContext componentContext, IJSRuntime jsRuntime, string value)
-        {
-            if (!componentContext.IsConnected) throw new InvalidOperationException("!componentContext.IsConnected");
+        public static async Task AlertAsync(IJSRuntime jsRuntime, string value) => await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}showAlert", value);
 
-            await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}showAlert", value);
-        }
-
-        public static async Task NavigateToAsync(IComponentContext componentContext, IJSRuntime jsRuntime, string url)
-        {
-            if (!componentContext.IsConnected) throw new InvalidOperationException("!componentContext.IsConnected");
-
-            await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}navigateTo", $"{url}");
-        }
+        public static async Task NavigateToAsync(IJSRuntime jsRuntime, string url) => await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}navigateTo", $"{url}");
 
         [JSInvokable]
         [UsedImplicitly]

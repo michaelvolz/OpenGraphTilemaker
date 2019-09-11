@@ -1,21 +1,20 @@
-﻿namespace Experiment
-{
-    using System.Threading.Tasks;
-    using BlazorState.Pipeline.ReduxDevTools;
-    using BlazorState.Features.JavaScriptInterop;
-    using BlazorState.Features.Routing;
-    using Microsoft.AspNetCore.Components;
+﻿using System.Threading.Tasks;
+using BlazorState.Features.JavaScriptInterop;
+using BlazorState.Features.Routing;
+using BlazorState.Pipeline.ReduxDevTools;
+using Microsoft.AspNetCore.Components;
 
+namespace Experiment
+{
     public class AppBase : ComponentBase
     {
-#nullable disable
-        [Inject] public JsonRequestHandler JsonRequestHandler { get; set; }
-        [Inject] public ReduxDevToolsInterop ReduxDevToolsInterop { get; set; }
-        // Injected so it is created by the container. Even though the ide says it is not used it is.
-        [Inject] public RouteManager RouteManager { get; set; }
-#nullable enable
+        [Inject] private JsonRequestHandler JsonRequestHandler { get; set; }
+        [Inject] private ReduxDevToolsInterop ReduxDevToolsInterop { get; set; }
 
-        protected override async Task OnAfterRenderAsync()
+        // Injected so it is created by the container. Even though the IDE says it is not used, it is.
+        [Inject] private RouteManager RouteManager { get; set; }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await ReduxDevToolsInterop.InitAsync();
             await JsonRequestHandler.InitAsync();

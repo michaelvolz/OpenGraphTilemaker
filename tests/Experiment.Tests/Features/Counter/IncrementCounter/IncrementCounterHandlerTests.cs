@@ -10,14 +10,7 @@ namespace Experiment.Tests.Features.Counter
 {
     public class IncrementCounterHandlerTests : IntegrationTests<IncrementCounterHandlerTests>
     {
-        public IncrementCounterHandlerTests(ITestOutputHelper testConsole) : base(testConsole)
-        {
-            var mockStore = new MockStore();
-            mockStore.SetState(new CounterState());
-            _handler = new CounterState.IncrementCounterHandler(mockStore);
-        }
-
-        private readonly CounterState.IncrementCounterHandler _handler;
+        public IncrementCounterHandlerTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
         [Fact]
         public async Task IncrementCounterRequest_AmountDefined()
@@ -25,13 +18,18 @@ namespace Experiment.Tests.Features.Counter
             // Arrange
             var amount = 7;
             var request = new IncrementCounterRequest { Amount = amount };
+            var mockStore = new MockStore();
+            mockStore.SetState(new CounterState());
+            var handler = new CounterState.IncrementCounterHandler(mockStore);
 
             // Act
-            var result = await _handler.Handle(request, CancellationToken.None);
+            var result = await handler.Handle(request, CancellationToken.None);
 
             // Assert
             result.Should().NotBeNull();
-            result.Count.Should().Be(3 + amount);
+            var state = mockStore.GetState<CounterState>();
+
+            state.Count.Should().Be(3 + amount);
         }
     }
 }

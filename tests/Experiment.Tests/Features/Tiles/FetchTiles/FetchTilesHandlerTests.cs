@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BaseTestCode;
 using BaseTestCode.XUnitUtilities;
+using Experiment.Features.Counter;
 using FluentAssertions;
 using OpenGraphTilemaker.Tests;
 using Experiment.Features.Tiles;
@@ -24,15 +25,19 @@ namespace Experiment.Tests.Features.Tiles
             var response = "<head><meta property=\"og:title\" content=\"Microsoft launches Spend iOS app that automatically tracks and matches expenses\" />";
             response += "<meta property=\"og:image\" content=\"image\" />";
             response += "<meta property=\"og:description\" content=\"description\" /></head>";
-            var handler = new FetchTilesHandler(Pocket(), TileMakerClient(response), GetPocketIOptions());
+            var mockStore = new MockStore();
+            mockStore.SetState(new TilesState());
+            var handler = new FetchTilesHandler(mockStore, Pocket(), TileMakerClient(response), GetPocketIOptions());
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
 
             // Assert
             result.Should().NotBeNull();
-            result.OriginalTiles.Should().NotBeNullOrEmpty();
-            var first = result.OriginalTiles.First();
+            
+            var state = mockStore.GetState<TilesState>();
+            state.OriginalTiles.Should().NotBeNullOrEmpty();
+            var first = state.OriginalTiles.First();
             first.Title.Should().NotBeNullOrWhiteSpace();
             first.Title.Should().Be("Microsoft launches Spend iOS app that automatically tracks and matches expenses");
 
@@ -45,16 +50,19 @@ namespace Experiment.Tests.Features.Tiles
         {
             // Arrange
             var request = new FetchTilesRequest();
-            var handler = new FetchTilesHandler(Pocket(), RealTileMakerClient(), GetPocketIOptions());
+            var mockStore = new MockStore();
+            mockStore.SetState(new TilesState());
+            var handler = new FetchTilesHandler(mockStore, Pocket(), RealTileMakerClient(), GetPocketIOptions());
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
 
             // Assert
             result.Should().NotBeNull();
-            result.OriginalTiles.Should().NotBeNullOrEmpty();
+            var state = mockStore.GetState<TilesState>();
+            state.OriginalTiles.Should().NotBeNullOrEmpty();
 
-            foreach (var tile in result.OriginalTiles) TestConsole.WriteLine(tile?.Title ?? "---");
+            foreach (var tile in state.OriginalTiles) TestConsole.WriteLine(tile?.Title ?? "---");
         }
     }
 }

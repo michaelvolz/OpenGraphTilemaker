@@ -6,6 +6,7 @@ using BlazorState;
 using Common;
 using Common.Extensions;
 using Common.Logging;
+using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace Experiment.Features.Tiles
@@ -13,7 +14,7 @@ namespace Experiment.Features.Tiles
     public partial class TilesState
     {
         [IoC]
-        public class SearchTilesHandler : RequestHandler<SearchTilesRequest, TilesState>
+        public class SearchTilesHandler : ActionHandler<SearchTilesRequest>
         {
             private readonly ILogger<SearchTilesHandler> _logger = ApplicationLogging.CreateLogger<SearchTilesHandler>();
 
@@ -21,7 +22,7 @@ namespace Experiment.Features.Tiles
 
             private TilesState TilesState => Store.GetState<TilesState>();
 
-            public override Task<TilesState> Handle(SearchTilesRequest req, CancellationToken token) {
+            public override Task<Unit> Handle(SearchTilesRequest req, CancellationToken token) {
                 TilesState.SearchText = req.SearchText;
 
                 if (TilesState.SearchText.IsNullOrWhiteSpace()) {
@@ -42,7 +43,7 @@ namespace Experiment.Features.Tiles
 
                 _logger.LogInformation("SearchTilesHandler for: {SearchText}, Count: {Count}", TilesState.SearchText, TilesState.CurrentTiles.Count);
 
-                return Task.FromResult(TilesState);
+                return Unit.Task;
             }
         }
     }

@@ -4,6 +4,7 @@ using Ardalis.GuardClauses;
 using Common;
 using Experiment.Features.App;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
 
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
@@ -44,7 +45,7 @@ namespace Experiment.Features.Tiles
             return OnSortOrder!(SortOrder);
         }
 
-        protected async Task OnSearchTextChanged(UIKeyboardEventArgs args)
+        protected async Task OnSearchTextChanged(KeyboardEventArgs args)
         {
             Logger.LogInformation("OnSearchTextChanged() '{Key}'", args.Key);
 
@@ -61,7 +62,7 @@ namespace Experiment.Features.Tiles
             return Task.CompletedTask;
         }
 
-        protected override async Task OnAfterRenderAsync() => await SearchInput.FocusAsync(ComponentContext, JSRuntime);
+        protected override async Task OnAfterRenderAsync(bool firstRender) => await SearchInput.FocusAsync(JSRuntime);
 
         public void TextInjectedFromParent(string text) =>
             Logger.LogInformation("Received from parent control: '{Text}'", text);

@@ -6,7 +6,6 @@ namespace Experiment.Features.App
 {
     public static class ElementRefExtensions
     {
-        public static async Task FocusAsync(this ElementReference elementRef, IComponentContext componentContext,
-            IJSRuntime jsRuntime) => await JSInteropHelpers.FocusAsync(componentContext, jsRuntime, elementRef);
+        public static async Task FocusAsync(this ElementReference elementRef, IJSRuntime jsRuntime) => await JSInteropHelpers.FocusAsync(jsRuntime, elementRef);
     }
 }
