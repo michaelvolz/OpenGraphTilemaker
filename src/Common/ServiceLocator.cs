@@ -12,12 +12,13 @@ namespace Common
         private ServiceLocator(ServiceProvider currentServiceProvider) =>
             _currentServiceProvider = Guard.Against.Null(() => currentServiceProvider);
 
-        public static ServiceLocator Current => new ServiceLocator(_serviceProvider ?? throw new InvalidOperationException("ServiceProvider uninitialized! use 'SetServiceProvider' first!"));
+        public static ServiceLocator Current =>
+            new ServiceLocator(_serviceProvider ?? throw new InvalidOperationException("ServiceProvider uninitialized! use 'SetServiceProvider' first!"));
 
         public static void SetServiceProvider(ServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
-        public object GetInstance(Type serviceType) => _currentServiceProvider.GetRequiredService(serviceType);
+        public object GetInstance(Type serviceType) => _currentServiceProvider.GetService(serviceType);
 
-        public TService GetInstance<TService>() => _currentServiceProvider.GetRequiredService<TService>();
+        public TService GetInstance<TService>() => _currentServiceProvider.GetService<TService>();
     }
 }
