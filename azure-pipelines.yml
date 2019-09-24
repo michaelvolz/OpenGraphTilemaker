@@ -15,7 +15,7 @@ steps:
   displayName: 'Use .NET Core sdk 3'
   inputs:
     packageType: sdk
-    version: 3.0.100-preview9-014004
+    version: 3.0.100
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 #- task: DotNetCoreInstaller@0
