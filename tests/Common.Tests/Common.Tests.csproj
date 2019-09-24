@@ -11,10 +11,10 @@
     <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.11.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.11.0" />
     <PackageReference Include="FluentAssertions" Version="5.9.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0-preview9.19423.4" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0-preview-20190828-03" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
     <PackageReference Include="NSubstitute" Version="4.2.1" />
-    <PackageReference Include="Websocket.Client" Version="3.1.28" />
+    <PackageReference Include="Websocket.Client" Version="3.1.32" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
