@@ -2,10 +2,9 @@
 using System.Runtime.InteropServices;
 using Xunit;
 
-// ReSharper disable UnusedMember.Global
-
 namespace BaseTestCode.XUnitUtilities
 {
+    // ReSharper disable once UnusedMember.Global
     public sealed class IgnoreOnAppVeyorLinuxFactAttribute : FactAttribute
     {
         /// <summary>

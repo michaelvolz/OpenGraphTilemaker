@@ -3,6 +3,7 @@ using Xunit;
 
 namespace BaseTestCode.XUnitUtilities
 {
+    // ReSharper disable once UnusedMember.Global
     public sealed class IgnoreOnAzurePipelinesFactAttribute : FactAttribute
     {
         /// <summary>
