@@ -1,4 +1,4 @@
-# Some Blazor.Net Experiments
+# Experimental repository for Blazor (server)
 
 [![Build Status](https://dev.azure.com/flynn-azure/OpenGraphTilemaker/_apis/build/status/michaelvolz.OpenGraphTilemaker?branchName=master)](https://dev.azure.com/flynn-azure/OpenGraphTilemaker/_build/latest?definitionId=3&branchName=master)
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
