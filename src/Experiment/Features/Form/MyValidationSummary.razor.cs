@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace Experiment.Features.Form
 {
-    public class ValidationSummaryModel<TItem> : ComponentBase
+    public class MyValidationSummaryModel<TItem> : ComponentBase
     {
 #nullable disable
         [Parameter] public TItem Subject { get; set; }
