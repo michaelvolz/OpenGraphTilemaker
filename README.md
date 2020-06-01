@@ -1,6 +1,6 @@
 # Some Blazor.Net Experiments
 
-[![Build Status](https://dev.azure.com/flynn-azure/BlazorExperiments/_apis/build/status/michaelvolz.BlazorExperiments)](https://dev.azure.com/flynn-azure/BlazorExperiments/_build/latest?definitionId=2)
+[![Build Status](https://dev.azure.com/flynn-azure/OpenGraphTilemaker/_apis/build/status/michaelvolz.OpenGraphTilemaker?branchName=master)](https://dev.azure.com/flynn-azure/OpenGraphTilemaker/_build/latest?definitionId=3&branchName=master)
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 [![Dependabot enabled](https://img.shields.io/badge/Dependabot-enabled-blue.svg)](https://dependabot.com/)
 
