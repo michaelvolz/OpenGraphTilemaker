@@ -1,4 +1,6 @@
-﻿namespace Experiment.Features.Counter
+﻿using System.Collections.Generic;
+
+namespace Experiment.Features.Counter
 {
     public partial class CounterState
     {

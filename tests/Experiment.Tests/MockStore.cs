@@ -25,6 +25,10 @@ namespace Experiment.Tests
             return _state;
         }
 
-        public void SetState(IState aState) => _state = aState;
+        public void SetState(IState aState)
+        {
+            aState.Initialize();
+            _state = aState;
+        }
     }
 }

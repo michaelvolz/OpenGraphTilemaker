@@ -17,7 +17,7 @@ namespace Experiment.Tests.Features.Counter
         {
             // Arrange
             var amount = 7;
-            var request = new IncrementCounterRequest { Amount = amount };
+            var request = new CounterState.IncrementCounterRequest { Amount = amount };
             var mockStore = new MockStore();
             mockStore.SetState(new CounterState());
             var handler = new CounterState.IncrementCounterHandler(mockStore);

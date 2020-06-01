@@ -2,8 +2,11 @@
 
 namespace Experiment.Features.Counter
 {
-    public class IncrementCounterRequest : IAction
+    public partial class CounterState
     {
-        public int Amount { get; set; }
+        public class IncrementCounterRequest : IAction
+        {
+            public int Amount { get; set; }
+        }
     }
 }

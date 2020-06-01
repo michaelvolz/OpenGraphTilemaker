@@ -1,4 +1,4 @@
-﻿using BlazorState;
+﻿/*using BlazorState;
 
 // ReSharper disable once CheckNamespace
 namespace Sample.Client.Features.Counter
@@ -10,4 +10,4 @@ namespace Sample.Client.Features.Counter
             public int Amount { get; set; }
         }
     }
-}
+}*/
