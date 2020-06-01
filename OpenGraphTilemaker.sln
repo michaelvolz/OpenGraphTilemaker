@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		.editorconfig = .editorconfig
 		azure-pipelines.yml = azure-pipelines.yml
 		Build.ps1 = Build.ps1
+		.github\dependabot.yml = .github\dependabot.yml
 		Directory.Build.props = Directory.Build.props
 		global.install.ps1 = global.install.ps1
 		License.txt = License.txt
