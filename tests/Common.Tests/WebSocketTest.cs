@@ -19,7 +19,7 @@ namespace Common.Tests
         public WebSocketTest(ITestOutputHelper output) : base(output) { }
 
         private static readonly int FiveSeconds = (int)TimeSpan.FromSeconds(5).TotalMilliseconds;
-        private static readonly int ThirtySeconds = (int)TimeSpan.FromSeconds(30).TotalMilliseconds;
+        private static readonly TimeSpan ThirtySeconds = TimeSpan.FromSeconds(30);
         private static readonly ManualResetEvent ExitEvent = new ManualResetEvent(true);
         private static readonly Uri Url = new Uri("wss://ws-feed.shrimpy.io/");
 
@@ -30,7 +30,7 @@ namespace Common.Tests
         //[Fact]
         public async Task WebSocket_Connection_Successful()
         {
-            using var client = new WebsocketClient(Url) {ReconnectTimeoutMs = ThirtySeconds};
+            using var client = new WebsocketClient(Url) { ErrorReconnectTimeout = ThirtySeconds, ReconnectTimeout = ThirtySeconds };
 
             client.ReconnectionHappened.Subscribe(type => TestConsole.LogInformation("Reconnection happened, type: {Type}", type));
             var messageStore = new MessageStore(ApplicationLogging.CreateLogger<MessageStore>());
