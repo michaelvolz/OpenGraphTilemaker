@@ -139,7 +139,7 @@ namespace Common.Extensions
                 if (reader.TokenType == JsonToken.StartArray)
                     return serializer.Deserialize<List<T>>(reader);
                 var t = serializer.Deserialize<T>(reader);
-                return new List<T>(new[] {t});
+                return new List<T>(new[] {t!});
             }
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer) => throw new NotImplementedException();
