@@ -18,6 +18,9 @@ namespace Common.Extensions
         public static string RemoveHashFromHashTag(this string? word) =>
             string.IsNullOrEmpty(word) ? string.Empty : word.TrimStart('#');
 
+        public static string RemoveAlternateQuotationMarks(this string? word) =>
+            string.IsNullOrEmpty(word) ? string.Empty : word.TrimStart('“').TrimEnd('”');
+
         public static string RemoveTrailingPunctuation(this string? word)
         {
             if (string.IsNullOrEmpty(word)) return string.Empty;

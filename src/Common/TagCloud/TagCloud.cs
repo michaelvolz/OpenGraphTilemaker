@@ -25,6 +25,7 @@ namespace Common.TagCloud
                 .Split()
                 .Select(word => word.RemoveTrailingPunctuation())
                 .Select(word => word.RemoveHashFromHashTag())
+                .Select(word => word.RemoveAlternateQuotationMarks())
                 .Distinct();
 
         /// <summary>
