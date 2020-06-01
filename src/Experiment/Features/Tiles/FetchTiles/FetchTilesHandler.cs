@@ -14,7 +14,7 @@ using OpenGraphTilemaker.OpenGraph;
 namespace Experiment.Features.Tiles
 {
     [IoC]
-    public class FetchTilesHandler : ActionHandler<FetchTilesRequest>
+    public class FetchTilesHandler : ActionHandler<TilesState.FetchTilesRequest>
     {
         private readonly IPocket _pocket;
         private readonly IPocketOptions _pocketOptions;
@@ -28,7 +28,7 @@ namespace Experiment.Features.Tiles
 
         public TilesState TilesState => Store.GetState<TilesState>();
 
-        public override async Task<Unit> Handle(FetchTilesRequest req, CancellationToken token) {
+        public override async Task<Unit> Handle(TilesState.FetchTilesRequest req, CancellationToken token) {
             var entries = await _pocket.GetEntriesAsync(_pocketOptions);
             var tasks = new List<Task<OpenGraphMetadata>>();
 

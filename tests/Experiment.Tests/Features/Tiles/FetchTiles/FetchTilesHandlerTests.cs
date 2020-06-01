@@ -21,7 +21,7 @@ namespace Experiment.Tests.Features.Tiles
         public async Task FetchTilesRequest_FakeHttpClient()
         {
             // Arrange
-            var request = new FetchTilesRequest();
+            var request = new TilesState.FetchTilesRequest();
             var response = "<head><meta property=\"og:title\" content=\"Microsoft launches Spend iOS app that automatically tracks and matches expenses\" />";
             response += "<meta property=\"og:image\" content=\"image\" />";
             response += "<meta property=\"og:description\" content=\"description\" /></head>";
@@ -49,7 +49,7 @@ namespace Experiment.Tests.Features.Tiles
         public async Task FetchTilesRequest_RealHttpClient()
         {
             // Arrange
-            var request = new FetchTilesRequest();
+            var request = new TilesState.FetchTilesRequest();
             var mockStore = new MockStore();
             mockStore.SetState(new TilesState());
             var handler = new FetchTilesHandler(mockStore, Pocket(), RealTileMakerClient(), GetPocketIOptions());

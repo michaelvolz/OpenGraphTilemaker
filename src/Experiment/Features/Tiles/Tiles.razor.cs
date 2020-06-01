@@ -31,7 +31,7 @@ namespace Experiment.Features.Tiles
                 Logger.LogInformation("### {MethodName} Count: {Count}", nameof(OnParametersSetAsync), OriginalTiles!.Count);
 
                 await SearchAsync(State.SearchText);
-                await RequestAsync(new CreateTagCloudRequest {OriginalTiles = OriginalTiles});
+                await RequestAsync(new TilesState.CreateTagCloudRequest {OriginalTiles = OriginalTiles});
 
                 IsLoading = false;
             }
@@ -50,7 +50,7 @@ namespace Experiment.Features.Tiles
         private async Task SortByOrderAsync(SortOrder sortOrder)
         {
             sortOrder = sortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-            await RequestAsync(new SortTilesRequest {CurrentTiles = State.CurrentTiles, SortOrder = sortOrder});
+            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.CurrentTiles, SortOrder = sortOrder});
 
             StateHasChanged();
         }
@@ -60,7 +60,7 @@ namespace Experiment.Features.Tiles
             sortProperty = sortProperty != nameof(OpenGraphMetadata.Title)
                 ? nameof(OpenGraphMetadata.Title)
                 : nameof(OpenGraphMetadata.BookmarkTime);
-            await RequestAsync(new SortTilesRequest {CurrentTiles = State.CurrentTiles, SortProperty = sortProperty});
+            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.CurrentTiles, SortProperty = sortProperty});
 
             StateHasChanged();
         }
@@ -69,8 +69,8 @@ namespace Experiment.Features.Tiles
         {
             if (OriginalTiles == null || !OriginalTiles.Any()) return;
 
-            await RequestAsync(new SearchTilesRequest {OriginalTiles = OriginalTiles, SearchText = searchText});
-            await RequestAsync(new SortTilesRequest {CurrentTiles = State.CurrentTiles});
+            await RequestAsync(new TilesState.SearchTilesRequest {OriginalTiles = OriginalTiles, SearchText = searchText});
+            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.CurrentTiles});
 
             StateHasChanged();
         }

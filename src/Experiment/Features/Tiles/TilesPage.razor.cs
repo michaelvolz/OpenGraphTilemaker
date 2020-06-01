@@ -24,7 +24,7 @@ namespace Experiment.Features.Tiles
             // for testing purposes only!
             //await Task.Delay(1 * OneSecondInMilliseconds);
 
-            var response = await RequestAsync(new FetchTilesRequest());
+            var response = await RequestAsync(new TilesState.FetchTilesRequest());
             OriginalTiles = Store.GetState<TilesState>().OriginalTiles;
             IsLoading = false;
 

@@ -4,8 +4,11 @@ using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.Tiles
 {
-    public class CreateTagCloudRequest : IAction
+    public partial class TilesState
     {
-        public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
+        public class CreateTagCloudRequest : IAction
+        {
+            public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
+        }
     }
 }

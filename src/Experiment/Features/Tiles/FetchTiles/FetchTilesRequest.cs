@@ -1,9 +1,11 @@
 ﻿using BlazorState;
-using MediatR;
 
 // ReSharper disable UnusedMember.Global
 
 namespace Experiment.Features.Tiles
 {
-    public class FetchTilesRequest : IAction { }
+    public partial class TilesState
+    {
+        public class FetchTilesRequest : IAction { }
+    }
 }

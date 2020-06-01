@@ -22,7 +22,7 @@ namespace Experiment.Features.Tiles
             LastSearchText = state.LastSearchText;
         }
 
-        protected override void Initialize()
+        public override void Initialize()
         {
             CurrentTiles = new List<OpenGraphMetadata>();
             TagCloud = default;

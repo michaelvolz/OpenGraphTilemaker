@@ -33,6 +33,6 @@ namespace Experiment.Features.Counter
         /// <summary>
         ///     Set the Initial State.
         /// </summary>
-        protected override void Initialize() => Count = 3;
+        public override void Initialize() => Count = 3;
     }
 }

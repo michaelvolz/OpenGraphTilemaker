@@ -30,7 +30,7 @@ namespace Experiment.Features.App.Globals
         /// <summary>
         ///     Set the Initial State.
         /// </summary>
-        protected override void Initialize()
+        public override void Initialize()
         {
             ThemeColor1 = "orange";
             ThemeColor2 = "lightgreen";

@@ -10,8 +10,8 @@
     <PackageReference Include="AutoFixture" Version="4.11.0" />
     <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.11.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.11.0" />
-    <PackageReference Include="Blazor-State" Version="1.0.0-3.0.100-rc1-014190-100" />
-    <PackageReference Include="FluentAssertions" Version="5.9.0" />
+    <PackageReference Include="Blazor-State" Version="3.2.1" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.4" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
