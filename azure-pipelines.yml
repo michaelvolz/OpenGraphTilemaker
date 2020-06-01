@@ -15,12 +15,12 @@ variables:
 
 steps:
 
-- task: UseDotNet@2
-  displayName: 'Use .NET Core sdk 3'
-  inputs:
-    packageType: sdk
-    version: 3.0.100
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+#- task: UseDotNet@2
+#  displayName: 'Use .NET Core sdk 3'
+#  inputs:
+#    packageType: sdk
+#    version: 3.0.100
+#    installationPath: $(Agent.ToolsDirectory)/dotnet
 
 #- task: DotNetCoreInstaller@0
 #  inputs:
