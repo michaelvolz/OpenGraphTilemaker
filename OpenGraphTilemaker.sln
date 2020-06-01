@@ -24,7 +24,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		Build.ps1 = Build.ps1
 		Directory.Build.props = Directory.Build.props
 		global.install.ps1 = global.install.ps1
-		global.json = global.json
 		License.txt = License.txt
 		README.md = README.md
 		Solution.debug.ruleset = Solution.debug.ruleset
