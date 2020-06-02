@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable CheckNamespace
 
 namespace VirtualTimeLib
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class TimeFactory
     {
         /// <summary>

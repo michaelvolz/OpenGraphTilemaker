@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 using Xunit.Abstractions;
 
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-
 namespace Experiment.Tests
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public class WebApplication : IClassFixture<WebApplicationFactory<Startup>>
     {
         protected WebApplication(WebApplicationFactory<Startup> factory, ITestOutputHelper testConsole)

@@ -6,9 +6,6 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 using Xunit.Abstractions;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Experiment.Tests
 {
     public class EndToEndTests : WebApplication

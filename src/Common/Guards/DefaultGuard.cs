@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using Common.Exceptions;
 
-// ReSharper disable UnusedMember.Global
-// ReSharper disable UnusedParameter.Global
-// ReSharper disable ParameterOnlyUsedForPreconditionCheck.Global
-// ReSharper disable CheckNamespace
-#pragma warning disable SA1614 // Element parameter documentation should have text
-#pragma warning disable SA1627 // Documentation text should not be empty
-
+// ReSharper disable once CheckNamespace
 namespace Ardalis.GuardClauses
 {
     /// <summary>
     ///     Default Guard.
     /// </summary>
+    [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public static partial class GuardClauseExtensions
     {
         /// <summary>

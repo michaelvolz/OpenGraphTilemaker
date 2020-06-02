@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-// ReSharper disable UnusedMember.Local
-// ReSharper disable UnusedMember.Global
-
 namespace Common.Extensions
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedType.Local")]
     public static class ObjectExtensions
     {
         public static string ReturnDump(this object subject)
@@ -74,7 +73,7 @@ namespace Common.Extensions
             return serializeObject;
         }
 
-        public static T JSONUnSerialize<T>([NotNull] this string stringObj)
+        public static T JSONUnSerialize<T>([JetBrains.Annotations.NotNull] this string stringObj)
         {
             if (stringObj == null) throw new ArgumentNullException(nameof(stringObj));
 
@@ -89,7 +88,7 @@ namespace Common.Extensions
             if (uIsList)
                 return unSerialize;
 
-            var item = (T)Activator.CreateInstance(typeof(T))!;
+            var item = (T)(Activator.CreateInstance(typeof(T)) ?? throw new InvalidOperationException());
             var iIsList = item.GetType().IsGenericType && item is IEnumerable;
 
             if (!iIsList)

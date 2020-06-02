@@ -1,7 +1,5 @@
 ﻿// ReSharper disable CheckNamespace
 
-#pragma warning disable CA1040 // Avoid empty interfaces
-
 namespace Ardalis.GuardClauses
 {
     /// <summary>
@@ -11,5 +9,3 @@ namespace Ardalis.GuardClauses
     {
     }
 }
-
-#pragma warning restore CA1040 // Avoid empty interfaces

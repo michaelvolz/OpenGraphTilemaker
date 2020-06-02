@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-// ReSharper disable UnusedMember.Global
 // ReSharper disable CheckNamespace
 
 namespace Ardalis.GuardClauses

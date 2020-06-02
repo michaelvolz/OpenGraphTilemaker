@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using System.Net.Http;
 using Common;
 using Common.Logging;
@@ -9,10 +10,9 @@ using Serilog;
 using Serilog.Extensions.Logging;
 using Xunit.Abstractions;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace BaseTestCode
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class BaseTest<T>
     {
         protected BaseTest(ITestOutputHelper output)

@@ -1,18 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable UnusedMember.Global
-// ReSharper disable UnusedParameter.Global
-// ReSharper disable ParameterOnlyUsedForPreconditionCheck.Global
-// ReSharper disable CheckNamespace
-
+// ReSharper disable once CheckNamespace
 namespace Ardalis.GuardClauses
 {
     /// <summary>
     ///     EnumGuard.
     /// </summary>
+    [SuppressMessage("ReSharper", "UnusedParameter.Global")]
     public static partial class GuardClauseExtensions
     {
         /// <summary>

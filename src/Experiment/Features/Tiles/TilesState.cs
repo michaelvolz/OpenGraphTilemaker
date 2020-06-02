@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Common;
 using OpenGraphTilemaker.OpenGraph;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Local
-// ReSharper disable UnusedMember.Global
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Experiment.Features.Tiles
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public partial class TilesState
     {
         public List<OpenGraphMetadata> CurrentTiles { get; private set; } = new List<OpenGraphMetadata>();
@@ -19,8 +17,7 @@ namespace Experiment.Features.Tiles
         public string SortProperty { get; private set; } = string.Empty;
         public SortOrder SortOrder { get; private set; } = SortOrder.Undefined;
 
-        public string SearchText { get; set; } = string.Empty;
+        public string SearchText { get; private set; } = string.Empty;
         public string LastSearchText { get; private set; } = string.Empty;
-        
     }
 }

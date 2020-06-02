@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Sockets;
 using System.Threading.Tasks;
 using Common.Extensions;
 using static Common.Extensions.AssemblyExtensions;
-
-// ReSharper disable InconsistentNaming
 
 namespace Common.TagCloud
 {
@@ -35,9 +32,7 @@ namespace Common.TagCloud
         /// <param name="textBlocks">Text to use.</param>
         public async Task InsertAsync(params string[] textBlocks)
         {
-            await Task.FromResult(0); // async placeholder, File.ReadAllLines has no async in netstandard2.0
-
-            _stopWords ??= File.ReadAllLines($@"{AssemblyLocation}\{MySQL_MyISAM_Text}");
+            _stopWords ??= await File.ReadAllLinesAsync($@"{AssemblyLocation}\{MySQL_MyISAM_Text}");
 
             foreach (var word in ExtractWords(textBlocks.CombineAll()))
                 InsertWord(word);
@@ -46,7 +41,7 @@ namespace Common.TagCloud
         private void InsertWord(string word)
         {
             if (word.Length < 2) return;
-            if (_stopWords.Contains(word.Replace("’", "'"), StringComparer.InvariantCultureIgnoreCase)) return;
+            if (_stopWords!.Contains(word.Replace("’", "'"), StringComparer.InvariantCultureIgnoreCase)) return;
 
             if (Cloud.ContainsKey(word))
                 Cloud[word] += 1;

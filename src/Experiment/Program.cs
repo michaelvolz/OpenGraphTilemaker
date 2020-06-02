@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Experiment.Features.App;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -6,6 +7,7 @@ using Serilog;
 
 namespace Experiment
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public partial class Program
     {
         public static int Main(string[] args)
@@ -29,7 +31,6 @@ namespace Experiment
             }
         }
 
-        // ReSharper disable once MemberCanBePrivate.Global
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

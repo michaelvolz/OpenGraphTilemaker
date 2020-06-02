@@ -1,13 +1,12 @@
 ﻿using System;
-
-// ReSharper disable UnusedMemberInSuper.Global
+using JetBrains.Annotations;
 
 namespace OpenGraphTilemaker.GetPocket
 {
     public interface IPocketOptions
     {
-        Uri? Uri { get; set; }
-        TimeSpan CachingTimeSpan { get; set; }
-        TimeSpan TimeOutTimeSpan { get; set; }
+        Uri? Uri { get; [UsedImplicitly] set; }
+        TimeSpan CachingTimeSpan { get; [UsedImplicitly] set; }
+        TimeSpan TimeOutTimeSpan { get; [UsedImplicitly] set; }
     }
 }

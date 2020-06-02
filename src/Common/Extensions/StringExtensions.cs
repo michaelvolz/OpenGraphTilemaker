@@ -3,9 +3,6 @@ using System.Linq;
 using System.Text;
 using Ardalis.GuardClauses;
 
-// ReSharper disable UnusedMember.Global
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Common.Extensions
 {
     public static class StringExtensions

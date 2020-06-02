@@ -1,4 +1,4 @@
-﻿// ReSharper disable CheckNamespace
+﻿// ReSharper disable once CheckNamespace
 
 namespace Ardalis.GuardClauses
 {

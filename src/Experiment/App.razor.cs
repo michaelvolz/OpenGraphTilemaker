@@ -2,19 +2,19 @@
 using BlazorState.Features.JavaScriptInterop;
 using BlazorState.Features.Routing;
 using BlazorState.Pipeline.ReduxDevTools;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 
 namespace Experiment
 {
     public class AppBase : ComponentBase
     {
-#nullable disable
-        [Inject] private JsonRequestHandler JsonRequestHandler { get; set; }
-        [Inject] private ReduxDevToolsInterop ReduxDevToolsInterop { get; set; }
+        [Inject] private JsonRequestHandler JsonRequestHandler { get; [UsedImplicitly] set; } = null!;
+        [Inject] private ReduxDevToolsInterop ReduxDevToolsInterop { get; [UsedImplicitly] set; } = null!;
 
         // Injected so it is created by the container. Even though the IDE says it is not used, it is.
-        [Inject] private RouteManager RouteManager { get; set; }
-#nullable enable
+        [Inject] private RouteManager RouteManager { get; [UsedImplicitly] set; } = null!;
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await ReduxDevToolsInterop.InitAsync();

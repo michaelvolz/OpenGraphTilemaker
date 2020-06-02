@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 using System.Threading.Tasks;
 using BlazorState;
 using Common;
@@ -6,13 +7,12 @@ using Common.Logging;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Experiment.Features.App.Globals
 {
     public partial class GlobalState
     {
         [IoC]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
         public class ChangeThemeColorsHandler : ActionHandler<ChangeThemeColorsRequest>
         {
             private readonly ILogger<ChangeThemeColorsHandler> _logger = ApplicationLogging.CreateLogger<ChangeThemeColorsHandler>();

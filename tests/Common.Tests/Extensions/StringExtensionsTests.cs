@@ -4,8 +4,6 @@ using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Common.Tests.Extensions
 {
     public partial class StringExtensionsTests : BaseTest<StringExtensionsTests>

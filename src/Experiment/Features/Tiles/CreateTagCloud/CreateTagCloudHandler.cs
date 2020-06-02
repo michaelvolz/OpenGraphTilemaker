@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BlazorState;
@@ -6,10 +7,9 @@ using Common;
 using Common.TagCloud;
 using MediatR;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Experiment.Features.Tiles
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public partial class TilesState
     {
         [IoC]

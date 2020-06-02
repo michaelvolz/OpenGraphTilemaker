@@ -1,9 +1,9 @@
 ﻿using System;
-
-// ReSharper disable UnusedMember.Global
+using System.Diagnostics.CodeAnalysis;
 
 namespace Common.Exceptions
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class LoggedException : Exception, ILoggedException
     {
         public LoggedException() { }

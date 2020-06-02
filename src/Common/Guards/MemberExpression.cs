@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
-// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable CheckNamespace
 
 namespace Ardalis.GuardClauses
@@ -9,6 +9,7 @@ namespace Ardalis.GuardClauses
     /// <summary>
     ///     MemberExpression.
     /// </summary>
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public static partial class GuardClauseExtensions
     {
         public static string MemberExpressionName<T>(this Expression<Func<T>> func) => 

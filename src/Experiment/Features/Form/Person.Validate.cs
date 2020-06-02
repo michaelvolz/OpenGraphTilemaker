@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -8,11 +9,9 @@ using Ardalis.GuardClauses;
 using FluentValidation;
 using FluentValidation.Results;
 
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable ClassNeverInstantiated.Global
-
 namespace Experiment.Features.Form
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class ValidationBase<TValidator> : IValidate
     {
         public IList<ValidationFailure> Validate<T>(string? propertyName = null) where T : class

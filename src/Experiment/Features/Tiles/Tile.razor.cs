@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
+using Microsoft.AspNetCore.Components;
 using OpenGraphTilemaker.OpenGraph;
-
-// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Experiment.Features.Tiles
 {
+    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
     public class TileModel : ComponentBase
     {
-        [Parameter] public OpenGraphMetadata? OpenGraphMetadata { get; set; }
+        [Parameter] public OpenGraphMetadata? OpenGraphMetadata { get; [UsedImplicitly] set; }
     }
 }

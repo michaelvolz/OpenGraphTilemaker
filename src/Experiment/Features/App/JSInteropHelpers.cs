@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common.Logging;
@@ -7,11 +8,10 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Experiment.Features.App
 {
     [UsedImplicitly]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class JSInteropHelpers
     {
         private const string BlazorDemo = "blazorDemo.";

@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 using Common;
@@ -20,7 +19,7 @@ namespace Experiment
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
-        public static IConfiguration? Configuration { get; private set; }
+        private static IConfiguration? Configuration { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {

@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace BaseTestCode
 {
     public static class BaseTestExtensions

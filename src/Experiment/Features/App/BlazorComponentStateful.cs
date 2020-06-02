@@ -1,31 +1,25 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using BlazorState;
 using Common;
 using Common.Logging;
+using JetBrains.Annotations;
 using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Local
-// ReSharper disable UnusedMember.Global
-
 namespace Experiment.Features.App
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class BlazorComponentStateful<TComponent> : ComponentBase
     {
-#nullable disable
-        [Inject] private IMediator Mediator { get; set; }
-
-        [Inject] protected Time Time { get; set; }
-        [Inject] protected IStore Store { get; set; }
-        [Inject] protected NavigationManager UriHelper { get; set; }
-
-        [Inject] protected IJSRuntime JSRuntime { get; set; }
-        // [Inject] protected IComponentContext ComponentContext { get; set; }
-#nullable enable
+        [Inject] private IMediator Mediator { get; [UsedImplicitly] set; } = null!;
+        [Inject] protected Time Time { get; [UsedImplicitly] set; } = null!;
+        [Inject] protected IStore Store { get; [UsedImplicitly] set; } = null!;
+        [Inject] protected NavigationManager UriHelper { get; [UsedImplicitly] set; } = null!;
+        [Inject] protected IJSRuntime JSRuntime { get; [UsedImplicitly] set; } = null!;
 
         protected ILogger<TComponent> Logger { get; } = ApplicationLogging.CreateLogger<TComponent>();
 

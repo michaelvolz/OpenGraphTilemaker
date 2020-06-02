@@ -2,10 +2,13 @@
 
 namespace Experiment.Features.App.Globals
 {
-    public class ChangeThemeColorsRequest : IAction
+    public partial class GlobalState
     {
-        public string ThemeColor1 { get; set; } = string.Empty;
-        public string ThemeColor2 { get; set; } = string.Empty;
-        public string ThemeColor3 { get; set; } = string.Empty;
+        public class ChangeThemeColorsRequest : IAction
+        {
+            public string ThemeColor1 { get; set; } = string.Empty;
+            public string ThemeColor2 { get; set; } = string.Empty;
+            public string ThemeColor3 { get; set; } = string.Empty;
+        }
     }
 }

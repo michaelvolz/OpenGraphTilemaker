@@ -7,11 +7,6 @@ using Experiment.Features.App.Globals;
 using Microsoft.Extensions.Logging;
 using GlobalState = Experiment.Features.App.Globals.GlobalState;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-#pragma warning disable CA1063 // Modify TilesPageModel.Finalize so that it calls Dispose(false) and then returns.
-#pragma warning disable CA1821 // Remove empty Finalizers
-#pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
-
 namespace Experiment.Features
 {
     public class IndexModel : BlazorComponentStateful<IndexModel>, IDisposable
@@ -32,7 +27,7 @@ namespace Experiment.Features
 
         protected async Task ChangeThemeColors()
         {
-            var request = new ChangeThemeColorsRequest
+            var request = new GlobalState.ChangeThemeColorsRequest
             {
                 ThemeColor1 = GlobalState.ThemeColor2,
                 ThemeColor2 = GlobalState.ThemeColor3,

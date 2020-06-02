@@ -1,9 +1,7 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
-
-// ReSharper disable UnusedMember.Global
-#pragma warning disable CA2008 // Do not create tasks without passing a TaskScheduler
 
 namespace Common
 {
@@ -13,6 +11,8 @@ namespace Common
     /// <example>
     ///     AsyncHelper.RunSync(() => DoAsyncStuff());
     /// </example>
+    [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class AsyncHelper
     {
         private static readonly TaskFactory TaskFactory =
@@ -31,7 +31,7 @@ namespace Common
             var tcs = new TaskCompletionSource<object>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             // This disposes the registration as soon as one of the tasks trigger
-            using (cancellationToken.Register(state => { ((TaskCompletionSource<object>)state!).TrySetResult(null!); }, tcs))
+            await using (cancellationToken.Register(state => { ((TaskCompletionSource<object>)state!)?.TrySetResult(null!); }, tcs))
             {
                 var resultTask = await Task.WhenAny(task, tcs.Task);
 

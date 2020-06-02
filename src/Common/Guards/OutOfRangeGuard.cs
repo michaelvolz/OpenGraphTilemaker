@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
-// ReSharper disable UnusedMethodReturnValue.Global
 // ReSharper disable CheckNamespace
-// ReSharper disable UnusedMember.Global
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable UnusedParameter.Global
-// ReSharper disable ParameterOnlyUsedForPreconditionCheck.Global
 
 namespace Ardalis.GuardClauses
 {
@@ -18,6 +14,9 @@ namespace Ardalis.GuardClauses
     /// <example>
     ///     Guard.Against.Null(input, nameof(input));.
     /// </example>
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
+    [SuppressMessage("ReSharper", "UnusedParameter.Local")]
     public static partial class GuardClauseExtensions
     {
         /// <summary>

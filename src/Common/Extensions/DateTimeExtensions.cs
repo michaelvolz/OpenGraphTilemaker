@@ -1,9 +1,9 @@
 ﻿using System;
-
-// ReSharper disable UnusedMember.Global
+using System.Diagnostics.CodeAnalysis;
 
 namespace Common.Extensions
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class DateTimeExtensions
     {
         private const int Today = 0;
@@ -25,7 +25,7 @@ namespace Common.Extensions
 
             return totalDaysElapsed switch
             {
-                int _ when totalSecondsElapsed < 0 => "n/a",
+                { } _ when totalSecondsElapsed < 0 => "n/a",
 
                 Today when totalSecondsElapsed < MinuteInSeconds => "just now",
                 Today when totalSecondsElapsed < HourInSeconds => string.Format(new PluralFormatProvider(), "{0:minute;minutes} ago",
@@ -35,8 +35,8 @@ namespace Common.Extensions
 
                 Yesterday => "yesterday",
 
-                int days when days < WeekInDays => $"{totalDaysElapsed} days ago",
-                int days when days < MonthInDays => string.Format(new PluralFormatProvider(), "{0:week;weeks} ago",
+                { } days when days < WeekInDays => $"{totalDaysElapsed} days ago",
+                { } days when days < MonthInDays => string.Format(new PluralFormatProvider(), "{0:week;weeks} ago",
                     totalDaysElapsed.CeilingBy(WeekInDays)),
 
                 _ => date.ToLongDateString()

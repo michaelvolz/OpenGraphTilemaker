@@ -1,33 +1,32 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common;
 using Experiment.Features.App;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
 
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
-// ReSharper disable UnusedMethodReturnValue.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Local
-// ReSharper disable EventNeverSubscribedTo.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-
 namespace Experiment.Features.Tiles
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class SortingAndSearchModel : BlazorComponentStateful<SortingAndSearchModel>
     {
-        [Parameter] public Func<string, Task>? OnSortProperty { get; set; }
-        [Parameter] public Func<SortOrder, Task>? OnSortOrder { get; set; }
-        [Parameter] public Func<string, Task>? OnSearch { get; set; }
+        [Parameter] public Func<string, Task>? OnSortProperty { get; [UsedImplicitly] set; }
+        [Parameter] public Func<SortOrder, Task>? OnSortOrder { get; [UsedImplicitly] set; }
+        [Parameter] public Func<string, Task>? OnSearch { get; [UsedImplicitly] set; }
 
-        [Parameter] public string Class { get; set; } = string.Empty;
-        [Parameter] public string SortProperty { get; set; } = string.Empty;
-        [Parameter] public SortOrder SortOrder { get; set; }
-        [Parameter] public string SearchText { get; set; } = string.Empty;
-        [Parameter] public int Count { get; set; }
+        [Parameter] public string Class { get; [UsedImplicitly] set; } = string.Empty;
+        [Parameter] public string SortProperty { get; [UsedImplicitly] set; } = string.Empty;
+        [Parameter] public SortOrder SortOrder { get; [UsedImplicitly] set; }
+        [Parameter] public string SearchText { get; [UsedImplicitly] set; } = string.Empty;
+        [Parameter] public int Count { get; [UsedImplicitly] set; }
 
-        public ElementReference SearchInput { get; set; }
+        public ElementReference SearchInput { get; [UsedImplicitly] set; }
 
         protected Task OnSortPropertyButtonClicked()
         {

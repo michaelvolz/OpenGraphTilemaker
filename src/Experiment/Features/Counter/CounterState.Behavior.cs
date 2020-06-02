@@ -1,8 +1,6 @@
 ﻿using BlazorState;
 using Common;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Experiment.Features.Counter
 {
     public partial class CounterState : State<CounterState>
@@ -20,15 +18,7 @@ namespace Experiment.Features.Counter
         /// </summary>
         /// <remarks>Constructor used for Clone.</remarks>
         /// <param name="state">The item we want to clone.</param>
-        protected CounterState(CounterState state) {
-            Count = state.Count;
-        }
-
-        /// <summary>
-        ///     Clone the existing object.
-        /// </summary>
-        /// <returns>A clone of this object.</returns>
-        //public override object Clone() => new CounterState(this);
+        protected CounterState(CounterState state) => Count = state.Count;
 
         /// <summary>
         ///     Set the Initial State.

@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-// ReSharper disable UnusedMember.Global
-
 namespace Common.Extensions
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class DataTypeExtensions
     {
         public static int ToInt32(this object arg) => Convert.ToInt32(arg);
@@ -37,15 +37,11 @@ namespace Common.Extensions
             return rg.IsMatch(value);
         }
 
-        public static bool IsNumeric(this object expression)
-        {
-            if (expression == null) return false;
-
-            return double.TryParse(
+        public static bool IsNumeric(this object expression) =>
+            double.TryParse(
                 Convert.ToString(expression, CultureInfo.InvariantCulture),
                 NumberStyles.Any,
                 NumberFormatInfo.InvariantInfo,
                 out _);
-        }
     }
 }

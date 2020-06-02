@@ -8,8 +8,6 @@ using VirtualTimeLib;
 using Xunit;
 using Xunit.Abstractions;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Common.Tests.Extensions
 {
     public class DateTimeExtensionsTests : BaseTest<DateTimeExtensionsTests>
@@ -19,9 +17,7 @@ namespace Common.Tests.Extensions
         private const string SingularPlural = "singular;plural";
         private const int FreezeTime = 0;
 
-#nullable disable
         public static IEnumerable<object[]> DateTimeExtensionsTestData => new List<object[]>
-#nullable enable
         {
             new object[] {DateTime.UtcNow.ToVirtualTime(FreezeTime), "just now"},
             new object[] {DateTime.UtcNow.AddMinutes(-1).ToVirtualTime(FreezeTime), "1 minute ago"},

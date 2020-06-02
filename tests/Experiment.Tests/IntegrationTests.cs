@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Net;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using BaseTestCode;
 using Common;
@@ -9,13 +9,10 @@ using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 using Xunit.Abstractions;
 
-// ReSharper disable VirtualMemberNeverOverridden.Global
-// ReSharper disable RedundantArgumentDefaultValue
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable CheckNamespace
-
+// ReSharper disable once CheckNamespace
 namespace OpenGraphTilemaker.Tests
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class IntegrationTests<T> : BaseTest<T>, IDisposable
     {
         private const string CachingFolder = @"C:\WINDOWS\Temp\";
@@ -28,7 +25,7 @@ namespace OpenGraphTilemaker.Tests
 
         protected IntegrationTests(ITestOutputHelper testConsole) : base(testConsole) => _realHttpClient = new HttpClient();
 
-        public void Dispose() => _realHttpClient?.Dispose();
+        public void Dispose() => _realHttpClient.Dispose();
 
         protected HttpLoader HttpLoader() => new HttpLoader(DiscCache());
 
@@ -50,6 +47,6 @@ namespace OpenGraphTilemaker.Tests
             Options.Create(new DiscCacheOptions {CacheFolder = CachingFolder, CacheState = CacheState.Disabled});
 
         protected TileMakerClient TileMakerClient(string fakeResponse) =>
-            new TileMakerClient(HttpClient(fakeResponse, HttpStatusCode.OK), TileMaker(), HttpLoader());
+            new TileMakerClient(HttpClient(fakeResponse), TileMaker(), HttpLoader());
     }
 }

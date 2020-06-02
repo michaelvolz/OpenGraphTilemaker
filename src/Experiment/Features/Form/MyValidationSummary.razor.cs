@@ -1,25 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
-
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace Experiment.Features.Form
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
     public class MyValidationSummaryModel<TItem> : ComponentBase
     {
-#nullable disable
-        [Parameter] public TItem Subject { get; set; }
-#nullable enable
-
-        [Parameter] public string Class { get; set; } = string.Empty;
+        [Parameter] public TItem Subject { get; [UsedImplicitly] set; } = default!;
+        [Parameter] public string Class { get; [UsedImplicitly] set; } = string.Empty;
 
         protected IList<ValidationFailure> ValidationFailures { get; set; } = new List<ValidationFailure>();
         protected bool HasValidationFailures => ValidationFailures.Any();
 
-        protected override async Task OnParametersSetAsync() => ValidationFailures = await ((IValidate)Subject).ValidateAsync(Subject);
+        protected override async Task OnParametersSetAsync() => ValidationFailures = await ((IValidate)Subject!).ValidateAsync(Subject);
     }
 }

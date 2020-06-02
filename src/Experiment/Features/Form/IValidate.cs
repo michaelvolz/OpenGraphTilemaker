@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation.Results;
 
-// ReSharper disable UnusedMemberInSuper.Global
-
 namespace Experiment.Features.Form
 {
+    [SuppressMessage("ReSharper", "UnusedMemberInSuper.Global")]
     public interface IValidate
     {
         IList<ValidationFailure> Validate<T>(string? propertyName = null) where T : class;

@@ -1,11 +1,9 @@
-﻿using AutoFixture.Xunit2;
+﻿using System.Diagnostics.CodeAnalysis;
+using AutoFixture.Xunit2;
 using FluentAssertions;
+using JetBrains.Annotations;
 using Xunit;
 using Xunit.Abstractions;
-
-// ReSharper disable ClassNeverInstantiated.Global
-// ReSharper disable UnusedMember.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace BaseTestCode
 {
@@ -26,18 +24,19 @@ namespace BaseTestCode
             sut.AnotherClass!.Currency.Should().BeGreaterThan(0);
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public class SomeTestClass
         {
             public string? Text { get; set; }
             public int Number { get; set; }
-            public AnotherClass? AnotherClass { get; set; }
+            public AnotherClass? AnotherClass { get; [UsedImplicitly] set; }
 
             public static int Echo(int expectedNumber) => expectedNumber;
         }
 
         public class AnotherClass
         {
-            public decimal Currency { get; set; }
+            public decimal Currency { get; [UsedImplicitly] set; }
         }
     }
 }

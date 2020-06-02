@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable UnusedParameter.Global
 // ReSharper disable CheckNamespace
 
 namespace Ardalis.GuardClauses
@@ -10,6 +9,8 @@ namespace Ardalis.GuardClauses
     /// <summary>
     ///     NullOrWhiteSpace.
     /// </summary>
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedParameter.Global")]
     public static partial class GuardClauseExtensions
     {
         /// <summary>

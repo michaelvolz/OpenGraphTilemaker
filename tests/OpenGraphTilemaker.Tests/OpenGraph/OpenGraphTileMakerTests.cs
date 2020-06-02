@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using AutoFixture.Xunit2;
 using BaseTestCode;
-using BaseTestCode.XUnitUtilities;
 using FluentAssertions;
 using Microsoft.Extensions.Options;
 using OpenGraphTilemaker.OpenGraph;
@@ -13,14 +12,12 @@ using Xunit;
 using Xunit.Abstractions;
 using Xunit.Categories;
 
-// ReSharper disable StringLiteralTypo
-// ReSharper disable ArgumentsStyleLiteral
-
 namespace OpenGraphTilemaker.Tests.OpenGraph
 {
     public class OpenGraphTileMakerTests : BaseTest<OpenGraphTileMakerTests>
     {
-        public OpenGraphTileMakerTests(ITestOutputHelper testConsole) : base(testConsole) {
+        public OpenGraphTileMakerTests(ITestOutputHelper testConsole) : base(testConsole)
+        {
             var options = Options.Create(new DiscCacheOptions(@"C:\WINDOWS\Temp\", CacheState.Disabled));
             _webLoader = new HttpLoader(new DiscCache(options));
             _tileMaker = new OpenGraphTileMaker();
@@ -31,7 +28,8 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
 
         [Theory]
         [AutoData]
-        public async Task LoadWeb_HtmlDoc_ValidContent(string fakeResponse) {
+        public async Task LoadWeb_HtmlDoc_ValidContent(string fakeResponse)
+        {
             var result = await _webLoader.LoadAsync(HttpClient(fakeResponse), new Uri("https://example.org"));
 
             // Assert
@@ -44,7 +42,8 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
 
         [Fact]
         [IntegrationTest]
-        public async Task Scrape_ErroneousUrl_Error() {
+        public async Task Scrape_ErroneousUrl_Error()
+        {
             // Arrange
             var uri = new Uri("http://brokenurl");
 
@@ -57,7 +56,8 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
         }
 
         [Fact]
-        public async Task Scrape_RecodeHtml_Success() {
+        public async Task Scrape_RecodeHtml_Success()
+        {
             var uri = new Uri("https://example.org");
             var responseMessage = await File.ReadAllTextAsync("../../../TestData/TestRecode.html");
 
@@ -67,10 +67,9 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             // Assert
             _tileMaker.Error.Should().BeNull();
             _tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
-            foreach (var node in _tileMaker.HtmlMetaTags!) {
+            foreach (var node in _tileMaker.HtmlMetaTags!)
                 TestConsole.WriteLine(node.Attributes.Aggregate(
                     "\t", (s, attribute) => s + $"{attribute.Name} = {attribute.Value} ## "));
-            }
 
             var md = _tileMaker.GraphMetadata;
             md.Should().NotBeNull();
@@ -93,7 +92,8 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
         }
 
         [Fact]
-        public async Task Scrape_TestHanselman1Html_Success() {
+        public async Task Scrape_TestHanselman1Html_Success()
+        {
             var uri = new Uri("https://example.org");
             var responseMessage = await File.ReadAllTextAsync("../../../TestData/TestHanselman1.html");
 
@@ -106,17 +106,17 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
         }
 
         [Fact]
-        public async Task Scrape_TestHtml1_AllValuesCorrect() {
+        public async Task Scrape_TestHtml1_AllValuesCorrect()
+        {
             var source = "./TestData/TestHtml1.html";
             await _tileMaker.ScrapeAsync(source, async () => await FileLoader.LoadAsync(source));
 
             // Assert
             _tileMaker.Error.Should().BeNull();
             _tileMaker.HtmlMetaTags.Should().NotBeNullOrEmpty();
-            foreach (var node in _tileMaker.HtmlMetaTags!) {
+            foreach (var node in _tileMaker.HtmlMetaTags!)
                 TestConsole.WriteLine(node.Attributes.Aggregate(
                     "\t", (s, attribute) => s + $"{attribute.Name} = {attribute.Value} ## "));
-            }
 
             var md = _tileMaker.GraphMetadata;
             md.Should().NotBeNull();

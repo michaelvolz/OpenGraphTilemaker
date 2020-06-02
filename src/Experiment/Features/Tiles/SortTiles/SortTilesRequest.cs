@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using BlazorState;
 using Common;
-using MediatR;
 using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.Tiles

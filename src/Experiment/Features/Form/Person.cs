@@ -1,7 +1,4 @@
-﻿// ReSharper disable ClassNeverInstantiated.Global
-// ReSharper disable MemberCanBePrivate.Global
-
-namespace Experiment.Features.Form
+﻿namespace Experiment.Features.Form
 {
     public class Person : ValidationBase<PersonValidator>
     {

@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Xunit;
 
 namespace BaseTestCode.XUnitUtilities
 {
-    // ReSharper disable once UnusedMember.Global
+    [SuppressMessage("ReSharper", "UnusedType.Global")]
     public sealed class IgnoreOnAppVeyorLinuxFactAttribute : FactAttribute
     {
         /// <summary>

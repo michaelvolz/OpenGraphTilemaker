@@ -5,8 +5,6 @@ using Ardalis.GuardClauses;
 using Common;
 using OpenGraphTilemaker.GetPocket;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace OpenGraphTilemaker.OpenGraph
 {
     [IoC]
@@ -31,10 +29,9 @@ namespace OpenGraphTilemaker.OpenGraph
                 async () => await _httpLoader.LoadAsync(_httpClient, uri));
 
             var result = _openGraphTileMaker.GraphMetadata;
+            result.BookmarkTime = entry.PubDate;
 
-            if (result != null) result.BookmarkTime = entry.PubDate;
-
-            return result ?? new OpenGraphMetadata();
+            return result;
         }
     }
 }

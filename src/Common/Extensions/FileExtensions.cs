@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text.RegularExpressions;
 using Ardalis.GuardClauses;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Common.Extensions
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public static class FileExtensions
     {
         private static readonly string InvalidChars = new string(Path.GetInvalidFileNameChars());

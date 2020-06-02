@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
-// ReSharper disable UnusedMember.Global
-
 namespace Common.Extensions
 {
+    [SuppressMessage("ReSharper", "UnusedType.Global")]
     public static class AsyncExtensions
     {
         /// <summary>
@@ -30,7 +30,7 @@ namespace Common.Extensions
         ///     AsyncLazy.
         ///     See <a href="link">https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md</a>
         /// </summary>
-        private class AsyncLazy<T> : Lazy<Task<T>>
+        public class AsyncLazy<T> : Lazy<Task<T>>
         {
             public AsyncLazy(Func<Task<T>> valueFactory) : base(valueFactory) { }
         }

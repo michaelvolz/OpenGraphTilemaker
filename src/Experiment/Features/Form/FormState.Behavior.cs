@@ -1,8 +1,6 @@
 ﻿using BlazorState;
 using Common;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Experiment.Features.Form
 {
     public partial class FormState : State<FormState>
@@ -21,12 +19,6 @@ namespace Experiment.Features.Form
         /// <remarks>Constructor used for Clone.</remarks>
         /// <param name="state">The item we want to clone.</param>
         protected FormState(FormState state) => Person = state.Person;
-
-        /// <summary>
-        ///     Clone the existing object.
-        /// </summary>
-        /// <returns>A clone of this object.</returns>
-        //public override object Clone() => new FormState(this);
 
         /// <summary>
         ///     Set the Initial State.

@@ -5,9 +5,6 @@ using Common.Extensions;
 using Microsoft.Extensions.Options;
 using static OpenGraphTilemaker.OpenGraph.CacheState;
 
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable ClassNeverInstantiated.Global
-
 namespace OpenGraphTilemaker.OpenGraph
 {
     public class DiscCache
@@ -18,7 +15,7 @@ namespace OpenGraphTilemaker.OpenGraph
             DiscCacheOptions = Guard.Against.Null(() => options.Value);
         }
 
-        public DiscCacheOptions DiscCacheOptions { get; }
+        private DiscCacheOptions DiscCacheOptions { get; }
 
         public bool TryLoadFromDisc(Uri uri, out string? result)
         {
@@ -33,19 +30,19 @@ namespace OpenGraphTilemaker.OpenGraph
             return result != null;
         }
 
-        public string FullPath(Uri uri)
-        {
-            Guard.Against.Null(() => uri);
-
-            return DiscCacheOptions.CacheFolder + uri.ToValidFileName();
-        }
-
         public void WriteToDisc(Uri uri, string html)
         {
             Guard.Against.Null(() => uri);
             Guard.Against.NullOrWhiteSpace(() => html);
 
             if (DiscCacheOptions.CacheState == Enabled) File.WriteAllText(FullPath(uri), html);
+        }
+
+        private string FullPath(Uri uri)
+        {
+            Guard.Against.Null(() => uri);
+
+            return DiscCacheOptions.CacheFolder + uri.ToValidFileName();
         }
     }
 }

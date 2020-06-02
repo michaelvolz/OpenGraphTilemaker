@@ -1,16 +1,16 @@
-﻿using System.Threading;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 using System.Threading.Tasks;
 using BlazorState;
 using Common;
 using MediatR;
-
-// ReSharper disable MemberCanBePrivate.Global
 
 namespace Experiment.Features.Counter
 {
     public partial class CounterState
     {
         [IoC]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
         public class IncrementCounterHandler : ActionHandler<IncrementCounterRequest>
         {
             public IncrementCounterHandler(IStore store) : base(store) { }

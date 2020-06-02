@@ -1,24 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common;
 using Experiment.Features.App;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable CollectionNeverUpdated.Global
-
 namespace Experiment.Features.Tiles
 {
+    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class TilesModel : BlazorComponentStateful<TilesModel>
     {
-        [Parameter] public string Class { get; set; } = string.Empty;
-        [Parameter] public List<OpenGraphMetadata>? OriginalTiles { get; set; }
+        [Parameter] public string Class { get; [UsedImplicitly] set; } = string.Empty;
+        [Parameter] public List<OpenGraphMetadata> OriginalTiles { get; [UsedImplicitly] set; } = null!;
 
         protected TilesState State => Store.GetState<TilesState>();
 
@@ -28,7 +27,7 @@ namespace Experiment.Features.Tiles
 
             if (OriginalTiles.Any() && !State.CurrentTiles.Any())
             {
-                Logger.LogInformation("### {MethodName} Count: {Count}", nameof(OnParametersSetAsync), OriginalTiles!.Count);
+                Logger.LogInformation("### {MethodName} Count: {Count}", nameof(OnParametersSetAsync), OriginalTiles.Count);
 
                 await SearchAsync(State.SearchText);
                 await RequestAsync(new TilesState.CreateTagCloudRequest {OriginalTiles = OriginalTiles});
@@ -41,7 +40,7 @@ namespace Experiment.Features.Tiles
         protected bool Empty() => !State.CurrentTiles.Any() && !IsLoading;
         protected bool Any() => State.CurrentTiles.Any();
 
-        protected bool TagCloudExists() => State?.TagCloud != null && State.TagCloud.Any();
+        protected bool TagCloudExists() => State.TagCloud != null && State.TagCloud.Any();
 
         protected async Task OnSortProperty(string sortProperty) => await SortByPropertyAsync(sortProperty);
         protected async Task OnSortOrder(SortOrder sortOrder) => await SortByOrderAsync(sortOrder);
@@ -67,7 +66,8 @@ namespace Experiment.Features.Tiles
 
         private async Task SearchAsync(string searchText)
         {
-            if (OriginalTiles == null || !OriginalTiles.Any()) return;
+            // ReSharper disable once ConstantConditionalAccessQualifier
+            if (OriginalTiles?.Any() != true) return;
 
             await RequestAsync(new TilesState.SearchTilesRequest {OriginalTiles = OriginalTiles, SearchText = searchText});
             await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.CurrentTiles});

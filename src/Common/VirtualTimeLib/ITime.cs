@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable CheckNamespace
-// ReSharper disable UnusedMember.Global
-// ReSharper disable InconsistentNaming
 
 namespace VirtualTimeLib
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public interface ITime
     {
         DateTime UtcNow { get; }

@@ -1,11 +1,12 @@
 // ReSharper disable CheckNamespace
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace VirtualTimeLib
 {
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Global")]
     internal class VirtualTime : ITime
     {
         public VirtualTime(DateTime whenTimeStarts, double speedOfTimePerMs = 1, int marginOfErrorMs = 10)
