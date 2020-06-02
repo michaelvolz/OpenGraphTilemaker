@@ -1,7 +1,7 @@
 ﻿@page "/cryptowatch"
 @using Common.Extensions
 @using Microsoft.Extensions.Options
-@inherits CryptoWatchModel
+@inherits BlazorComponentStateful<CryptoWatch>
 @inject IOptions<CryptoWatchOptions> CryptoWatchOptions
 
 <h1>CryptoWatch <small>ApiKey: @CryptoWatchOptions.Value.ApiKey.TruncateAtWord(5)</small></h1>

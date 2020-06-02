@@ -1,13 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Experiment.Features.App;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 
 namespace Experiment.Features.CryptoWatch
 {
-    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
-    public class CryptoWatchCardModel : BlazorComponentStateful<CryptoWatchCardModel>
+    public partial class CryptoWatchCard
     {
-        [Parameter] public CryptoWatchCardData Data { get; [UsedImplicitly] set; } = null!;
+        [Parameter]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+        public CryptoWatchCardData Data { get; [UsedImplicitly] set; } = null!;
     }
 }

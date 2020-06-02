@@ -1,25 +1,27 @@
 ﻿using System.Threading.Tasks;
-using Experiment.Features.App;
+using JetBrains.Annotations;
 
 namespace Experiment.Features.CryptoWatch
 {
-    public class CryptoWatchModel : BlazorComponentStateful<CryptoWatchModel>
+    public partial class CryptoWatch
     {
-        public CryptoWatchCardData Card1 { get; set; } = new CryptoWatchCardData();
-        public CryptoWatchCardData Card2 { get; set; } = new CryptoWatchCardData();
-        public CryptoWatchCardData Card3 { get; set; } = new CryptoWatchCardData();
-        public CryptoWatchCardData Card4 { get; set; } = new CryptoWatchCardData();
+        private CryptoWatchCardData Card1 { get; [UsedImplicitly] set; } = new CryptoWatchCardData();
+        private CryptoWatchCardData Card2 { get; [UsedImplicitly] set; } = new CryptoWatchCardData();
+        private CryptoWatchCardData Card3 { get; [UsedImplicitly] set; } = new CryptoWatchCardData();
+        private CryptoWatchCardData Card4 { get; [UsedImplicitly] set; } = new CryptoWatchCardData();
 
         protected override void OnInitialized() => Task.Run(BackgroundTask);
 
-        private async Task BackgroundTask() {
+        private async Task BackgroundTask()
+        {
             var dataSource = new DataSource();
             dataSource.OnUpdate += DataSourceOnUpdate;
             await dataSource.GoAsync();
             //dataSource.OnUpdate -= DataSourceOnUpdate;
         }
 
-        private void DataSourceOnUpdate(int v) {
+        private void DataSourceOnUpdate(int v)
+        {
             Card1.Value = v;
             StateHasChanged();
         }
