@@ -1,30 +1,42 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Experiment.Features.App;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.Tiles
 {
-    public class TilesPageModel : BlazorComponentStateful<TilesPageModel>
+    public partial class TilesPage
     {
-        protected List<OpenGraphMetadata> OriginalTiles { get; private set; } = new List<OpenGraphMetadata>();
+        // TODO: Duplication, remove!
+        private List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
 
-        protected bool Loading() => !OriginalTiles.Any() && IsLoading;
+        private bool Loading() => !OriginalTiles.Any() && IsLoading;
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender) return;
+
+            if (Store.GetState<TilesState>().OriginalTiles.Any())
+                CopyOriginalTiles();
+            else
+                await InitializeData();
+
+            IsLoading = false;
+            StateHasChanged();
+        }
+
+        private async Task InitializeData()
         {
             Logger.LogInformation("### {MethodName} loading data...", nameof(OnInitializedAsync));
 
             await Time.ThisAsync(() => RequestAsync(new TilesState.FetchTilesRequest()), nameof(TilesState.FetchTilesRequest), Logger);
 
-            OriginalTiles = Store.GetState<TilesState>().OriginalTiles;
-            IsLoading = false;
+            CopyOriginalTiles();
 
-            Logger.LogInformation("### {MethodName} loading data finished! {Count}", nameof(OnInitializedAsync), OriginalTiles?.Count);
-
-            StateHasChanged();
+            Logger.LogInformation("### {MethodName} loading data finished! {Count}", nameof(OnInitializedAsync), OriginalTiles.Count);
         }
+
+        private void CopyOriginalTiles() => OriginalTiles = Store.GetState<TilesState>().OriginalTiles;
     }
 }

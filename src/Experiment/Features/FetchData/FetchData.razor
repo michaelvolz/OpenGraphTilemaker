@@ -1,16 +1,18 @@
 ﻿@page "/fetchdata"
-@using Experiment.Features.App
-@inject WeatherForecastService ForecastService
+@inherits BlazorComponentStateful<FetchData>
 
 <h1>Weather forecast!</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (_forecasts == null) {
+@if (Forecasts == null)
+{
     <p>
         <em>Loading...</em>
     </p>
-} else {
+}
+else
+{
     <div class="table-scroll">
         <table class="hover">
             <thead>
@@ -22,7 +24,8 @@
             </tr>
             </thead>
             <tbody>
-            @foreach (var forecast in _forecasts) {
+            @foreach (var forecast in Forecasts)
+            {
                 <tr>
                     <td>@forecast.Date.ToShortDateString()</td>
                     <td>@forecast.TemperatureC</td>
@@ -33,13 +36,4 @@
             </tbody>
         </table>
     </div>
-}
-
-@functions {
-    WeatherForecast[] _forecasts = new WeatherForecast[0];
-
-    protected override async Task OnInitializedAsync() {
-        _forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    }
-
 }

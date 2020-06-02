@@ -5,18 +5,17 @@ using Common.Exceptions;
 using Experiment.Features.App;
 using Experiment.Features.App.Globals;
 using Microsoft.Extensions.Logging;
-using GlobalState = Experiment.Features.App.Globals.GlobalState;
 
 namespace Experiment.Features
 {
-    public class IndexModel : BlazorComponentStateful<IndexModel>, IDisposable
+    public partial class Index : IDisposable
     {
         private const string ThisShouldNeverBeLogged = "THIS SHOULD NEVER BE LOGGED!";
         private bool _initialized;
 
-        protected GlobalState GlobalState => Store.GetState<GlobalState>();
+        private GlobalState GlobalState => Store.GetState<GlobalState>();
 
-        protected int WindowWidth { get; private set; } = -1;
+        private int WindowWidth { get; set; } = -1;
 
         public void Dispose()
         {
@@ -25,7 +24,7 @@ namespace Experiment.Features
             Logger.LogInformation("OnWindowResized event removed!");
         }
 
-        protected async Task ChangeThemeColors()
+        private async Task ChangeThemeColors()
         {
             var request = new GlobalState.ChangeThemeColorsRequest
             {
@@ -77,19 +76,19 @@ namespace Experiment.Features
                     try
                     {
                         using (Logger.BeginScope(new Dictionary<string, object>
-                        { ["CustomerId"] = 12345, ["OrderId"] = 54 }))
+                            {["CustomerId"] = 12345, ["OrderId"] = 54}))
                         {
                             Logger.LogInformation("Processing credit card payment...");
 
                             throw new InvalidOperationException("Inner Test Exception!");
                         }
                     }
-                    catch (Exception e) when (e.LogException<IndexModel>())
+                    catch (Exception e) when (e.LogException<Index>())
                     {
                         throw new LoggedException(e);
                     }
                 }
-                catch (Exception e) when (e.LogException<IndexModel>())
+                catch (Exception e) when (e.LogException<Index>())
                 {
                     throw new LoggedException(ThisShouldNeverBeLogged + " An OUTER error occurred!", e);
                 }

@@ -1,16 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Common;
-using Experiment.Features.App;
+﻿using System.Threading.Tasks;
 
 namespace Experiment.Features.Counter
 {
-    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
-    public class CounterModel : BlazorComponentStateful<CounterModel>
+    public partial class Counter
     {
-        public CounterState CounterState => Store.GetState<CounterState>();
+        private CounterState CounterState => Store.GetState<CounterState>();
 
-        [BlazorEvent]
-        public async Task ButtonClick() => await RequestAsync(new CounterState.IncrementCounterRequest {Amount = 2});
+        private async Task ButtonClick() => await RequestAsync(new CounterState.IncrementCounterRequest {Amount = 2});
     }
 }
