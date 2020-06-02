@@ -41,6 +41,3 @@ namespace Ardalis.GuardClauses
             Guard.Against.Default(input.Compile()(), input.MemberExpressionName());
     }
 }
-
-#pragma warning restore SA1614 // Element parameter documentation should have text
-#pragma warning restore SA1627 // Documentation text should not be empty

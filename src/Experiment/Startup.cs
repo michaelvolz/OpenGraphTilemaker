@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
+using Serilog;
 
 namespace Experiment
 {
@@ -79,6 +80,8 @@ namespace Experiment
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
 

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Experiment.Features.App;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 
@@ -11,8 +9,6 @@ namespace Experiment.Features.Tiles
 {
     public class TilesPageModel : BlazorComponentStateful<TilesPageModel>
     {
-        [UsedImplicitly] private const int OneSecondInMilliseconds = 1000;
-
         protected List<OpenGraphMetadata> OriginalTiles { get; private set; } = new List<OpenGraphMetadata>();
 
         protected bool Loading() => !OriginalTiles.Any() && IsLoading;
@@ -21,10 +17,8 @@ namespace Experiment.Features.Tiles
         {
             Logger.LogInformation("### {MethodName} loading data...", nameof(OnInitializedAsync));
 
-            // for testing purposes only!
-            //await Task.Delay(1 * OneSecondInMilliseconds);
+            await Time.ThisAsync(() => RequestAsync(new TilesState.FetchTilesRequest()), nameof(TilesState.FetchTilesRequest), Logger);
 
-            var response = await RequestAsync(new TilesState.FetchTilesRequest());
             OriginalTiles = Store.GetState<TilesState>().OriginalTiles;
             IsLoading = false;
 

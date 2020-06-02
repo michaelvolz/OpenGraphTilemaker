@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Ardalis.GuardClauses;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Common
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class ServiceLocator
     {
         private static ServiceProvider? _serviceProvider;
