@@ -23,45 +23,29 @@ namespace OpenGraphTilemaker.OpenGraph
                     continue;
 
                 var property = tag.GetAttributeValue("property", null) ?? tag.GetAttributeValue("name", null);
-                switch (property)
-                {
-                    case "og:type":
-                        metadata.Type = content;
-                        break;
-                    case "og:title":
-                        metadata.Title = content.DeEntitize();
-                        break;
-                    case "og:url":
-                        metadata.Url = content;
-                        break;
-                    case "og:description":
-                        metadata.Description = content.DeEntitize();
-                        break;
-                    case "og:site_name":
-                        metadata.SiteName = content.DeEntitize();
-                        break;
-                    case "og:image":
-                        metadata.Image = content;
-                        break;
-                    case "og:image:width":
-                        metadata.ImageWidth = content.AsIntOrNull();
-                        break;
-                    case "og:image:height":
-                        metadata.ImageHeight = content.AsIntOrNull();
-                        break;
-                    case "og:locale":
-                        metadata.Locale = content;
-                        break;
-                    case "article:published_time":
-                        metadata.ArticlePublishedTime = content.AsDateTimeOrNull();
-                        break;
-                    case "article:modified_time":
-                        metadata.ArticleModifiedTime = content.AsDateTimeOrNull();
-                        break;
-                }
+                MapValues(property, metadata, content);
             }
 
             return metadata;
+        }
+
+        private static void MapValues(string property, OpenGraphMetadata metadata, string content)
+        {
+            object? _ = property switch
+            {
+                "og:type" => metadata.Type = content,
+                "og:title" => metadata.Title = content.DeEntitize(),
+                "og:url" => metadata.Url = content,
+                "og:description" => metadata.Description = content.DeEntitize(),
+                "og:site_name" => metadata.SiteName = content.DeEntitize(),
+                "og:image" => metadata.Image = content,
+                "og:image:width" => metadata.ImageWidth = content.AsIntOrNull(),
+                "og:image:height" => metadata.ImageHeight = content.AsIntOrNull(),
+                "og:locale" => metadata.Locale = content,
+                "article:published_time" => metadata.ArticlePublishedTime = content.AsDateTimeOrNull(),
+                "article:modified_time" => metadata.ArticleModifiedTime = content.AsDateTimeOrNull(),
+                _ => string.Empty
+            };
         }
     }
 }
