@@ -14,7 +14,7 @@ namespace Experiment.Features.Tiles
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    public class SortingAndSearchModel : BlazorComponentStateful<SortingAndSearchModel>
+    public partial class SortingAndSearch
     {
         [Parameter] public Func<string, Task>? OnSortProperty { get; [UsedImplicitly] set; }
         [Parameter] public Func<SortOrder, Task>? OnSortOrder { get; [UsedImplicitly] set; }

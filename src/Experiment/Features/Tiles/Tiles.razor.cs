@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common;
-using Experiment.Features.App;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
@@ -14,7 +13,7 @@ namespace Experiment.Features.Tiles
 {
     [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    public class TilesModel : BlazorComponentStateful<TilesModel>
+    public partial class Tiles
     {
         [Parameter] public string Class { get; [UsedImplicitly] set; } = string.Empty;
         [Parameter] public List<OpenGraphMetadata> OriginalTiles { get; [UsedImplicitly] set; } = null!;

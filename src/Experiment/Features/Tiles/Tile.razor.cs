@@ -5,9 +5,10 @@ using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.Tiles
 {
-    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
-    public class TileModel : ComponentBase
+    public partial class Tile
     {
-        [Parameter] public OpenGraphMetadata? OpenGraphMetadata { get; [UsedImplicitly] set; }
+        [Parameter]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+        public OpenGraphMetadata? OpenGraphMetadata { get; [UsedImplicitly] set; }
     }
 }
