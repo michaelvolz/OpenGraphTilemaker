@@ -5,4 +5,4 @@
 
 <div class="callout success emphasize radius @ShowIf(Loading)">Updating / Loading...</div>
 
-<Tiles Class="tilesContainer" OriginalTiles="@OriginalTiles"></Tiles>
+<Tiles Class="tilesContainer" OriginalTiles="@(Store.GetState<TilesState>().OriginalTiles)"></Tiles>

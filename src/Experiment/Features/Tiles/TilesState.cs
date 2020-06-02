@@ -11,7 +11,6 @@ namespace Experiment.Features.Tiles
         public List<OpenGraphMetadata> CurrentTiles { get; private set; } = new List<OpenGraphMetadata>();
         public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
 
-        //public IOrderedEnumerable<KeyValuePair<string, int>>? TagCloud { get; private set; }
         public Dictionary<string, int>? TagCloud { get; private set; }
 
         public string SortProperty { get; private set; } = string.Empty;
