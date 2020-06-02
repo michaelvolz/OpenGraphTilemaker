@@ -10,8 +10,8 @@ variables:
   buildConfiguration: 'Release'
   # Azure DevOps variables are transformed into environment variables, with these variables we
   # avoid the first time experience and telemetry to speed up the build.
-  # DOTNET_CLI_TELEMETRY_OPTOUT: 1
-  # DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
 steps:
 
@@ -21,10 +21,6 @@ steps:
     packageType: sdk
     version: 3.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
-
-#- task: DotNetCoreInstaller@0
-#  inputs:
-#    version: '3.0.100-preview9-014004'
 
 - script: dotnet restore
   displayName: 'Restore packages'
@@ -49,5 +45,3 @@ steps:
     #buildPlatform: # Optional
     #buildConfiguration: # Optional
     publishRunAttachments: false # Optional
-
-#- task: PublishBuildArtifacts@1
