@@ -26,6 +26,7 @@ steps:
   displayName: 'dotnet restore'
   inputs:
     command: 'restore'
+    arguments: '-v n'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
