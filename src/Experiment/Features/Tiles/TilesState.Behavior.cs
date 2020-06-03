@@ -19,7 +19,6 @@ namespace Experiment.Features.Tiles
             SortProperty = state.SortProperty;
 
             SearchText = state.SearchText;
-            LastSearchText = state.LastSearchText;
         }
 
         public override void Initialize()
@@ -31,7 +30,6 @@ namespace Experiment.Features.Tiles
             SortProperty = nameof(OpenGraphMetadata.BookmarkTime);
 
             SearchText = string.Empty;
-            LastSearchText = string.Empty;
         }
     }
 }

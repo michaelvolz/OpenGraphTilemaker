@@ -17,6 +17,5 @@ namespace Experiment.Features.Tiles
         public SortOrder SortOrder { get; private set; } = SortOrder.Undefined;
 
         public string SearchText { get; private set; } = string.Empty;
-        public string LastSearchText { get; private set; } = string.Empty;
     }
 }

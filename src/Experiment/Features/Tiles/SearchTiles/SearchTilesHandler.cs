@@ -39,8 +39,6 @@ namespace Experiment.Features.Tiles
                         ).ToList();
                 }
 
-                TilesState.LastSearchText = TilesState.SearchText;
-
                 _logger.LogInformation("SearchTilesHandler for: {SearchText}, Count: {Count}", TilesState.SearchText, TilesState.CurrentTiles.Count);
 
                 return Unit.Task;
