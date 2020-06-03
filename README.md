@@ -58,6 +58,9 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * Build release, including code analysis and stylecop
   * Run tests
   * Status badge
+* WebCompiler
+  * SCSS compilation and minification
+  * JavaScript transformation and minification
 * Dependabot 
   * Include badge
  
