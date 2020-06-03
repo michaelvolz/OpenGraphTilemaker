@@ -15,12 +15,12 @@ variables:
 
 steps:
 
-#- task: UseDotNet@2
-#  displayName: 'Use .NET Core sdk 3.1.x'
-#  inputs:
-#    packageType: sdk
-#    version: 3.1.x
-#    installationPath: $(Agent.ToolsDirectory)/dotnet
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk 3.1.x'
+  inputs:
+    packageType: sdk
+    version: 3.1.x
+    installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
@@ -32,7 +32,7 @@ steps:
   displayName: 'dotnet test $(buildConfiguration)'
   inputs:
     command: 'test'
-    arguments: '--no-build --configuration "Release" --logger "trx;LogFileName=TEST-results.xml"'
+    arguments: '--no-build --configuration "Release" --logger "trx;LogFileName=TEST-results.xml" --collect "Code coverage"'
 
 #- task: NuGetCommand@2
 #  displayName: 'Restore NuGet packages'
