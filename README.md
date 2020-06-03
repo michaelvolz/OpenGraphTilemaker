@@ -9,7 +9,7 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
 
 ### Implemented Features
 
-* ASP.NET Core 3.0 release
+* ASP.NET Core 3.1
 * C# nullable reference types
 * Blazor server-side only for now
 * State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and [MediatR](https://github.com/jbogard/MediatR)
@@ -44,7 +44,7 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * TODO: Consume live websocket stream
   * TODO: Update in realtime
   * TODO: Use Reactive Extensions (Rx)
-* ZURB foundation 6.5
+* ZURB foundation 6.6.3
   * Foundation Icons
 * Modified filestructure
   * Blazor Feature Folders adapted from [Feature Folder Structure in ASP.NET Core](https://scottsauber.com/2016/04/25/feature-folder-structure-in-asp-net-core/)
