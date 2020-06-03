@@ -2,7 +2,7 @@
 
 @import "abstracts/variables";
 
-@import "../../node_modules/foundation-sites/scss/foundation";
+@import "../foundation-sites/scss/foundation";
 @include foundation-everything(true, true);
 
 @import "abstracts/functions";
