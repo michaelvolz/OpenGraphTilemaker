@@ -12,8 +12,6 @@ using Microsoft.Extensions.Logging;
 namespace Experiment.Features.Tiles
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public partial class SortingAndSearch
     {
         [Parameter] public Func<string, Task>? OnSortProperty { get; [UsedImplicitly] set; }
@@ -62,8 +60,5 @@ namespace Experiment.Features.Tiles
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender) => await SearchInput.FocusAsync(JSRuntime);
-
-        public void TextInjectedFromParent(string text) =>
-            Logger.LogInformation("Received from parent control: '{Text}'", text);
     }
 }
