@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using Common.Logging;
 using Microsoft.Extensions.Logging;
 
 namespace Common
