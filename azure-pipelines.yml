@@ -15,6 +15,18 @@ variables:
 
 steps:
 
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk'
+  inputs:
+    packageType: sdk
+    version: 3.1.x
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
@@ -23,16 +35,8 @@ steps:
   inputs:
     command: 'test'
 
-#- task: UseDotNet@2
-#  displayName: 'Use .NET Core sdk 3'
-#  inputs:
-#    packageType: sdk
-#    version: 3.x
-#    installationPath: $(Agent.ToolsDirectory)/dotnet
-
 #- script: dotnet restore
 #  displayName: 'Restore packages'
-
 
 #- script: dotnet build --configuration $(buildConfiguration)
 #  displayName: 'dotnet build $(buildConfiguration)'
