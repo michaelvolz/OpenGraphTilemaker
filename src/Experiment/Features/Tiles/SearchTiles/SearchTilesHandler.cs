@@ -33,9 +33,9 @@ namespace Experiment.Features.Tiles
 
                     TilesState.CurrentTiles = req.OriginalTiles
                         .Where(
-                            t => t.Title != null && t.Title.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
-                                 || t.Description != null && t.Description.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
-                                 || t.SiteName != null && t.SiteName.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
+                            t => t.Title.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
+                                 || t.Description.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
+                                 || t.SiteName.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
                         ).ToList();
                 }
 
