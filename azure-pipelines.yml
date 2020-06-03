@@ -23,17 +23,23 @@ steps:
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: NuGetCommand@2
+  displayName: 'Restore NuGet packages'
   inputs:
     command: 'restore'
     restoreSolution: '**/*.sln'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet build $(buildConfiguration)'
   inputs:
     command: 'build'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
+- powershell: .\test.ps1 -Verbose
+  displayName: 'dotnet test $(buildConfiguration)'
+
+#- task: DotNetCoreCLI@2
+#  displayName: 'dotnet test $(buildConfiguration)'
+#  inputs:
+#    command: 'test'
 
 #- script: dotnet restore
 #  displayName: 'Restore packages'
@@ -45,8 +51,6 @@ steps:
 #  inputs:
 #    advance: true
 
-#- powershell: .\test.ps1 -Verbose
-#  displayName: 'Tests'
 
 - task: PublishTestResults@2
   inputs:
