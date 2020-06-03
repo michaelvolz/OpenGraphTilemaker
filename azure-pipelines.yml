@@ -26,8 +26,7 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
-    command: 'restore'
-    arguments: '-v m'
+    command: 'restore -v m'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
@@ -41,13 +40,8 @@ steps:
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
-    arguments: '--no-build --configuration $(buildConfiguration) --logger trx --collect "Code coverage"'
+    arguments: '--no-build --configuration $(buildConfiguration) --logger trx'
     publishTestResults: true
-
-#- task: PublishTestResults@2
-#  inputs:
-#    testResultsFormat: 'VSTest'
-#    testResultsFiles: '**/*.trx'
 
 - task: WhiteSource Bolt@19
   inputs:
