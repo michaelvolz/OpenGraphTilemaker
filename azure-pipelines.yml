@@ -23,10 +23,16 @@ steps:
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: 'restore'
+
+- task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
+    projects: OpenGraphTilemaker.sln
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test $(buildConfiguration)'
