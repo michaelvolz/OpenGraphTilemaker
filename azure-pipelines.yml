@@ -39,14 +39,16 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test $(buildConfiguration)'
   inputs:
-    command: 'test'
-    arguments: '--no-build --configuration "Release" --logger "trx;LogFileName=TEST-results.xml" --collect "Code coverage"'
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--no-build --configuration $(buildConfiguration) --logger trx --collect "Code coverage"'
+    publishTestResults: true
+
+#- task: PublishTestResults@2
+#  inputs:
+#    testResultsFormat: 'VSTest'
+#    testResultsFiles: '**/*.trx'
 
 - task: WhiteSource Bolt@19
   inputs:
     advance: true
-
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'VSTest'
-    testResultsFiles: '**/TEST-*.xml'
