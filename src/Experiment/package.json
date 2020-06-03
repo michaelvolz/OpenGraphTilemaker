@@ -1,7 +1,0 @@
-{
-  "name": "myproject",
-  "version": "1.0.0",
-  "devDependencies": {
-    "foundation-sites": "^6.6.3"
-  }
-}
