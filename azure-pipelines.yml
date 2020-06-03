@@ -15,25 +15,34 @@ variables:
 
 steps:
 
-- task: UseDotNet@2
-  displayName: 'Use .NET Core sdk 3'
+- task: DotNetCoreCLI@2
   inputs:
-    packageType: sdk
-    version: 3.x
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+    command: 'build'
 
-- script: dotnet restore
-  displayName: 'Restore packages'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+#- task: UseDotNet@2
+#  displayName: 'Use .NET Core sdk 3'
+#  inputs:
+#    packageType: sdk
+#    version: 3.x
+#    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+#- script: dotnet restore
+#  displayName: 'Restore packages'
+
+
+#- script: dotnet build --configuration $(buildConfiguration)
+#  displayName: 'dotnet build $(buildConfiguration)'
 
 #- task: WhiteSource Bolt@19
 #  inputs:
 #    advance: true
 
-- powershell: .\test.ps1 -Verbose
-  displayName: 'Tests'
+#- powershell: .\test.ps1 -Verbose
+#  displayName: 'Tests'
 
 - task: PublishTestResults@2
   inputs:
