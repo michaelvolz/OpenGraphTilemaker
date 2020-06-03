@@ -38,8 +38,8 @@ steps:
 #  inputs:
 #    command: 'test'
 
-- script: dotnet restore
-  displayName: 'dotnet test $(buildConfiguration)'
+#- script: dotnet restore
+#  displayName: 'dotnet restore'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
