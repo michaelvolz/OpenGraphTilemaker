@@ -2,11 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using BaseTestCode;
-using BaseTestCode.XUnitUtilities;
-using Experiment.Features.Counter;
+using Experiment.Features.Tiles;
 using FluentAssertions;
 using OpenGraphTilemaker.Tests;
-using Experiment.Features.Tiles;
 using Xunit;
 using Xunit.Abstractions;
 using Xunit.Categories;
@@ -34,7 +32,7 @@ namespace Experiment.Tests.Features.Tiles
 
             // Assert
             result.Should().NotBeNull();
-            
+
             var state = mockStore.GetState<TilesState>();
             state.OriginalTiles.Should().NotBeNullOrEmpty();
             var first = state.OriginalTiles.First();

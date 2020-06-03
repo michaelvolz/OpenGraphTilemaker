@@ -9,28 +9,26 @@ using Common.Logging;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Websocket.Client;
-using Xunit;
 using Xunit.Abstractions;
 
 namespace Common.Tests
 {
     public class WebSocketTest : BaseTest<WebSocketTest>
     {
-        public WebSocketTest(ITestOutputHelper output) : base(output) { }
+        private const string Subscribe_CoinbasePro_LTC_BTC_BBO =
+            "{ \"type\": \"subscribe\", \"exchange\": \"coinbasepro\", \"pair\": \"eth-btc\", \"channel\": \"bbo\" }";
 
         private static readonly int FiveSeconds = (int)TimeSpan.FromSeconds(5).TotalMilliseconds;
         private static readonly TimeSpan ThirtySeconds = TimeSpan.FromSeconds(30);
         private static readonly ManualResetEvent ExitEvent = new ManualResetEvent(true);
         private static readonly Uri Url = new Uri("wss://ws-feed.shrimpy.io/");
-
-        private const string Subscribe_CoinbasePro_LTC_BTC_BBO =
-            "{ \"type\": \"subscribe\", \"exchange\": \"coinbasepro\", \"pair\": \"eth-btc\", \"channel\": \"bbo\" }";
+        public WebSocketTest(ITestOutputHelper output) : base(output) { }
 
 
         //[Fact]
         public async Task WebSocket_Connection_Successful()
         {
-            using var client = new WebsocketClient(Url) { ErrorReconnectTimeout = ThirtySeconds, ReconnectTimeout = ThirtySeconds };
+            using var client = new WebsocketClient(Url) {ErrorReconnectTimeout = ThirtySeconds, ReconnectTimeout = ThirtySeconds};
 
             client.ReconnectionHappened.Subscribe(type => TestConsole.LogInformation("Reconnection happened, type: {Type}", type));
             var messageStore = new MessageStore(ApplicationLogging.CreateLogger<MessageStore>());
