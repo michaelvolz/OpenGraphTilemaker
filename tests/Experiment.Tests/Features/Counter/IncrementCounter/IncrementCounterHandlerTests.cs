@@ -21,6 +21,7 @@ namespace Experiment.Tests.Features.Counter
             var mockStore = new MockStore();
             mockStore.SetState(new CounterState());
             var handler = new CounterState.IncrementCounterHandler(mockStore);
+            var initialCount = mockStore.GetState<CounterState>().Count;
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -29,7 +30,7 @@ namespace Experiment.Tests.Features.Counter
             result.Should().NotBeNull();
             var state = mockStore.GetState<CounterState>();
 
-            state.Count.Should().Be(3 + amount);
+            state.Count.Should().Be(initialCount + amount);
         }
     }
 }
