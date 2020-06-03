@@ -16,41 +16,40 @@ variables:
 steps:
 
 - task: UseDotNet@2
-  displayName: 'Use .NET Core sdk'
+  displayName: 'Use .NET Core sdk 3.1.x'
   inputs:
     packageType: sdk
     version: 3.1.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
-- task: NuGetCommand@2
-  displayName: 'Restore NuGet packages'
-  inputs:
-    command: 'restore'
-    restoreSolution: '**/*.sln'
+#- task: NuGetCommand@2
+#  displayName: 'Restore NuGet packages'
+#  inputs:
+#    command: 'restore'
+#    restoreSolution: '**/*.sln'
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet build $(buildConfiguration)'
-  inputs:
-    command: 'build'
-
-- powershell: .\test.ps1 -Verbose
-  displayName: 'dotnet test $(buildConfiguration)'
+#- task: DotNetCoreCLI@2
+#  displayName: 'dotnet build $(buildConfiguration)'
+#  inputs:
+#    command: 'build'
 
 #- task: DotNetCoreCLI@2
 #  displayName: 'dotnet test $(buildConfiguration)'
 #  inputs:
 #    command: 'test'
 
-#- script: dotnet restore
-#  displayName: 'Restore packages'
+- script: dotnet restore
+  displayName: 'dotnet test $(buildConfiguration)'
 
-#- script: dotnet build --configuration $(buildConfiguration)
-#  displayName: 'dotnet build $(buildConfiguration)'
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
 
 #- task: WhiteSource Bolt@19
 #  inputs:
 #    advance: true
 
+- powershell: .\test.ps1 -Verbose
+  displayName: 'dotnet test $(buildConfiguration)'
 
 - task: PublishTestResults@2
   inputs:
