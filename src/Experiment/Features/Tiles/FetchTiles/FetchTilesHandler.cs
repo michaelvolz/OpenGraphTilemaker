@@ -26,7 +26,7 @@ namespace Experiment.Features.Tiles
             _pocketOptions = options.Value;
         }
 
-        public TilesState TilesState => Store.GetState<TilesState>();
+        private TilesState TilesState => Store.GetState<TilesState>();
 
         public override async Task<Unit> Handle(TilesState.FetchTilesRequest req, CancellationToken token) {
             var entries = await _pocket.GetEntriesAsync(_pocketOptions);
@@ -38,7 +38,7 @@ namespace Experiment.Features.Tiles
 
             var taskResults = await Task.WhenAll(tasks);
 
-            TilesState.OriginalTiles = taskResults.Where(entry => entry != null && entry.IsValid).Distinct().ToList();
+            TilesState.OriginalTiles = taskResults.Where(entry => entry.IsValid).Distinct().ToList();
 
             return await Unit.Task;
         }
