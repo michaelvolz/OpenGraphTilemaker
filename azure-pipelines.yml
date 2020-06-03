@@ -2,6 +2,7 @@
 # Build and test ASP.NET Core projects targeting .NET Core.
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/build/dotnet-core-cli?view=azure-devops#examples
 
 pool:
   vmImage: 'windows-latest'
@@ -41,42 +42,11 @@ steps:
     command: 'test'
     arguments: '--no-build --configuration "Release" --logger "trx;LogFileName=TEST-results.xml" --collect "Code coverage"'
 
-#- task: NuGetCommand@2
-#  displayName: 'Restore NuGet packages'
-#  inputs:
-#    command: 'restore'
-#    restoreSolution: '**/*.sln'
-
-#- task: DotNetCoreCLI@2
-#  displayName: 'dotnet build $(buildConfiguration)'
-#  inputs:
-#    command: 'build'
-
-#- task: DotNetCoreCLI@2
-#  displayName: 'dotnet test $(buildConfiguration)'
-#  inputs:
-#    command: 'test'
-
-#- script: dotnet restore
-#  displayName: 'dotnet restore'
-
-#- script: dotnet build --configuration $(buildConfiguration)
-#  displayName: 'dotnet build $(buildConfiguration)'
-
-#- task: WhiteSource Bolt@19
-#  inputs:
-#    advance: true
-
-#- powershell: .\test.ps1 -Verbose
-#  displayName: 'dotnet test'
+- task: WhiteSource Bolt@19
+  inputs:
+    advance: true
 
 - task: PublishTestResults@2
   inputs:
-    testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFormat: 'VSTest'
     testResultsFiles: '**/TEST-*.xml'
-    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
-    #mergeTestResults: true # Optional
-    #testRunTitle: # Optional
-    #buildPlatform: # Optional
-    #buildConfiguration: # Optional
-    publishRunAttachments: false # Optional
