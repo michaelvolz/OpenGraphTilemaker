@@ -8,7 +8,7 @@ namespace Experiment.Features.Tiles
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public partial class TilesState
     {
-        public List<OpenGraphMetadata> CurrentTiles { get; private set; } = new List<OpenGraphMetadata>();
+        public List<OpenGraphMetadata> FilteredAndSortedTiles { get; private set; } = new List<OpenGraphMetadata>();
         public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
 
         public Dictionary<string, int>? TagCloud { get; private set; }

@@ -26,12 +26,12 @@ namespace Experiment.Features.Tiles
                 TilesState.SearchText = req.SearchText;
 
                 if (TilesState.SearchText.IsNullOrWhiteSpace()) {
-                    TilesState.CurrentTiles = req.OriginalTiles;
+                    TilesState.FilteredAndSortedTiles = req.OriginalTiles;
                 }
                 else {
                     var search = TilesState.SearchText.ToUpperInvariant();
 
-                    TilesState.CurrentTiles = req.OriginalTiles
+                    TilesState.FilteredAndSortedTiles = req.OriginalTiles
                         .Where(
                             t => t.Title.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
                                  || t.Description.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
@@ -39,7 +39,7 @@ namespace Experiment.Features.Tiles
                         ).ToList();
                 }
 
-                _logger.LogInformation("SearchTilesHandler for: {SearchText}, Count: {Count}", TilesState.SearchText, TilesState.CurrentTiles.Count);
+                _logger.LogInformation("SearchTilesHandler for: {SearchText}, Count: {Count}", TilesState.SearchText, TilesState.FilteredAndSortedTiles.Count);
 
                 return Unit.Task;
             }

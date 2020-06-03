@@ -12,7 +12,7 @@ namespace Experiment.Features.Tiles
 
         protected TilesState(TilesState state)
         {
-            CurrentTiles = state.CurrentTiles;
+            FilteredAndSortedTiles = state.FilteredAndSortedTiles;
             TagCloud = state.TagCloud;
 
             SortOrder = state.SortOrder;
@@ -23,7 +23,7 @@ namespace Experiment.Features.Tiles
 
         public override void Initialize()
         {
-            CurrentTiles = new List<OpenGraphMetadata>();
+            FilteredAndSortedTiles = new List<OpenGraphMetadata>();
             TagCloud = default;
 
             SortOrder = SortOrder.Descending;

@@ -24,7 +24,7 @@ namespace Experiment.Features.Tiles
         {
             Guard.Against.Null(() => OriginalTiles);
 
-            if (OriginalTiles.Any() && !State.CurrentTiles.Any())
+            if (OriginalTiles.Any() && !State.FilteredAndSortedTiles.Any())
             {
                 Logger.LogInformation("### {MethodName} Count: {Count}", nameof(OnParametersSetAsync), OriginalTiles.Count);
 
@@ -36,8 +36,8 @@ namespace Experiment.Features.Tiles
         }
 
         protected bool Loaded() => OriginalTiles.Any();
-        protected bool Empty() => !State.CurrentTiles.Any() && !IsLoading;
-        protected bool Any() => State.CurrentTiles.Any();
+        protected bool Empty() => !State.FilteredAndSortedTiles.Any() && !IsLoading;
+        protected bool Any() => State.FilteredAndSortedTiles.Any();
 
         protected bool TagCloudExists() => State.TagCloud != null && State.TagCloud.Any();
 
@@ -48,7 +48,7 @@ namespace Experiment.Features.Tiles
         private async Task SortByOrderAsync(SortOrder sortOrder)
         {
             sortOrder = sortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.CurrentTiles, SortOrder = sortOrder});
+            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.FilteredAndSortedTiles, SortOrder = sortOrder});
 
             StateHasChanged();
         }
@@ -58,7 +58,7 @@ namespace Experiment.Features.Tiles
             sortProperty = sortProperty != nameof(OpenGraphMetadata.Title)
                 ? nameof(OpenGraphMetadata.Title)
                 : nameof(OpenGraphMetadata.BookmarkTime);
-            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.CurrentTiles, SortProperty = sortProperty});
+            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.FilteredAndSortedTiles, SortProperty = sortProperty});
 
             StateHasChanged();
         }
@@ -69,7 +69,7 @@ namespace Experiment.Features.Tiles
             if (OriginalTiles?.Any() != true) return;
 
             await RequestAsync(new TilesState.SearchTilesRequest {OriginalTiles = OriginalTiles, SearchText = searchText});
-            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.CurrentTiles});
+            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.FilteredAndSortedTiles});
 
             StateHasChanged();
         }

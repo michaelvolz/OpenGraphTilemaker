@@ -44,13 +44,13 @@ namespace Experiment.Features.Tiles
             private void SortTiles(List<OpenGraphMetadata> tiles) {
                 switch (TilesState.SortProperty) {
                     case nameof(OpenGraphMetadata.Title):
-                        TilesState.CurrentTiles = TilesState.SortOrder == SortOrder.Ascending
+                        TilesState.FilteredAndSortedTiles = TilesState.SortOrder == SortOrder.Ascending
                             ? tiles.OrderBy(f => f.Title).ToList()
                             : tiles.OrderByDescending(f => f.Title).ToList();
                         break;
 
                     case nameof(OpenGraphMetadata.BookmarkTime):
-                        TilesState.CurrentTiles = TilesState.SortOrder == SortOrder.Ascending
+                        TilesState.FilteredAndSortedTiles = TilesState.SortOrder == SortOrder.Ascending
                             ? tiles.OrderBy(f => f.BookmarkTime).ToList()
                             : tiles.OrderByDescending(f => f.BookmarkTime).ToList();
                         break;
