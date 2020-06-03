@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Common;
 using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.Tiles
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public partial class TilesState
     {
         public List<OpenGraphMetadata> FilteredAndSortedTiles { get; private set; } = new List<OpenGraphMetadata>();
