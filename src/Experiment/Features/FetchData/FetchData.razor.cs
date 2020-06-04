@@ -10,7 +10,7 @@ namespace Experiment.Features.FetchData
     {
         [Inject] private WeatherForecastService ForecastService { get; [UsedImplicitly] set; } = null!;
 
-        private WeatherForecast[]? Forecasts { get; set; } = new WeatherForecast[0];
+        private WeatherForecast[]? Forecasts { get; set; } = Array.Empty<WeatherForecast>();
 
         protected override async Task OnInitializedAsync() => Forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
