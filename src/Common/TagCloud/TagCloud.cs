@@ -17,7 +17,7 @@ namespace Common.TagCloud
 
         private static IEnumerable<string> ExtractWords(string text)
             => text
-                .ToLowerInvariant()
+                .ToUpperInvariant()
                 .RemoveNumbers()
                 .Split()
                 .Select(word => word.RemoveTrailingPunctuation())
@@ -41,7 +41,7 @@ namespace Common.TagCloud
         private void InsertWord(string word)
         {
             if (word.Length < 2) return;
-            if (_stopWords!.Contains(word.Replace("’", "'"), StringComparer.InvariantCultureIgnoreCase)) return;
+            if (_stopWords!.Contains(word.Replace("’", "'", StringComparison.InvariantCultureIgnoreCase))) return;
 
             if (Cloud.ContainsKey(word))
                 Cloud[word] += 1;

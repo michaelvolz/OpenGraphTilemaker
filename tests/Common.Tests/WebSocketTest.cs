@@ -60,7 +60,7 @@ namespace Common.Tests
         public void ProcessMessage(ResponseMessage msg)
         {
             if (msg.MessageType != WebSocketMessageType.Text) return;
-            if (!msg.Text.StartsWith("{\"exchange\"")) return;
+            if (!msg.Text.StartsWith("{\"exchange\"", StringComparison.InvariantCultureIgnoreCase)) return;
 
             var bbo = msg.Text.JSONUnSerialize<Shrimpy.BestBidOffer>();
 

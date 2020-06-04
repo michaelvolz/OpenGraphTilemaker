@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BaseTestCode;
-using BaseTestCode.XUnitUtilities;
 using Common;
 using FluentAssertions;
 using Microsoft.Extensions.Caching.Memory;
@@ -13,7 +12,7 @@ using Xunit.Categories;
 
 namespace OpenGraphTilemaker.Tests.GetPocket
 {
-    public class PocketTests : BaseTest<PocketTests>, IDisposable
+    public sealed class PocketTests : BaseTest<PocketTests>
     {
         public PocketTests(ITestOutputHelper testConsole) : base(testConsole)
         {
@@ -24,7 +23,15 @@ namespace OpenGraphTilemaker.Tests.GetPocket
             _options = new PocketOptions(Uri, CachingTimeSpan, TimeoutTimeSpan);
         }
 
-        public void Dispose() => _memoryCache?.Dispose();
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _memoryCache.Dispose();
+            }
+
+            base.Dispose(disposing);
+        }
 
         private static readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
         private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(1);

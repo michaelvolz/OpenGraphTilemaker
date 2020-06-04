@@ -11,5 +11,5 @@ namespace Common
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Enum |
                     AttributeTargets.Interface |
                     AttributeTargets.Delegate)]
-    public class IoCAttribute : Attribute { }
+    public sealed class IoCAttribute : Attribute { }
 }

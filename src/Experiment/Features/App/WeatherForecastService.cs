@@ -11,6 +11,7 @@ namespace Experiment.Features.App
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "CA5394:Do not use insecure randomness", Justification = "Not needed for security")]
         public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
         {
             var rng = new Random();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using Ardalis.GuardClauses;
@@ -23,7 +24,7 @@ namespace Common.Extensions
             Guard.Against.NullOrWhiteSpace(() => str);
 
             var escapedInvalidChars = Regex.Escape(InvalidChars);
-            var invalidCharsRegex = string.Format(@"([{0}]*\.+$)|([{0}]+)", escapedInvalidChars);
+            var invalidCharsRegex = string.Format(CultureInfo.InvariantCulture, @"([{0}]*\.+$)|([{0}]+)", escapedInvalidChars);
 
             return Regex.Replace(str, invalidCharsRegex, "_");
         }

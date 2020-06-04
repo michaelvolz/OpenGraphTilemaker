@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 namespace VirtualTimeLib
 {
@@ -34,7 +35,7 @@ namespace VirtualTimeLib
 
         public DateTime FromFileTimeUtc(long fileTimeUtc) => DateTime.FromFileTimeUtc(fileTimeUtc);
 
-        public DateTime Parse(string s) => DateTime.Parse(s);
+        public DateTime Parse(string s) => DateTime.Parse(s, CultureInfo.InvariantCulture);
 
         public DateTime FromOADate(double s) => DateTime.FromOADate(s);
 

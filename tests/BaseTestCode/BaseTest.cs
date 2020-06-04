@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using Common;
@@ -13,8 +14,11 @@ using Xunit.Abstractions;
 namespace BaseTestCode
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    public class BaseTest<T>
+    public class BaseTest<T> : IDisposable
     {
+        private FakeHttpMessageHandler? _fakeHttpMessageHandler;
+        private HttpResponseMessage? _httpResponseMessage;
+
         protected BaseTest(ITestOutputHelper output)
         {
             ConfigureSerilog(output);
@@ -28,14 +32,30 @@ namespace BaseTestCode
 
         protected ILogger<T> TestConsole { get; }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _fakeHttpMessageHandler?.Dispose();
+                _httpResponseMessage?.Dispose();
+            }
+        }
+
         protected HttpClient HttpClient(FakeHttpMessageHandler fakeHttpMessageHandler) =>
             new HttpClient(fakeHttpMessageHandler);
 
         protected HttpClient HttpClient(string fakeResponse, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
-            var message = new HttpResponseMessage(httpStatusCode) {Content = new StringContent(fakeResponse)};
+            _httpResponseMessage = new HttpResponseMessage(httpStatusCode) {Content = new StringContent(fakeResponse)};
+            _fakeHttpMessageHandler ??= new FakeHttpMessageHandler(_httpResponseMessage);
 
-            return HttpClient(new FakeHttpMessageHandler(message));
+            return HttpClient(_fakeHttpMessageHandler);
         }
 
         protected void UpdateServiceLocator() => ServiceLocator.SetServiceProvider(Services.BuildServiceProvider());

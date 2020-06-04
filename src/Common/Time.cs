@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
@@ -13,7 +14,7 @@ namespace Common
         public static readonly string TimeFormat = "### {0} took {1}";
 
         // ReSharper disable once StringLiteralTypo
-        public static string Ticks(Stopwatch stopwatch) => new DateTime(stopwatch.ElapsedTicks).ToString("s.fff_ffff") + " seconds";
+        public static string Ticks(Stopwatch stopwatch) => new DateTime(stopwatch.ElapsedTicks).ToString("s.fff_ffff", CultureInfo.InvariantCulture) + " seconds";
 
         public void This(Action action, string name, ILogger logger)
         {

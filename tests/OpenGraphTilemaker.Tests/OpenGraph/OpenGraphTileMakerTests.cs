@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -87,8 +88,8 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
                     "https://cdn.vox-cdn.com/thumbor/0VWGPLAhgTPzvzBYJBZOUiJzVtI=/0x215:3000x1786/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/13372511/REC_Elon_LedeImage__1_.png");
             md.ImageWidth.Should().Be(1200);
             md.ImageHeight.Should().Be(630);
-            md.ArticlePublishedTime.Should().Be(DateTime.Parse("2018-11-02T09:04:02+00:00"));
-            md.ArticleModifiedTime.Should().Be(DateTime.Parse("2018-11-02T09:04:02+00:00"));
+            md.ArticlePublishedTime.Should().Be(DateTime.Parse("2018-11-02T09:04:02+00:00", CultureInfo.InvariantCulture));
+            md.ArticleModifiedTime.Should().Be(DateTime.Parse("2018-11-02T09:04:02+00:00", CultureInfo.InvariantCulture));
         }
 
         [Fact]
@@ -134,8 +135,8 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             md.ImageWidth.Should().Be(1600);
             md.ImageHeight.Should().Be(900);
             md.Locale.Should().BeEquivalentTo("en_US");
-            md.ArticlePublishedTime.Should().Be(DateTime.Parse("2018-10-19T15:39:27+00:00"));
-            md.ArticleModifiedTime.Should().Be(DateTime.Parse("2018-10-19T17:22:55+00:00"));
+            md.ArticlePublishedTime.Should().Be(DateTime.Parse("2018-10-19T15:39:27+00:00", CultureInfo.InvariantCulture));
+            md.ArticleModifiedTime.Should().Be(DateTime.Parse("2018-10-19T17:22:55+00:00", CultureInfo.InvariantCulture));
         }
     }
 }

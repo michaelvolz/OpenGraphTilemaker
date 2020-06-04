@@ -13,7 +13,7 @@ using Xunit.Abstractions;
 namespace OpenGraphTilemaker.Tests
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    public class IntegrationTests<T> : BaseTest<T>, IDisposable
+    public class IntegrationTests<T> : BaseTest<T>
     {
         private const string CachingFolder = @"C:\WINDOWS\Temp\";
 
@@ -22,10 +22,20 @@ namespace OpenGraphTilemaker.Tests
         private readonly HttpClient _realHttpClient;
         private readonly TimeSpan _timeoutTimeSpan = TimeSpan.FromSeconds(15);
         private readonly Uri _uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
+        private MemoryCache? _memoryCache;
 
         protected IntegrationTests(ITestOutputHelper testConsole) : base(testConsole) => _realHttpClient = new HttpClient();
 
-        public void Dispose() => _realHttpClient.Dispose();
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _realHttpClient.Dispose();
+                _memoryCache?.Dispose();
+            }
+
+            base.Dispose(disposing);
+        }
 
         protected HttpLoader HttpLoader() => new HttpLoader(DiscCache());
 
@@ -37,7 +47,12 @@ namespace OpenGraphTilemaker.Tests
 
         protected Feed<PocketEntry> FeedService() => new Feed<PocketEntry>();
 
-        protected MemoryCache MemoryCache() => new MemoryCache(new MemoryCacheOptions());
+        protected MemoryCache MemoryCache()
+        {
+            _memoryCache ??= new MemoryCache(new MemoryCacheOptions());
+            
+            return _memoryCache;
+        }
 
         protected TileMakerClient RealTileMakerClient() => new TileMakerClient(_realHttpClient, TileMaker(), HttpLoader());
 

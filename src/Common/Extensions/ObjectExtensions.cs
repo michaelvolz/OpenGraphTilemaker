@@ -55,7 +55,7 @@ namespace Common.Extensions
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                     Formatting = Formatting.None,
-                    TypeNameHandling = TypeNameHandling.Arrays
+                    TypeNameHandling = TypeNameHandling.None
                 };
 
             string serializeObject;
@@ -77,9 +77,8 @@ namespace Common.Extensions
         {
             if (stringObj == null) throw new ArgumentNullException(nameof(stringObj));
 
-            // ReSharper disable once NotResolvedInText
             var deserializeObject = JsonConvert.DeserializeObject(stringObj, typeof(T))
-                                    ?? throw new ArgumentNullException("JsonConvert.DeserializeObject(stringObj, typeof(T))");
+                                    ?? throw new InvalidOperationException("JsonConvert.DeserializeObject(stringObj, typeof(T))");
 
             var unSerialize = (T)deserializeObject;
             var uIsList = unSerialize.GetType().IsGenericType && unSerialize is IEnumerable;
@@ -94,11 +93,8 @@ namespace Common.Extensions
             if (!iIsList)
                 return unSerialize;
 
-            // _log.Warn("JSON Object was not deserialized as 'List', now trying special algorithm!");
-
-            // ReSharper disable once NotResolvedInText
             var result = JsonConvert.DeserializeObject(stringObj, typeof(T), new FlexibleCollectionConverter())
-                         ?? throw new ArgumentNullException("JsonConvert.DeserializeObject(stringObj, typeof(T), new FlexibleCollectionConverter())");
+                         ?? throw new InvalidOperationException("JsonConvert.DeserializeObject(stringObj, typeof(T), new FlexibleCollectionConverter())");
 
             return (T)result;
         }

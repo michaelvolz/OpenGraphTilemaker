@@ -26,7 +26,7 @@ namespace Ardalis.GuardClauses
                 {
                     stackTrace = new StackTrace(exception, skipFrames, true);
                     skipFrames += 1;
-                } while (stackTrace.ToString().Contains(nameof(GuardClauseExtensions)));
+                } while (stackTrace.ToString().Contains(nameof(GuardClauseExtensions), StringComparison.InvariantCultureIgnoreCase));
 
                 return stackTrace;
             }

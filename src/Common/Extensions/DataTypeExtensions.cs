@@ -8,7 +8,7 @@ namespace Common.Extensions
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class DataTypeExtensions
     {
-        public static int ToInt32(this object arg) => Convert.ToInt32(arg);
+        public static int ToInt32(this object arg) => Convert.ToInt32(arg, CultureInfo.InvariantCulture);
 
         public static int? AsIntOrNull(this string value) => int.TryParse(value, out var result) ? (int?)result : null;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Common.Logging;
@@ -18,7 +19,7 @@ namespace Experiment.Features.CryptoWatch
             logger.LogDebug("DataSource start");
             for (var i = 0; i < 10000; i++)
             {
-                logger.LogDebug(i.ToString());
+                logger.LogDebug(i.ToString(CultureInfo.InvariantCulture));
                 OnUpdate?.Invoke(i);
 
                 var x = 0;

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Experiment.Features
 {
-    public partial class Index : IDisposable
+    public sealed partial class Index : IDisposable
     {
         private const string ThisShouldNeverBeLogged = "THIS SHOULD NEVER BE LOGGED!";
         private bool _initialized;
@@ -19,8 +19,7 @@ namespace Experiment.Features
 
         public void Dispose()
         {
-            // ReSharper disable once DelegateSubtraction
-            JSInteropHelpers.OnWindowResized -= WindowResized;
+            if (JSInteropHelpers.OnWindowResized != null) JSInteropHelpers.OnWindowResized -= WindowResized;
             Logger.LogInformation("OnWindowResized event removed!");
         }
 
