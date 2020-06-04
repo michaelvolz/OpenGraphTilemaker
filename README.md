@@ -21,8 +21,8 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * [xUnit](https://xunit.net/)
   * [Autofixture](https://github.com/AutoFixture/AutoFixture)
   * [nSubstitute](https://nsubstitute.github.io/)
-* OpenGraph TileMaker:
-  * RSS feedreader as source
+* [OpenGraph](https://ogp.me/) TileMaker:
+  * [RSS](https://en.wikipedia.org/wiki/RSS) feedreader as source
   * Sorting 
   * Searching
   * Disc and memory caching
@@ -39,7 +39,7 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * TODO: DataLoading
   * TODO: Logging
   * TODO: Html debug border/outline
-* CryptoWatch DashBoard:
+* [CryptoWatch](https://cryptowat.ch/) DashBoard:
   * TODO: Create websocket source with fake data
   * TODO: Consume live websocket stream
   * TODO: Update in realtime
