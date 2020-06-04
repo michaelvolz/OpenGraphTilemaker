@@ -22,7 +22,7 @@ namespace Experiment
 
         [UsedImplicitly] public static IConfiguration? Configuration { get; set; }
 
-        public void ConfigureServices(IServiceCollection services)
+        public static void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
@@ -68,7 +68,7 @@ namespace Experiment
         }
 
         [UsedImplicitly]
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

@@ -15,8 +15,8 @@ namespace OpenGraphTilemaker.OpenGraph
 
         public async Task<HtmlDocument> LoadAsync(HttpClient httpClient, Uri uri)
         {
-            Guard.Against.Null(() => httpClient);
-            Guard.Against.Null(() => uri);
+            httpClient = Guard.Against.Null(() => httpClient);
+            uri = Guard.Against.Null(() => uri);
 
             var loadedFromCache = _discCache.TryLoadFromDisc(uri, out var html);
 

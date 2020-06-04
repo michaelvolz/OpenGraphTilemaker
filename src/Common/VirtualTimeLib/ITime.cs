@@ -38,7 +38,7 @@ namespace VirtualTimeLib
 
         bool Equals(DateTime t1, DateTime t2);
 
-        bool TryParse(string s, out DateTime date);
+        bool TryParse(string s, out DateTime datum);
 
         bool IsLeapYear(int year);
     }

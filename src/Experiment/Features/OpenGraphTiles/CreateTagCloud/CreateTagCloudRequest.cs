@@ -2,15 +2,13 @@
 using BlazorState;
 using OpenGraphTilemaker.OpenGraph;
 
-namespace Experiment.Features.Tiles
+namespace Experiment.Features.OpenGraphTiles
 {
     public partial class TilesState
     {
-        public class SearchTilesRequest : IAction
+        public class CreateTagCloudRequest : IAction
         {
             public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
-
-            public string SearchText { get; set; } = string.Empty;
         }
     }
 }

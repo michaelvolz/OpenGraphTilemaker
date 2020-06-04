@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using OpenGraphTilemaker.OpenGraph;
 
-namespace Experiment.Features.Tiles
+namespace Experiment.Features.OpenGraphTiles
 {
     public partial class Tile
     {

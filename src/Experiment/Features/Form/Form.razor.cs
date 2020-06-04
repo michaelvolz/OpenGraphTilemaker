@@ -41,6 +41,6 @@ namespace Experiment.Features.Form
         private void KeyPress(KeyboardEventArgs ev) =>
             Logger.LogInformation("KeyPress: {KeyAndCode}", ev.Key + ", " + ev.Code);
 
-        private bool HasError<T>(T obj) where T : class, IValidate => obj.HasError<T>();
+        private static bool HasError<T>(T obj) where T : class, IValidate => obj.HasError<T>();
     }
 }

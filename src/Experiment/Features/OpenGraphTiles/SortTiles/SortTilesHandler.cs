@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using OpenGraphTilemaker.OpenGraph;
 
-namespace Experiment.Features.Tiles
+namespace Experiment.Features.OpenGraphTiles
 {
     public partial class TilesState
     {
@@ -24,17 +23,18 @@ namespace Experiment.Features.Tiles
 
             private TilesState TilesState => Store.GetState<TilesState>();
 
-            public override Task<Unit> Handle(SortTilesRequest req, CancellationToken token)
+            public override Task<Unit> Handle(SortTilesRequest aAction, CancellationToken aCancellationToken)
             {
-                Guard.Against.Null(() => req.CurrentTiles);
+                aAction = Guard.Against.Null(() => aAction);
+                aAction.CurrentTiles = Guard.Against.Null(() => aAction.CurrentTiles);
 
-                if (!string.IsNullOrWhiteSpace(req.SortProperty))
-                    TilesState.SortProperty = req.SortProperty;
+                if (!string.IsNullOrWhiteSpace(aAction.SortProperty))
+                    TilesState.SortProperty = aAction.SortProperty;
 
-                if (req.SortOrder != SortOrder.Undefined)
-                    TilesState.SortOrder = req.SortOrder;
+                if (aAction.SortOrder != SortOrder.Undefined)
+                    TilesState.SortOrder = aAction.SortOrder;
 
-                SortTiles(req.CurrentTiles!);
+                SortTiles(aAction.CurrentTiles!);
 
                 _logger.LogInformation("SortTilesHandler for: '{SortProperty}, {SortOrder}'", TilesState.SortProperty, TilesState.SortOrder);
 

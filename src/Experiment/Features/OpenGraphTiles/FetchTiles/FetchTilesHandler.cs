@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 using OpenGraphTilemaker.GetPocket;
 using OpenGraphTilemaker.OpenGraph;
 
-namespace Experiment.Features.Tiles
+namespace Experiment.Features.OpenGraphTiles
 {
     [IoC]
     public class FetchTilesHandler : ActionHandler<TilesState.FetchTilesRequest>
@@ -28,7 +28,7 @@ namespace Experiment.Features.Tiles
 
         private TilesState TilesState => Store.GetState<TilesState>();
 
-        public override async Task<Unit> Handle(TilesState.FetchTilesRequest req, CancellationToken token) {
+        public override async Task<Unit> Handle(TilesState.FetchTilesRequest aAction, CancellationToken aCancellationToken) {
             var entries = await _pocket.GetEntriesAsync(_pocketOptions);
             var tasks = new List<Task<OpenGraphMetadata>>();
 

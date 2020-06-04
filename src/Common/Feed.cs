@@ -17,9 +17,9 @@ namespace Common
             Func<TEntry, object> property,
             SortOrder order = SortOrder.Descending)
         {
-            Guard.Against.Null(() => uri);
-            Guard.Against.Null(() => convert);
-            Guard.Against.Null(() => property);
+            uri = Guard.Against.Null(() => uri);
+            convert = Guard.Against.Null(() => convert);
+            property = Guard.Against.Null(() => property);
 
             var feedItems = new List<TEntry>();
 

@@ -2,14 +2,14 @@
 using System.Threading;
 using System.Threading.Tasks;
 using BaseTestCode;
-using Experiment.Features.Tiles;
+using Experiment.Features.OpenGraphTiles;
 using FluentAssertions;
 using OpenGraphTilemaker.Tests;
 using Xunit;
 using Xunit.Abstractions;
 using Xunit.Categories;
 
-namespace Experiment.Tests.Features.Tiles
+namespace Experiment.Tests.Features.OpenGraphTiles
 {
     public class FetchTilesHandlerTests : IntegrationTests<FetchTilesHandlerTests>
     {

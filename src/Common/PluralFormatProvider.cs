@@ -10,10 +10,10 @@ namespace Common
         private const int PluralIndex = 1;
         private const string Space = " ";
 
-        public string Format(string? format, object? argument, IFormatProvider? formatProvider)
+        public string Format(string? format, object? arg, IFormatProvider? formatProvider)
         {
-            Guard.Against.Null(() => argument);
-            Guard.Against.Assert(() => argument!.IsNumeric(), nameof(argument));
+            Guard.Against.Null(() => arg);
+            Guard.Against.Assert(() => arg!.IsNumeric(), nameof(arg));
 
             format ??= string.Empty;
 
@@ -21,7 +21,7 @@ namespace Common
             var hasStrings = strings.Length >= 2;
             var space = !string.IsNullOrEmpty(strings[0]) ? Space : string.Empty;
 
-            var number = argument!.ToInt32();
+            var number = arg!.ToInt32();
             var index = number.ToAbs() == 1 ? SingularIndex : PluralIndex;
 
             return hasStrings ? $"{number} {strings[index]}" : $"{number}{space}{strings[0]}";

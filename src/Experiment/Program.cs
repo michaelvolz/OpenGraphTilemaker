@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Experiment.Features.App;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -7,9 +6,9 @@ using Serilog;
 
 namespace Experiment
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    public partial class Program
+    public sealed partial class Program
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By Design")]
         public static int Main(string[] args)
         {
             Serilogger.Configure(ApplicationSettings.Configuration);
@@ -31,7 +30,7 @@ namespace Experiment
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>

@@ -8,7 +8,7 @@ namespace Common.Exceptions
     {
         public static bool LogException<T>(this Exception e)
         {
-            if (e is ILoggedException) return false;
+            if (e is ILoggedExceptionAlready) return false;
 
             var logger = ApplicationLogging.CreateLogger<T>();
             logger.LogError(e, "Exception logged with Scope: ");

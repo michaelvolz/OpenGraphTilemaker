@@ -73,6 +73,7 @@ namespace Common.Extensions
             return serializeObject;
         }
 
+        [SuppressMessage("Maintainability", "CA1508:Avoid dead conditional code", Justification = "<Pending>")]
         public static T JSONUnSerialize<T>([JetBrains.Annotations.NotNull] this string stringObj)
         {
             if (stringObj == null) throw new ArgumentNullException(nameof(stringObj));

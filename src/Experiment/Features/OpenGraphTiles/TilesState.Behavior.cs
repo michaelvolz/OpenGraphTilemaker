@@ -3,7 +3,7 @@ using BlazorState;
 using Common;
 using OpenGraphTilemaker.OpenGraph;
 
-namespace Experiment.Features.Tiles
+namespace Experiment.Features.OpenGraphTiles
 {
     public partial class TilesState : State<TilesState>
     {

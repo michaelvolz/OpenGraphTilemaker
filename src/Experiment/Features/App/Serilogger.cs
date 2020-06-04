@@ -1,5 +1,4 @@
 using System;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
@@ -7,8 +6,7 @@ using Serilog.Exceptions;
 
 namespace Experiment.Features.App
 {
-    [UsedImplicitly]
-    public class Serilogger
+    public static class Serilogger
     {
         /// <summary>
         ///     https://nblumhardt.com/2019/10/serilog-in-aspnetcore-3/

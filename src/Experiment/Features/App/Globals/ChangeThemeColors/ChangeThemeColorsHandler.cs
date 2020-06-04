@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using Common.Logging;
@@ -21,11 +22,13 @@ namespace Experiment.Features.App.Globals
 
             public GlobalState GlobalState => Store.GetState<GlobalState>();
 
-            public override Task<Unit> Handle(ChangeThemeColorsRequest req, CancellationToken token)
+            public override Task<Unit> Handle(ChangeThemeColorsRequest aAction, CancellationToken aCancellationToken)
             {
-                GlobalState.ThemeColor1 = req.ThemeColor1;
-                GlobalState.ThemeColor2 = req.ThemeColor2;
-                GlobalState.ThemeColor3 = req.ThemeColor3;
+                aAction = Guard.Against.Null(() => aAction);
+
+                GlobalState.ThemeColor1 = aAction.ThemeColor1;
+                GlobalState.ThemeColor2 = aAction.ThemeColor2;
+                GlobalState.ThemeColor3 = aAction.ThemeColor3;
 
                 _logger.LogWarning("{@state}", GlobalState);
 

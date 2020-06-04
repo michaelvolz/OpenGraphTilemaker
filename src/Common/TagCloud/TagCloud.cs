@@ -17,7 +17,7 @@ namespace Common.TagCloud
 
         private static IEnumerable<string> ExtractWords(string text)
             => text
-                .ToUpperInvariant()
+                .ToLowerInvariant()
                 .RemoveNumbers()
                 .Split()
                 .Select(word => word.RemoveTrailingPunctuation())

@@ -1,13 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using Common.TagCloud;
 using MediatR;
 
-namespace Experiment.Features.Tiles
+namespace Experiment.Features.OpenGraphTiles
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public partial class TilesState
@@ -19,10 +19,12 @@ namespace Experiment.Features.Tiles
 
             public TilesState TilesState => Store.GetState<TilesState>();
 
-            public override async Task<Unit> Handle(CreateTagCloudRequest req, CancellationToken token) {
+            public override async Task<Unit> Handle(CreateTagCloudRequest aAction, CancellationToken aCancellationToken) {
+                aAction = Guard.Against.Null(() => aAction);
+
                 var tagCloud = new TagCloud();
 
-                foreach (var tile in req.OriginalTiles)
+                foreach (var tile in aAction.OriginalTiles)
                     await tagCloud.InsertAsync(tile.Title, tile.Description, tile.SiteName);
 
                 //TilesState.TagCloud = from entry in tagCloud.Cloud orderby entry.Key select entry;

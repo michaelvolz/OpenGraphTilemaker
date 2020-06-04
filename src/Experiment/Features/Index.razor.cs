@@ -66,6 +66,7 @@ namespace Experiment.Features
             await base.OnParametersSetAsync();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
         private void NestedExceptionLoggingTest()
         {
             try

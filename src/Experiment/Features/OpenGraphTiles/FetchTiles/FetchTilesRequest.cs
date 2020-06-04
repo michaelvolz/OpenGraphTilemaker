@@ -1,6 +1,6 @@
 ﻿using BlazorState;
 
-namespace Experiment.Features.Tiles
+namespace Experiment.Features.OpenGraphTiles
 {
     public partial class TilesState
     {

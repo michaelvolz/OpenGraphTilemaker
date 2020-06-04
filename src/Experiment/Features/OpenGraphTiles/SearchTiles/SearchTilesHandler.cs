@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using Common.Extensions;
@@ -9,7 +10,7 @@ using Common.Logging;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Experiment.Features.Tiles
+namespace Experiment.Features.OpenGraphTiles
 {
     public partial class TilesState
     {
@@ -22,16 +23,21 @@ namespace Experiment.Features.Tiles
 
             private TilesState TilesState => Store.GetState<TilesState>();
 
-            public override Task<Unit> Handle(SearchTilesRequest req, CancellationToken token) {
-                TilesState.SearchText = req.SearchText;
+            public override Task<Unit> Handle(SearchTilesRequest aAction, CancellationToken aCancellationToken)
+            {
+                aAction = Guard.Against.Null(() => aAction);
 
-                if (TilesState.SearchText.IsNullOrWhiteSpace()) {
-                    TilesState.FilteredAndSortedTiles = req.OriginalTiles;
+                TilesState.SearchText = aAction.SearchText;
+
+                if (TilesState.SearchText.IsNullOrWhiteSpace())
+                {
+                    TilesState.FilteredAndSortedTiles = aAction.OriginalTiles;
                 }
-                else {
+                else
+                {
                     var search = TilesState.SearchText.ToUpperInvariant();
 
-                    TilesState.FilteredAndSortedTiles = req.OriginalTiles
+                    TilesState.FilteredAndSortedTiles = aAction.OriginalTiles
                         .Where(
                             t => t.Title.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
                                  || t.Description.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)

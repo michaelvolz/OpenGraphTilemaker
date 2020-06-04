@@ -1,5 +1,6 @@
 ﻿using System;
 using BlazorState;
+using JetBrains.Annotations;
 
 namespace Experiment.Tests
 {
@@ -9,6 +10,7 @@ namespace Experiment.Tests
 
         public void Reset() => throw new NotImplementedException();
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "<Pending>")]
         public Guid Guid { get; } = Guid.NewGuid();
 
         public TState GetState<TState>()
@@ -25,8 +27,10 @@ namespace Experiment.Tests
             return _state;
         }
 
-        public void SetState(IState aState)
+        public void SetState([NotNull] IState aState)
         {
+            if (aState == null) throw new ArgumentNullException(nameof(aState));
+            
             aState.Initialize();
             _state = aState;
         }

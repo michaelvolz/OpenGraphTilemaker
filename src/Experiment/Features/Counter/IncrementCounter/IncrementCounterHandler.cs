@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using MediatR;
@@ -17,9 +18,11 @@ namespace Experiment.Features.Counter
 
             public CounterState CounterState => Store.GetState<CounterState>();
 
-            public override Task<Unit> Handle(IncrementCounterRequest req, CancellationToken token)
+            public override Task<Unit> Handle(IncrementCounterRequest aAction, CancellationToken aCancellationToken)
             {
-                CounterState.Count += req.Amount;
+                aAction = Guard.Against.Null(() => aAction);
+
+                CounterState.Count += aAction.Amount;
 
                 return Unit.Task;
             }

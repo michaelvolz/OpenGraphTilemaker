@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace Experiment
 {
-    [UsedImplicitly]
     public partial class Program
     {
         [UsedImplicitly]

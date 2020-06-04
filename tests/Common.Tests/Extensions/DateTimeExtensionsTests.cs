@@ -32,9 +32,9 @@ namespace Common.Tests.Extensions
 
         [Theory]
         [MemberData(nameof(DateTimeExtensionsTestData))]
-        public void ToFriendlyDate_ValidDates(ITime date, string expected)
+        public void ToFriendlyDate_ValidDates(ITime datum, string expected)
         {
-            var result = date.Now.ToFriendlyDate();
+            var result = datum.Now.ToFriendlyDate();
 
             result.Should().Be(expected);
         }

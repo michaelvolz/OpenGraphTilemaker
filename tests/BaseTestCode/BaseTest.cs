@@ -60,7 +60,7 @@ namespace BaseTestCode
 
         protected void UpdateServiceLocator() => ServiceLocator.SetServiceProvider(Services.BuildServiceProvider());
 
-        private void ConfigureSerilog(ITestOutputHelper output) =>
+        private static void ConfigureSerilog(ITestOutputHelper output) =>
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.TestOutput(output,

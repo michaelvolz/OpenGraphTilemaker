@@ -24,6 +24,6 @@ namespace VirtualTimeLib
         ///     A wrapper around System.DateTime
         /// </summary>
         /// <returns></returns>
-        public static ITime GetRealTime() => new VirtualTime();
+        public static ITime RealTime() => new VirtualTime();
     }
 }

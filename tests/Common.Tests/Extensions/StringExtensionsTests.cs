@@ -27,6 +27,13 @@ namespace Common.Tests.Extensions
         }
 
         [Fact]
+        public void IsNullOrEmpty_EmptyObject() {
+            var result = ((object?)"").IsNullOrEmpty();
+
+            result.Should().BeTrue();
+        }
+
+        [Fact]
         public void IsNullOrEmpty_NullString() {
             var result = ((string?)null).IsNullOrEmpty();
 
@@ -46,6 +53,13 @@ namespace Common.Tests.Extensions
         [Fact]
         public void IsNullOrWhiteSpace_NullObject() {
             var result = ((object?)null).IsNullOrWhiteSpace();
+
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void IsNullOrWhiteSpace_WhiteSpaceObject() {
+            var result = ((object?)"         ").IsNullOrWhiteSpace();
 
             result.Should().BeTrue();
         }
