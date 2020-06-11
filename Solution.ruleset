@@ -25,9 +25,6 @@
     <Rule Id="MVC1004" Action="None" />
     <Rule Id="MVC1006" Action="None" />
   </Rules>
-  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
-    <Rule Id="CS1062" Action="None" />
-  </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.Features" RuleNamespace="Microsoft.CodeAnalysis.Features">
     <Rule Id="IDE0067" Action="Warning" />
     <Rule Id="IDE0068" Action="Warning" />
