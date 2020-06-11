@@ -36,7 +36,7 @@ namespace Experiment.Features.App
         [UsedImplicitly]
         public static Task<string> FromJSWindowResizedAsync(Window window)
         {
-            window = Guard.Against.Null(() => window);
+            Guard.Against.Null(window, nameof(window));
 
             Logger.LogInformation("Window resized! Width: '{Width}', Height: '{Height}'!", window.Width, window.Height);
 

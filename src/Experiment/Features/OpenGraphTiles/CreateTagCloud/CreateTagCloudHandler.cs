@@ -20,7 +20,7 @@ namespace Experiment.Features.OpenGraphTiles
             public TilesState TilesState => Store.GetState<TilesState>();
 
             public override async Task<Unit> Handle(CreateTagCloudRequest aAction, CancellationToken aCancellationToken) {
-                aAction = Guard.Against.Null(() => aAction);
+                Guard.Against.Null(aAction, nameof(aAction));
 
                 var tagCloud = new TagCloud();
 

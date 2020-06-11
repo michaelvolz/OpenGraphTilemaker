@@ -16,13 +16,14 @@ namespace OpenGraphTilemaker.GetPocket
 
         public Pocket(IMemoryCache memoryCache, Feed<PocketEntry> feed)
         {
-            _memoryCache = Guard.Against.Null(() => memoryCache);
-            _feed = Guard.Against.Null(() => feed);
+            _memoryCache = Guard.Against.Null(memoryCache, nameof(memoryCache));
+            _feed = Guard.Against.Null(feed, nameof(feed));
         }
 
         public async Task<List<PocketEntry>> GetEntriesAsync(IPocketOptions options)
         {
-            Guard.Against.Null(() => options.Uri);
+            Guard.Against.Null(options, nameof(options));
+            Guard.Against.Null(options.Uri, nameof(options.Uri));
             Guard.Against.Default(() => options.CachingTimeSpan);
 
             return await

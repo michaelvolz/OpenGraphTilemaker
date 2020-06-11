@@ -20,7 +20,7 @@ namespace Common
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
         public void This(Action action, string name, ILogger logger)
         {
-            action = Guard.Against.Null(() => action);
+            Guard.Against.Null(action, nameof(action));
             
             var stopwatch = Stopwatch.StartNew();
 
@@ -34,7 +34,7 @@ namespace Common
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
         public async Task ThisAsync(Func<Task> action, string name, ILogger logger)
         {
-            action = Guard.Against.Null(() => action);
+            Guard.Against.Null(action, nameof(action));
 
             var stopwatch = Stopwatch.StartNew();
 

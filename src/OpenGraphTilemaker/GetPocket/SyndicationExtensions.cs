@@ -8,7 +8,7 @@ namespace OpenGraphTilemaker.GetPocket
     {
         public static PocketEntry ToPocketEntry(this ISyndicationItem item)
         {
-            Guard.Against.Null(() => item);
+            Guard.Against.Null(item, nameof(item));
 
             return new PocketEntry(
                 item.Title,

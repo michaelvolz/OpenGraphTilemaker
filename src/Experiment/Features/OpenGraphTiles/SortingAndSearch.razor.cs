@@ -28,7 +28,7 @@ namespace Experiment.Features.OpenGraphTiles
 
         protected Task OnSortPropertyButtonClicked()
         {
-            Guard.Against.Null(() => OnSortProperty);
+            Guard.Against.Null(OnSortProperty, nameof(OnSortProperty));
             Guard.Against.NullOrWhiteSpace(() => SortProperty);
 
             return OnSortProperty!(SortProperty!);
@@ -36,7 +36,7 @@ namespace Experiment.Features.OpenGraphTiles
 
         protected Task OnSortOrderButtonClicked()
         {
-            Guard.Against.Null(() => OnSortOrder);
+            Guard.Against.Null(OnSortOrder, nameof(OnSortOrder));
             Guard.Against.Default(() => SortOrder);
 
             return OnSortOrder!(SortOrder);
@@ -51,8 +51,8 @@ namespace Experiment.Features.OpenGraphTiles
 
         protected Task OnSearchButtonClicked()
         {
-            Guard.Against.Null(() => OnSearch);
-            Guard.Against.Null(() => SearchText);
+            Guard.Against.Null(OnSearch, nameof(OnSearch));
+            Guard.Against.Null(SearchText, nameof(SearchText));
 
             OnSearch!(SearchText);
 

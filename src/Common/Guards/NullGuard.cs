@@ -36,8 +36,8 @@ namespace Ardalis.GuardClauses
         /// <returns>The input for variable initialization.</returns>
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="ArgumentNullException"></exception>
-        [return: NotNullIfNotNull("input")]
-        public static T Null<T>(this IGuardClause guardClause, [NotNullIfNotNull("input")] Expression<Func<T>>? input) =>
-            Guard.Against.Null(input!.Compile()(), input.MemberExpressionName());
+        // [return: NotNullIfNotNull("input")]
+        // public static T Null<T>(this IGuardClause guardClause, [NotNullIfNotNull("input")] Expression<Func<T>>? input) =>
+        //     Guard.Against.Null(input!.Compile()(), input.MemberExpressionName());
     }
 }

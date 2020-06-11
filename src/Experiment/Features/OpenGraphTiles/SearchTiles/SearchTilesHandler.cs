@@ -25,7 +25,7 @@ namespace Experiment.Features.OpenGraphTiles
 
             public override Task<Unit> Handle(SearchTilesRequest aAction, CancellationToken aCancellationToken)
             {
-                aAction = Guard.Against.Null(() => aAction);
+                Guard.Against.Null(aAction, nameof(aAction));
 
                 TilesState.SearchText = aAction.SearchText;
 

@@ -9,7 +9,7 @@ namespace OpenGraphTilemaker.OpenGraph
     {
         public static IList<HtmlNode>? ExtractMetaTags(HtmlDocument doc)
         {
-            Guard.Against.Null(() => doc);
+            Guard.Against.Null(doc, nameof(doc));
 
             var metaTags = doc.DocumentNode.SelectSingleNode("//head")?.Descendants()?.Where(n => n.Name == "meta");
 

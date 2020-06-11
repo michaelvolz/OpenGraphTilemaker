@@ -16,8 +16,8 @@ namespace OpenGraphTilemaker.OpenGraph
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By Design")]
         public async Task ScrapeAsync(string source, Func<Task<HtmlDocument>> loadDocumentAsync)
         {
-            source = Guard.Against.NullOrWhiteSpace(() => source);
-            loadDocumentAsync = Guard.Against.Null(() => loadDocumentAsync);
+            Guard.Against.NullOrWhiteSpace(() => source);
+            Guard.Against.Null(loadDocumentAsync, nameof(loadDocumentAsync));
 
             try
             {

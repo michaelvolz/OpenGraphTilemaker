@@ -14,7 +14,7 @@ namespace Common.Extensions
 
         public static string ToValidFileName(this Uri uri)
         {
-            Guard.Against.Null(() => uri);
+            Guard.Against.Null(uri, nameof(uri));
 
             return uri.OriginalString.ToValidFileName();
         }

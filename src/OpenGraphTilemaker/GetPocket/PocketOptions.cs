@@ -11,7 +11,7 @@ namespace OpenGraphTilemaker.GetPocket
 
         public PocketOptions(Uri uri, TimeSpan caching, TimeSpan timeout)
         {
-            Guard.Against.Null(() => uri);
+            Guard.Against.Null(uri, nameof(uri));
             Guard.Against.Default(() => caching);
             Guard.Against.Default(() => timeout);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Ardalis.GuardClauses;
 using AutoFixture.Xunit2;
 using BaseTestCode;
@@ -30,7 +31,7 @@ namespace Common.Tests.Guards
         [InlineData(null, "Value cannot be null.")]
         [InlineData("", "Value cannot be empty.")]
         [InlineData("     ", "Value cannot be whitespace.")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
         public void GuardNullOrWhiteSpace(string testParameter, string expected)
         {
             try
@@ -49,7 +50,7 @@ namespace Common.Tests.Guards
 
         [Theory]
         [AutoData]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
         public void GuardCondition(string parameterName)
         {
             try
@@ -68,7 +69,7 @@ namespace Common.Tests.Guards
 
         [Theory]
         [AutoData]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
         public void GuardAssert(string parameterName)
         {
             try
@@ -94,7 +95,7 @@ namespace Common.Tests.Guards
 
         [Theory]
         [AutoData]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
         public void GuardEnum(string parameterName)
         {
             var invalidValue = 3;
@@ -116,7 +117,7 @@ namespace Common.Tests.Guards
 
         [Theory]
         [AutoData]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
         public void GuardNullGeneric(string parameterName)
         {
             try
@@ -134,7 +135,7 @@ namespace Common.Tests.Guards
         }
 
         [Fact]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
         public void GuardDefault()
         {
             var parameter = default(TimeSpan);
@@ -155,7 +156,8 @@ namespace Common.Tests.Guards
         }
 
         [Fact]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
+        [SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
         public void GuardNull()
         {
             var parameter = (object?)null;
@@ -163,7 +165,7 @@ namespace Common.Tests.Guards
 
             try
             {
-                Guard.Against.Null(() => parameter);
+                Guard.Against.Null(parameter, nameof(parameter));
             }
             catch (Exception e)
             {

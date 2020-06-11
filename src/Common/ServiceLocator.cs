@@ -12,7 +12,7 @@ namespace Common
         private readonly ServiceProvider _localServiceProvider;
 
         private ServiceLocator(ServiceProvider currentServiceProvider) =>
-            _localServiceProvider = Guard.Against.Null(() => currentServiceProvider);
+            _localServiceProvider = Guard.Against.Null(currentServiceProvider, nameof(currentServiceProvider));
 
         public static ServiceLocator Current =>
             new ServiceLocator(_globalServiceProvider ?? throw new InvalidOperationException("GlobalServiceProvider uninitialized! use 'SetServiceProvider' first!"));

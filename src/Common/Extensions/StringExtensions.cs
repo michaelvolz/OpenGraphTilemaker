@@ -36,7 +36,7 @@ namespace Common.Extensions
 
         public static string RemoveNumbers(this string text)
         {
-            Guard.Against.Null(() => text);
+            Guard.Against.Null(text, nameof(text));
 
             return text.Where(c => !c.IsNumeric()).Aggregate(new StringBuilder(), (current, next) => current.Append(next), sb => sb.ToString());
         }
@@ -60,8 +60,8 @@ namespace Common.Extensions
         public static string? TruncateAtWord(this string? value, int length, string ellipsis = "…", string truncateAtChar = " ")
         {
             Guard.Against.OutOfRange(() => length, 1, int.MaxValue);
-            Guard.Against.Null(() => ellipsis);
-            Guard.Against.Null(() => truncateAtChar);
+            Guard.Against.Null(truncateAtChar, nameof(truncateAtChar));
+            Guard.Against.Null(ellipsis, nameof(ellipsis));
 
             if (value == null || value.Length <= length)
                 return value;

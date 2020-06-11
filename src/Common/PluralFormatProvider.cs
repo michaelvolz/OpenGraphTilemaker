@@ -12,7 +12,7 @@ namespace Common
 
         public string Format(string? format, object? arg, IFormatProvider? formatProvider)
         {
-            Guard.Against.Null(() => arg);
+            Guard.Against.Null(arg, nameof(arg));
             Guard.Against.Assert(() => arg!.IsNumeric(), nameof(arg));
 
             format ??= string.Empty;

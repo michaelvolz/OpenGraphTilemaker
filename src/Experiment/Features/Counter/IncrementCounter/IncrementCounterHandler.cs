@@ -20,7 +20,7 @@ namespace Experiment.Features.Counter
 
             public override Task<Unit> Handle(IncrementCounterRequest aAction, CancellationToken aCancellationToken)
             {
-                aAction = Guard.Against.Null(() => aAction);
+                Guard.Against.Null(aAction, nameof(aAction));
 
                 CounterState.Count += aAction.Amount;
 

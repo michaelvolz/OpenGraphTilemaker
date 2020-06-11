@@ -25,8 +25,8 @@ namespace Experiment.Features.OpenGraphTiles
 
             public override Task<Unit> Handle(SortTilesRequest aAction, CancellationToken aCancellationToken)
             {
-                aAction = Guard.Against.Null(() => aAction);
-                aAction.CurrentTiles = Guard.Against.Null(() => aAction.CurrentTiles);
+                Guard.Against.Null(aAction, nameof(aAction));
+                Guard.Against.Null(aAction.CurrentTiles, nameof(aAction.CurrentTiles));
 
                 if (!string.IsNullOrWhiteSpace(aAction.SortProperty))
                     TilesState.SortProperty = aAction.SortProperty;

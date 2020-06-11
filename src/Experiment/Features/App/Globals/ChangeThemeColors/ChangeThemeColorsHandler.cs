@@ -24,7 +24,7 @@ namespace Experiment.Features.App.Globals
 
             public override Task<Unit> Handle(ChangeThemeColorsRequest aAction, CancellationToken aCancellationToken)
             {
-                aAction = Guard.Against.Null(() => aAction);
+                Guard.Against.Null(aAction, nameof(aAction));
 
                 GlobalState.ThemeColor1 = aAction.ThemeColor1;
                 GlobalState.ThemeColor2 = aAction.ThemeColor2;

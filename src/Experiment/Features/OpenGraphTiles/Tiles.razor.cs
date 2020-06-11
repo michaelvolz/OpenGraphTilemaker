@@ -20,9 +20,9 @@ namespace Experiment.Features.OpenGraphTiles
 
         protected TilesState State => Store.GetState<TilesState>();
 
-        protected override async Task OnParametersSetAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            Guard.Against.Null(() => OriginalTiles);
+            Guard.Against.Null(OriginalTiles, nameof(OriginalTiles));
 
             if (OriginalTiles.Any() && !State.FilteredAndSortedTiles.Any())
             {

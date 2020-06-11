@@ -11,12 +11,12 @@ namespace OpenGraphTilemaker.OpenGraph
     {
         private readonly DiscCache _discCache;
 
-        public HttpLoader(DiscCache discCache) => _discCache = Guard.Against.Null(() => discCache);
+        public HttpLoader(DiscCache discCache) => _discCache = Guard.Against.Null(discCache, nameof(discCache));
 
         public async Task<HtmlDocument> LoadAsync(HttpClient httpClient, Uri uri)
         {
-            httpClient = Guard.Against.Null(() => httpClient);
-            uri = Guard.Against.Null(() => uri);
+            Guard.Against.Null(httpClient, nameof(httpClient));
+            Guard.Against.Null(uri, nameof(uri));
 
             var loadedFromCache = _discCache.TryLoadFromDisc(uri, out var html);
 
