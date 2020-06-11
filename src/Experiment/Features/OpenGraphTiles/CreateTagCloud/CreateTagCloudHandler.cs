@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using BlazorState;
@@ -9,7 +8,6 @@ using MediatR;
 
 namespace Experiment.Features.OpenGraphTiles
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public partial class TilesState
     {
         [IoC]
@@ -19,7 +17,8 @@ namespace Experiment.Features.OpenGraphTiles
 
             public TilesState TilesState => Store.GetState<TilesState>();
 
-            public override async Task<Unit> Handle(CreateTagCloudRequest aAction, CancellationToken aCancellationToken) {
+            public override async Task<Unit> Handle(CreateTagCloudRequest aAction, CancellationToken aCancellationToken)
+            {
                 Guard.Against.Null(aAction, nameof(aAction));
 
                 var tagCloud = new TagCloud();

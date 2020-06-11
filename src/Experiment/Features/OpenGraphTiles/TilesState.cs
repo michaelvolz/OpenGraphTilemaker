@@ -4,6 +4,7 @@ using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Needed for Blazor.State")]
     public partial class TilesState
     {
         public List<OpenGraphMetadata> FilteredAndSortedTiles { get; private set; } = new List<OpenGraphMetadata>();

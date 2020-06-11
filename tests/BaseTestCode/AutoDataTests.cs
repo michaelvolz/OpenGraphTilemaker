@@ -25,6 +25,7 @@ namespace BaseTestCode
         }
 
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
+        [SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Test")]
         public class SomeTestClass
         {
             public string? Text { get; set; }
@@ -34,6 +35,7 @@ namespace BaseTestCode
             public static int Echo(int expectedNumber) => expectedNumber;
         }
 
+        [SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Test")]
         public class AnotherClass
         {
             public decimal Currency { get; [UsedImplicitly] set; }
