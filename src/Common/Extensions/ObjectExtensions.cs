@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
+using Ardalis.GuardClauses;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -11,6 +13,7 @@ namespace Common.Extensions
 {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     [SuppressMessage("ReSharper", "UnusedType.Local")]
+    [UsedImplicitly]
     public static class ObjectExtensions
     {
         public static string ReturnDump(this object subject)
@@ -38,18 +41,20 @@ namespace Common.Extensions
         }
 
         public static Dictionary<string, object?> PropertiesToDictionary(this object subject) =>
-            subject.GetType()
+            Guard.Against.Null(subject, nameof(subject)).GetType()
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .ToDictionary(prop => prop.Name, prop => prop.GetValue(subject, null));
 
         public static PropertyInfo? PublicProperty(this object subject, string propertyName) =>
-            subject.GetType().GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
+            Guard.Against.Null(subject, nameof(subject)).GetType().GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
 
         public static IEnumerable<PropertyInfo> PublicProperties(this object subject) =>
-            subject.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            Guard.Against.Null(subject, nameof(subject)).GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
 
         public static string JSONSerialize(this object subject)
         {
+            Guard.Against.Null(subject, nameof(subject));
+
             var settings =
                 new JsonSerializerSettings
                 {

@@ -41,7 +41,10 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static string NullOrWhiteSpace(this IGuardClause guardClause, Expression<Func<string>> input) =>
-            Guard.Against.NullOrWhiteSpace(input.Compile()(), input.MemberExpressionName());
+        public static string NullOrWhiteSpace(this IGuardClause guardClause, Expression<Func<string>> input)
+        {
+            Guard.Against.Null(input, nameof(input));
+            return Guard.Against.NullOrWhiteSpace(input.Compile()(), input.MemberExpressionName());
+        }
     }
 }

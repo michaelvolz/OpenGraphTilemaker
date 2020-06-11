@@ -44,6 +44,8 @@ namespace Experiment.Features.OpenGraphTiles
 
         protected async Task OnSearchTextChanged(KeyboardEventArgs args)
         {
+            Guard.Against.Null(args, nameof(args));
+
             Logger.LogInformation("OnSearchTextChanged() '{Key}'", args.Key);
 
             if (args.Key == "Enter") await OnSearchButtonClicked();

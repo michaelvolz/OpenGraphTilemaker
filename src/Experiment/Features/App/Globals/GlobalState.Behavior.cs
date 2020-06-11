@@ -1,4 +1,5 @@
-﻿using BlazorState;
+﻿using Ardalis.GuardClauses;
+using BlazorState;
 using Common;
 
 namespace Experiment.Features.App.Globals
@@ -18,7 +19,7 @@ namespace Experiment.Features.App.Globals
         /// </summary>
         /// <remarks>Constructor used for Clone.</remarks>
         /// <param name="state">The item we want to clone.</param>
-        protected GlobalState(GlobalState state) => ThemeColor1 = state.ThemeColor1;
+        protected GlobalState(GlobalState state) => ThemeColor1 = Guard.Against.Null(state, nameof(state)).ThemeColor1;
 
         /// <summary>
         ///     Clone the existing object.

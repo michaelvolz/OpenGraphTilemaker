@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
+using Ardalis.GuardClauses;
 
 namespace Common
 {
@@ -20,6 +21,8 @@ namespace Common
         /// </remarks>
         public static string Of<T>(Expression<Func<T>> e)
         {
+            Guard.Against.Null(e, nameof(e));
+
             // If the method gets a lambda expression that is not a member access,
             // for example, () => x + y, an exception is thrown.
             if (e.Body is MemberExpression member)
@@ -29,7 +32,7 @@ namespace Common
         }
 
         // GetName.Of<T>( x => x.Property-name)
-        public static string Of<T>(Expression<Func<T, object>> expression) => FindMemberOrNull(expression).Name;
+        public static string Of<T>(Expression<Func<T, object>> expression) => FindMemberOrNull(Guard.Against.Null(expression, nameof(expression))).Name;
 
         private static MemberInfo FindMemberOrNull(Expression expression) =>
             expression.NodeType switch

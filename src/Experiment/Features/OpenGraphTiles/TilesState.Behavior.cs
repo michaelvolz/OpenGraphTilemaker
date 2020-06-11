@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using OpenGraphTilemaker.OpenGraph;
@@ -12,6 +13,8 @@ namespace Experiment.Features.OpenGraphTiles
 
         protected TilesState(TilesState state)
         {
+            Guard.Against.Null(state, nameof(state));
+            
             FilteredAndSortedTiles = state.FilteredAndSortedTiles;
             TagCloud = state.TagCloud;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using Common.Extensions;
@@ -23,7 +24,7 @@ namespace Experiment.Features.OpenGraphTiles
         public FetchTilesHandler(IStore store, IPocket pocket, ITileMakerClient client, IOptions<PocketOptions> options) : base(store) {
             _pocket = pocket;
             _tileMakerClient = client;
-            _pocketOptions = options.Value;
+            _pocketOptions = Guard.Against.Null(options, nameof(options)).Value;
         }
 
         private TilesState TilesState => Store.GetState<TilesState>();

@@ -16,6 +16,6 @@ namespace Ardalis.GuardClauses
             func.MemberExpression()?.Member.Name ?? "MemberExpression-ERROR";
 
         public static MemberExpression? MemberExpression<T>(this Expression<Func<T>> func) =>
-            ((func.Body as UnaryExpression)?.Operand ?? func.Body) as MemberExpression;
+            ((Guard.Against.Null(func, nameof(func)).Body as UnaryExpression)?.Operand ?? func.Body) as MemberExpression;
     }
 }

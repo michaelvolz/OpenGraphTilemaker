@@ -1,4 +1,5 @@
-﻿using BlazorState;
+﻿using Ardalis.GuardClauses;
+using BlazorState;
 using Common;
 
 namespace Experiment.Features.Form
@@ -18,7 +19,7 @@ namespace Experiment.Features.Form
         /// </summary>
         /// <remarks>Constructor used for Clone.</remarks>
         /// <param name="state">The item we want to clone.</param>
-        protected FormState(FormState state) => Person = state.Person;
+        protected FormState(FormState state) => Person = Guard.Against.Null(state, nameof(state)).Person;
 
         /// <summary>
         ///     Set the Initial State.

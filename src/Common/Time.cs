@@ -15,13 +15,14 @@ namespace Common
         public static readonly string TimeFormat = "### {0} took {1}";
 
         // ReSharper disable once StringLiteralTypo
-        public static string Ticks(Stopwatch stopwatch) => new DateTime(stopwatch.ElapsedTicks).ToString("s.fff_ffff", CultureInfo.InvariantCulture) + " seconds";
+        public static string Ticks(Stopwatch stopwatch) =>
+            new DateTime(Guard.Against.Null(stopwatch, nameof(stopwatch)).ElapsedTicks).ToString("s.fff_ffff", CultureInfo.InvariantCulture) + " seconds";
 
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
         public void This(Action action, string name, ILogger logger)
         {
             Guard.Against.Null(action, nameof(action));
-            
+
             var stopwatch = Stopwatch.StartNew();
 
             action();

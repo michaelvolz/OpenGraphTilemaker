@@ -1,4 +1,5 @@
-﻿using BlazorState;
+﻿using Ardalis.GuardClauses;
+using BlazorState;
 using Common;
 
 namespace Experiment.Features.Counter
@@ -18,7 +19,7 @@ namespace Experiment.Features.Counter
         /// </summary>
         /// <remarks>Constructor used for Clone.</remarks>
         /// <param name="state">The item we want to clone.</param>
-        protected CounterState(CounterState state) => Count = state.Count;
+        protected CounterState(CounterState state) => Count = Guard.Against.Null(state, nameof(state)).Count;
 
         /// <summary>
         ///     Set the Initial State.

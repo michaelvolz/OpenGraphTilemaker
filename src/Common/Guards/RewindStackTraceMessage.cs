@@ -17,6 +17,8 @@ namespace Ardalis.GuardClauses
         /// <returns>Trimmed <see cref="StackTrace" />.</returns>
         public static string RewindStackTraceMessage(this Exception exception)
         {
+            Guard.Against.Null(exception, nameof(exception));
+
             StackTrace StackTrace()
             {
                 var skipFrames = 0;

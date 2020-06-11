@@ -52,8 +52,11 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static int OutOfRange(this IGuardClause guardClause, Expression<Func<int>> input, int rangeFrom, int rangeTo) =>
-            OutOfRange<int>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
+        public static int OutOfRange(this IGuardClause guardClause, Expression<Func<int>> input, int rangeFrom, int rangeTo)
+        {
+            Guard.Against.Null(input, nameof(input));
+            return OutOfRange<int>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
+        }
 
         /// <summary>
         ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see paramref="input" /> is less than
@@ -88,8 +91,11 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentException">The <paramref name="input" /> expression is invalid.</exception>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static DateTime OutOfRange(this IGuardClause guardClause, Expression<Func<DateTime>> input, DateTime rangeFrom, DateTime rangeTo) =>
-            OutOfRange<DateTime>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
+        public static DateTime OutOfRange(this IGuardClause guardClause, Expression<Func<DateTime>> input, DateTime rangeFrom, DateTime rangeTo)
+        {
+            Guard.Against.Null(input, nameof(input));
+            return OutOfRange<DateTime>(guardClause, input.Compile()(), input.MemberExpressionName(), rangeFrom, rangeTo);
+        }
 
         /// <summary>
         ///     Throws an <see cref="ArgumentOutOfRangeException" /> if <see paramref="input" /> is not in the range of valid

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
+using Microsoft;
 
 // ReSharper disable CheckNamespace
 
 namespace Ardalis.GuardClauses
 {
+    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
+    public sealed class ValidatedNotNullAttribute : Attribute {}
+    
     /// <summary>
     ///     Null Guard.
     /// </summary>
@@ -20,8 +24,7 @@ namespace Ardalis.GuardClauses
         /// <param name="parameterName"></param>
         /// <returns>The input for variable initialization.</returns>
         /// <exception cref="ArgumentNullException"></exception>
-        [return: NotNullIfNotNull("input")]
-        public static T Null<T>(this IGuardClause guardClause, [NotNullIfNotNull("input")] T input, string parameterName)
+        public static T Null<T>(this IGuardClause guardClause, [ValidatedNotNull] [NotNullIfNotNull("input")] T input, string parameterName)
         {
             if (input == null) throw new GuardException(new ArgumentNullException(parameterName));
 

@@ -20,6 +20,7 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentException"></exception>
         public static void Condition(this IGuardClause guardClause, Expression<Func<bool>> input, string parameterName)
         {
+            Guard.Against.Null(input, nameof(input));
             if (input.Compile().Invoke()) throw new GuardException(new ArgumentException($"Condition reached:  {input}.", parameterName));
         }
     }

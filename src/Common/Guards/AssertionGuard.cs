@@ -20,6 +20,7 @@ namespace Ardalis.GuardClauses
         /// <exception cref="ArgumentException"></exception>
         public static void Assert(this IGuardClause guardClause, Expression<Func<bool>> input, string parameterName)
         {
+            Guard.Against.Null(input, nameof(input));
             if (input.Compile().Invoke() == false) throw new GuardException(new ArgumentException($"Assertion failed:  {input}.", parameterName));
         }
     }

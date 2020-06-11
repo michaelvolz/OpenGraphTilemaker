@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using Common.Logging;
@@ -25,8 +26,8 @@ namespace Experiment.Features.App
 
         protected bool IsLoading { get; set; } = true;
 
-        protected string? HideIf(Func<bool> predicate) => predicate() ? "collapsed" : null;
-        protected string? ShowIf(Func<bool> predicate) => predicate() ? null : "collapsed";
+        protected string? HideIf(Func<bool> predicate) => Guard.Against.Null(predicate, nameof(predicate))() ? "collapsed" : null;
+        protected string? ShowIf(Func<bool> predicate) => Guard.Against.Null(predicate, nameof(predicate))() ? null : "collapsed";
 
         protected async Task<TRequest> RequestAsync<TRequest>(IRequest<TRequest> request) =>
             await Mediator.Send(request);
