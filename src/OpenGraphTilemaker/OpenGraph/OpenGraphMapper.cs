@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Ardalis.GuardClauses;
 using Common.Extensions;
 using HtmlAgilityPack;
@@ -29,6 +30,8 @@ namespace OpenGraphTilemaker.OpenGraph
             return metadata;
         }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1312:Variable names should begin with lower-case letter",
+            Justification = "Discarded variable syntax")]
         private static void MapValues(string property, OpenGraphMetadata metadata, string content)
         {
             object? _ = property switch
