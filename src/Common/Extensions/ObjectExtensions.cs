@@ -77,25 +77,25 @@ namespace Common.Extensions
         }
 
         [SuppressMessage("Maintainability", "CA1508:Avoid dead conditional code", Justification = "Analyzer bug?")]
-        public static T JSONUnSerialize<T>([JetBrains.Annotations.NotNull] this string stringObj)
+        public static T JSONUnSerialize<T>(this string stringObj)
         {
             if (stringObj == null) throw new ArgumentNullException(nameof(stringObj));
 
             var deserializeObject = JsonConvert.DeserializeObject(stringObj, typeof(T))
                                     ?? throw new InvalidOperationException("JsonConvert.DeserializeObject(stringObj, typeof(T))");
 
-            var unSerialize = (T)deserializeObject;
-            var uIsList = unSerialize.GetType().IsGenericType && unSerialize is IEnumerable;
+            var deserializedConcrete = (T)deserializeObject;
+            var isList = deserializedConcrete.GetType().IsGenericType && deserializedConcrete is IEnumerable;
 
             // -- performance optimization
-            if (uIsList)
-                return unSerialize;
+            if (isList)
+                return deserializedConcrete;
 
             var item = (T)(Activator.CreateInstance(typeof(T)) ?? throw new InvalidOperationException());
-            var iIsList = item.GetType().IsGenericType && item is IEnumerable;
+            isList = item.GetType().IsGenericType && item is IEnumerable;
 
-            if (!iIsList)
-                return unSerialize;
+            if (!isList)
+                return deserializedConcrete;
 
             var result = JsonConvert.DeserializeObject(stringObj, typeof(T), new FlexibleCollectionConverter())
                          ?? throw new InvalidOperationException("JsonConvert.DeserializeObject(stringObj, typeof(T), new FlexibleCollectionConverter())");
