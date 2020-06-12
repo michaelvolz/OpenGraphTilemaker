@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace Experiment
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "TODO")]
     public class AppBase : ComponentBase
     {
         [Inject] private JsonRequestHandler JsonRequestHandler { get; [UsedImplicitly] set; } = null!;

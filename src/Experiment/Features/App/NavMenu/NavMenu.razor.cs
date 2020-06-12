@@ -1,9 +1,9 @@
 ﻿namespace Experiment.Features.App.NavMenu
 {
-    public class NavMenuModel : BlazorComponentStateful<NavMenuModel>
+    public partial class NavMenu
     {
-        protected string? NavMenuCSS { get; private set; }
+        private string? NavMenuCSS { get; set; }
 
-        protected void ToggleNavMenu() => NavMenuCSS = NavMenuCSS == null ? "collapsed" : null;
+        private void ToggleNavMenu() => NavMenuCSS = NavMenuCSS == null ? "collapsed" : null;
     }
 }

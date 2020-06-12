@@ -1,6 +1,6 @@
 ﻿namespace Experiment.Features.App.Globals
 {
-    public class GlobalModel : BlazorComponentStateful<GlobalModel>
+    public partial class Globals
     {
         public GlobalState State => Store.GetState<GlobalState>();
     }

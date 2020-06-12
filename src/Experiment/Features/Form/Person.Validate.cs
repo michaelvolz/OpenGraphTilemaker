@@ -12,6 +12,7 @@ using FluentValidation.Results;
 namespace Experiment.Features.Form
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "Nested file")]
     public class ValidationBase<TValidator> : IValidate
     {
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1009:Closing parenthesis should be spaced correctly", Justification = "Analyzer bug")]

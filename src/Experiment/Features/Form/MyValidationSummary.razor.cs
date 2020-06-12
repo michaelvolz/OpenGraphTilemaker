@@ -10,6 +10,7 @@ namespace Experiment.Features.Form
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
     [SuppressMessage("ReSharper", "MemberCanBeProtected.Global", Justification = "Utility class")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name should match first type name", Justification = "TODO")]
     public class MyValidationSummaryModel<TItem> : ComponentBase
     {
         [Parameter] public TItem Subject { get; [UsedImplicitly] set; } = default!;
