@@ -41,8 +41,8 @@ namespace Experiment.Features.OpenGraphTiles
                         .Where(
                             t => t.Title.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
                                  || t.Description.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
-                                 || t.SiteName.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture)
-                        ).ToList();
+                                 || t.SiteName.ToUpperInvariant().Contains(search, StringComparison.InvariantCulture))
+                        .ToList();
                 }
 
                 _logger.LogInformation("SearchTilesHandler for: {SearchText}, Count: {Count}", TilesState.SearchText, TilesState.FilteredAndSortedTiles.Count);

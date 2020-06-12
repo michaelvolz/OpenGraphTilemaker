@@ -14,6 +14,7 @@ namespace Experiment.Features.Form
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
     public class ValidationBase<TValidator> : IValidate
     {
+        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1009:Closing parenthesis should be spaced correctly", Justification = "Analyzer bug")]
         public IList<ValidationFailure> Validate<T>(string? propertyName = null) where T : class
         {
             var validator = Activator.CreateInstance<TValidator>() as IValidator<T>;

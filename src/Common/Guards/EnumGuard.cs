@@ -40,7 +40,7 @@ namespace Ardalis.GuardClauses
         public static void Enum<T>(this IGuardClause guardClause, Expression<Func<T>> input, Type enumClass)
         {
             Guard.Against.Null(input, nameof(input));
-            Guard.Against.Enum(input.Compile()()!, enumClass, input.MemberExpressionName());
+            Guard.Against.Enum(input.Compile()() ?? throw new InvalidOperationException(), enumClass, input.MemberExpressionName());
         }
     }
 }

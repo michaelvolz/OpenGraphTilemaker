@@ -19,8 +19,7 @@ namespace Experiment
                         new[]
                         {
                             typeof(Startup).GetTypeInfo().Assembly
-                        }
-                );
+                        });
 
                 services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
                 services.Scan(
@@ -28,8 +27,7 @@ namespace Experiment
                         .FromAssemblyOf<Startup>()
                         .AddClasses()
                         .AsSelf()
-                        .WithScopedLifetime()
-                );
+                        .WithScopedLifetime());
             }
 
             public static void VerifyCryptoWatchApiKey(ILogger<Startup> logger)
