@@ -23,15 +23,7 @@ namespace VirtualTimeLib
 
         public bool UseRealTime { get; set; }
 
-        private DateTime WhenTimeStarts { get; }
-
-        private double SpeedOfTimePerMs { get; }
-
-        private DateTime InitialTimeUtc { get; }
-
-        private DateTime InitialTime { get; }
-
-        private int MarginOfErrorMs { get; }
+        // public DateTime GetVirtualTimeEquivalent(DateTime dateTime) => GetVirtualTime(dateTime,true);
 
         public DateTime Now => GetVirtualTime(DateTime.Now);
 
@@ -67,7 +59,15 @@ namespace VirtualTimeLib
 
         public DateTime MaxValue => DateTime.MaxValue;
 
-        // public DateTime GetVirtualTimeEquivalent(DateTime dateTime) => GetVirtualTime(dateTime,true);
+        private DateTime WhenTimeStarts { get; }
+
+        private double SpeedOfTimePerMs { get; }
+
+        private DateTime InitialTimeUtc { get; }
+
+        private DateTime InitialTime { get; }
+
+        private int MarginOfErrorMs { get; }
 
         private DateTime GetVirtualTime(DateTime time, bool force = false, bool isUtc = false)
         {

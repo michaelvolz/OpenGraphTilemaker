@@ -18,16 +18,6 @@ namespace Common.TagCloud
 
         public Dictionary<string, int> Cloud { get; } = new Dictionary<string, int>();
 
-        private static IEnumerable<string> ExtractWords(string text)
-            => text
-                .ToLowerInvariant()
-                .RemoveNumbers()
-                .Split()
-                .Select(word => word.RemoveTrailingPunctuation())
-                .Select(word => word.RemoveHashFromHashTag())
-                .Select(word => word.RemoveAlternateQuotationMarks())
-                .Distinct();
-
         /// <summary>
         ///     Insert text(s) to create or append cloud.
         ///     Multiple textBlocks inserted at the same time will only add each word once.
@@ -40,6 +30,16 @@ namespace Common.TagCloud
             foreach (var word in ExtractWords(textBlocks.CombineAll()))
                 InsertWord(word);
         }
+
+        private static IEnumerable<string> ExtractWords(string text)
+            => text
+                .ToLowerInvariant()
+                .RemoveNumbers()
+                .Split()
+                .Select(word => word.RemoveTrailingPunctuation())
+                .Select(word => word.RemoveHashFromHashTag())
+                .Select(word => word.RemoveAlternateQuotationMarks())
+                .Distinct();
 
         private void InsertWord(string word)
         {

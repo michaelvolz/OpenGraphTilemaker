@@ -24,6 +24,20 @@ namespace Experiment.Features
             Logger.LogInformation("OnWindowResized event removed!");
         }
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+
+            await InitializeJavaScriptEvents();
+        }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            NestedExceptionLoggingTest();
+
+            await base.OnParametersSetAsync();
+        }
+
         private async Task ChangeThemeColors()
         {
             var request = new GlobalState.ChangeThemeColorsRequest
@@ -34,13 +48,6 @@ namespace Experiment.Features
             };
 
             await RequestAsync(request);
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            await base.OnAfterRenderAsync(firstRender);
-
-            await InitializeJavaScriptEvents();
         }
 
         private async Task InitializeJavaScriptEvents()
@@ -58,13 +65,6 @@ namespace Experiment.Features
 
                 StateHasChanged();
             }
-        }
-
-        protected override async Task OnParametersSetAsync()
-        {
-            NestedExceptionLoggingTest();
-
-            await base.OnParametersSetAsync();
         }
 
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]

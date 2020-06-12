@@ -6,8 +6,6 @@ namespace Experiment.Features.OpenGraphTiles
 {
     public partial class TilesPage
     {
-        private bool Loading() => !Store.GetState<TilesState>().OriginalTiles.Any() && IsLoading;
-
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (!firstRender) return;
@@ -18,6 +16,8 @@ namespace Experiment.Features.OpenGraphTiles
             IsLoading = false;
             StateHasChanged();
         }
+
+        private bool Loading() => !Store.GetState<TilesState>().OriginalTiles.Any() && IsLoading;
 
         private async Task InitializeDataAsync()
         {

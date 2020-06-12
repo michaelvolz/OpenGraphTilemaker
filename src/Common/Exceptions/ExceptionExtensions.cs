@@ -11,6 +11,24 @@ namespace Common.Exceptions
     [UsedImplicitly]
     public static class ExceptionExtensions
     {
+        // Use when you want to handle the exception
+        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Exception-handling")]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
+        public static bool True(Action action)
+        {
+            action();
+            return true;
+        }
+
+        // Use when you want to propagate the exception
+        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Exception-handling")]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
+        public static bool False(Action action)
+        {
+            action();
+            return false;
+        }
+
         [UsedImplicitly]
         private static object? Examples(ILogger logger)
         {
@@ -35,24 +53,6 @@ namespace Common.Exceptions
             }
 
             return default;
-        }
-
-        // Use when you want to handle the exception
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Exception-handling")]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
-        public static bool True(Action action)
-        {
-            action();
-            return true;
-        }
-
-        // Use when you want to propagate the exception
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Exception-handling")]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
-        public static bool False(Action action)
-        {
-            action();
-            return false;
         }
     }
 }

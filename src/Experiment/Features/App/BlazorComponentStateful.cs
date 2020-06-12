@@ -16,7 +16,6 @@ namespace Experiment.Features.App
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public class BlazorComponentStateful<TComponent> : ComponentBase
     {
-        [Inject] private IMediator Mediator { get; [UsedImplicitly] set; } = null!;
         [Inject] protected Time Time { get; [UsedImplicitly] set; } = null!;
         [Inject] protected IStore Store { get; [UsedImplicitly] set; } = null!;
         [Inject] protected NavigationManager UriHelper { get; [UsedImplicitly] set; } = null!;
@@ -25,6 +24,7 @@ namespace Experiment.Features.App
         protected ILogger<TComponent> Logger { get; } = ApplicationLogging.CreateLogger<TComponent>();
 
         protected bool IsLoading { get; set; } = true;
+        [Inject] private IMediator Mediator { get; [UsedImplicitly] set; } = null!;
 
         protected string? HideIf(Func<bool> predicate) => Guard.Against.Null(predicate, nameof(predicate))() ? "collapsed" : null;
         protected string? ShowIf(Func<bool> predicate) => Guard.Against.Null(predicate, nameof(predicate))() ? null : "collapsed";
