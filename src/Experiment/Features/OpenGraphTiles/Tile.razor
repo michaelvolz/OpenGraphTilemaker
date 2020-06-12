@@ -1,6 +1,6 @@
 ﻿@using Common.Extensions
-
-@if (!string.IsNullOrWhiteSpace(OpenGraphMetadata?.Image)) {
+@if (!string.IsNullOrWhiteSpace(OpenGraphMetadata?.Image))
+{
     <div class="tile card shadow">
         <img src="@OpenGraphMetadata.Image" alt="" title="@OpenGraphMetadata.Source">
         <div class="card-section">
@@ -18,6 +18,8 @@
             </a>
         </div>
     </div>
-} else {
+}
+else
+{
     <div class="tile-invalid text alert">@(OpenGraphMetadata?.Source ?? "---")</div>
 }

@@ -41,8 +41,10 @@ namespace Experiment.Features.OpenGraphTiles
                 return Unit.Task;
             }
 
-            private void SortTiles(List<OpenGraphMetadata> tiles) {
-                switch (TilesState.SortProperty) {
+            private void SortTiles(List<OpenGraphMetadata> tiles)
+            {
+                switch (TilesState.SortProperty)
+                {
                     case nameof(OpenGraphMetadata.Title):
                         TilesState.FilteredAndSortedTiles = TilesState.SortOrder == SortOrder.Ascending
                             ? tiles.OrderBy(f => f.Title).ToList()

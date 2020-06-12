@@ -20,12 +20,14 @@ namespace Experiment.Features.Form
 
         private FormState State => Store.GetState<FormState>();
 
+        private static bool HasError<T>(T obj) where T : class, IValidate => obj.HasError<T>();
+
         private async Task SubmitAsync()
         {
             if (HasError(Person))
             {
                 Error = Revealed;
-                await JSRuntime.InvokeAsync<bool>("blazorDemo.showAlert", new object[] {ThereIsStillSomethingWrong});
+                await JSRuntime.InvokeAsync<bool>("blazorDemo.showAlert", new object[] { ThereIsStillSomethingWrong });
                 Logger.LogInformation("### {ThereIsStillSomethingWrong}", ThereIsStillSomethingWrong);
             }
             else
@@ -40,7 +42,5 @@ namespace Experiment.Features.Form
 
         private void KeyPress(KeyboardEventArgs ev) =>
             Logger.LogInformation("KeyPress: {KeyAndCode}", ev.Key + ", " + ev.Code);
-
-        private static bool HasError<T>(T obj) where T : class, IValidate => obj.HasError<T>();
     }
 }

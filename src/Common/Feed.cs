@@ -23,7 +23,7 @@ namespace Common
 
             var feedItems = new List<TEntry>();
 
-            using var xmlReader = XmlReader.Create(uri.OriginalString, new XmlReaderSettings {Async = true});
+            using var xmlReader = XmlReader.Create(uri.OriginalString, new XmlReaderSettings { Async = true });
             var feedReader = new RssFeedReader(xmlReader);
 
             while (await feedReader.Read())

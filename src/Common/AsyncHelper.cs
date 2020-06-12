@@ -11,8 +11,8 @@ namespace Common
     /// <example>
     ///     AsyncHelper.RunSync(() => DoAsyncStuff());
     /// </example>
-    [SuppressMessage("ReSharper", "UnusedType.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public static class AsyncHelper
     {
         private static readonly TaskFactory TaskFactory =

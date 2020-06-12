@@ -5,7 +5,7 @@ using Xunit;
 
 namespace BaseTestCode.XUnitUtilities
 {
-    [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Utility class")]
     public sealed class IgnoreOnAppVeyorLinuxFactAttribute : FactAttribute
     {
         /// <summary>

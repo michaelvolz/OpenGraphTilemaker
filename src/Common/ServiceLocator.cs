@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Common
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public class ServiceLocator
     {
         private static ServiceProvider? _globalServiceProvider;
@@ -15,7 +15,8 @@ namespace Common
             _localServiceProvider = Guard.Against.Null(currentServiceProvider, nameof(currentServiceProvider));
 
         public static ServiceLocator Current =>
-            new ServiceLocator(_globalServiceProvider ?? throw new InvalidOperationException("GlobalServiceProvider uninitialized! use 'SetServiceProvider' first!"));
+            new ServiceLocator(_globalServiceProvider ??
+                               throw new InvalidOperationException("GlobalServiceProvider uninitialized! use 'SetServiceProvider' first!"));
 
         public static void SetServiceProvider(ServiceProvider serviceProvider) => _globalServiceProvider = serviceProvider;
 

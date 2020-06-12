@@ -6,6 +6,6 @@ namespace Experiment.Features.Counter
     {
         private CounterState CounterState => Store.GetState<CounterState>();
 
-        private async Task ButtonClick() => await RequestAsync(new CounterState.IncrementCounterRequest {Amount = 2});
+        private async Task ButtonClick() => await RequestAsync(new CounterState.IncrementCounterRequest { Amount = 2 });
     }
 }

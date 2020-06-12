@@ -19,15 +19,15 @@ namespace Common.Tests.Extensions
 
         public static IEnumerable<object[]> DateTimeExtensionsTestData => new List<object[]>
         {
-            new object[] {DateTime.UtcNow.ToVirtualTime(FreezeTime), "just now"},
-            new object[] {DateTime.UtcNow.AddMinutes(-1).ToVirtualTime(FreezeTime), "1 minute ago"},
-            new object[] {DateTime.UtcNow.AddMinutes(-2).ToVirtualTime(FreezeTime), "2 minutes ago"},
-            new object[] {DateTime.UtcNow.AddMinutes(-60).ToVirtualTime(FreezeTime), "1 hour ago"},
-            new object[] {DateTime.UtcNow.AddMinutes(-120).ToVirtualTime(FreezeTime), "2 hours ago"},
-            new object[] {DateTime.UtcNow.AddDays(-1).ToVirtualTime(FreezeTime), "yesterday"},
-            new object[] {DateTime.UtcNow.AddDays(-2).ToVirtualTime(FreezeTime), "2 days ago"},
-            new object[] {DateTime.UtcNow.AddDays(-7).ToVirtualTime(FreezeTime), "1 week ago"},
-            new object[] {DateTime.UtcNow.AddDays(-30).ToVirtualTime(FreezeTime), "5 weeks ago"}
+            new object[] { DateTime.UtcNow.ToVirtualTime(FreezeTime), "just now" },
+            new object[] { DateTime.UtcNow.AddMinutes(-1).ToVirtualTime(FreezeTime), "1 minute ago" },
+            new object[] { DateTime.UtcNow.AddMinutes(-2).ToVirtualTime(FreezeTime), "2 minutes ago" },
+            new object[] { DateTime.UtcNow.AddMinutes(-60).ToVirtualTime(FreezeTime), "1 hour ago" },
+            new object[] { DateTime.UtcNow.AddMinutes(-120).ToVirtualTime(FreezeTime), "2 hours ago" },
+            new object[] { DateTime.UtcNow.AddDays(-1).ToVirtualTime(FreezeTime), "yesterday" },
+            new object[] { DateTime.UtcNow.AddDays(-2).ToVirtualTime(FreezeTime), "2 days ago" },
+            new object[] { DateTime.UtcNow.AddDays(-7).ToVirtualTime(FreezeTime), "1 week ago" },
+            new object[] { DateTime.UtcNow.AddDays(-30).ToVirtualTime(FreezeTime), "5 weeks ago" }
         };
 
         [Theory]

@@ -8,7 +8,7 @@ using FluentValidation.Results;
 
 namespace Experiment.Features.Form
 {
-    [SuppressMessage("ReSharper", "UnusedMemberInSuper.Global")]
+    [SuppressMessage("ReSharper", "UnusedMemberInSuper.Global", Justification = "Utility class")]
     public interface IValidate
     {
         IList<ValidationFailure> Validate<T>(string? propertyName = null) where T : class;

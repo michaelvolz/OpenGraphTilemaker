@@ -13,7 +13,7 @@ using Xunit.Abstractions;
 
 namespace BaseTestCode
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
     public class BaseTest<T> : IDisposable
     {
         private FakeHttpMessageHandler? _fakeHttpMessageHandler;
@@ -52,7 +52,7 @@ namespace BaseTestCode
 
         protected HttpClient HttpClient(string fakeResponse, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
-            _httpResponseMessage = new HttpResponseMessage(httpStatusCode) {Content = new StringContent(fakeResponse)};
+            _httpResponseMessage = new HttpResponseMessage(httpStatusCode) { Content = new StringContent(fakeResponse) };
             _fakeHttpMessageHandler ??= new FakeHttpMessageHandler(_httpResponseMessage);
 
             return HttpClient(_fakeHttpMessageHandler);
@@ -63,8 +63,7 @@ namespace BaseTestCode
         private static void ConfigureSerilog(ITestOutputHelper output) =>
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                .WriteTo.TestOutput(output,
-                    outputTemplate: "{Timestamp:HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}\t{Exception}")
+                .WriteTo.TestOutput(output, outputTemplate: "{Timestamp:HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}\t{Exception}")
                 .CreateLogger()
                 .ForContext<T>();
 

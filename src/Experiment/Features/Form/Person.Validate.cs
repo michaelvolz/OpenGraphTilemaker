@@ -11,7 +11,7 @@ using FluentValidation.Results;
 
 namespace Experiment.Features.Form
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
     public class ValidationBase<TValidator> : IValidate
     {
         public IList<ValidationFailure> Validate<T>(string? propertyName = null) where T : class

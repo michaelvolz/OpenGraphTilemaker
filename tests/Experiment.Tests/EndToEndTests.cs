@@ -10,9 +10,7 @@ namespace Experiment.Tests
 {
     public class EndToEndTests : WebApplication
     {
-        public EndToEndTests(WebApplicationFactory<Startup> factory, ITestOutputHelper testConsole) : base(factory, testConsole)
-        {
-        }
+        public EndToEndTests(WebApplicationFactory<Startup> factory, ITestOutputHelper testConsole) : base(factory, testConsole) { }
 
         [Theory]
         [InlineData("http://localhost:50709/counter")]
@@ -28,10 +26,8 @@ namespace Experiment.Tests
             response.Should().NotBeNull();
             response.EnsureSuccessStatusCode(); // Status Code 200-299
 
-
             var html = await response.Content.ReadAsStringAsync();
             html.Should().Contain("app id=\"myApp\"");
-
 
             var doc = await response.ToHtmlDocumentAsync();
             var element = doc.QuerySelector("#myApp");

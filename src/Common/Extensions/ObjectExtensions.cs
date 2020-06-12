@@ -5,15 +5,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using Ardalis.GuardClauses;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Common.Extensions
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    [SuppressMessage("ReSharper", "UnusedType.Local")]
-    [UsedImplicitly]
+    [SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public static class ObjectExtensions
     {
         public static string ReturnDump(this object subject)
@@ -78,7 +76,7 @@ namespace Common.Extensions
             return serializeObject;
         }
 
-        [SuppressMessage("Maintainability", "CA1508:Avoid dead conditional code", Justification = "<Pending>")]
+        [SuppressMessage("Maintainability", "CA1508:Avoid dead conditional code", Justification = "Analyzer bug?")]
         public static T JSONUnSerialize<T>([JetBrains.Annotations.NotNull] this string stringObj)
         {
             if (stringObj == null) throw new ArgumentNullException(nameof(stringObj));
@@ -128,19 +126,20 @@ namespace Common.Extensions
         /// <summary>
         ///     GenericListCreationJsonConverter
         /// </summary>
+        [SuppressMessage("ReSharper", "UnusedType.Local", Justification = "Utility class")]
         private class GenericListCreationJsonConverter<T> : JsonConverter
         {
             public override bool CanRead => true;
             public override bool CanWrite => false;
             public override bool CanConvert(Type objectType) => true;
 
-            public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
-                JsonSerializer serializer)
+            public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
             {
                 if (reader.TokenType == JsonToken.StartArray)
                     return serializer.Deserialize<List<T>>(reader);
                 var t = serializer.Deserialize<T>(reader);
-                return new List<T>(new[] {t!});
+
+                return new List<T>(new[] { t! });
             }
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer) => throw new NotImplementedException();

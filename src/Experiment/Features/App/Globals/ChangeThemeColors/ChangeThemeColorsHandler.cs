@@ -13,14 +13,13 @@ namespace Experiment.Features.App.Globals
     public partial class GlobalState
     {
         [IoC]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
         public class ChangeThemeColorsHandler : ActionHandler<ChangeThemeColorsRequest>
         {
             private readonly ILogger<ChangeThemeColorsHandler> _logger = ApplicationLogging.CreateLogger<ChangeThemeColorsHandler>();
 
             public ChangeThemeColorsHandler(IStore store) : base(store) { }
 
-            public GlobalState GlobalState => Store.GetState<GlobalState>();
+            private GlobalState GlobalState => Store.GetState<GlobalState>();
 
             public override Task<Unit> Handle(ChangeThemeColorsRequest aAction, CancellationToken aCancellationToken)
             {

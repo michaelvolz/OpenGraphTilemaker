@@ -21,7 +21,8 @@ namespace Experiment.Features.OpenGraphTiles
         private readonly IPocketOptions _pocketOptions;
         private readonly ITileMakerClient _tileMakerClient;
 
-        public FetchTilesHandler(IStore store, IPocket pocket, ITileMakerClient client, IOptions<PocketOptions> options) : base(store) {
+        public FetchTilesHandler(IStore store, IPocket pocket, ITileMakerClient client, IOptions<PocketOptions> options) : base(store)
+        {
             _pocket = pocket;
             _tileMakerClient = client;
             _pocketOptions = Guard.Against.Null(options, nameof(options)).Value;
@@ -29,7 +30,8 @@ namespace Experiment.Features.OpenGraphTiles
 
         private TilesState TilesState => Store.GetState<TilesState>();
 
-        public override async Task<Unit> Handle(TilesState.FetchTilesRequest aAction, CancellationToken aCancellationToken) {
+        public override async Task<Unit> Handle(TilesState.FetchTilesRequest aAction, CancellationToken aCancellationToken)
+        {
             var entries = await _pocket.GetEntriesAsync(_pocketOptions);
             var tasks = new List<Task<OpenGraphMetadata>>();
 

@@ -8,7 +8,7 @@ namespace Experiment.Features.OpenGraphTiles
     public partial class Tile
     {
         [Parameter]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Blazor Parameter")]
         public OpenGraphMetadata? OpenGraphMetadata { get; [UsedImplicitly] set; }
     }
 }

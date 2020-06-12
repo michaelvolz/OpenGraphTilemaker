@@ -1,10 +1,9 @@
-﻿
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Common.Exceptions
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Exception format")]
     public class LoggedException : Exception, ILoggedExceptionAlready
     {
         public LoggedException() { }

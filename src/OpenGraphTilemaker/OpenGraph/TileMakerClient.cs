@@ -25,8 +25,7 @@ namespace OpenGraphTilemaker.OpenGraph
         {
             Guard.Against.Null(uri, nameof(uri));
 
-            await _openGraphTileMaker.ScrapeAsync(uri.OriginalString,
-                async () => await _httpLoader.LoadAsync(_httpClient, uri));
+            await _openGraphTileMaker.ScrapeAsync(uri.OriginalString, async () => await _httpLoader.LoadAsync(_httpClient, uri));
 
             var result = _openGraphTileMaker.GraphMetadata;
             result.BookmarkTime = entry.PubDate;

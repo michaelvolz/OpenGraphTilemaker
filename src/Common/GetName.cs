@@ -6,8 +6,8 @@ using Ardalis.GuardClauses;
 
 namespace Common
 {
-    [SuppressMessage("ReSharper", "UnusedType.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public static class GetName
     {
         // GetName.Of<Classname>()

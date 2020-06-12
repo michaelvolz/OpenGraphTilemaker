@@ -9,7 +9,7 @@ namespace Ardalis.GuardClauses
     /// <summary>
     ///     EnumGuard.
     /// </summary>
-    [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+    [SuppressMessage("ReSharper", "UnusedParameter.Global", Justification = "Utility class")]
     public static partial class GuardClauseExtensions
     {
         /// <summary>

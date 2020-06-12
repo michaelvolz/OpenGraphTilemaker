@@ -10,10 +10,14 @@ namespace Common.Tests.TagCloud
     public class TagCloudTests : BaseTest<TagCloudTests>
     {
         public TagCloudTests(ITestOutputHelper testConsole) : base(testConsole) { }
-        private const string DummyText = "Earthly, of he. parasites! at? so and; for call asp.net of old pomp!!!!!!!! to could that fondly one did hight Earthly .net " + "“Texas new book is out:";
+
+        private const string DummyText =
+            "Earthly, of he. parasites! at? so and; for call asp.net of old pomp!!!!!!!! to could that fondly one did hight Earthly .net " +
+            "“Texas new book is out:";
 
         [Fact]
-        public async Task TagCloud_InsertText_ReturnsValidCloud() {
+        public async Task TagCloud_InsertText_ReturnsValidCloud()
+        {
             var tagCloud = new Common.TagCloud.TagCloud();
 
             await tagCloud.InsertAsync(DummyText, DummyText, DummyText);
@@ -53,7 +57,8 @@ namespace Common.Tests.TagCloud
         }
 
         [Fact]
-        public async Task TagCloud_InsertTextTwice_ReturnsValidCloud() {
+        public async Task TagCloud_InsertTextTwice_ReturnsValidCloud()
+        {
             var tagCloud = new Common.TagCloud.TagCloud();
 
             await tagCloud.InsertAsync(DummyText);

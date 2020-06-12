@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Experiment.Features.OpenGraphTiles
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
     public partial class SortingAndSearch
     {
         [Parameter] public Func<string, Task>? OnSortProperty { get; [UsedImplicitly] set; }

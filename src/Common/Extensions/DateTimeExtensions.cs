@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 
 namespace Common.Extensions
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class DateTimeExtensions
     {
         private const int Today = 0;
@@ -15,8 +15,11 @@ namespace Common.Extensions
         private const int HourInSeconds = 3600;
         private const int DayInSeconds = 86400;
 
+        [UsedImplicitly]
         public static string ToFriendlyDate(this DateTime? date) => date.HasValue ? date.Value.ToFriendlyDate() : string.Empty;
 
+        [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1509:Opening braces should not be preceded by blank line",
+            Justification = "Modern switch statement syntax")]
         public static string ToFriendlyDate(this DateTime date)
         {
             var elapsedTime = DateTime.UtcNow.Subtract(date);

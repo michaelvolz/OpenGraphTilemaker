@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace VirtualTimeLib
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public interface ITime
     {
         DateTime UtcNow { get; }

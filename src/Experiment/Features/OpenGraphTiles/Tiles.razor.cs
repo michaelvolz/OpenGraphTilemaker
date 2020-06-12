@@ -11,8 +11,8 @@ using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {
-    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global", Justification = "Blazor")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Blazor")]
     public partial class Tiles
     {
         [Parameter] public string Class { get; [UsedImplicitly] set; } = string.Empty;
@@ -29,7 +29,7 @@ namespace Experiment.Features.OpenGraphTiles
                 Logger.LogInformation("### {MethodName} Count: {Count}", nameof(OnParametersSetAsync), OriginalTiles.Count);
 
                 await SearchAsync(State.SearchText);
-                await RequestAsync(new TilesState.CreateTagCloudRequest {OriginalTiles = OriginalTiles});
+                await RequestAsync(new TilesState.CreateTagCloudRequest { OriginalTiles = OriginalTiles });
 
                 IsLoading = false;
             }
@@ -48,7 +48,7 @@ namespace Experiment.Features.OpenGraphTiles
         private async Task SortByOrderAsync(SortOrder sortOrder)
         {
             sortOrder = sortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.FilteredAndSortedTiles, SortOrder = sortOrder});
+            await RequestAsync(new TilesState.SortTilesRequest { CurrentTiles = State.FilteredAndSortedTiles, SortOrder = sortOrder });
 
             StateHasChanged();
         }
@@ -58,7 +58,7 @@ namespace Experiment.Features.OpenGraphTiles
             sortProperty = sortProperty != nameof(OpenGraphMetadata.Title)
                 ? nameof(OpenGraphMetadata.Title)
                 : nameof(OpenGraphMetadata.BookmarkTime);
-            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.FilteredAndSortedTiles, SortProperty = sortProperty});
+            await RequestAsync(new TilesState.SortTilesRequest { CurrentTiles = State.FilteredAndSortedTiles, SortProperty = sortProperty });
 
             StateHasChanged();
         }
@@ -68,8 +68,8 @@ namespace Experiment.Features.OpenGraphTiles
             // ReSharper disable once ConstantConditionalAccessQualifier
             if (OriginalTiles?.Any() != true) return;
 
-            await RequestAsync(new TilesState.SearchTilesRequest {OriginalTiles = OriginalTiles, SearchText = searchText});
-            await RequestAsync(new TilesState.SortTilesRequest {CurrentTiles = State.FilteredAndSortedTiles});
+            await RequestAsync(new TilesState.SearchTilesRequest { OriginalTiles = OriginalTiles, SearchText = searchText });
+            await RequestAsync(new TilesState.SortTilesRequest { CurrentTiles = State.FilteredAndSortedTiles });
 
             StateHasChanged();
         }

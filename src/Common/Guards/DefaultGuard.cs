@@ -10,8 +10,8 @@ namespace Ardalis.GuardClauses
     /// <summary>
     ///     Default Guard.
     /// </summary>
-    [SuppressMessage("ReSharper", "UnusedParameter.Global")]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedParameter.Global", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
     public static partial class GuardClauseExtensions
     {
         /// <summary>

@@ -25,10 +25,7 @@ namespace OpenGraphTilemaker.Tests.GetPocket
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                _memoryCache.Dispose();
-            }
+            if (disposing) _memoryCache.Dispose();
 
             base.Dispose(disposing);
         }

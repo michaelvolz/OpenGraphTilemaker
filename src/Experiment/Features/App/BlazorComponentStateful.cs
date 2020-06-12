@@ -13,7 +13,7 @@ using Microsoft.JSInterop;
 
 namespace Experiment.Features.App
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public class BlazorComponentStateful<TComponent> : ComponentBase
     {
         [Inject] private IMediator Mediator { get; [UsedImplicitly] set; } = null!;

@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Experiment.Features.Counter;
 using FluentAssertions;
 using OpenGraphTilemaker.Tests;
-using Experiment.Features.Counter;
 using Xunit;
 using Xunit.Abstractions;
 

@@ -11,7 +11,7 @@ namespace OpenGraphTilemaker.OpenGraph
         {
             Guard.Against.NullOrWhiteSpace(() => source);
 
-            var metadata = new OpenGraphMetadata {Source = source};
+            var metadata = new OpenGraphMetadata { Source = source };
 
             if (htmlMetaTags == null)
                 return metadata;

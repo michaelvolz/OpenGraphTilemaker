@@ -24,6 +24,6 @@ namespace Experiment.Features.Form
         /// <summary>
         ///     Set the Initial State.
         /// </summary>
-        public override void Initialize() => Person = new Person {FirstName = "John", LastName = "Doe", Age = 32};
+        public override void Initialize() => Person = new Person { FirstName = "John", LastName = "Doe", Age = 32 };
     }
 }

@@ -7,7 +7,7 @@ using Ardalis.GuardClauses;
 
 namespace Common.Extensions
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
     public static class FileExtensions
     {
         private static readonly string InvalidChars = new string(Path.GetInvalidFileNameChars());

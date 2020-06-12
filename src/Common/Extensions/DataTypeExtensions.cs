@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Common.Extensions
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public static class DataTypeExtensions
     {
         public static int ToInt32(this object arg) => Convert.ToInt32(arg, CultureInfo.InvariantCulture);

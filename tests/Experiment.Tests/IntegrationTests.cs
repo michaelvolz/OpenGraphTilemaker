@@ -12,7 +12,7 @@ using Xunit.Abstractions;
 // ReSharper disable once CheckNamespace
 namespace OpenGraphTilemaker.Tests
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
     public class IntegrationTests<T> : BaseTest<T>
     {
         private const string CachingFolder = @"C:\WINDOWS\Temp\";
@@ -50,7 +50,7 @@ namespace OpenGraphTilemaker.Tests
         protected MemoryCache MemoryCache()
         {
             _memoryCache ??= new MemoryCache(new MemoryCacheOptions());
-            
+
             return _memoryCache;
         }
 
@@ -59,7 +59,7 @@ namespace OpenGraphTilemaker.Tests
         protected IOptions<PocketOptions> GetPocketIOptions() => Options.Create(new PocketOptions(_uri, _cachingTimeSpan, _timeoutTimeSpan));
 
         protected IOptions<DiscCacheOptions> DiscCacheIOptions() =>
-            Options.Create(new DiscCacheOptions {CacheFolder = CachingFolder, CacheState = CacheState.Disabled});
+            Options.Create(new DiscCacheOptions { CacheFolder = CachingFolder, CacheState = CacheState.Disabled });
 
         protected TileMakerClient TileMakerClient(string fakeResponse) =>
             new TileMakerClient(HttpClient(fakeResponse), TileMaker(), HttpLoader());

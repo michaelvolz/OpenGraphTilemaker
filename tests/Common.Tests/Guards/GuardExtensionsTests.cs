@@ -157,7 +157,7 @@ namespace Common.Tests.Guards
 
         [Fact]
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
-        [SuppressMessage("ReSharper", "ExpressionIsAlwaysNull")]
+        [SuppressMessage("ReSharper", "ExpressionIsAlwaysNull", Justification = "Test")]
         public void GuardNull()
         {
             var parameter = (object?)null;

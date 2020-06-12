@@ -3,7 +3,7 @@
 <h1>Dynamic Render</h1>
 
 <p>
-    <button type="button" class="button primary" @onclick="(() => ShouldRender())">
+    <button type="button" class="button primary" @onclick="() => ShouldRender()">
         Trigger rendering (i.e. makes text longer)
     </button>
 </p>
@@ -13,9 +13,12 @@
 @functions {
     private string _dynamicContent = "This is a long text...";
 
-    protected override void OnInitialized() {
-        DynamicFragment = builder => {
-            if (_dynamicContent.LastIndexOf("long", StringComparison.Ordinal) > 5000) {
+    protected override void OnInitialized()
+    {
+        DynamicFragment = builder =>
+        {
+            if (_dynamicContent.LastIndexOf("long", StringComparison.Ordinal) > 5000)
+            {
                 _dynamicContent = "This is a long text...";
             }
 

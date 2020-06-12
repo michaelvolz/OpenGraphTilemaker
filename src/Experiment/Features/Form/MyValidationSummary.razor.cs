@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Components;
 
 namespace Experiment.Features.Form
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global", Justification = "Utility class")]
     public class MyValidationSummaryModel<TItem> : ComponentBase
     {
         [Parameter] public TItem Subject { get; [UsedImplicitly] set; } = default!;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using HtmlAgilityPack;
@@ -13,7 +14,7 @@ namespace OpenGraphTilemaker.OpenGraph
 
         public Exception? Error { get; private set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By Design")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By Design")]
         public async Task ScrapeAsync(string source, Func<Task<HtmlDocument>> loadDocumentAsync)
         {
             Guard.Against.NullOrWhiteSpace(() => source);

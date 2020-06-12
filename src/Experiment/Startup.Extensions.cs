@@ -2,12 +2,9 @@ using System;
 using System.Reflection;
 using BlazorState;
 using Common;
-using Common.Extensions;
-using Experiment.Features.CryptoWatch;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Experiment
 {
@@ -17,8 +14,7 @@ namespace Experiment
         {
             public static void BlazorState(IServiceCollection services)
             {
-                services.AddBlazorState
-                (
+                services.AddBlazorState(
                     options => options.Assemblies =
                         new[]
                         {
@@ -27,8 +23,7 @@ namespace Experiment
                 );
 
                 services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
-                services.Scan
-                (
+                services.Scan(
                     typeSourceSelector => typeSourceSelector
                         .FromAssemblyOf<Startup>()
                         .AddClasses()
@@ -39,11 +34,11 @@ namespace Experiment
 
             public static void VerifyCryptoWatchApiKey(ILogger<Startup> logger)
             {
-                //var cryptoWatchOptions = ServiceLocator.Current.GetInstance<IOptions<CryptoWatchOptions>>();
-                //if (cryptoWatchOptions == null || cryptoWatchOptions.Value.ApiKey == "n/a")
+                // var cryptoWatchOptions = ServiceLocator.Current.GetInstance<IOptions<CryptoWatchOptions>>();
+                // if (cryptoWatchOptions == null || cryptoWatchOptions.Value.ApiKey == "n/a")
                 //    throw new InvalidOperationException("CryptoWatchOptions ApiKey not configured!");
 
-                //logger.LogInformation("CryptoWatch ApiKey: " + cryptoWatchOptions.Value.ApiKey.TruncateAtWord(5, "..."));
+                // logger.LogInformation("CryptoWatch ApiKey: " + cryptoWatchOptions.Value.ApiKey.TruncateAtWord(5, "..."));
             }
 
             public static ILogger<Startup> VerifyLogger()

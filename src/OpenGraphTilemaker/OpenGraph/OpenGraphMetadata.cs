@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Common.Extensions;
 
 namespace OpenGraphTilemaker.OpenGraph
@@ -8,8 +9,9 @@ namespace OpenGraphTilemaker.OpenGraph
         public string Type { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1056:Uri properties should not be strings", Justification = "<Pending>")]
+        [SuppressMessage("Design", "CA1056:Uri properties should not be strings", Justification = "TODO")]
         public string Url { get; set; } = string.Empty;
+
         public string Description { get; set; } = string.Empty;
         public string SiteName { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;

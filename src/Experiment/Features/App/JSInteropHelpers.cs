@@ -10,7 +10,7 @@ using Microsoft.JSInterop;
 
 namespace Experiment.Features.App
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public sealed class JSInteropHelpers
     {
         private const string BlazorDemo = "blazorDemo.";
@@ -18,7 +18,8 @@ namespace Experiment.Features.App
 
         public static Action<Window>? OnWindowResized { get; set; }
 
-        public static async Task<int> GetWindowWidthAsync(IJSRuntime jsRuntime) => await jsRuntime.InvokeAsync<int>($"{BlazorDemo}getWindowWidth").ConfigureAwait(false);
+        public static async Task<int> GetWindowWidthAsync(IJSRuntime jsRuntime) =>
+            await jsRuntime.InvokeAsync<int>($"{BlazorDemo}getWindowWidth").ConfigureAwait(false);
 
         public static async Task InitializeWindowResizeEventAsync(IJSRuntime jsRuntime) =>
             await jsRuntime.InvokeAsync<object>($"{BlazorDemo}initializeWindowResizeEvent").ConfigureAwait(false);
@@ -26,11 +27,12 @@ namespace Experiment.Features.App
         public static async Task FocusAsync(IJSRuntime jsRuntime, ElementReference elementRef) =>
             await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}focusElement", elementRef).ConfigureAwait(false);
 
-        public static async Task AlertAsync(IJSRuntime jsRuntime, string value) => await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}showAlert", value).ConfigureAwait(false);
+        public static async Task AlertAsync(IJSRuntime jsRuntime, string value) =>
+            await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}showAlert", value).ConfigureAwait(false);
 
-
-        [SuppressMessage("Design", "CA1054:Uri parameters should not be strings", Justification = "<Pending>")]
-        public static async Task NavigateToAsync(IJSRuntime jsRuntime, string url) => await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}navigateTo", $"{url}").ConfigureAwait(false);
+        [SuppressMessage("Design", "CA1054:Uri parameters should not be strings", Justification = "TODO")]
+        public static async Task NavigateToAsync(IJSRuntime jsRuntime, string url) =>
+            await jsRuntime.InvokeAsync<bool>($"{BlazorDemo}navigateTo", $"{url}").ConfigureAwait(false);
 
         [JSInvokable]
         [UsedImplicitly]

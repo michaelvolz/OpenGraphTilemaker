@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Experiment.Features.App;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -8,7 +9,7 @@ namespace Experiment
 {
     public sealed partial class Program
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By Design")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By Design")]
         public static int Main(string[] args)
         {
             Serilogger.Configure(ApplicationSettings.Configuration);
@@ -37,6 +38,5 @@ namespace Experiment
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
     }
 }

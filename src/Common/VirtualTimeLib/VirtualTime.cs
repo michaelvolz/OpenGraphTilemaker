@@ -6,8 +6,8 @@ using System.Globalization;
 
 namespace VirtualTimeLib
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Global")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Global", Justification = "Utility class")]
     internal class VirtualTime : ITime
     {
         public VirtualTime(DateTime whenTimeStarts, double speedOfTimePerMs = 1, int marginOfErrorMs = 10)
@@ -22,6 +22,16 @@ namespace VirtualTimeLib
         public VirtualTime() => UseRealTime = true;
 
         public bool UseRealTime { get; set; }
+
+        private DateTime WhenTimeStarts { get; }
+
+        private double SpeedOfTimePerMs { get; }
+
+        private DateTime InitialTimeUtc { get; }
+
+        private DateTime InitialTime { get; }
+
+        private int MarginOfErrorMs { get; }
 
         public DateTime Now => GetVirtualTime(DateTime.Now);
 
@@ -70,15 +80,5 @@ namespace VirtualTimeLib
 
             return WhenTimeStarts.AddMilliseconds(virtualElapseTime);
         }
-
-        private DateTime WhenTimeStarts { get; }
-    
-        private double SpeedOfTimePerMs { get; }
-
-        private DateTime InitialTimeUtc { get; }
-
-        private DateTime InitialTime { get; }
-
-        private int MarginOfErrorMs { get; }
     }
 }

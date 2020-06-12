@@ -11,7 +11,7 @@ namespace Experiment.Features.Counter
     public partial class CounterState
     {
         [IoC]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
         public class IncrementCounterHandler : ActionHandler<IncrementCounterRequest>
         {
             public IncrementCounterHandler(IStore store) : base(store) { }

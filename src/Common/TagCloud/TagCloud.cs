@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ namespace Common.TagCloud
 {
     public class TagCloud
     {
-        private const string MySQL_MyISAM_Text = @"TagCloud\mysql_myisam.txt";
+        private const string MySQLMyISAMText = @"TagCloud\mysql_myisam.txt";
+
+        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "Nullable type")]
         private static string[]? _stopWords;
 
         public Dictionary<string, int> Cloud { get; } = new Dictionary<string, int>();
@@ -32,7 +35,7 @@ namespace Common.TagCloud
         /// <param name="textBlocks">Text to use.</param>
         public async Task InsertAsync(params string[] textBlocks)
         {
-            _stopWords ??= await File.ReadAllLinesAsync($@"{AssemblyLocation}\{MySQL_MyISAM_Text}");
+            _stopWords ??= await File.ReadAllLinesAsync($@"{AssemblyLocation}\{MySQLMyISAMText}");
 
             foreach (var word in ExtractWords(textBlocks.CombineAll()))
                 InsertWord(word);

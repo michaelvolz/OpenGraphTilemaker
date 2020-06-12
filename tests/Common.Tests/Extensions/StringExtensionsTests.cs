@@ -20,28 +20,32 @@ namespace Common.Tests.Extensions
         private static readonly object ObjectDummy = "dummy";
 
         [Fact]
-        public void IsNullOrEmpty_NullObject() {
+        public void IsNullOrEmpty_EmptyObject()
+        {
+            var result = ((object?)string.Empty).IsNullOrEmpty();
+
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void IsNullOrEmpty_NullObject()
+        {
             var result = ((object?)null).IsNullOrEmpty();
 
             result.Should().BeTrue();
         }
 
         [Fact]
-        public void IsNullOrEmpty_EmptyObject() {
-            var result = ((object?)"").IsNullOrEmpty();
-
-            result.Should().BeTrue();
-        }
-
-        [Fact]
-        public void IsNullOrEmpty_NullString() {
+        public void IsNullOrEmpty_NullString()
+        {
             var result = ((string?)null).IsNullOrEmpty();
 
             result.Should().BeTrue();
         }
 
         [Fact]
-        public void IsNullOrEmpty_ValidValues() {
+        public void IsNullOrEmpty_ValidValues()
+        {
             EmptyString.IsNullOrEmpty().Should().BeTrue();
             EmptyObject.IsNullOrEmpty().Should().BeTrue();
             WhiteSpaceString.IsNullOrEmpty().Should().BeFalse();
@@ -51,28 +55,24 @@ namespace Common.Tests.Extensions
         }
 
         [Fact]
-        public void IsNullOrWhiteSpace_NullObject() {
+        public void IsNullOrWhiteSpace_NullObject()
+        {
             var result = ((object?)null).IsNullOrWhiteSpace();
 
             result.Should().BeTrue();
         }
 
         [Fact]
-        public void IsNullOrWhiteSpace_WhiteSpaceObject() {
-            var result = ((object?)"         ").IsNullOrWhiteSpace();
-
-            result.Should().BeTrue();
-        }
-
-        [Fact]
-        public void IsNullOrWhiteSpace_NullString() {
+        public void IsNullOrWhiteSpace_NullString()
+        {
             var result = ((string?)null).IsNullOrWhiteSpace();
 
             result.Should().BeTrue();
         }
 
         [Fact]
-        public void IsNullOrWhiteSpace_ValidValues() {
+        public void IsNullOrWhiteSpace_ValidValues()
+        {
             EmptyString.IsNullOrWhiteSpace().Should().BeTrue();
             EmptyObject.IsNullOrWhiteSpace().Should().BeTrue();
             WhiteSpaceString.IsNullOrWhiteSpace().Should().BeTrue();
@@ -82,21 +82,32 @@ namespace Common.Tests.Extensions
         }
 
         [Fact]
-        public void NotNullNorEmpty_NullObject() {
+        public void IsNullOrWhiteSpace_WhiteSpaceObject()
+        {
+            var result = ((object?)"         ").IsNullOrWhiteSpace();
+
+            result.Should().BeTrue();
+        }
+
+        [Fact]
+        public void NotNullNorEmpty_NullObject()
+        {
             var result = ((object?)null).NotNullNorEmpty();
 
             result.Should().BeFalse();
         }
 
         [Fact]
-        public void NotNullNorEmpty_NullString() {
+        public void NotNullNorEmpty_NullString()
+        {
             var result = ((string?)null).NotNullNorEmpty();
 
             result.Should().BeFalse();
         }
 
         [Fact]
-        public void NotNullNorEmpty_ValidValues() {
+        public void NotNullNorEmpty_ValidValues()
+        {
             EmptyString.NotNullNorEmpty().Should().BeFalse();
             EmptyObject.NotNullNorEmpty().Should().BeFalse();
             WhiteSpaceString.NotNullNorEmpty().Should().BeTrue();
@@ -106,21 +117,24 @@ namespace Common.Tests.Extensions
         }
 
         [Fact]
-        public void NotNullNorWhiteSpace_NullObject() {
+        public void NotNullNorWhiteSpace_NullObject()
+        {
             var result = ((object?)null).NotNullNorWhiteSpace();
 
             result.Should().BeFalse();
         }
 
         [Fact]
-        public void NotNullNorWhiteSpace_NullString() {
+        public void NotNullNorWhiteSpace_NullString()
+        {
             var result = ((string?)null).NotNullNorWhiteSpace();
 
             result.Should().BeFalse();
         }
 
         [Fact]
-        public void NotNullNorWhiteSpace_ValidValues() {
+        public void NotNullNorWhiteSpace_ValidValues()
+        {
             EmptyString.NotNullNorWhiteSpace().Should().BeFalse();
             EmptyObject.NotNullNorWhiteSpace().Should().BeFalse();
             WhiteSpaceString.NotNullNorWhiteSpace().Should().BeFalse();

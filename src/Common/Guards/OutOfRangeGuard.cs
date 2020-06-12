@@ -14,9 +14,9 @@ namespace Ardalis.GuardClauses
     /// <example>
     ///     Guard.Against.Null(input, nameof(input));.
     /// </example>
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global")]
-    [SuppressMessage("ReSharper", "UnusedParameter.Local")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "UnusedMethodReturnValue.Global", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Utility class")]
     public static partial class GuardClauseExtensions
     {
         /// <summary>

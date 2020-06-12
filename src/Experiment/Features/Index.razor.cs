@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Common.Exceptions;
 using Experiment.Features.App;
@@ -66,7 +67,7 @@ namespace Experiment.Features
             await base.OnParametersSetAsync();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Test")]
         private void NestedExceptionLoggingTest()
         {
             try
@@ -76,7 +77,7 @@ namespace Experiment.Features
                     try
                     {
                         using (Logger.BeginScope(new Dictionary<string, object>
-                            {["CustomerId"] = 12345, ["OrderId"] = 54}))
+                            { ["CustomerId"] = 12345, ["OrderId"] = 54 }))
                         {
                             Logger.LogInformation("Processing credit card payment...");
 

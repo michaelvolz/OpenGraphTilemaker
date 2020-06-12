@@ -12,7 +12,7 @@ namespace Common.Exceptions
     public static class ExceptionExtensions
     {
         [UsedImplicitly]
-        private static object? Examples(ILogger logger )
+        private static object? Examples(ILogger logger)
         {
             // Log-and-propagate, new pattern:
             try
@@ -36,10 +36,10 @@ namespace Common.Exceptions
 
             return default;
         }
-        
+
         // Use when you want to handle the exception
         [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Exception-handling")]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
         public static bool True(Action action)
         {
             action();
@@ -48,7 +48,7 @@ namespace Common.Exceptions
 
         // Use when you want to propagate the exception
         [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Exception-handling")]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
         public static bool False(Action action)
         {
             action();

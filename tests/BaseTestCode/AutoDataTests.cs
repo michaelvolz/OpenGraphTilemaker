@@ -14,7 +14,7 @@ namespace BaseTestCode
     {
         public AutoDataTests(ITestOutputHelper testConsole) : base(testConsole) { }
 
-        [Theory, AutoData]
+        [Theory] [AutoData]
         public void IntroductoryTest(int expectedNumber, SomeTestClass sut)
         {
             var result = SomeTestClass.Echo(expectedNumber);
@@ -24,7 +24,7 @@ namespace BaseTestCode
             sut.AnotherClass!.Currency.Should().BeGreaterThan(0);
         }
 
-        [SuppressMessage("ReSharper", "UnusedMember.Global")]
+        [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
         [SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Test")]
         public class SomeTestClass
         {

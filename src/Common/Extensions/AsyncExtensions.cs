@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Common.Extensions
 {
-    [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Utility class")]
     public static class AsyncExtensions
     {
         /// <summary>
@@ -30,7 +30,7 @@ namespace Common.Extensions
         ///     AsyncLazy.
         ///     See <a href="link">https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md</a>
         /// </summary>
-        [SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        [SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Utility class")]
         public class AsyncLazy<T> : Lazy<Task<T>>
         {
             public AsyncLazy(Func<Task<T>> valueFactory) : base(valueFactory) { }
