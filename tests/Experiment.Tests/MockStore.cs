@@ -8,10 +8,10 @@ namespace Experiment.Tests
     {
         private IState? _state;
 
-        public void Reset() => throw new NotImplementedException();
-
         [SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "Defined by Interface")]
         public Guid Guid { get; } = Guid.NewGuid();
+
+        public void Reset() => throw new NotImplementedException();
 
         public TState GetState<TState>()
         {

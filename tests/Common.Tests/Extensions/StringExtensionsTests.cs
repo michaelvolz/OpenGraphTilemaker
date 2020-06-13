@@ -8,9 +8,6 @@ namespace Common.Tests.Extensions
 {
     public partial class StringExtensionsTests : BaseTest<StringExtensionsTests>
     {
-        public StringExtensionsTests(ITestOutputHelper testConsole)
-            : base(testConsole) { }
-
         private const string EmptyString = "";
         private const string WhiteSpaceString = " ";
         private const string StringDummy = "dummy";
@@ -19,6 +16,9 @@ namespace Common.Tests.Extensions
         private static readonly object EmptyObject = string.Empty;
         private static readonly object WhiteSpaceObject = " ";
         private static readonly object ObjectDummy = "dummy";
+
+        public StringExtensionsTests(ITestOutputHelper testConsole)
+            : base(testConsole) { }
 
         [Fact]
         public void IsNullOrEmpty_EmptyObject()

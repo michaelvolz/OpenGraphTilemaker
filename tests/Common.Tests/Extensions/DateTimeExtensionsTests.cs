@@ -12,11 +12,11 @@ namespace Common.Tests.Extensions
 {
     public class DateTimeExtensionsTests : BaseTest<DateTimeExtensionsTests>
     {
-        public DateTimeExtensionsTests(ITestOutputHelper testConsole)
-            : base(testConsole) { }
-
         private const string SingularPlural = "singular;plural";
         private const int FreezeTime = 0;
+
+        public DateTimeExtensionsTests(ITestOutputHelper testConsole)
+            : base(testConsole) { }
 
         public static IEnumerable<object[]> DateTimeExtensionsTestData => new List<object[]>
         {

@@ -14,6 +14,14 @@ namespace OpenGraphTilemaker.Tests.GetPocket
 {
     public sealed class PocketTests : BaseTest<PocketTests>
     {
+        private static readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
+        private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(1);
+        private static readonly TimeSpan TimeoutTimeSpan = TimeSpan.FromSeconds(15);
+
+        private readonly Pocket _pocket;
+        private readonly PocketOptions _options;
+        private readonly MemoryCache _memoryCache;
+
         public PocketTests(ITestOutputHelper testConsole)
             : base(testConsole)
         {
@@ -23,21 +31,6 @@ namespace OpenGraphTilemaker.Tests.GetPocket
             _pocket = new Pocket(_memoryCache, feedService);
             _options = new PocketOptions(Uri, CachingTimeSpan, TimeoutTimeSpan);
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing) _memoryCache.Dispose();
-
-            base.Dispose(disposing);
-        }
-
-        private static readonly Uri Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
-        private static readonly TimeSpan CachingTimeSpan = TimeSpan.FromSeconds(1);
-        private static readonly TimeSpan TimeoutTimeSpan = TimeSpan.FromSeconds(15);
-
-        private readonly Pocket _pocket;
-        private readonly PocketOptions _options;
-        private readonly MemoryCache _memoryCache;
 
         [Fact]
         [IntegrationTest]
@@ -63,6 +56,13 @@ namespace OpenGraphTilemaker.Tests.GetPocket
                 TestConsole.WriteLine(item.PubDate.ToShortDateString());
                 TestConsole.WriteLine(string.Empty);
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) _memoryCache.Dispose();
+
+            base.Dispose(disposing);
         }
     }
 }

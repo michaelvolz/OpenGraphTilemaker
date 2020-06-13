@@ -17,6 +17,9 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
 {
     public class OpenGraphTileMakerTests : BaseTest<OpenGraphTileMakerTests>
     {
+        private readonly OpenGraphTileMaker _tileMaker;
+        private readonly HttpLoader _webLoader;
+
         public OpenGraphTileMakerTests(ITestOutputHelper testConsole)
             : base(testConsole)
         {
@@ -24,9 +27,6 @@ namespace OpenGraphTilemaker.Tests.OpenGraph
             _webLoader = new HttpLoader(new DiscCache(options));
             _tileMaker = new OpenGraphTileMaker();
         }
-
-        private readonly OpenGraphTileMaker _tileMaker;
-        private readonly HttpLoader _webLoader;
 
         [Theory]
         [AutoData]

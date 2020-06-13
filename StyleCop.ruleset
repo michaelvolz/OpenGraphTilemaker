@@ -107,7 +107,6 @@
     <Rule Id="SA0001" Action="None" />
     <Rule Id="SA1101" Action="None" />
     <Rule Id="SA1134" Action="None" />
-    <Rule Id="SA1201" Action="None" />
     <Rule Id="SA1305" Action="Warning" />
     <Rule Id="SA1309" Action="None" />
     <Rule Id="SA1408" Action="None" />

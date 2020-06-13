@@ -14,6 +14,13 @@ namespace Common.Tests.Guards
         public GuardExtensionsTests(ITestOutputHelper testConsole)
             : base(testConsole) { }
 
+        private enum TestEnum
+        {
+            Undefined = 0,
+            TestOn = 1,
+            TestOff = 2
+        }
+
         [Theory]
         [InlineData(null, "Value cannot be null.")]
         [InlineData("", "Value cannot be empty.")]
@@ -71,27 +78,6 @@ namespace Common.Tests.Guards
             }
 
             "No exception thrown!".Should().Be("This should never execute!");
-        }
-
-        private void CheckExceptionResult(string errorMessageFragment, Exception e, string parameterName, string methodNameWildCardPattern)
-        {
-            var message = e.RewindStackTraceMessage();
-            message.Should().NotBeNullOrWhiteSpace();
-
-            TestConsole.WriteLine(message);
-
-            message.Should().StartWithEquivalent(GuardException.GuardPrefix);
-            message.Should().Contain(parameterName);
-            message.Should().Contain(errorMessageFragment);
-            message.Should().MatchEquivalentOf(methodNameWildCardPattern);
-            message.Should().NotContain("GuardClauseExtensions");
-        }
-
-        private enum TestEnum
-        {
-            Undefined = 0,
-            TestOn = 1,
-            TestOff = 2
         }
 
         [Theory]
@@ -178,6 +164,20 @@ namespace Common.Tests.Guards
             }
 
             "No exception thrown!".Should().Be("This should never execute!");
+        }
+
+        private void CheckExceptionResult(string errorMessageFragment, Exception e, string parameterName, string methodNameWildCardPattern)
+        {
+            var message = e.RewindStackTraceMessage();
+            message.Should().NotBeNullOrWhiteSpace();
+
+            TestConsole.WriteLine(message);
+
+            message.Should().StartWithEquivalent(GuardException.GuardPrefix);
+            message.Should().Contain(parameterName);
+            message.Should().Contain(errorMessageFragment);
+            message.Should().MatchEquivalentOf(methodNameWildCardPattern);
+            message.Should().NotContain("GuardClauseExtensions");
         }
     }
 }
