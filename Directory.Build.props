@@ -46,10 +46,13 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="all" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
 
+    <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" Link="Solution.Dictionary.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </CodeAnalysisDictionary>
+
     <!-- <PackageReference Include="Microsoft.Aspnetcore.Mvc.Analyzers" Version="2.2.0" PrivateAssets="all" /> -->
     <!-- <PackageReference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers" Version="2.2.0" PrivateAssets="all" /> -->
     <!-- <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.1" PrivateAssets="all" /> -->
-    <!-- <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" /> -->
     <!-- <None Include="$(RuleSetRelease)" Condition="'$(RuleSetRelease)' != ''" Link="Current%(Extension)" /> -->
   </ItemGroup>
 </Project>
