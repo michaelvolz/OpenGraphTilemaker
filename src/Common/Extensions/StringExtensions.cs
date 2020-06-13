@@ -45,7 +45,7 @@ namespace Common.Extensions
 
         public static bool NotNullNorEmpty(this string? value) => !value.IsNullOrEmpty();
 
-        public static bool IsNullOrEmpty(this object? value) => !(value is string) || string.IsNullOrEmpty((string)value);
+        public static bool IsNullOrEmpty(this object? value) => !(value is string @string) || string.IsNullOrEmpty(@string);
 
         public static bool IsNullOrEmpty(this string? value) => string.IsNullOrEmpty(value);
 
@@ -53,7 +53,7 @@ namespace Common.Extensions
 
         public static bool NotNullNorWhiteSpace(this string? value) => !value.IsNullOrWhiteSpace();
 
-        public static bool IsNullOrWhiteSpace(this object? value) => !(value is string) || string.IsNullOrWhiteSpace((string)value);
+        public static bool IsNullOrWhiteSpace(this object? value) => !(value is string @string) || string.IsNullOrWhiteSpace(@string);
 
         public static bool IsNullOrWhiteSpace(this string? value) => string.IsNullOrWhiteSpace(value);
 
@@ -77,10 +77,10 @@ namespace Common.Extensions
         {
             if (text.Length < 1 || text.LastOrDefault().ToString().IsPureAlphaNumeric()) return text;
 
-            var substring = text.Substring(0, text.Length - 1);
+            var substring = text[..^1];
 
             while (substring.Length > 0 && !substring.Last().ToString().IsPureAlphaNumeric())
-                substring = substring.Substring(0, substring.Length - 1);
+                substring = substring[..^1];
 
             return substring;
         }

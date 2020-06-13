@@ -19,10 +19,7 @@ namespace VirtualTimeLib
             InitialTime = DateTime.Now;
         }
 
-        public VirtualTime()
-        {
-            UseRealTime = true;
-        }
+        public VirtualTime() => UseRealTime = true;
 
         // public DateTime GetVirtualTimeEquivalent(DateTime dateTime) => GetVirtualTime(dateTime,true);
 
@@ -48,65 +45,29 @@ namespace VirtualTimeLib
 
         private int MarginOfErrorMs { get; }
 
-        public DateTime FromFileTime(long value)
-        {
-            return DateTime.FromFileTime(value);
-        }
+        public DateTime FromFileTime(long value) => DateTime.FromFileTime(value);
 
-        public DateTime FromBinary(long dateData)
-        {
-            return DateTime.FromBinary(dateData);
-        }
+        public DateTime FromBinary(long dateData) => DateTime.FromBinary(dateData);
 
-        public DateTime FromFileTimeUtc(long fileTimeUtc)
-        {
-            return DateTime.FromFileTimeUtc(fileTimeUtc);
-        }
+        public DateTime FromFileTimeUtc(long fileTimeUtc) => DateTime.FromFileTimeUtc(fileTimeUtc);
 
-        public DateTime Parse(string s)
-        {
-            return DateTime.Parse(s, CultureInfo.InvariantCulture);
-        }
+        public DateTime Parse(string s) => DateTime.Parse(s, CultureInfo.InvariantCulture);
 
-        public DateTime FromOADate(double s)
-        {
-            return DateTime.FromOADate(s);
-        }
+        public DateTime FromOADate(double s) => DateTime.FromOADate(s);
 
-        public DateTime ParseExact(string s, string format, IFormatProvider formatProvider)
-        {
-            return DateTime.ParseExact(s, format, formatProvider);
-        }
+        public DateTime ParseExact(string s, string format, IFormatProvider formatProvider) => DateTime.ParseExact(s, format, formatProvider);
 
-        public DateTime SpecifyKind(DateTime value, DateTimeKind kind)
-        {
-            return DateTime.SpecifyKind(value, kind);
-        }
+        public DateTime SpecifyKind(DateTime value, DateTimeKind kind) => DateTime.SpecifyKind(value, kind);
 
-        public int Compare(DateTime t1, DateTime t2)
-        {
-            return DateTime.Compare(t1, t2);
-        }
+        public int Compare(DateTime t1, DateTime t2) => DateTime.Compare(t1, t2);
 
-        public int DaysInMonth(int year, int month)
-        {
-            return DateTime.DaysInMonth(year, month);
-        }
+        public int DaysInMonth(int year, int month) => DateTime.DaysInMonth(year, month);
 
-        public bool Equals(DateTime t1, DateTime t2)
-        {
-            return DateTime.Equals(t1, t2);
-        }
+        public bool Equals(DateTime t1, DateTime t2) => DateTime.Equals(t1, t2);
 
-        public bool TryParse(string s, out DateTime date)
-        {
-            return DateTime.TryParse(s, out date);
-        }
+        public bool TryParse(string s, out DateTime date) => DateTime.TryParse(s, out date);
 
-        public bool IsLeapYear(int year)
-        {
-            return DateTime.IsLeapYear(year);
-        }
+        public bool IsLeapYear(int year) => DateTime.IsLeapYear(year);
 
         private DateTime GetVirtualTime(DateTime time, bool force = false, bool isUtc = false)
         {

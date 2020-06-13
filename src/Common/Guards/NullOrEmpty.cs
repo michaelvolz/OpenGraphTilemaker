@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
+using Common.Guards;
 
 // ReSharper disable CheckNamespace
 
@@ -24,7 +25,7 @@ namespace Ardalis.GuardClauses
         /// <returns>The input for variable initialization.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static string NullOrEmpty(this IGuardClause guardClause, string input, string parameterName)
+        public static string NullOrEmpty(this IGuardClause guardClause, [ValidatedNotNull] [NotNullIfNotNull("input")] string input, string parameterName)
         {
             Guard.Against.Null(input, parameterName);
             if (string.IsNullOrEmpty(input)) throw new GuardException(new ArgumentException("Value cannot be empty.", parameterName));

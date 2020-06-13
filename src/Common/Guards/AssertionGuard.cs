@@ -9,6 +9,7 @@ namespace Ardalis.GuardClauses
     ///     Assertion Guard.
     /// </summary>
     [SuppressMessage("ReSharper", "UnusedParameter.Global", Justification = "Utility class")]
+    [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Utility class")]
     public static partial class GuardClauseExtensions
     {
         /// <summary>

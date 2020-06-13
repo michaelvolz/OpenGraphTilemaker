@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 
 namespace Common.Exceptions
@@ -8,12 +7,14 @@ namespace Common.Exceptions
     /// <summary>
     ///     https://blog.stephencleary.com/2020/06/a-new-pattern-for-exception-logging.html
     /// </summary>
-    [UsedImplicitly]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Utility class")]
+    [SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Utility class")]
+    [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Utility class")]
+    [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Exception-handling")]
     public static class ExceptionExtensions
     {
         // Use when you want to handle the exception
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Exception-handling")]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
         public static bool True(Action action)
         {
             action();
@@ -21,15 +22,12 @@ namespace Common.Exceptions
         }
 
         // Use when you want to propagate the exception
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Exception-handling")]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
         public static bool False(Action action)
         {
             action();
             return false;
         }
 
-        [UsedImplicitly]
         private static object? Examples(ILogger logger)
         {
             // Log-and-propagate, new pattern:
