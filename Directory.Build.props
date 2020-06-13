@@ -24,8 +24,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <RuleSetRelease Condition="$(RuleSetRelease) == ''">StyleCop.ruleset</RuleSetRelease>
-    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet>
+    <!-- <RuleSetRelease Condition="$(RuleSetRelease) == ''">StyleCop.ruleset</RuleSetRelease> -->
+    <!-- <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet> -->
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
@@ -36,7 +36,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="all" />
-    <AdditionalFiles Include="$(MSBuildThisFileDirectory)$(RuleSetRelease)" Link="StyleCop.ruleset" />
+    <!-- <AdditionalFiles Include="$(MSBuildThisFileDirectory)$(RuleSetRelease)" Link="StyleCop.ruleset" /> -->
 
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="all" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
