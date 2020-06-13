@@ -4,27 +4,6 @@
     <Rule Id="CA2007" Action="None" />
     <Rule Id="CS1591" Action="Warning" />
   </Rules>
-  <Rules AnalyzerId="Microsoft.AspNetCore.Analyzers" RuleNamespace="Microsoft.AspNetCore.Analyzers">
-    <Rule Id="ASP0000" Action="None" />
-    <Rule Id="ASP0001" Action="None" />
-    <Rule Id="MVC1005" Action="None" />
-  </Rules>
-  <Rules AnalyzerId="Microsoft.AspNetCore.Components.Analyzers" RuleNamespace="Microsoft.AspNetCore.Components.Analyzers">
-    <Rule Id="BL0001" Action="None" />
-    <Rule Id="BL0002" Action="None" />
-    <Rule Id="BL0003" Action="None" />
-    <Rule Id="BL0004" Action="None" />
-    <Rule Id="BL0005" Action="None" />
-    <Rule Id="BL0006" Action="None" />
-  </Rules>
-  <Rules AnalyzerId="Microsoft.AspNetCore.Mvc.Analyzers" RuleNamespace="Microsoft.AspNetCore.Mvc.Analyzers">
-    <Rule Id="MVC1000" Action="None" />
-    <Rule Id="MVC1001" Action="None" />
-    <Rule Id="MVC1002" Action="None" />
-    <Rule Id="MVC1003" Action="None" />
-    <Rule Id="MVC1004" Action="None" />
-    <Rule Id="MVC1006" Action="None" />
-  </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.Features" RuleNamespace="Microsoft.CodeAnalysis.Features">
     <Rule Id="IDE0067" Action="Warning" />
     <Rule Id="IDE0068" Action="Warning" />
