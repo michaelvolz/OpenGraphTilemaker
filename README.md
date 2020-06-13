@@ -11,6 +11,9 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
 
 * [ASP.NET Core 3.1](https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-3.1)
 * [C# nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references)
+* Microsoft.CodeAnalysis.FxCopAnalyzers
+* StyleCop.Analyzers
+* [`.editorconfig`](https://editorconfig.org/) for language, formatting and code-analysis-rules
 * [Blazor server-side](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1)
 * State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and [MediatR](https://github.com/jbogard/MediatR)
 * Formvalidation:
@@ -27,8 +30,8 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
   * Searching
   * Disc and memory caching
   * Simple loading indicator
-  * Data initialisation from parent
-  * Automatically generated basic TagCloud
+  * Data initialisation via parent
+  * Automatically generated, basic TagCloud
   * TODO: paging
   * TODO: switch grid-layout
 * Miscellaneous Utility Components
@@ -55,7 +58,7 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
 * Custom Guard clauses, customised from [Ardalis.GuardClauses](https://github.com/ardalis/GuardClauses)
 * [Feed Syndication](https://www.nuget.org/packages/Microsoft.SyndicationFeed.ReaderWriter/)
 * [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/)
-  * Build release, including code analysis and stylecop
+  * Build release
   * Run tests
   * Status badge
 * [WebCompiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler)
