@@ -27,10 +27,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		global.install.ps1 = global.install.ps1
 		License.txt = License.txt
 		README.md = README.md
-		Solution.debug.ruleset = Solution.debug.ruleset
-		Solution.Dictionary.xml = Solution.Dictionary.xml
-		Solution.ruleset = Solution.ruleset
+		StyleCop.Dictionary.xml = StyleCop.Dictionary.xml
 		StyleCop.json = StyleCop.json
+		StyleCop.ruleset = StyleCop.ruleset
 		Test.ps1 = Test.ps1
 	EndProjectSection
 EndProject

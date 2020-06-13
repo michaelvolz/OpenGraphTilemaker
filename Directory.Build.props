@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <RuleSetRelease Condition="$(RuleSetRelease) == ''">Solution.ruleset</RuleSetRelease>
+    <RuleSetRelease Condition="$(RuleSetRelease) == ''">StyleCop.ruleset</RuleSetRelease>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
@@ -41,7 +41,7 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="all" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
 
-    <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" Link="Solution.Dictionary.xml">
+    <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)StyleCop.Dictionary.xml" Link="StyleCop.Dictionary.xml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </CodeAnalysisDictionary>
   </ItemGroup>
