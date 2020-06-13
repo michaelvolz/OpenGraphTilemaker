@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using BlazorState;
 using Common;
@@ -16,8 +17,7 @@ namespace Experiment
             {
                 services.AddBlazorState(
                     options => options.Assemblies =
-                        new[]
-                        {
+                        new[] {
                             typeof(Startup).GetTypeInfo().Assembly
                         });
 
@@ -30,6 +30,7 @@ namespace Experiment
                         .WithScopedLifetime());
             }
 
+            [SuppressMessage("Usage", "CA1801:Review unused parameters", Justification = "TODO")]
             public static void VerifyCryptoWatchApiKey(ILogger<Startup> logger)
             {
                 // var cryptoWatchOptions = ServiceLocator.Current.GetInstance<IOptions<CryptoWatchOptions>>();
