@@ -19,7 +19,8 @@ namespace Experiment.Features.OpenGraphTiles
         {
             private readonly ILogger<SearchTilesHandler> _logger = ApplicationLogging.CreateLogger<SearchTilesHandler>();
 
-            public SearchTilesHandler(IStore store) : base(store) { }
+            public SearchTilesHandler(IStore store)
+                : base(store) { }
 
             private TilesState TilesState => Store.GetState<TilesState>();
 

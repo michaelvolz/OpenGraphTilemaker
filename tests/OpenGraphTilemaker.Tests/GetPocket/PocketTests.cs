@@ -14,7 +14,8 @@ namespace OpenGraphTilemaker.Tests.GetPocket
 {
     public sealed class PocketTests : BaseTest<PocketTests>
     {
-        public PocketTests(ITestOutputHelper testConsole) : base(testConsole)
+        public PocketTests(ITestOutputHelper testConsole)
+            : base(testConsole)
         {
             // Arrange
             var feedService = new Feed<PocketEntry>();

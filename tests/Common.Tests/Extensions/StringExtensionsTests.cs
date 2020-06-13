@@ -8,7 +8,8 @@ namespace Common.Tests.Extensions
 {
     public partial class StringExtensionsTests : BaseTest<StringExtensionsTests>
     {
-        public StringExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
+        public StringExtensionsTests(ITestOutputHelper testConsole)
+            : base(testConsole) { }
 
         private const string EmptyString = "";
         private const string WhiteSpaceString = " ";

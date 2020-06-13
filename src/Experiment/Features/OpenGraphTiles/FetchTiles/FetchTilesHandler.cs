@@ -21,7 +21,8 @@ namespace Experiment.Features.OpenGraphTiles
         private readonly IPocketOptions _pocketOptions;
         private readonly ITileMakerClient _tileMakerClient;
 
-        public FetchTilesHandler(IStore store, IPocket pocket, ITileMakerClient client, IOptions<PocketOptions> options) : base(store)
+        public FetchTilesHandler(IStore store, IPocket pocket, ITileMakerClient client, IOptions<PocketOptions> options)
+            : base(store)
         {
             _pocket = pocket;
             _tileMakerClient = client;

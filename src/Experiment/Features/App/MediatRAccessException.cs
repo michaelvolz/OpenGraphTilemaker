@@ -7,11 +7,16 @@ namespace Experiment.Features.App
     public class MediatRAccessException : Exception
     {
         public MediatRAccessException() { }
-        public MediatRAccessException(string message) : base(message) { }
-        public MediatRAccessException(string message, Exception inner) : base(message, inner) { }
+
+        public MediatRAccessException(string message)
+            : base(message) { }
+
+        public MediatRAccessException(string message, Exception inner)
+            : base(message, inner) { }
 
         protected MediatRAccessException(
             SerializationInfo info,
-            StreamingContext context) : base(info, context) { }
+            StreamingContext context)
+            : base(info, context) { }
     }
 }

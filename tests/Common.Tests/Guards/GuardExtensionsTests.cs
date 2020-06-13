@@ -11,7 +11,8 @@ namespace Common.Tests.Guards
 {
     public class GuardExtensionsTests : BaseTest<GuardExtensionsTests>
     {
-        public GuardExtensionsTests(ITestOutputHelper testConsole) : base(testConsole) { }
+        public GuardExtensionsTests(ITestOutputHelper testConsole)
+            : base(testConsole) { }
 
         [Theory]
         [InlineData(null, "Value cannot be null.")]

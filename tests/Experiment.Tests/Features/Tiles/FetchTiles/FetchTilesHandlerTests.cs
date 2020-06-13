@@ -13,7 +13,8 @@ namespace Experiment.Tests.Features.OpenGraphTiles
 {
     public class FetchTilesHandlerTests : IntegrationTests<FetchTilesHandlerTests>
     {
-        public FetchTilesHandlerTests(ITestOutputHelper testConsole) : base(testConsole) { }
+        public FetchTilesHandlerTests(ITestOutputHelper testConsole)
+            : base(testConsole) { }
 
         [Fact]
         public async Task FetchTilesRequest_FakeHttpClient()

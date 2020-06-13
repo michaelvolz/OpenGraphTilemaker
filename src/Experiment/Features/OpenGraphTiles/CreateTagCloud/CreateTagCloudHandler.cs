@@ -13,7 +13,8 @@ namespace Experiment.Features.OpenGraphTiles
         [IoC]
         public class CreateTagCloudHandler : ActionHandler<CreateTagCloudRequest>
         {
-            public CreateTagCloudHandler(IStore store) : base(store) { }
+            public CreateTagCloudHandler(IStore store)
+                : base(store) { }
 
             public TilesState TilesState => Store.GetState<TilesState>();
 

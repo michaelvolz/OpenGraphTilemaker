@@ -14,7 +14,8 @@ namespace Experiment.Features.Counter
         [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
         public class IncrementCounterHandler : ActionHandler<IncrementCounterRequest>
         {
-            public IncrementCounterHandler(IStore store) : base(store) { }
+            public IncrementCounterHandler(IStore store)
+                : base(store) { }
 
             public CounterState CounterState => Store.GetState<CounterState>();
 

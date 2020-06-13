@@ -33,7 +33,8 @@ namespace Common.Extensions
         [SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Utility class")]
         public class AsyncLazy<T> : Lazy<Task<T>>
         {
-            public AsyncLazy(Func<Task<T>> valueFactory) : base(valueFactory) { }
+            public AsyncLazy(Func<Task<T>> valueFactory)
+                : base(valueFactory) { }
         }
     }
 }

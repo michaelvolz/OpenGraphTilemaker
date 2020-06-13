@@ -10,7 +10,8 @@ namespace Experiment.Tests
 {
     public class EndToEndTests : WebApplication
     {
-        public EndToEndTests(WebApplicationFactory<Startup> factory, ITestOutputHelper testConsole) : base(factory, testConsole) { }
+        public EndToEndTests(WebApplicationFactory<Startup> factory, ITestOutputHelper testConsole)
+            : base(factory, testConsole) { }
 
         [Theory]
         [InlineData("http://localhost:50709/counter")]

@@ -10,7 +10,8 @@ namespace Experiment.Tests.Features.Counter
 {
     public class IncrementCounterHandlerTests : IntegrationTests<IncrementCounterHandlerTests>
     {
-        public IncrementCounterHandlerTests(ITestOutputHelper testConsole) : base(testConsole) { }
+        public IncrementCounterHandlerTests(ITestOutputHelper testConsole)
+            : base(testConsole) { }
 
         [Fact]
         public async Task IncrementCounterRequest_AmountDefined()

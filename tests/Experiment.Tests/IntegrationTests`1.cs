@@ -24,7 +24,8 @@ namespace OpenGraphTilemaker.Tests
         private readonly Uri _uri = new Uri("https://getpocket.com/users/Flynn0r/feed/all");
         private MemoryCache? _memoryCache;
 
-        protected IntegrationTests(ITestOutputHelper testConsole) : base(testConsole) => _realHttpClient = new HttpClient();
+        protected IntegrationTests(ITestOutputHelper testConsole)
+            : base(testConsole) => _realHttpClient = new HttpClient();
 
         protected override void Dispose(bool disposing)
         {

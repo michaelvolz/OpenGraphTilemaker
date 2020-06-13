@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using BlazorState;
@@ -17,7 +16,8 @@ namespace Experiment.Features.App.Globals
         {
             private readonly ILogger<ChangeThemeColorsHandler> _logger = ApplicationLogging.CreateLogger<ChangeThemeColorsHandler>();
 
-            public ChangeThemeColorsHandler(IStore store) : base(store) { }
+            public ChangeThemeColorsHandler(IStore store)
+                : base(store) { }
 
             private GlobalState GlobalState => Store.GetState<GlobalState>();
 

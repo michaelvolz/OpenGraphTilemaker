@@ -12,7 +12,8 @@ namespace BaseTestCode
     /// </summary>
     public class AutoDataTests : BaseTest<AutoDataTests>
     {
-        public AutoDataTests(ITestOutputHelper testConsole) : base(testConsole) { }
+        public AutoDataTests(ITestOutputHelper testConsole)
+            : base(testConsole) { }
 
         [Theory] [AutoData]
         public void IntroductoryTest(int expectedNumber, SomeTestClass sut)
