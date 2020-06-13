@@ -17,9 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experiment.Tests", "tests\Experiment.Tests\Experiment.Tests.csproj", "{794944BE-577B-4AF1-A706-C3916CB7C65C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{BD66E03F-E41E-443A-BEA6-495E97329B03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experiment", "src\Experiment\Experiment.csproj", "{21ED43D6-94A6-4B5C-9905-42954376FA14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F3272891-6A15-4645-89FA-D6A3538E31DA}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.editorconfig.inferred = .editorconfig.inferred
 		azure-pipelines.yml = azure-pipelines.yml
 		Build.ps1 = Build.ps1
 		.github\dependabot.yml = .github\dependabot.yml
@@ -32,8 +35,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		StyleCop.ruleset = StyleCop.ruleset
 		Test.ps1 = Test.ps1
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experiment", "src\Experiment\Experiment.csproj", "{21ED43D6-94A6-4B5C-9905-42954376FA14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
