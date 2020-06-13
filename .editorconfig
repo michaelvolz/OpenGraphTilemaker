@@ -1,14 +1,11 @@
 # Rules in this file were initially inferred by Visual Studio IntelliCode from the C:\Users\flynn\Projects\OpenGraphTilemaker codebase based on best match to current usage at 24.11.2018
 # You can modify the rules from these initially generated values to suit your own policies
 # You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+
+[*.cs]
+
 # NOTE: Requires **VS2019 16.3** or later
-
-# Generic
 # Description: StyleCop.ruleset
-
-# Code files
-[*.{cs,vb}]
-
 dotnet_diagnostic.CA1303.severity = none
 dotnet_diagnostic.CA1308.severity = none
 dotnet_diagnostic.CA1707.severity = none
@@ -43,8 +40,7 @@ dotnet_diagnostic.SA1622.severity = none
 dotnet_diagnostic.SA1627.severity = none
 dotnet_diagnostic.SA1629.severity = none
 dotnet_diagnostic.SA1633.severity = none
-
-[*.cs]
+dotnet_diagnostic.SA1636.severity = none
 
 #Core editorconfig formatting - indentation
 
@@ -137,18 +133,6 @@ csharp_prefer_simple_default_expression=true:suggestion
 
 [*]
 
-# https://www.jetbrains.com/help/resharper/EditorConfig_CSHARP_BracesPageSchema.html#Braces_Layout
-resharper_csharp_empty_block_style=together_same_line
-resharper_empty_block_style=together_same_line
-
-# ReSharper properties
-resharper_csharp_insert_final_newline=true
-resharper_csharp_max_line_length=160
-resharper_enforce_line_ending_style=true
-resharper_keep_existing_attribute_arrangement=true
-resharper_max_attribute_length_for_same_line=74
-resharper_space_within_single_line_array_initializer_braces=true
-
 # Microsoft .NET properties
 csharp_new_line_before_members_in_object_initializers=false
 csharp_preferred_modifier_order=public, private, protected, internal, new, abstract, virtual, sealed, override, static, readonly, extern, unsafe, volatile, async:suggestion
@@ -179,6 +163,18 @@ dotnet_style_qualification_for_field=false:suggestion
 dotnet_style_qualification_for_method=false:suggestion
 dotnet_style_qualification_for_property=false:suggestion
 dotnet_style_require_accessibility_modifiers=for_non_interface_members:suggestion
+
+# https://www.jetbrains.com/help/resharper/EditorConfig_CSHARP_BracesPageSchema.html#Braces_Layout
+resharper_csharp_empty_block_style=together_same_line
+resharper_empty_block_style=together_same_line
+
+# ReSharper properties
+resharper_csharp_insert_final_newline=true
+resharper_csharp_max_line_length=160
+resharper_enforce_line_ending_style=true
+resharper_keep_existing_attribute_arrangement=true
+resharper_max_attribute_length_for_same_line=74
+resharper_space_within_single_line_array_initializer_braces=true
 
 # ReSharper inspection severities
 resharper_access_to_modified_closure_highlighting=hint
