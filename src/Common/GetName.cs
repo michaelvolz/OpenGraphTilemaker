@@ -11,7 +11,8 @@ namespace Common
     public static class GetName
     {
         // GetName.Of<Classname>()
-        public static string Of<T>() where T : class => typeof(T).Name;
+        public static string Of<T>()
+            where T : class => typeof(T).Name;
 
         // GetName.Of( () => variable-name)
         // GetName.Of( () => class.Property-name)

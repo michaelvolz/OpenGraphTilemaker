@@ -20,7 +20,8 @@ namespace Experiment.Features.Form
 
         private FormState State => Store.GetState<FormState>();
 
-        private static bool HasError<T>(T obj) where T : class, IValidate => obj.HasError<T>();
+        private static bool HasError<T>(T obj)
+            where T : class, IValidate => obj.HasError<T>();
 
         private async Task SubmitAsync()
         {

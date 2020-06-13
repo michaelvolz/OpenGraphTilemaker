@@ -16,7 +16,8 @@ namespace Experiment.Features.Form
     public class ValidationBase<TValidator> : IValidate
     {
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1009:Closing parenthesis should be spaced correctly", Justification = "Analyzer bug")]
-        public IList<ValidationFailure> Validate<T>(string? propertyName = null) where T : class
+        public IList<ValidationFailure> Validate<T>(string? propertyName = null)
+            where T : class
         {
             var validator = Activator.CreateInstance<TValidator>() as IValidator<T>;
 
@@ -42,11 +43,14 @@ namespace Experiment.Features.Form
             return result.Errors;
         }
 
-        public bool HasError<T>(Expression<Func<object>>? propertyExpression = null) where T : class => Validate<T>(propertyExpression).Any();
+        public bool HasError<T>(Expression<Func<object>>? propertyExpression = null)
+            where T : class => Validate<T>(propertyExpression).Any();
 
-        public IList<ValidationFailure> Validate<T>(Expression<Func<object>>? property) where T : class =>
+        public IList<ValidationFailure> Validate<T>(Expression<Func<object>>? property)
+            where T : class =>
             property != null ? Validate<T>(property.MemberExpressionName()) : Validate<T>();
 
-        public string IsValid<T>(Expression<Func<object>> property, string failureClass) where T : class => HasError<T>(property) ? failureClass : string.Empty;
+        public string IsValid<T>(Expression<Func<object>> property, string failureClass)
+            where T : class => HasError<T>(property) ? failureClass : string.Empty;
     }
 }
