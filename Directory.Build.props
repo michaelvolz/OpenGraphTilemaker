@@ -24,15 +24,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <RuleSetDebug Condition="$(RuleSetDebug) == ''">Solution.debug.ruleset</RuleSetDebug>
     <RuleSetRelease Condition="$(RuleSetRelease) == ''">Solution.ruleset</RuleSetRelease>
     <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetRelease)</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <!-- <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)$(RuleSetDebug)</CodeAnalysisRuleSet> -->
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -49,10 +44,5 @@
     <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)Solution.Dictionary.xml" Link="Solution.Dictionary.xml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </CodeAnalysisDictionary>
-
-    <!-- <PackageReference Include="Microsoft.Aspnetcore.Mvc.Analyzers" Version="2.2.0" PrivateAssets="all" /> -->
-    <!-- <PackageReference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers" Version="2.2.0" PrivateAssets="all" /> -->
-    <!-- <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.1" PrivateAssets="all" /> -->
-    <!-- <None Include="$(RuleSetRelease)" Condition="'$(RuleSetRelease)' != ''" Link="Current%(Extension)" /> -->
   </ItemGroup>
 </Project>
