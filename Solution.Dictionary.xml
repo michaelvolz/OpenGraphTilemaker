@@ -1,11 +1,28 @@
 <!-- NOTE (adamralph): For more info see: https://docs.microsoft.com/en-us/visualstudio/code-quality/how-to-customize-the-code-analysis-dictionary -->
 <Dictionary>
   <Words>
+    <Unrecognized>
+      <Word>knokker</Word>
+    </Unrecognized>
     <Recognized>
       <Word>bootstrapper</Word>
       <Word>Callback</Word>
       <Word>unconfigured</Word>
       <Word>unfakeable</Word>
     </Recognized>
+    <Deprecated>
+      <Term PreferredAlternate=""></Term>
+    </Deprecated>
+    <Compound>
+      <Term CompoundAlternate=""></Term>
+    </Compound>
+    <DiscreteExceptions>
+      <Term></Term>
+    </DiscreteExceptions>
   </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym></Acronym>
+    </CasingExceptions>
+  </Acronyms>
 </Dictionary>
