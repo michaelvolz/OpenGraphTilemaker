@@ -56,8 +56,7 @@ namespace Common.Tests.Extensions
         [InlineAutoData(-1, "-1 just-one-text", "just-one-text")]
         [InlineAutoData(-2, "-2 just-one-text", "just-one-text")]
         [InlineAutoData(12, "12", null)]
-        public void PluralFormatProvider_ValidValues(int value, string expected, string format,
-            PluralFormatProvider sut)
+        public void PluralFormatProvider_ValidValues(int value, string expected, string format, PluralFormatProvider sut)
         {
             var result = sut.Format(format, value, null);
 

@@ -110,8 +110,7 @@ namespace Common.Extensions
         {
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer) => serializer.Serialize(writer, value);
 
-            public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
-                JsonSerializer serializer)
+            public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
             {
                 if (reader.TokenType == JsonToken.StartArray)
                     return serializer.Deserialize(reader, objectType);

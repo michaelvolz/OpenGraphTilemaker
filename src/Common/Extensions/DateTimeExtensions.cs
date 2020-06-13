@@ -18,8 +18,8 @@ namespace Common.Extensions
         [UsedImplicitly]
         public static string ToFriendlyDate(this DateTime? date) => date.HasValue ? date.Value.ToFriendlyDate() : string.Empty;
 
-        [SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1509:Opening braces should not be preceded by blank line",
-            Justification = "Modern switch statement syntax")]
+        [SuppressMessage(
+            "StyleCop.CSharp.LayoutRules", "SA1509:Opening braces should not be preceded by blank line", Justification = "Modern switch statement syntax")]
         public static string ToFriendlyDate(this DateTime date)
         {
             var elapsedTime = DateTime.UtcNow.Subtract(date);
@@ -31,16 +31,16 @@ namespace Common.Extensions
                 { } _ when totalSecondsElapsed < 0 => "n/a",
 
                 Today when totalSecondsElapsed < MinuteInSeconds => "just now",
-                Today when totalSecondsElapsed < HourInSeconds => string.Format(new PluralFormatProvider(), "{0:minute;minutes} ago",
-                    totalSecondsElapsed.FloorBy(MinuteInSeconds)),
-                Today when totalSecondsElapsed < DayInSeconds => string.Format(new PluralFormatProvider(), "{0:hour;hours} ago",
-                    totalSecondsElapsed.FloorBy(HourInSeconds)),
+                Today when totalSecondsElapsed < HourInSeconds =>
+                string.Format(new PluralFormatProvider(), "{0:minute;minutes} ago", totalSecondsElapsed.FloorBy(MinuteInSeconds)),
+                Today when totalSecondsElapsed < DayInSeconds =>
+                string.Format(new PluralFormatProvider(), "{0:hour;hours} ago", totalSecondsElapsed.FloorBy(HourInSeconds)),
 
                 Yesterday => "yesterday",
 
                 { } days when days < WeekInDays => $"{totalDaysElapsed} days ago",
-                { } days when days < MonthInDays => string.Format(new PluralFormatProvider(), "{0:week;weeks} ago",
-                    totalDaysElapsed.CeilingBy(WeekInDays)),
+                { } days when days < MonthInDays =>
+                string.Format(new PluralFormatProvider(), "{0:week;weeks} ago", totalDaysElapsed.CeilingBy(WeekInDays)),
 
                 _ => date.ToLongDateString()
             };

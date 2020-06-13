@@ -105,7 +105,9 @@ namespace Common.Tests.Guards
             }
             catch (Exception e)
             {
-                CheckExceptionResult($"The value of argument '{parameterName}' ({invalidValue}) is invalid for Enum type '{nameof(TestEnum)}'.", e,
+                CheckExceptionResult(
+                    $"The value of argument '{parameterName}' ({invalidValue}) is invalid for Enum type '{nameof(TestEnum)}'.",
+                    e,
                     parameterName,
                     $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardEnum)}*");
 

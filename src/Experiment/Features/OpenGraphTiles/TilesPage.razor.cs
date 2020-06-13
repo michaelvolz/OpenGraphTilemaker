@@ -25,8 +25,8 @@ namespace Experiment.Features.OpenGraphTiles
 
             await Time.ThisAsync(() => RequestAsync(new TilesState.FetchTilesRequest()), nameof(TilesState.FetchTilesRequest), Logger);
 
-            Logger.LogInformation("### {MethodName} loading data finished! {Count}", nameof(InitializeDataAsync),
-                Store.GetState<TilesState>().OriginalTiles.Count);
+            Logger.LogInformation(
+                "### {MethodName} loading data finished! {Count}", nameof(InitializeDataAsync), Store.GetState<TilesState>().OriginalTiles.Count);
         }
     }
 }
