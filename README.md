@@ -12,7 +12,7 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
 * [ASP.NET Core 3.1](https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-3.1)
 * [C# nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references)
 * Microsoft.CodeAnalysis.FxCopAnalyzers
-* StyleCop.Analyzers
+* StyleCop.Analyzers.Unstable
 * [`.editorconfig`](https://editorconfig.org/) for language, formatting and code-analysis-rules
 * [Blazor server-side](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1)
 * State management => [Blazor.State](https://github.com/TimeWarpEngineering/blazor-state) and [MediatR](https://github.com/jbogard/MediatR)
