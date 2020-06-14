@@ -61,7 +61,7 @@ namespace Experiment.Tests.Features.OpenGraphTiles
             var state = mockStore.GetState<TilesState>();
             state.OriginalTiles.Should().NotBeNullOrEmpty();
 
-            foreach (var tile in state.OriginalTiles) TestConsole.WriteLine(tile?.Title ?? "---");
+            foreach (var tile in state.OriginalTiles) TestConsole.WriteLine(tile.Title);
         }
     }
 }
