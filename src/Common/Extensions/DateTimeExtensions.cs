@@ -25,8 +25,7 @@ namespace Common.Extensions
             var totalDaysElapsed = (int)elapsedTime.TotalDays;
             var totalSecondsElapsed = (int)elapsedTime.TotalSeconds;
 
-            return totalDaysElapsed switch
-            {
+            return totalDaysElapsed switch {
                 { } _ when totalSecondsElapsed < 0 => "n/a",
 
                 Today when totalSecondsElapsed < MinuteInSeconds => "just now",
