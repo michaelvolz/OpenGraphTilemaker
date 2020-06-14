@@ -13,7 +13,7 @@ using Xunit;
 using Xunit.Abstractions;
 using Xunit.Categories;
 
-namespace OpenGraphTilemaker.Tests.OpenGraph
+namespace Domain.Tests.OpenGraphTilemaker.OpenGraph
 {
     public class OpenGraphTileMakerTests : BaseTest<OpenGraphTileMakerTests>
     {

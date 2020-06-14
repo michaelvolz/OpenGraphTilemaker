@@ -10,7 +10,7 @@ using Xunit;
 using Xunit.Abstractions;
 using Xunit.Categories;
 
-namespace OpenGraphTilemaker.Tests.GetPocket
+namespace Domain.Tests.OpenGraphTilemaker.GetPocket
 {
     public sealed class PocketTests : BaseTest<PocketTests>
     {

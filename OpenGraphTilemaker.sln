@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "src\Common\Common.csproj", "{5656AF6F-0CA8-4C6F-AB23-A51895EB5B50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\OpenGraphTilemaker\Domain.csproj", "{9AC61145-C7BC-4A25-A802-633BC81C60F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{9AC61145-C7BC-4A25-A802-633BC81C60F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{09FEECE9-ED4E-4157-8D74-2523495CC60F}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseTestCode", "tests\BaseT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Tests", "tests\Common.Tests\Common.Tests.csproj", "{89DF4061-2955-4017-A0ED-EF5119AB5EF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker.Tests", "tests\OpenGraphTilemaker.Tests\OpenGraphTilemaker.Tests.csproj", "{473A204E-6C3F-4C28-977E-5BA3ABC66EB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "tests\Domain.Tests\Domain.Tests.csproj", "{473A204E-6C3F-4C28-977E-5BA3ABC66EB3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experiment.Tests", "tests\Experiment.Tests\Experiment.Tests.csproj", "{794944BE-577B-4AF1-A706-C3916CB7C65C}"
 EndProject

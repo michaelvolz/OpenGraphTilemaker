@@ -35,7 +35,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BaseTestCode\BaseTestCode.csproj" />
     <ProjectReference Include="..\..\src\Common\Common.csproj" />
-    <ProjectReference Include="..\..\src\OpenGraphTilemaker\Domain.csproj" />
+    <ProjectReference Include="..\..\src\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
