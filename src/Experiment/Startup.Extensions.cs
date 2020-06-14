@@ -16,10 +16,14 @@ namespace Experiment
             public static void BlazorState(IServiceCollection services)
             {
                 services.AddBlazorState(
-                    options => options.Assemblies =
-                        new[] {
-                            typeof(Startup).GetTypeInfo().Assembly
-                        });
+                    options => {
+                        options.UseReduxDevToolsBehavior = true;
+                        options.Assemblies =
+                            new[] {
+                                typeof(Startup).GetTypeInfo().Assembly
+                            };
+                    }
+                );
 
                 services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
                 services.Scan(
