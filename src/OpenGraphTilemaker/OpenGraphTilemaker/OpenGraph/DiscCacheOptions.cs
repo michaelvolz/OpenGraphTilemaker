@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Ardalis.GuardClauses;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     public class DiscCacheOptions
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace OpenGraphTilemaker.GetPocket
+namespace Domain.OpenGraphTilemaker.GetPocket
 {
     public interface IPocketOptions
     {

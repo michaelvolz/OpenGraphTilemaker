@@ -3,10 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using BaseTestCode;
 using Common;
+using Domain.OpenGraphTilemaker.GetPocket;
+using Domain.OpenGraphTilemaker.OpenGraph;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
-using OpenGraphTilemaker.GetPocket;
-using OpenGraphTilemaker.OpenGraph;
 using Xunit.Abstractions;
 
 // ReSharper disable once CheckNamespace

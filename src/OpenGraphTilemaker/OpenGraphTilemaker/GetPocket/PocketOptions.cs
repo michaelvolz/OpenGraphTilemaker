@@ -2,7 +2,7 @@
 using Ardalis.GuardClauses;
 using Common;
 
-namespace OpenGraphTilemaker.GetPocket
+namespace Domain.OpenGraphTilemaker.GetPocket
 {
     public class PocketOptions : IPocketOptions
     {

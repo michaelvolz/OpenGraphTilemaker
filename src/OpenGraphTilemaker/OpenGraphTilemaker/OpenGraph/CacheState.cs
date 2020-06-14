@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     public enum CacheState
     {

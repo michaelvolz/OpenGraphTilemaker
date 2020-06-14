@@ -3,9 +3,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common;
-using OpenGraphTilemaker.GetPocket;
+using Domain.OpenGraphTilemaker.GetPocket;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     [IoC]
     public class TileMakerClient : ITileMakerClient

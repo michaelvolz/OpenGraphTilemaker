@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Common;
+using Domain.OpenGraphTilemaker.OpenGraph;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
-using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {

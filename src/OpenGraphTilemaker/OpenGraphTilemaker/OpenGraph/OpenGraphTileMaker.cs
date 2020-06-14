@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using HtmlAgilityPack;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     public class OpenGraphTileMaker
     {

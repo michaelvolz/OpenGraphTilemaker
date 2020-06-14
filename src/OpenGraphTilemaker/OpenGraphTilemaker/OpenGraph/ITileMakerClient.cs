@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using OpenGraphTilemaker.GetPocket;
+using Domain.OpenGraphTilemaker.GetPocket;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     public interface ITileMakerClient
     {

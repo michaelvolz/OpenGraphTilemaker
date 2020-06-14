@@ -4,7 +4,7 @@ using Ardalis.GuardClauses;
 using Common.Extensions;
 using HtmlAgilityPack;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     public static class OpenGraphMapper
     {

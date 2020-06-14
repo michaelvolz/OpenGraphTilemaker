@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using Common;
+using Domain.OpenGraphTilemaker.GetPocket;
+using Domain.OpenGraphTilemaker.OpenGraph;
 using Experiment.Features.App;
 using Experiment.Features.CryptoWatch;
 using JetBrains.Annotations;
@@ -10,8 +12,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OpenGraphTilemaker.GetPocket;
-using OpenGraphTilemaker.OpenGraph;
 using Serilog;
 
 namespace Experiment

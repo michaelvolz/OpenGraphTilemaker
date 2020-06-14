@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Common;
-using OpenGraphTilemaker.OpenGraph;
+using Domain.OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {

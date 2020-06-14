@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Domain.OpenGraphTilemaker.OpenGraph;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
-using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {

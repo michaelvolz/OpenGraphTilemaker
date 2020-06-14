@@ -1,7 +1,7 @@
 ﻿using System;
 using Ardalis.GuardClauses;
 
-namespace OpenGraphTilemaker.GetPocket
+namespace Domain.OpenGraphTilemaker.GetPocket
 {
     public class PocketEntry
     {

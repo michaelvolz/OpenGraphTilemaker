@@ -7,10 +7,10 @@ using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using Common.Extensions;
+using Domain.OpenGraphTilemaker.GetPocket;
+using Domain.OpenGraphTilemaker.OpenGraph;
 using MediatR;
 using Microsoft.Extensions.Options;
-using OpenGraphTilemaker.GetPocket;
-using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {

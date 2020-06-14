@@ -5,7 +5,7 @@ using Ardalis.GuardClauses;
 using HtmlAgilityPack;
 using static System.Net.HttpStatusCode;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     public class HttpLoader
     {

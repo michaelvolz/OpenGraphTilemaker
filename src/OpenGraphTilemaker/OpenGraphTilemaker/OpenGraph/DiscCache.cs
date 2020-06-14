@@ -3,9 +3,9 @@ using System.IO;
 using Ardalis.GuardClauses;
 using Common.Extensions;
 using Microsoft.Extensions.Options;
-using static OpenGraphTilemaker.OpenGraph.CacheState;
+using static Domain.OpenGraphTilemaker.OpenGraph.CacheState;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     public class DiscCache
     {

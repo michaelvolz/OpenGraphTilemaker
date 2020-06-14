@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Common.Extensions;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     public class OpenGraphMetadata
     {

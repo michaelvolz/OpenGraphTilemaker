@@ -6,9 +6,9 @@ using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
 using Common.Logging;
+using Domain.OpenGraphTilemaker.OpenGraph;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {

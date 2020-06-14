@@ -4,7 +4,7 @@ using Ardalis.GuardClauses;
 using Common;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace OpenGraphTilemaker.GetPocket
+namespace Domain.OpenGraphTilemaker.GetPocket
 {
     /// <summary>
     ///     GetPocket = https://app.getpocket.com/.

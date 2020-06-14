@@ -2,7 +2,7 @@
 using Ardalis.GuardClauses;
 using HtmlAgilityPack;
 
-namespace OpenGraphTilemaker.OpenGraph
+namespace Domain.OpenGraphTilemaker.OpenGraph
 {
     public static class FileLoader
     {

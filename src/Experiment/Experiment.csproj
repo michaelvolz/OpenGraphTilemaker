@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
-    <ProjectReference Include="..\OpenGraphTilemaker\OpenGraphTilemaker.csproj" />
+    <ProjectReference Include="..\OpenGraphTilemaker\Domain.csproj" />
   </ItemGroup>
 
 </Project>

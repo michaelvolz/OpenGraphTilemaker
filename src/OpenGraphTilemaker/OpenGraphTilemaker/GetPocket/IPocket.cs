@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace OpenGraphTilemaker.GetPocket
+namespace Domain.OpenGraphTilemaker.GetPocket
 {
     public interface IPocket
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using BlazorState;
-using OpenGraphTilemaker.OpenGraph;
+using Domain.OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {

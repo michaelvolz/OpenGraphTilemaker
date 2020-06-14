@@ -2,7 +2,7 @@
 using Ardalis.GuardClauses;
 using Microsoft.SyndicationFeed;
 
-namespace OpenGraphTilemaker.GetPocket
+namespace Domain.OpenGraphTilemaker.GetPocket
 {
     public static class SyndicationExtensions
     {

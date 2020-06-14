@@ -2,7 +2,7 @@
 using Ardalis.GuardClauses;
 using BlazorState;
 using Common;
-using OpenGraphTilemaker.OpenGraph;
+using Domain.OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {

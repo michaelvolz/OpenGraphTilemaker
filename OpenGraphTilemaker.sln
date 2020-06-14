@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "src\Common\Common.csproj", "{5656AF6F-0CA8-4C6F-AB23-A51895EB5B50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGraphTilemaker", "src\OpenGraphTilemaker\OpenGraphTilemaker.csproj", "{9AC61145-C7BC-4A25-A802-633BC81C60F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\OpenGraphTilemaker\Domain.csproj", "{9AC61145-C7BC-4A25-A802-633BC81C60F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{09FEECE9-ED4E-4157-8D74-2523495CC60F}"
 EndProject
