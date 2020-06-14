@@ -21,7 +21,7 @@ namespace Experiment
         {
             var logger = ApplicationLogging.CreateLogger<App>();
             logger.LogInformation("Initializing App component...");
-            
+
             await ReduxDevToolsInterop.InitAsync();
             await JsonRequestHandler.InitAsync();
 

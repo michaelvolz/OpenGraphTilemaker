@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using BlazorState;
@@ -11,13 +10,14 @@ namespace Experiment.Features.Counter
     public partial class CounterState
     {
         [IoC]
-        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Utility class")]
         public class IncrementCounterHandler : ActionHandler<IncrementCounterRequest>
         {
             public IncrementCounterHandler(IStore store)
-                : base(store) { }
+                : base(store)
+            {
+            }
 
-            public CounterState CounterState => Store.GetState<CounterState>();
+            private CounterState CounterState => Store.GetState<CounterState>();
 
             public override Task<Unit> Handle(IncrementCounterRequest aAction, CancellationToken aCancellationToken)
             {

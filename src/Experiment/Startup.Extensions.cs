@@ -22,8 +22,7 @@ namespace Experiment
                             new[] {
                                 typeof(Startup).GetTypeInfo().Assembly
                             };
-                    }
-                );
+                    });
 
                 services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
                 services.Scan(
@@ -35,6 +34,7 @@ namespace Experiment
             }
 
             [SuppressMessage("Usage", "CA1801:Review unused parameters", Justification = "TODO")]
+            [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "TODO")]
             public static void VerifyCryptoWatchApiKey(ILogger<Startup> logger)
             {
                 // var cryptoWatchOptions = ServiceLocator.Current.GetInstance<IOptions<CryptoWatchOptions>>();

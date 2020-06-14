@@ -11,14 +11,13 @@ using OpenGraphTilemaker.OpenGraph;
 
 namespace Experiment.Features.OpenGraphTiles
 {
-    [SuppressMessage("ReSharper", "MemberCanBeProtected.Global", Justification = "Blazor")]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Blazor")]
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Blazor rule")]
     public partial class Tiles
     {
         [Parameter] public string Class { get; [UsedImplicitly] set; } = string.Empty;
         [Parameter] public List<OpenGraphMetadata> OriginalTiles { get; [UsedImplicitly] set; } = null!;
 
-        protected TilesState State => Store.GetState<TilesState>();
+        private TilesState State => Store.GetState<TilesState>();
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
