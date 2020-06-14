@@ -19,7 +19,7 @@ namespace Experiment.Features.CryptoWatch
             logger.LogDebug("DataSource start");
             for (var i = 0; i < 10000; i++)
             {
-                logger.LogDebug(i.ToString(CultureInfo.InvariantCulture));
+                logger.LogDebug("Number {Number}", i.ToString(CultureInfo.InvariantCulture));
                 OnUpdate?.Invoke(i);
 
                 var x = 0;
