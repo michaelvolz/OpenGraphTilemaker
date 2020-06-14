@@ -76,7 +76,6 @@ namespace Common.Extensions
             return serializeObject;
         }
 
-        [SuppressMessage("Maintainability", "CA1508:Avoid dead conditional code", Justification = "Analyzer bug?")]
         public static T JSONUnSerialize<T>(this string stringObj)
         {
             if (stringObj == null) throw new ArgumentNullException(nameof(stringObj));

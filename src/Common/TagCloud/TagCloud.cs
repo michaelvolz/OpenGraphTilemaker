@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +12,6 @@ namespace Common.TagCloud
     {
         private const string MySQLMyISAMText = @"TagCloud\mysql_myisam.txt";
 
-        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1011:Closing square brackets should be spaced correctly", Justification = "Nullable type")]
         private static string[]? _stopWords;
 
         public Dictionary<string, int> Cloud { get; } = new Dictionary<string, int>();

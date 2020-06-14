@@ -32,6 +32,7 @@ namespace OpenGraphTilemaker.OpenGraph
 
         [SuppressMessage(
             "StyleCop.CSharp.NamingRules", "SA1312:Variable names should begin with lower-case letter", Justification = "Discarded variable syntax")]
+        [SuppressMessage("Style", "IDE0007:Use implicit type", Justification = "Not possible")]
         private static void MapValues(string property, OpenGraphMetadata metadata, string content)
         {
             object? _ = property switch
