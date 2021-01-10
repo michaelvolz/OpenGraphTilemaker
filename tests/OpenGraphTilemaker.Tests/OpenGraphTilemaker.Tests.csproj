@@ -21,7 +21,7 @@
     <PackageReference Include="AutoFixture.Xunit2" Version="4.13.0" />
     <PackageReference Include="Blazor-State" Version="3.2.1" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.6" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="NSubstitute" Version="4.2.2" />
