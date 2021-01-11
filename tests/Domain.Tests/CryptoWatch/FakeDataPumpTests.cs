@@ -25,16 +25,16 @@ namespace Domain.Tests.CryptoWatch
 
             using var cancellationTokenSource = new CancellationTokenSource(300);
 
-            var cryptoEntities = new List<CryptoEntity>();
+            var result = new List<CryptoEntity>();
 
-            await foreach (var item in fakeDataPump.DataStreamAsync(cancellationTokenSource.Token))
+            await foreach (var cryptoEntity in fakeDataPump.DataStreamAsync(cancellationTokenSource.Token))
             {
-                cryptoEntities.Add(item);
-                TestConsole.LogInformation("Item: {Item}", item.ReturnDumpFlat());
+                result.Add(cryptoEntity);
+                TestConsole.LogInformation("{Item}", cryptoEntity.ReturnDumpFlat());
             }
 
-            cryptoEntities.Should().NotBeEmpty();
-            cryptoEntities.Count.Should().BeGreaterThan(0);
+            result.Should().NotBeEmpty();
+            result.Count.Should().BeGreaterThan(0);
         }
     }
 }
