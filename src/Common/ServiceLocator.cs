@@ -15,13 +15,16 @@ namespace Common
             _localServiceProvider = Guard.Against.Null(currentServiceProvider, nameof(currentServiceProvider));
 
         public static ServiceLocator Current =>
-            new ServiceLocator(_globalServiceProvider ??
-                               throw new InvalidOperationException("GlobalServiceProvider uninitialized! use 'SetServiceProvider' first!"));
+            new(_globalServiceProvider
+                ?? throw new InvalidOperationException("GlobalServiceProvider uninitialized! use 'SetServiceProvider' first!"));
 
-        public static void SetServiceProvider(ServiceProvider serviceProvider) => _globalServiceProvider = serviceProvider;
+        public static void SetServiceProvider(ServiceProvider serviceProvider)
+            => _globalServiceProvider = serviceProvider;
 
         public object GetInstance(Type serviceType) => _localServiceProvider.GetService(serviceType);
 
-        public TService GetInstance<TService>() => _localServiceProvider.GetService<TService>();
+        public TService GetInstance<TService>()
+            => _localServiceProvider.GetService<TService>()
+               ?? throw new InvalidOperationException("Service not found!");
     }
 }
