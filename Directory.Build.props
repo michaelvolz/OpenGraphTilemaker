@@ -34,7 +34,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="all" />
 
-    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.321" PrivateAssets="all" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
 
     <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)StyleCop.Dictionary.xml" Link="StyleCop.Dictionary.xml">
