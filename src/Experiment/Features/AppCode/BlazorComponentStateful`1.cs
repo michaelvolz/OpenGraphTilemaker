@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using BlazorState;
@@ -13,15 +12,13 @@ using Microsoft.JSInterop;
 
 namespace Experiment.Features.AppCode
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Utility class")]
     public class BlazorComponentStateful<TComponent> : ComponentBase
     {
+        protected ILogger<TComponent> Logger { get; } = ApplicationLogging.CreateLogger<TComponent>();
         [Inject] protected Time Time { get; [UsedImplicitly] set; } = null!;
         [Inject] protected IStore Store { get; [UsedImplicitly] set; } = null!;
         [Inject] protected NavigationManager UriHelper { get; [UsedImplicitly] set; } = null!;
         [Inject] protected IJSRuntime JSRuntime { get; [UsedImplicitly] set; } = null!;
-
-        protected ILogger<TComponent> Logger { get; } = ApplicationLogging.CreateLogger<TComponent>();
 
         protected bool IsLoading { get; set; } = true;
         [Inject] private IMediator Mediator { get; [UsedImplicitly] set; } = null!;

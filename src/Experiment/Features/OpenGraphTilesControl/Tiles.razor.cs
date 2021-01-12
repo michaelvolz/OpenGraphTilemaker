@@ -15,7 +15,9 @@ namespace Experiment.Features.OpenGraphTilesControl
     public partial class Tiles
     {
         [Parameter] public string Class { get; [UsedImplicitly] set; } = string.Empty;
-        [Parameter] public IList<OpenGraphMetadata> OriginalTiles { get; private set; } = null!;
+
+        [Parameter] [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Unnecessary")]
+        public IList<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
 
         private TilesState State => Store.GetState<TilesState>();
 
