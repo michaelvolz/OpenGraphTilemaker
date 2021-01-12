@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Experiment.Features.Counter;
+using Experiment.Features.CounterControl;
 using FluentAssertions;
 using OpenGraphTilemaker.Tests;
 using Xunit;

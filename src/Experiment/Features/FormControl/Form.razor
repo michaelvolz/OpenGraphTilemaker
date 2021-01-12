@@ -1,0 +1,39 @@
+﻿@page "/form"
+@inherits Experiment.Features.AppCode.BlazorComponentStateful<Form>
+
+@{
+    RenderFragment successText = @<span>Success! You've done it.</span>;
+}
+
+<h1>Form</h1>
+
+<div class="@Success">
+    <div class="callout success emphasize radius">@successText</div>
+</div>
+
+<div class="@Error">
+    <MyValidationSummary Class="callout alert emphasize radius" Subject="@Person" TItem="Person"/>
+</div>
+
+<div class="@FormTag">
+    <label class="@IsValid(() => Person.FirstName)">
+        First Name
+        <input type="text" @bind="@Person.FirstName" @onkeypress="KeyPress"/>
+        <ValidationError Class="form-error is-visible" Subject="@Person" Property="@nameof(Person.FirstName)" TItem="Person"/>
+    </label>
+    <label class="@IsValid(() => Person.LastName)">
+        Last Name
+        <input type="text" @bind="@Person.LastName"/>
+        <ValidationError Class="form-error is-visible" Subject="@Person" Property="@nameof(Person.LastName)" TItem="Person"/>
+    </label>
+    <label class="@IsValid(() => Person.Age)">
+        Age
+        <input type="number" @bind="@Person.Age"/>
+        <ValidationError Class="form-error is-visible" Subject="@Person" Property="@nameof(Person.Age)" TItem="Person"/>
+        <small class="help-text">We'll never share your age with anyone else.</small>
+    </label>
+
+    <hr/>
+
+    <button type="submit" class="button primary" @onclick="SubmitAsync">Submit</button>
+</div>

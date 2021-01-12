@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Common.Exceptions;
-using Experiment.Features.App;
-using Experiment.Features.App.Globals;
+using Experiment.Features.AppCode;
+using Experiment.Features.AppCode.GlobalsControl;
 using Microsoft.Extensions.Logging;
 
 namespace Experiment.Features

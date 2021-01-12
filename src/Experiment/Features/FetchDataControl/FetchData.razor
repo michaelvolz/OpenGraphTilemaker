@@ -1,0 +1,40 @@
+﻿@page "/fetchdata"
+@using Common.Extensions
+@inherits Experiment.Features.AppCode.BlazorComponentStateful<FetchData>
+
+<h1>Weather forecast!</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (Forecasts.Length == 0)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <div class="table-scroll">
+        <table class="hover">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var forecast in Forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

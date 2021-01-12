@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BaseTestCode;
 using Common.Extensions;
-using Domain.CryptoWatch;
+using Domain.CryptoWatchService;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Xunit;

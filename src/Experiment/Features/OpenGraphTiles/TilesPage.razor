@@ -1,8 +1,0 @@
-﻿@page "/tiles"
-@inherits BlazorComponentStateful<TilesPage>
-
-<h1>Tiles</h1>
-
-<div class="callout success emphasize radius @ShowIf(Loading)">Updating / Loading...</div>
-
-<Tiles Class="tilesContainer" OriginalTiles="@(Store.GetState<TilesState>().OriginalTiles)"></Tiles>

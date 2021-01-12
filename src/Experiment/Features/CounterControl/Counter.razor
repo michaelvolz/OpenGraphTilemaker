@@ -1,0 +1,8 @@
+﻿@page "/counter"
+@inherits Experiment.Features.AppCode.BlazorComponentStateful<Counter>
+
+<h1>Counter</h1>
+
+<p>Current count: @CounterState.Count</p>
+
+<button class="button primary" @onclick="ButtonClick">Click me</button>
