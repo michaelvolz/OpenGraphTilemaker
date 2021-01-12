@@ -20,7 +20,7 @@ namespace Experiment.Tests.TestServer.Helpers
             void ResponseFactory(VirtualResponse virtualResponse)
             {
                 virtualResponse
-                    .Address(response.RequestMessage.RequestUri)
+                    .Address(response.RequestMessage?.RequestUri)
                     .Status(response.StatusCode);
 
                 MapHeaders(response.Headers);
