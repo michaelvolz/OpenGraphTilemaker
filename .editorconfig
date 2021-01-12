@@ -6,12 +6,15 @@
 
 # NOTE: Requires **VS2019 16.3** or later
 # Description: StyleCop.ruleset
+dotnet_diagnostic.ca1002.severity=none
+dotnet_diagnostic.ca1014.severity=none
 dotnet_diagnostic.ca1303.severity=none
 dotnet_diagnostic.ca1308.severity=none
 dotnet_diagnostic.ca1707.severity=none
 dotnet_diagnostic.ca1724.severity=none
 dotnet_diagnostic.ca2007.severity=none
 dotnet_diagnostic.ca2227.severity=none
+dotnet_diagnostic.ca5394.severity=none
 dotnet_diagnostic.sa0001.severity=none
 dotnet_diagnostic.sa1101.severity=none
 dotnet_diagnostic.sa1134.severity=none
@@ -220,6 +223,9 @@ tab_width=4
 indent_style=space
 indent_size=4
 tab_width=4
+
+# Default severity for all analyzer diagnostics
+dotnet_analyzer_diagnostic.severity = none
 
 [*.{appxmanifest,axml,build,config,csproj,dbml,discomap,dtd,json,jsproj,lsproj,njsproj,nuspec,proj,props,resjson,resw,resx,StyleCop,targets,tasks,vbproj,xml,xsd}]
 indent_style=space
