@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using Common;
 using Domain.OpenGraphTilemaker.GetPocket;
@@ -69,7 +69,7 @@ namespace Experiment
 
             services.AddTransient<Time>();
             services.AddHttpClient<ITileMakerClient, TileMakerClient>();
-            services.AddTransient<OpenGraphTileMaker>();
+            services.AddTransient<TileMaker>();
             services.AddSingleton<WeatherForecastService>();
             services.AddTransient<Feed<PocketEntry>>();
             services.AddTransient<DiscCache>();

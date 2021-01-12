@@ -12,6 +12,7 @@ namespace Domain.CryptoWatch
 
         public FakeDataPump() => _random = new Random();
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "CA5394:Do not use insecure randomness", Justification = "Can be insecure")]
         public async IAsyncEnumerable<CryptoEntity> DataStreamAsync([EnumeratorCancellation] CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)

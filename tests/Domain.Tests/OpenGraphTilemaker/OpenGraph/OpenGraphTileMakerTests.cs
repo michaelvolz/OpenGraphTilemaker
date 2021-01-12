@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace Domain.Tests.OpenGraphTilemaker.OpenGraph
 {
     public class OpenGraphTileMakerTests : BaseTest<OpenGraphTileMakerTests>
     {
-        private readonly OpenGraphTileMaker _tileMaker;
+        private readonly TileMaker _tileMaker;
         private readonly HttpLoader _webLoader;
 
         public OpenGraphTileMakerTests(ITestOutputHelper testConsole)
@@ -25,7 +25,7 @@ namespace Domain.Tests.OpenGraphTilemaker.OpenGraph
         {
             var options = Options.Create(new DiscCacheOptions(@"C:\WINDOWS\Temp\", CacheState.Disabled));
             _webLoader = new HttpLoader(new DiscCache(options));
-            _tileMaker = new OpenGraphTileMaker();
+            _tileMaker = new TileMaker();
         }
 
         [Theory]
@@ -82,7 +82,7 @@ namespace Domain.Tests.OpenGraphTilemaker.OpenGraph
             md.Url.Should().BeEquivalentTo(
                 "https://www.recode.net/2018/11/2/18053424/elon-musk-tesla-spacex-boring-company-self-driving-cars-saudi-twitter-kara-swisher-decode-podcast");
             md.Description.Should().BeEquivalentTo(
-                "Musk talks about his \"excruciating\" 2018, fighting with journalists on Twitter, why Tesla won’t build an electric scooter and much more.");
+                "Musk talks about his \"excruciating\" 2018, fighting with journalists on Twitter, why Tesla wonâ€™t build an electric scooter and much more.");
             md.SiteName.Should().BeEquivalentTo("Recode");
             md.Image.Should()
                 .BeEquivalentTo(
@@ -128,7 +128,7 @@ namespace Domain.Tests.OpenGraphTilemaker.OpenGraph
                 .BeEquivalentTo("Microsoft launches Spend iOS app that automatically tracks and matches expenses");
             md.Url.Should().BeEquivalentTo("https://9to5mac.com/2018/10/19/microsoft-spend-ios-app/");
             md.Description.Should().BeEquivalentTo(
-                "Microsoft is out with a new iOS app that looks to automate keeping tabs on business expenses. Coming from the same team behind the mileage tracking app, MileIQ, Spend is designed to make expense an…");
+                "Microsoft is out with a new iOS app that looks to automate keeping tabs on business expenses. Coming from the same team behind the mileage tracking app, MileIQ, Spend is designed to make expense anâ€¦");
             md.SiteName.Should().BeEquivalentTo("9to5Mac");
             md.Image.Should()
                 .BeEquivalentTo(

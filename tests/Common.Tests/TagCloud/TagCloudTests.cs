@@ -17,9 +17,10 @@ namespace Common.Tests.TagCloud
             : base(testConsole) { }
 
         [Fact]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         public async Task TagCloud_InsertText_ReturnsValidCloud()
         {
-            var tagCloud = new Common.TagCloud.TagCloud();
+            var tagCloud = new Common.TagCloud.Tags();
 
             await tagCloud.InsertAsync(DummyText, DummyText, DummyText);
 
@@ -58,9 +59,10 @@ namespace Common.Tests.TagCloud
         }
 
         [Fact]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         public async Task TagCloud_InsertTextTwice_ReturnsValidCloud()
         {
-            var tagCloud = new Common.TagCloud.TagCloud();
+            var tagCloud = new Common.TagCloud.Tags();
 
             await tagCloud.InsertAsync(DummyText);
             await tagCloud.InsertAsync(DummyText);

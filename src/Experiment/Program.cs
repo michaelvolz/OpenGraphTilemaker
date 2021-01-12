@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using Experiment.Features.App;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +9,15 @@ namespace Experiment
 {
     public sealed partial class Program
     {
+
+
+
+
+
+
+
+
+        //aaaaaaaaaaaa
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By Design")]
         public static int Main(string[] args)
         {

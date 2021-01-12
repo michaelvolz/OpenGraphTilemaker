@@ -40,7 +40,7 @@ namespace OpenGraphTilemaker.Tests
 
         protected HttpLoader HttpLoader() => new HttpLoader(DiscCache());
 
-        protected OpenGraphTileMaker TileMaker() => new OpenGraphTileMaker();
+        protected TileMaker TileMaker() => new TileMaker();
 
         protected DiscCache DiscCache() => new DiscCache(DiscCacheIOptions());
 

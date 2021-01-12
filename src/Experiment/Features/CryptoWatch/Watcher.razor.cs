@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace Experiment.Features.CryptoWatch
 {
-    public partial class CryptoWatch
+    public partial class Watcher
     {
         private CryptoWatchCardData Card1 { get; [UsedImplicitly] set; } = new CryptoWatchCardData();
         private CryptoWatchCardData Card2 { get; [UsedImplicitly] set; } = new CryptoWatchCardData();

@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.install.ps1 = global.install.ps1
 		License.txt = License.txt
 		README.md = README.md
+		RuleSet1.ruleset = RuleSet1.ruleset
 		StyleCop.Dictionary.xml = StyleCop.Dictionary.xml
 		StyleCop.json = StyleCop.json
 		StyleCop.ruleset = StyleCop.ruleset

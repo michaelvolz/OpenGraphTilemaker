@@ -7,7 +7,7 @@ using HtmlAgilityPack;
 
 namespace Domain.OpenGraphTilemaker.OpenGraph
 {
-    public class OpenGraphTileMaker
+    public class TileMaker
     {
         public IList<HtmlNode>? HtmlMetaTags { get; private set; }
         public OpenGraphMetadata GraphMetadata { get; private set; } = new OpenGraphMetadata();

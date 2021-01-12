@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 
-namespace Experiment.Features.App.Visibility
+namespace Experiment.Features.App.Visualness
 {
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Blazor rule")]
     public partial class Visibility

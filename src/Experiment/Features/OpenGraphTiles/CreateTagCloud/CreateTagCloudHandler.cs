@@ -22,12 +22,12 @@ namespace Experiment.Features.OpenGraphTiles
             {
                 Guard.Against.Null(aAction, nameof(aAction));
 
-                var tagCloud = new TagCloud();
+                var tagCloud = new Tags();
 
                 foreach (var tile in aAction.OriginalTiles)
                     await tagCloud.InsertAsync(tile.Title, tile.Description, tile.SiteName);
 
-                // TilesState.TagCloud = from entry in tagCloud.Cloud orderby entry.Key select entry;
+                // TilesState.Tags = from entry in tagCloud.Cloud orderby entry.Key select entry;
                 TilesState.TagCloud = tagCloud.Cloud;
 
                 return await Unit.Task;

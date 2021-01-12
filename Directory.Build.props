@@ -14,7 +14,6 @@
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <Product>OpenGraphTileMaker</Product>
     <NeutralLanguage>en</NeutralLanguage>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -26,6 +25,7 @@
   <PropertyGroup>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)StyleCop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -33,11 +33,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.321" PrivateAssets="all" />
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)StyleCop.json" Link="StyleCop.json" />
-
-    <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)StyleCop.Dictionary.xml" Link="StyleCop.Dictionary.xml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </CodeAnalysisDictionary>
   </ItemGroup>
 </Project>

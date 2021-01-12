@@ -12,12 +12,12 @@ namespace Domain.OpenGraphTilemaker.OpenGraph
     {
         private readonly HttpClient _httpClient;
         private readonly HttpLoader _httpLoader;
-        private readonly OpenGraphTileMaker _openGraphTileMaker;
+        private readonly TileMaker _tileMaker;
 
-        public TileMakerClient(HttpClient httpClient, OpenGraphTileMaker openGraphTileMaker, HttpLoader httpLoader)
+        public TileMakerClient(HttpClient httpClient, TileMaker tileMaker, HttpLoader httpLoader)
         {
             _httpClient = Guard.Against.Null(httpClient, nameof(httpClient));
-            _openGraphTileMaker = Guard.Against.Null(openGraphTileMaker, nameof(openGraphTileMaker));
+            _tileMaker = Guard.Against.Null(tileMaker, nameof(tileMaker));
             _httpLoader = Guard.Against.Null(httpLoader, nameof(httpLoader));
         }
 
@@ -26,9 +26,9 @@ namespace Domain.OpenGraphTilemaker.OpenGraph
             Guard.Against.Null(uri, nameof(uri));
             Guard.Against.Null(entry, nameof(entry));
 
-            await _openGraphTileMaker.ScrapeAsync(uri.OriginalString, async () => await _httpLoader.LoadAsync(_httpClient, uri));
+            await _tileMaker.ScrapeAsync(uri.OriginalString, async () => await _httpLoader.LoadAsync(_httpClient, uri));
 
-            var result = _openGraphTileMaker.GraphMetadata;
+            var result = _tileMaker.GraphMetadata;
             result.BookmarkTime = entry.PubDate;
 
             return result;
