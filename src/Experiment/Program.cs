@@ -9,16 +9,7 @@ namespace Experiment
 {
     public sealed partial class Program
     {
-
-
-
-
-
-
-
-
-        //aaaaaaaaaaaa
-        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "By Design")]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Unnecessary")]
         public static int Main(string[] args)
         {
             Serilogger.Configure(ApplicationSettings.Configuration);
@@ -43,8 +34,7 @@ namespace Experiment
         private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
+                .ConfigureWebHostDefaults(webBuilder => {
                     webBuilder.UseStartup<Startup>();
                 });
     }

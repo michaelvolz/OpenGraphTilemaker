@@ -22,7 +22,6 @@ namespace Experiment
 
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
-
         [UsedImplicitly] public static IConfiguration? Configuration { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
@@ -39,9 +38,7 @@ namespace Experiment
             _environment = env;
 
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
             {
                 app.UseExceptionHandler("/Error");
@@ -57,8 +54,7 @@ namespace Experiment
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
+            app.UseEndpoints(endpoints => {
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
@@ -66,14 +62,11 @@ namespace Experiment
 
         private void AppServices(IServiceCollection services)
         {
-            services.AddServerSideBlazor().AddCircuitOptions(o =>
-            {
-                if (_environment.IsDevelopment()) //only add details when debugging
-                {
+            services.AddServerSideBlazor().AddCircuitOptions(o => {
+                if (_environment.IsDevelopment()) // only add details when debugging
                     o.DetailedErrors = true;
-                }
             });
-            
+
             services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Features");
 
             services.AddMemoryCache();
@@ -86,16 +79,14 @@ namespace Experiment
             services.AddSingleton<WeatherForecastService>();
             services.AddTransient<Feed<PocketEntry>>();
             services.AddTransient<DiscCache>();
-            services.Configure<DiscCacheOptions>(options =>
-            {
+            services.Configure<DiscCacheOptions>(options => {
                 options.CacheState = CacheState.Enabled;
                 options.CacheFolder = Path.GetTempPath();
             });
 
             services.AddTransient<HttpLoader>();
             services.AddTransient<IPocket, Pocket>();
-            services.Configure<PocketOptions>(options =>
-            {
+            services.Configure<PocketOptions>(options => {
                 options.Uri = new Uri("https://getpocket.com/users/Flynn0r/feed/");
                 options.CachingTimeSpan = TimeSpan.FromSeconds(15);
                 options.TimeOutTimeSpan = TimeSpan.FromSeconds(10);

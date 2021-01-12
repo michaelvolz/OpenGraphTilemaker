@@ -29,7 +29,7 @@ namespace Common.TagCloud
                 InsertWord(word);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "ToLowerCase")]
         private static IEnumerable<string> ExtractWords(string text)
             => text
                 .ToLowerInvariant()

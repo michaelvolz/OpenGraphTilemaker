@@ -17,7 +17,7 @@ namespace Common.Tests.TagCloud
             : base(testConsole) { }
 
         [Fact]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "ToLowerCase")]
         public async Task TagCloud_InsertText_ReturnsValidCloud()
         {
             var tagCloud = new Common.TagCloud.Tags();
@@ -59,7 +59,7 @@ namespace Common.Tests.TagCloud
         }
 
         [Fact]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "ToLowerCase")]
         public async Task TagCloud_InsertTextTwice_ReturnsValidCloud()
         {
             var tagCloud = new Common.TagCloud.Tags();
