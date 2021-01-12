@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoFixture" Version="4.13.0" />
+    <PackageReference Include="AutoFixture" Version="4.15.0" />
     <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.13.0" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.13.0" />
     <PackageReference Include="Blazor-State" Version="3.2.1" />
