@@ -24,7 +24,7 @@ namespace Experiment.Features.Form
 
             var result = string.IsNullOrWhiteSpace(propertyName)
                 ? validator.Validate((this as T)!)
-                : validator!.Validate(this as T, propertyName);
+                : validator!.Validate(this as T, options => options.IncludeProperties(propertyName));
 
             return result.Errors;
         }
@@ -37,7 +37,7 @@ namespace Experiment.Features.Form
 
             var result = string.IsNullOrWhiteSpace(propertyName)
                 ? await validator.ValidateAsync(subject, token)
-                : await validator.ValidateAsync(subject, token, propertyName);
+                : await validator.ValidateAsync(subject, options => options.IncludeProperties(propertyName), token);
 
             return result.Errors;
         }
