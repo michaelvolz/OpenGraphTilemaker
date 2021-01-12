@@ -24,6 +24,7 @@ namespace Domain.OpenGraphTilemaker.OpenGraph
         public async Task<OpenGraphMetadata> OpenGraphMetadataAsync(Uri uri, PocketEntry entry)
         {
             Guard.Against.Null(uri, nameof(uri));
+            Guard.Against.Null(entry, nameof(entry));
 
             await _openGraphTileMaker.ScrapeAsync(uri.OriginalString, async () => await _httpLoader.LoadAsync(_httpClient, uri));
 
