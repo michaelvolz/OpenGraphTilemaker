@@ -12,7 +12,7 @@ namespace Experiment.Features.OpenGraphTilesControl
             [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Unnecessary")]
             public IList<OpenGraphMetadata> OriginalTiles { get; init; } = new List<OpenGraphMetadata>();
 
-            public string SearchText { get; set; } = string.Empty;
+            public string SearchText { get; init; } = string.Empty;
         }
     }
 }
