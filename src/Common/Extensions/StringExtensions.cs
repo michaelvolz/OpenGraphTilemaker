@@ -45,7 +45,7 @@ namespace Common.Extensions
 
         public static bool NotNullNorEmpty(this string? value) => !value.IsNullOrEmpty();
 
-        public static bool IsNullOrEmpty(this object? value) => !(value is string @string) || string.IsNullOrEmpty(@string);
+        public static bool IsNullOrEmpty(this object? value) => string.IsNullOrEmpty(value as string);
 
         public static bool IsNullOrEmpty(this string? value) => string.IsNullOrEmpty(value);
 
@@ -53,7 +53,7 @@ namespace Common.Extensions
 
         public static bool NotNullNorWhiteSpace(this string? value) => !value.IsNullOrWhiteSpace();
 
-        public static bool IsNullOrWhiteSpace(this object? value) => !(value is string @string) || string.IsNullOrWhiteSpace(@string);
+        public static bool IsNullOrWhiteSpace(this object? value) => string.IsNullOrWhiteSpace(value as string);
 
         public static bool IsNullOrWhiteSpace(this string? value) => string.IsNullOrWhiteSpace(value);
 
