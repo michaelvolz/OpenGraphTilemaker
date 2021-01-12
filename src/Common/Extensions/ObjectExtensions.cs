@@ -90,7 +90,7 @@ namespace Common.Extensions
             if (isList)
                 return deserializedConcrete;
 
-            var item = (T)(Activator.CreateInstance(typeof(T)) ?? throw new InvalidOperationException());
+            var item = (T)Activator.CreateInstance(typeof(T))!;
             isList = item.GetType().IsGenericType && item is IEnumerable;
 
             if (!isList)
