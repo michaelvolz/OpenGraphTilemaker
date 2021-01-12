@@ -42,7 +42,7 @@ namespace Experiment.Features.OpenGraphTilesControl
                 return Unit.Task;
             }
 
-            private void SortTiles(List<OpenGraphMetadata> tiles)
+            private void SortTiles(IList<OpenGraphMetadata> tiles)
             {
                 switch (TilesState.SortProperty)
                 {

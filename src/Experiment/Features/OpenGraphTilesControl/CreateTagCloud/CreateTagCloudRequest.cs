@@ -8,7 +8,7 @@ namespace Experiment.Features.OpenGraphTilesControl
     {
         public class CreateTagCloudRequest : IAction
         {
-            public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
+            public IList<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
         }
     }
 }

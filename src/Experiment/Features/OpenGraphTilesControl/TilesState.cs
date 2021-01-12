@@ -8,8 +8,8 @@ namespace Experiment.Features.OpenGraphTilesControl
     [SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Needed for Blazor.State")]
     public partial class TilesState
     {
-        public List<OpenGraphMetadata> FilteredAndSortedTiles { get; private set; } = new List<OpenGraphMetadata>();
-        public List<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
+        public IList<OpenGraphMetadata> FilteredAndSortedTiles { get; private set; } = new List<OpenGraphMetadata>();
+        public IList<OpenGraphMetadata> OriginalTiles { get; set; } = new List<OpenGraphMetadata>();
 
         public Dictionary<string, int>? TagCloud { get; private set; }
 

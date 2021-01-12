@@ -9,7 +9,7 @@ namespace Experiment.Features.OpenGraphTilesControl
     {
         public class SortTilesRequest : IAction
         {
-            public List<OpenGraphMetadata>? CurrentTiles { get; set; }
+            public IList<OpenGraphMetadata>? CurrentTiles { get; set; }
 
             public string SortProperty { get; set; } = string.Empty;
             public SortOrder SortOrder { get; set; } = SortOrder.Undefined;
