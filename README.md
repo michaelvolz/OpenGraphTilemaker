@@ -9,7 +9,7 @@ I want to try Blazor with a set of tools and patterns and libraries I personally
 
 ### Implemented Features
 
-* [ASP.NET Core 3.1](https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-3.1)
+* [ASP.NET Core 5.0.x](https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-5.0)
 * [C# nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references)
 * Microsoft.CodeAnalysis.FxCopAnalyzers
 * StyleCop.Analyzers.Unstable
