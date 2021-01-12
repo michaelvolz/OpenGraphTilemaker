@@ -18,11 +18,14 @@ namespace Experiment
 {
     public partial class Startup
     {
+        private IWebHostEnvironment? _environment;
+
         public Startup(IConfiguration configuration) => Configuration = configuration;
+
 
         [UsedImplicitly] public static IConfiguration? Configuration { get; set; }
 
-        public static void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
@@ -31,8 +34,10 @@ namespace Experiment
         }
 
         [UsedImplicitly]
-        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            _environment = env;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,8 +64,16 @@ namespace Experiment
             });
         }
 
-        private static void AppServices(IServiceCollection services)
+        private void AppServices(IServiceCollection services)
         {
+            services.AddServerSideBlazor().AddCircuitOptions(o =>
+            {
+                if (_environment.IsDevelopment()) //only add details when debugging
+                {
+                    o.DetailedErrors = true;
+                }
+            });
+            
             services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Features");
 
             services.AddMemoryCache();
