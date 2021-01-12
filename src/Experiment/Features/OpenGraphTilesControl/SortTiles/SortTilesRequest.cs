@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using BlazorState;
 using Common;
 using Domain.OpenGraphTilemaker.OpenGraph;
@@ -9,7 +10,8 @@ namespace Experiment.Features.OpenGraphTilesControl
     {
         public class SortTilesRequest : IAction
         {
-            public IList<OpenGraphMetadata>? CurrentTiles { get; set; }
+            [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Unnecessary")]
+            public IList<OpenGraphMetadata>? CurrentTiles { get; init; }
 
             public string SortProperty { get; set; } = string.Empty;
             public SortOrder SortOrder { get; set; } = SortOrder.Undefined;

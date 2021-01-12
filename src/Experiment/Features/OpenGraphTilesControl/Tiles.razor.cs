@@ -15,7 +15,7 @@ namespace Experiment.Features.OpenGraphTilesControl
     public partial class Tiles
     {
         [Parameter] public string Class { get; [UsedImplicitly] set; } = string.Empty;
-        [Parameter] public IList<OpenGraphMetadata> OriginalTiles { get; [UsedImplicitly] set; } = null!;
+        [Parameter] public IList<OpenGraphMetadata> OriginalTiles { get; private set; } = null!;
 
         private TilesState State => Store.GetState<TilesState>();
 
