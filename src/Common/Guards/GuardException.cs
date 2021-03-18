@@ -14,7 +14,7 @@ namespace Ardalis.GuardClauses
     {
         [NonSerialized] public const string GuardPrefix = "GUARD";
 
-        [NonSerialized] private static const string PrefixedMessage = $"{GuardPrefix} exception!";
+        [NonSerialized] private const string PrefixedMessage = $"{GuardPrefix} exception!";
 
         public GuardException() { }
 
