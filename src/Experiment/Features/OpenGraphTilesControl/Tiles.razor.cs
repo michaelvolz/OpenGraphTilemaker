@@ -2,13 +2,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using Ardalis.GuardClauses;
 using Common;
 using Domain.OpenGraphTilemaker.OpenGraph;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
-using Serilog;
 
 namespace Experiment.Features.OpenGraphTilesControl
 {
@@ -22,21 +20,15 @@ namespace Experiment.Features.OpenGraphTilesControl
 
         private TilesState State => Store.GetState<TilesState>();
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        protected override async Task OnParametersSetAsync()
         {
-            Guard.Against.Null(OriginalTiles, nameof(OriginalTiles));
+            Logger.LogInformation(
+                "### {MethodName} OriginalTiles.Any(): {b}, State.TagCloud != null: {a}",
+                nameof(OnParametersSetAsync),
+                OriginalTiles.Any(),
+                State.TagCloud != null);
 
-            if (OriginalTiles.Any() && !State.FilteredAndSortedTiles.Any())
-            {
-                Logger.LogInformation("### {MethodName} Count: {Count}", nameof(OnAfterRenderAsync), OriginalTiles.Count);
-
-                await SearchAsync(State.SearchText);
-                await RequestAsync(new TilesState.CreateTagCloudRequest { OriginalTiles = OriginalTiles });
-
-                IsLoading = false;
-
-                StateHasChanged();
-            }
+            await InitializeTagCloud();
         }
 
         protected bool Loaded() => OriginalTiles.Any();
@@ -48,6 +40,19 @@ namespace Experiment.Features.OpenGraphTilesControl
         protected async Task OnSortProperty(string sortProperty) => await SortByPropertyAsync(sortProperty);
         protected async Task OnSortOrder(SortOrder sortOrder) => await SortByOrderAsync(sortOrder);
         protected async Task OnSearch(string searchText) => await SearchAsync(searchText);
+
+        private async Task InitializeTagCloud()
+        {
+            if (OriginalTiles.Any() && !State.FilteredAndSortedTiles.Any())
+            {
+                Logger.LogInformation("### {MethodName} Count: {Count}", nameof(InitializeTagCloud), OriginalTiles.Count);
+
+                await SearchAsync(State.SearchText);
+                await RequestAsync(new TilesState.CreateTagCloudRequest { OriginalTiles = OriginalTiles });
+
+                IsLoading = false;
+            }
+        }
 
         private async Task SortByOrderAsync(SortOrder sortOrder)
         {
