@@ -8,6 +8,7 @@ using Domain.OpenGraphTilemaker.OpenGraph;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Experiment.Features.OpenGraphTilesControl
 {
@@ -27,12 +28,14 @@ namespace Experiment.Features.OpenGraphTilesControl
 
             if (OriginalTiles.Any() && !State.FilteredAndSortedTiles.Any())
             {
-                Logger.LogInformation("### {MethodName} Count: {Count}", nameof(OnParametersSetAsync), OriginalTiles.Count);
+                Logger.LogInformation("### {MethodName} Count: {Count}", nameof(OnAfterRenderAsync), OriginalTiles.Count);
 
                 await SearchAsync(State.SearchText);
                 await RequestAsync(new TilesState.CreateTagCloudRequest { OriginalTiles = OriginalTiles });
 
                 IsLoading = false;
+
+                StateHasChanged();
             }
         }
 
