@@ -57,13 +57,16 @@ namespace Common.Extensions
 
         public static bool IsNullOrWhiteSpace(this string? value) => string.IsNullOrWhiteSpace(value);
 
-        public static string? TruncateAtWord(this string? value, int length, string ellipsis = "…", string truncateAtChar = " ")
+        public static string TruncateAtWord(this string? value, int length, string ellipsis = "…", string truncateAtChar = " ", string alternative = "")
         {
             Guard.Against.OutOfRange(() => length, 1, int.MaxValue);
             Guard.Against.Null(truncateAtChar, nameof(truncateAtChar));
             Guard.Against.Null(ellipsis, nameof(ellipsis));
 
-            if (value == null || value.Length <= length)
+            if (value.IsNullOrWhiteSpace())
+                return alternative;
+
+            if (value!.Length <= length)
                 return value;
 
             var nextSpaceIndex = value.LastIndexOf(truncateAtChar, length, StringComparison.Ordinal);
