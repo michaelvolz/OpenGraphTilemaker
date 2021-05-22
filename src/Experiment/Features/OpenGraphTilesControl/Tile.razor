@@ -1,7 +1,7 @@
 ﻿@using Common.Extensions
 @if (!string.IsNullOrWhiteSpace(OpenGraphMetadata?.Image))
 {
-    <div class="tile card shadow">
+    <div class="tile card">
         <img src="@OpenGraphMetadata.Image" alt="" title="@OpenGraphMetadata.Source">
         <div class="card-section">
             <div>
@@ -13,7 +13,7 @@
             <p>@OpenGraphMetadata.Description</p>
             <a href="@OpenGraphMetadata.Url" class="button secondary" target="_new">
                 <span>
-                    @(OpenGraphMetadata.SiteName.TruncateAtWord(25) ?? "Link")
+                    @OpenGraphMetadata.SiteName.TruncateAtWord(25, alternative: "Link")
                 </span>
             </a>
         </div>
