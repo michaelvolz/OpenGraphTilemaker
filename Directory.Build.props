@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <NoWarn>1701;1702;CA1014</NoWarn>
+    <NoWarn>1701;1702;CA1014;AD0001</NoWarn>
     <DocumentationFile>_$(MSBuildProjectName).xml</DocumentationFile>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
