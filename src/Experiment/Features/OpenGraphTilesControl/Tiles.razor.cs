@@ -23,7 +23,7 @@ namespace Experiment.Features.OpenGraphTilesControl
         protected override async Task OnParametersSetAsync()
         {
             Logger.LogInformation(
-                "### {MethodName} OriginalTiles.Any(): {b}, State.TagCloud != null: {a}",
+                "### {MethodName} OriginalTiles.Any(): {B}, State.TagCloud != null: {A}",
                 nameof(OnParametersSetAsync),
                 OriginalTiles.Any(),
                 State.TagCloud != null);
