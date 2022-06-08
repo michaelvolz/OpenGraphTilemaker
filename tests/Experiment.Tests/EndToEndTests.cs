@@ -33,7 +33,7 @@ namespace Experiment.Tests
             var doc = await response.ToHtmlDocumentAsync();
             var element = doc.QuerySelector("#myApp");
             element.Should().NotBeNull();
-            element.InnerHtml.Should().NotBeNullOrWhiteSpace();
+            element!.InnerHtml.Should().NotBeNullOrWhiteSpace();
             element.InnerHtml.Should().Contain("Current count: 3");
         }
     }
