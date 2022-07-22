@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ardalis.GuardClauses;
 using HtmlAgilityPack;
@@ -11,7 +12,8 @@ namespace Domain.OpenGraphTilemaker.OpenGraph
         {
             Guard.Against.Null(doc, nameof(doc));
 
-            var metaTags = doc.DocumentNode.SelectSingleNode("//head")?.Descendants()?.Where(n => n.Name == "meta");
+            var metaTags = doc.DocumentNode.SelectSingleNode("//head")?.Descendants()?.Where(n =>
+                string.Equals(n.Name, "meta", StringComparison.InvariantCultureIgnoreCase));
 
             return metaTags?.ToList();
         }
