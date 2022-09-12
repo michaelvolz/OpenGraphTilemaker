@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Blazor-State" Version="5.0.3" />
-    <PackageReference Include="FluentValidation" Version="11.2.1" />
+    <PackageReference Include="FluentValidation" Version="11.2.2" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Scrutor" Version="4.2.0" />
