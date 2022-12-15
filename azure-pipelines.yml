@@ -17,10 +17,10 @@ variables:
 steps:
 
 - task: UseDotNet@2
-  displayName: 'Use .NET Core sdk 7.0.x'
+  displayName: 'Use .NET Core sdk 7.x.x'
   inputs:
     packageType: sdk
-    version: 7.0.x
+    version: 7.x.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
