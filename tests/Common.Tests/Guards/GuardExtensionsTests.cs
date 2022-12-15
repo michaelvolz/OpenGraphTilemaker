@@ -31,7 +31,7 @@ namespace Common.Tests.Guards
             {
                 Guard.Against.NullOrWhiteSpace(() => testParameter);
             }
-            catch (Exception e)
+            catch (GuardException e)
             {
                 CheckExceptionResult(expected, e, nameof(testParameter), $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNullOrWhiteSpace)}*");
 
@@ -49,7 +49,7 @@ namespace Common.Tests.Guards
             {
                 Guard.Against.Condition(() => DateTime.Now != DateTime.MinValue, parameterName);
             }
-            catch (Exception e)
+            catch (GuardException e)
             {
                 CheckExceptionResult("Condition", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardCondition)}*");
 
@@ -67,7 +67,7 @@ namespace Common.Tests.Guards
             {
                 Guard.Against.Assert(() => DateTime.Now == DateTime.MinValue, parameterName);
             }
-            catch (Exception e)
+            catch (GuardException e)
             {
                 CheckExceptionResult("Assertion", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardAssert)}*");
 
@@ -86,7 +86,7 @@ namespace Common.Tests.Guards
             {
                 Guard.Against.Enum(invalidValue, typeof(TestEnum), parameterName);
             }
-            catch (Exception e)
+            catch (GuardException e)
             {
                 CheckExceptionResult(
                     $"The value of argument '{parameterName}' ({invalidValue}) is invalid for Enum type '{nameof(TestEnum)}'.",
@@ -108,7 +108,7 @@ namespace Common.Tests.Guards
             {
                 Guard.Against.Null<object>(null!, parameterName);
             }
-            catch (Exception e)
+            catch (GuardException e)
             {
                 CheckExceptionResult("Value cannot be null.", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNullGeneric)}*");
 
@@ -128,7 +128,7 @@ namespace Common.Tests.Guards
             {
                 Guard.Against.Default(() => parameter);
             }
-            catch (Exception e)
+            catch (GuardException e)
             {
                 CheckExceptionResult("Value cannot be default.", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardDefault)}*");
 
@@ -148,7 +148,7 @@ namespace Common.Tests.Guards
             {
                 Guard.Against.Null(parameter, nameof(parameter));
             }
-            catch (Exception e)
+            catch (GuardException e)
             {
                 CheckExceptionResult("Value cannot be null.", e, parameterName, $"*at*{nameof(GuardExtensionsTests)}.{nameof(GuardNull)}*");
 
