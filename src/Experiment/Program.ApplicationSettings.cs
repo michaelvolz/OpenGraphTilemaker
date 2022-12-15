@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
@@ -7,9 +8,9 @@ namespace Experiment
 {
     public partial class Program
     {
-        [UsedImplicitly]
-        private class ApplicationSettings
+        public class ApplicationSettings
         {
+            // ReSharper disable once InconsistentNaming
             private const string AppSettingsJSON = "appsettings.json";
             private const string FixedPathExtensionForTesting = @"..\..\..\..\..\..\src\Experiment";
 
