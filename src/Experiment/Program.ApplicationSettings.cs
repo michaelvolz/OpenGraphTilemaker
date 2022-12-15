@@ -8,7 +8,8 @@ namespace Experiment
 {
     public partial class Program
     {
-        public class ApplicationSettings
+        [UsedImplicitly]
+        private sealed class ApplicationSettings
         {
             // ReSharper disable once InconsistentNaming
             private const string AppSettingsJSON = "appsettings.json";
