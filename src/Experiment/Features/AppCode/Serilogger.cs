@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
@@ -21,7 +22,8 @@ namespace Experiment.Features.AppCode
                 .Enrich.WithExceptionDetails()
                 .WriteTo.Console(
                     outputTemplate:
-                    "{Timestamp:yy-MM-dd HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}{NewLine}{Exception}")
+                    "{Timestamp:yy-MM-dd HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}{NewLine}{Exception}",
+                    formatProvider: CultureInfo.CurrentCulture)
                 /* .WriteTo.Seq(
                     Environment.GetEnvironmentVariable("SEQ_URL") ?? "http://localhost:5341") */
                 .CreateLogger();
