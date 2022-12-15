@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BaseTestCode;
@@ -42,13 +43,13 @@ namespace Domain.Tests.OpenGraphTilemaker.GetPocket
             // Assert
             entries.Should().NotBeNullOrEmpty();
 
-            var first = entries.First();
+            var first = entries!.First();
             first.Title.Should().NotBeNullOrWhiteSpace();
             first.Link.Should().NotBeNull();
             first.PubDate.Should().NotBeSameDateAs(default);
 
             // Log
-            foreach (var item in entries)
+            foreach (var item in entries!)
             {
                 TestConsole.WriteLine(item.Title);
                 TestConsole.WriteLine(item.Category);

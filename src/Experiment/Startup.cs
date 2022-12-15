@@ -63,7 +63,7 @@ namespace Experiment
         private void AppServices(IServiceCollection services)
         {
             services.AddServerSideBlazor().AddCircuitOptions(o => {
-                if (_environment.IsDevelopment()) // only add details when debugging
+                if (_environment != null && _environment.IsDevelopment()) // only add details when debugging
                     o.DetailedErrors = true;
             });
 
@@ -92,7 +92,7 @@ namespace Experiment
                 options.TimeOutTimeSpan = TimeSpan.FromSeconds(10);
             });
 
-            services.Configure<CryptoWatchOptions>(Configuration?.GetSection("CryptoWatch"));
+            services.Configure<CryptoWatchOptions>(Configuration?.GetSection("CryptoWatch") ?? throw new InvalidOperationException("Missing CryptoWatch configuration"));
 
             ServiceLocator.SetServiceProvider(services.BuildServiceProvider());
 

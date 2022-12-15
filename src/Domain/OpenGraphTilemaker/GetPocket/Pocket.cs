@@ -20,7 +20,7 @@ namespace Domain.OpenGraphTilemaker.GetPocket
             _feed = Guard.Against.Null(feed, nameof(feed));
         }
 
-        public async Task<List<PocketEntry>> GetEntriesAsync(IPocketOptions options)
+        public async Task<List<PocketEntry>?> GetEntriesAsync(IPocketOptions options)
         {
             Guard.Against.Null(options, nameof(options));
             Guard.Against.Null(options.Uri, nameof(options.Uri));

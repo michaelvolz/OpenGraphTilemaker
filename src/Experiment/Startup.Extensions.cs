@@ -17,7 +17,7 @@ namespace Experiment
             {
                 services.AddBlazorState(
                     options => {
-                        options.UseReduxDevToolsBehavior = true;
+                        // options.UseReduxDevToolsBehavior = true;
                         options.Assemblies =
                             new[] {
                                 typeof(Startup).GetTypeInfo().Assembly

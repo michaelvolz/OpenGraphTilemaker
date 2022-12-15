@@ -17,13 +17,13 @@ namespace Experiment.Features.AppCode
                 .ReadFrom.Configuration(configuration)
                 .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
-                .Enrich.WithDemystifiedStackTraces()
+                /*.Enrich.WithDemystifiedStackTraces()*/
                 .Enrich.WithExceptionDetails()
-                .WriteTo.ColoredConsole(
+                .WriteTo.Console(
                     outputTemplate:
                     "{Timestamp:yy-MM-dd HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}{NewLine}{Exception}")
-                .WriteTo.Seq(
-                    Environment.GetEnvironmentVariable("SEQ_URL") ?? "http://localhost:5341")
+                /* .WriteTo.Seq(
+                    Environment.GetEnvironmentVariable("SEQ_URL") ?? "http://localhost:5341") */
                 .CreateLogger();
     }
 }

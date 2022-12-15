@@ -36,9 +36,10 @@ namespace Experiment.Features.OpenGraphTilesControl
             var entries = await _pocket.GetEntriesAsync(_pocketOptions);
             var tasks = new List<Task<OpenGraphMetadata>>();
 
-            foreach (var entry in entries)
-                tasks.Add(_tileMakerClient.OpenGraphMetadataAsync(new Uri(entry.Link), entry)
-                    .TimeoutAfter(_pocketOptions.TimeOutTimeSpan));
+            if (entries != null)
+                foreach (var entry in entries)
+                    tasks.Add(_tileMakerClient.OpenGraphMetadataAsync(new Uri(entry.Link), entry)
+                        .TimeoutAfter(_pocketOptions.TimeOutTimeSpan));
 
             var taskResults = await Task.WhenAll(tasks);
 

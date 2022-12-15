@@ -12,7 +12,7 @@ namespace Experiment
     public partial class App
     {
         [Inject] private JsonRequestHandler JsonRequestHandler { get; [UsedImplicitly] set; } = null!;
-        [Inject] private ReduxDevToolsInterop ReduxDevToolsInterop { get; [UsedImplicitly] set; } = null!;
+        /* [Inject] private ReduxDevToolsInterop ReduxDevToolsInterop { get; [UsedImplicitly] set; } = null!; */
 
         // Injected so it is created by the container. Even though the IDE says it is not used, it is.
         [Inject] [UsedImplicitly] private RouteManager RouteManager { get; [UsedImplicitly] set; } = null!;
@@ -22,7 +22,7 @@ namespace Experiment
             var logger = ApplicationLogging.CreateLogger<App>();
             logger.LogInformation("Initializing App component...");
 
-            await ReduxDevToolsInterop.InitAsync();
+            // await ReduxDevToolsInterop.InitAsync();
             await JsonRequestHandler.InitAsync();
 
             logger.LogInformation("Initializing App component...done");

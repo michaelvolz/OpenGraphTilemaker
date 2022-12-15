@@ -21,7 +21,7 @@ namespace Common
         public static void SetServiceProvider(ServiceProvider serviceProvider)
             => _globalServiceProvider = serviceProvider;
 
-        public object GetInstance(Type serviceType) => _localServiceProvider.GetService(serviceType);
+        public object? GetInstance(Type serviceType) => _localServiceProvider.GetService(serviceType);
 
         public TService GetInstance<TService>()
             => _localServiceProvider.GetService<TService>()
