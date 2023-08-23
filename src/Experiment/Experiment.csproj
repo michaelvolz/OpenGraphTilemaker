@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazor-State" Version="7.0.0" />
+    <PackageReference Include="Blazor-State" Version="8.2.7" />
     <PackageReference Include="FluentValidation" Version="11.6.0" />
     <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
