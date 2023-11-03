@@ -10,8 +10,13 @@ namespace Common.TagCloud
 {
     public class Tags
     {
-        private const string MySQLMyISAMText = @"TagCloud\mysql_myisam.txt";
+        private static string root = string.Empty;
+        private static string folder = "TagCloud";
+        private static string file = "mysql_myisam.txt";
+        private static string fullFileName = System.IO.Path.Combine(root, folder, file);
+        private static string mySQLMyISAMText = Path.DirectorySeparatorChar + fullFileName;
 
+        // private const string MySQLMyISAMText = @"TagCloud\mysql_myisam.txt";
         private static string[]? _stopWords;
 
         public Dictionary<string, int> Cloud { get; } = new Dictionary<string, int>();
@@ -23,7 +28,7 @@ namespace Common.TagCloud
         /// <param name="textBlocks">Text to use.</param>
         public async Task InsertAsync(params string[] textBlocks)
         {
-            _stopWords ??= await File.ReadAllLinesAsync($@"{AssemblyLocation}\{MySQLMyISAMText}");
+            _stopWords ??= await File.ReadAllLinesAsync($@"{AssemblyLocation}{mySQLMyISAMText}");
 
             foreach (var word in ExtractWords(textBlocks.CombineAll()))
                 InsertWord(word);
