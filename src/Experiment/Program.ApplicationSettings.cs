@@ -12,7 +12,6 @@ namespace Experiment
         {
             // ReSharper disable once InconsistentNaming
             private const string AppSettingsJSON = "appsettings.json";
-            private const string FixedPathExtensionForTesting = @"..\..\..\..\..\..\src\Experiment";
 
             public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
                 .SetBasePath(LocateAppSettings())
@@ -28,9 +27,14 @@ namespace Experiment
             {
                 var currentDirectory = Directory.GetCurrentDirectory();
 
-                return File.Exists($@"{currentDirectory}\{AppSettingsJSON}")
+                return File.Exists(Path.Combine(currentDirectory, AppSettingsJSON))
                     ? currentDirectory
-                    : currentDirectory + FixedPathExtensionForTesting;
+                    : FixPathForTestingEnvironment(currentDirectory);
+
+                static string FixPathForTestingEnvironment(string currentDirectory)
+                {
+                    return Path.GetFullPath(Path.Combine(currentDirectory, "..", "..", "..", "..", "..", ".."));
+                }
             }
         }
     }
